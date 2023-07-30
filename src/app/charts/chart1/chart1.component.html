@@ -1,9 +1,9 @@
 <svg>
     <rect
         *ngFor="let item of data; let i = index"
-        [attr.x]="i * width"
-        [attr.y]="250 - item"
-        [attr.height]="item"
-        [attr.width]="width"
+        [attr.x]="i * rectWidth"
+        [attr.y]="dimensions.height - (dimensions.height / max * item)"
+        [attr.height]="dimensions.height / max * item"
+        [attr.width]="rectWidth"
     ></rect>
 </svg>
