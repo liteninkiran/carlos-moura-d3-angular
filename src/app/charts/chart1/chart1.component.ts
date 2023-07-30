@@ -15,6 +15,12 @@ export class Chart1Component implements OnInit {
     public padding: number;
     public bandwidth: number;
     public bandwidthCoef = 0.8;
+    public left = 10;
+    public right = 20;
+    public bottom = 30;
+    public top = 15;
+    public innerWidth: number;
+    public innerHeight: number;
 
     constructor(private elementRef: ElementRef) {
 
@@ -23,7 +29,10 @@ export class Chart1Component implements OnInit {
     public ngOnInit(): void {
         const svg = this.elementRef.nativeElement.getElementsByTagName('svg')[0];
         this.dimensions = svg.getBoundingClientRect();
-        this.rectWidth = (this.dimensions.width - 2 * this.outerPadding) / this.data.length;
+        this.innerWidth = this.dimensions.width - this.left - this.right;
+        this.innerHeight = this.dimensions.height - this.top - this.bottom;
+
+        this.rectWidth = (this.innerWidth - 2 * this.outerPadding) / this.data.length;
         this.max = Math.max(...this.data) * 1.2;
         this.bandwidth = this.bandwidthCoef * this.rectWidth;
         this.padding = (1 - this.bandwidthCoef) * this.rectWidth;

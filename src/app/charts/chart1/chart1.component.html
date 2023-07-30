@@ -2,8 +2,8 @@
     <rect
         *ngFor="let item of data; let i = index"
         [attr.x]="i * rectWidth + 0.5 * padding + outerPadding"
-        [attr.y]="dimensions.height - (dimensions.height / max * item)"
+        [attr.y]="innerHeight - (innerHeight / max * item)"
         [attr.width]="bandwidth"
-        [attr.height]="dimensions.height / max * item"
+        [attr.height]="innerHeight / max * item"
     ></rect>
 </svg>
