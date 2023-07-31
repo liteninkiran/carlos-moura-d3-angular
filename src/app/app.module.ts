@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { Chart1Component } from './charts/chart1/chart1.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -11,6 +12,7 @@ import { Chart1Component } from './charts/chart1/chart1.component';
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
