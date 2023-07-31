@@ -54,9 +54,21 @@ export class Chart3Component implements OnInit, OnChanges {
     }
 
     private setAxis(): void {
+
+        // Set X Axis
         this.xAxis = d3.axisBottom(this.x);
-        this.xAxisContainer.call(this.xAxis);
+
+        // Set Y Axis
         this.yAxis = d3.axisLeft(this.y);
+        // this.yAxis.ticks(3);
+        const max = this.y.domain()[1];
+        const values = [0.00, 0.25, 0.50, 0.75, 1.00];
+        const valuesMapped = values.map((d) => d * max);
+
+        this.yAxis.tickValues(valuesMapped);
+
+        // Set containers
+        this.xAxisContainer.call(this.xAxis);
         this.yAxisContainer.call(this.yAxis);
     }
 
