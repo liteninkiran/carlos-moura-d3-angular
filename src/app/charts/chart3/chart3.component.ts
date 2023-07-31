@@ -17,7 +17,8 @@ export class Chart3Component implements OnInit, OnChanges {
     public rectWidth = 20;
     public padding = 3;
 
-    public x = d3.scaleLinear();
+    public x = d3.scaleBand().paddingInner(0.2).paddingOuter(0.2);
+    public y = d3.scaleLinear();
 
     constructor(elementRef: ElementRef) {
         this.host = d3.select(elementRef.nativeElement);
@@ -43,18 +44,17 @@ export class Chart3Component implements OnInit, OnChanges {
             .data(this.data || [])
             .enter()
             .append('rect')
-            .attr('x', (d, i) => i * (this.rectWidth + this.padding))
-            .attr('width', this.rectWidth)
-            .attr('height', (d) => this.dimensions.height - this.x(d.employee_salary))
-            .attr('y', (d) => this.x(d.employee_salary));
+            .attr('x', (d) => this.x(d.id))
+            .attr('width', this.x.bandwidth())
+            .attr('height', (d) => this.dimensions.height - this.y(d.employee_salary))
+            .attr('y', (d) => this.y(d.employee_salary));
     }
 
     private setParams(): void {
+        const ids = this.data.map((d: any) => d.id);
+        this.x.domain(ids).range([0, this.dimensions.width]);
         const maxSalary = Math.max(...this.data.map((item: any) => item.employee_salary)) * 1.2;
-        this.x.domain([0, maxSalary]).range([
-            this.dimensions.height,
-            0,
-        ]);
+        this.y.domain([0, maxSalary]).range([this.dimensions.height, 0]);
     }
 
 }
