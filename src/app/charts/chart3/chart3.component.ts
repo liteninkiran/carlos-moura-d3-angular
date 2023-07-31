@@ -16,13 +16,15 @@ export class Chart3Component implements OnInit, OnChanges {
     public dataContainer: any;
     public xAxisContainer: any;
     public xAxis: any;
+    public yAxisContainer: any;
+    public yAxis: any;
     public dimensions: DOMRect;
-    public rectWidth = 20;
-    public padding = 3;
+    public rectWidth = 30;
+    public padding = 5;
     public innerWidth: number;
     public innerHeight: number;
     public margin = {
-        left: 10,
+        left: 60,
         right: 20,
         bottom: 16,
         top: 15,
@@ -54,6 +56,8 @@ export class Chart3Component implements OnInit, OnChanges {
     private setAxis(): void {
         this.xAxis = d3.axisBottom(this.x);
         this.xAxisContainer.call(this.xAxis);
+        this.yAxis = d3.axisLeft(this.y);
+        this.yAxisContainer.call(this.yAxis);
     }
 
     private setElements(): void {
@@ -63,6 +67,10 @@ export class Chart3Component implements OnInit, OnChanges {
         this.xAxisContainer = this.svg.append('g')
             .attr('class', 'x-axis-container')
             .attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.innerHeight})`);
+
+        this.yAxisContainer = this.svg.append('g')
+            .attr('class', 'y-axis-container')
+            .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
     }
 
     private setDimensions(): void {
@@ -86,7 +94,7 @@ export class Chart3Component implements OnInit, OnChanges {
     private setParams(): void {
         const ids = this.data.map((d: any) => d.id);
         this.x.domain(ids).range([0, this.innerWidth]);
-        const maxSalary = Math.max(...this.data.map((item: any) => item.employee_salary)) * 1.2;
+        const maxSalary = Math.max(...this.data.map((item: any) => item.employee_salary)) * 1.3;
         this.y.domain([0, maxSalary]).range([this.innerHeight, 0]);
     }
 
