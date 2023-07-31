@@ -13,19 +13,27 @@ export class Chart3Component implements OnInit, OnChanges {
 
     public host: any;
     public svg: any;
-
+    public dimensions: DOMRect;
     public rectWidth = 20;
     public padding = 3;
 
+    public x = d3.scaleLinear();
+
     constructor(elementRef: ElementRef) {
         this.host = d3.select(elementRef.nativeElement);
+        console.log(this);
     }
 
     public ngOnInit(): void {
         this.svg = this.host.select('svg');
+        this.dimensions = this.svg.node().getBoundingClientRect();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
+        if (!this.svg) {
+            return;
+        }
+        this.setParams();
         this.draw();
     }
 
@@ -39,4 +47,12 @@ export class Chart3Component implements OnInit, OnChanges {
             .attr('width', this.rectWidth)
             .attr('height', (d) => d.employee_age);
     }
+
+    private setParams(): void {
+        this.x.domain([0, 100]).range([
+            this.dimensions.height,
+            0,
+        ]);
+    }
+
 }
