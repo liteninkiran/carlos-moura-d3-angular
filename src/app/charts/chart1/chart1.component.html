@@ -1,4 +1,11 @@
 <svg>
+    <line
+        class="x-axis"
+        [attr.x1]="0.5 * padding + outerPadding"
+        [attr.y1]="innerHeight + top + 2"
+        [attr.x2]="innerWidth - (0.5 * padding + outerPadding)"
+        [attr.y2]="innerHeight + top + 2"
+    ></line>
     <rect
         *ngFor="let item of data; let i = index"
         [attr.x]="i * rectWidth + 0.5 * padding + outerPadding"
