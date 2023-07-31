@@ -61,11 +61,15 @@ export class Chart3Component implements OnInit, OnChanges {
         // Set Y Axis
         this.yAxis = d3.axisLeft(this.y);
         // this.yAxis.ticks(3);
-        const max = this.y.domain()[1];
-        const values = [0.00, 0.25, 0.50, 0.75, 1.00];
-        const valuesMapped = values.map((d) => d * max);
-
-        this.yAxis.tickValues(valuesMapped);
+        // const max = this.y.domain()[1];
+        // const values = [0.00, 0.25, 0.50, 0.75, 1.00];
+        // const valuesMapped = values.map((d) => d * max);
+        // this.yAxis.tickValues(valuesMapped);
+        this.yAxis.tickSize(-this.innerWidth);
+        this.yAxis.tickSizeOuter(0);
+        this.yAxis.tickPadding(10);
+        //this.yAxis.tickFormat(d3.format('$,'));
+        this.yAxis.tickFormat(d3.format('$~s'));
 
         // Set containers
         this.xAxisContainer.call(this.xAxis);
@@ -73,15 +77,14 @@ export class Chart3Component implements OnInit, OnChanges {
     }
 
     private setElements(): void {
-        this.dataContainer = this.svg.append('g')
-            .attr('class', 'data-container')
-            .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
         this.xAxisContainer = this.svg.append('g')
             .attr('class', 'x-axis-container')
             .attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.innerHeight})`);
-
         this.yAxisContainer = this.svg.append('g')
             .attr('class', 'y-axis-container')
+            .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
+        this.dataContainer = this.svg.append('g')
+            .attr('class', 'data-container')
             .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
     }
 
