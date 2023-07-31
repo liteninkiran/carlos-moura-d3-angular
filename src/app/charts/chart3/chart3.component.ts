@@ -45,11 +45,13 @@ export class Chart3Component implements OnInit, OnChanges {
             .append('rect')
             .attr('x', (d, i) => i * (this.rectWidth + this.padding))
             .attr('width', this.rectWidth)
-            .attr('height', (d) => d.employee_age);
+            .attr('height', (d) => this.dimensions.height - this.x(d.employee_salary))
+            .attr('y', (d) => this.x(d.employee_salary));
     }
 
     private setParams(): void {
-        this.x.domain([0, 100]).range([
+        const maxSalary = Math.max(...this.data.map((item: any) => item.employee_salary)) * 1.2;
+        this.x.domain([0, maxSalary]).range([
             this.dimensions.height,
             0,
         ]);
