@@ -13,6 +13,7 @@ export class Chart3Component implements OnInit, OnChanges {
 
     public host: any;
     public svg: any;
+    public dataContainer: any;
     public dimensions: DOMRect;
     public rectWidth = 20;
     public padding = 3;
@@ -35,9 +36,11 @@ export class Chart3Component implements OnInit, OnChanges {
 
     public ngOnInit(): void {
         this.svg = this.host.select('svg');
-        this.dimensions = this.svg.node().getBoundingClientRect();
-        this.innerWidth = this.dimensions.width - this.margin.left - this.margin.right;
-        this.innerHeight = this.dimensions.height - this.margin.top - this.margin.bottom;
+        this.dataContainer = this.svg
+            .append('g')
+            .attr('class', 'data-container')
+            .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
+        this.setDimensions();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -48,15 +51,21 @@ export class Chart3Component implements OnInit, OnChanges {
         this.draw();
     }
 
-    private draw() {
-        this.svg
+    private setDimensions(): void {
+        this.dimensions = this.svg.node().getBoundingClientRect();
+        this.innerWidth = this.dimensions.width - this.margin.left - this.margin.right;
+        this.innerHeight = this.dimensions.height - this.margin.top - this.margin.bottom;
+    }
+
+    private draw(): void {
+        this.dataContainer
             .selectAll('rect')
             .data(this.data || [])
             .enter()
             .append('rect')
             .attr('x', (d) => this.x(d.id))
             .attr('width', this.x.bandwidth())
-            .attr('height', (d) => this.dimensions.height - this.y(d.employee_salary))
+            .attr('height', (d) => this.innerHeight - this.y(d.employee_salary))
             .attr('y', (d) => this.y(d.employee_salary));
     }
 
