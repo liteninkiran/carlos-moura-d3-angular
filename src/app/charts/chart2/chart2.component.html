@@ -1,0 +1,22 @@
+<svg>
+    <line
+        class="x-axis"
+        [attr.x1]="0.5 * padding + outerPadding"
+        [attr.y1]="innerHeight + top + 2"
+        [attr.x2]="innerWidth - (0.5 * padding + outerPadding)"
+        [attr.y2]="innerHeight + top + 2"
+    ></line>
+    <rect
+        *ngFor="let item of data; let i = index"
+        [attr.x]="i * rectWidth + 0.5 * padding + outerPadding"
+        [attr.y]="top + innerHeight - (innerHeight / max * item.employee_salary)"
+        [attr.width]="bandwidth"
+        [attr.height]="innerHeight / max * item.employee_salary"
+    ></rect>
+    <text
+        class="x-labels"
+        *ngFor="let item of data; let i = index"
+        [attr.x]="i * rectWidth + 0.5 * padding + outerPadding + 0.5 * bandwidth"
+        [attr.y]="dimensions.height - 2"
+    >{{ item.id }}</text>
+</svg>
