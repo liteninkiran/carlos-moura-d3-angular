@@ -1,10 +1,11 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
     selector: 'app-chart3',
     templateUrl: './chart3.component.html',
     styleUrls: ['./chart3.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class Chart3Component implements OnInit {
 
@@ -25,7 +26,7 @@ export class Chart3Component implements OnInit {
             .data([10, 20, 30])
             .enter()
             .append('rect')
-            .attr('x', (d, i) => i * this.rectWidth + this.padding)
+            .attr('x', (d, i) => i * (this.rectWidth + this.padding))
             .attr('width', this.rectWidth)
             .attr('height', (d) => d);
     }
