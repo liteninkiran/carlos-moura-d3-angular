@@ -62,7 +62,7 @@ export class Chart3Component implements OnInit, OnChanges {
 
     private setParams(): void {
         const ids = this.data.map((d: any) => d.id);
-        this.x.domain(ids).range([this.margin.left, this.innerWidth]);
+        this.x.domain(ids).range([this.margin.left, this.innerWidth + this.margin.left]);
         const maxSalary = Math.max(...this.data.map((item: any) => item.employee_salary)) * 1.2;
         this.y.domain([0, maxSalary]).range([this.dimensions.height - this.margin.bottom, this.margin.top]);
     }
