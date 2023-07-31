@@ -14,6 +14,8 @@ export class Chart3Component implements OnInit, OnChanges {
     public host: any;
     public svg: any;
     public dataContainer: any;
+    public xAxisContainer: any;
+    public xAxis: any;
     public dimensions: DOMRect;
     public rectWidth = 20;
     public padding = 3;
@@ -36,11 +38,8 @@ export class Chart3Component implements OnInit, OnChanges {
 
     public ngOnInit(): void {
         this.svg = this.host.select('svg');
-        this.dataContainer = this.svg
-            .append('g')
-            .attr('class', 'data-container')
-            .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
         this.setDimensions();
+        this.setElements();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -48,7 +47,22 @@ export class Chart3Component implements OnInit, OnChanges {
             return;
         }
         this.setParams();
+        this.setAxis();
         this.draw();
+    }
+
+    private setAxis(): void {
+        this.xAxis = d3.axisBottom(this.x);
+        this.xAxisContainer.call(this.xAxis);
+    }
+
+    private setElements(): void {
+        this.dataContainer = this.svg.append('g')
+            .attr('class', 'data-container')
+            .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
+        this.xAxisContainer = this.svg.append('g')
+            .attr('class', 'x-axis-container')
+            .attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.innerHeight})`);
     }
 
     private setDimensions(): void {
