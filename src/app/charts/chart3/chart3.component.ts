@@ -11,12 +11,22 @@ export class Chart3Component implements OnInit {
     public host: any;
     public svg: any;
 
+    public rectWidth = 20;
+    public padding = 3;
+
     constructor(elementRef: ElementRef) {
         this.host = d3.select(elementRef.nativeElement);
-        console.log(this);
     }
 
     public ngOnInit(): void {
         this.svg = this.host.select('svg');
+        this.svg
+            .selectAll('rect')
+            .data([10, 20, 30])
+            .enter()
+            .append('rect')
+            .attr('x', (d, i) => i * this.rectWidth + this.padding)
+            .attr('width', this.rectWidth)
+            .attr('height', (d) => d);
     }
 }
