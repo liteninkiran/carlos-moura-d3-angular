@@ -10,3 +10,8 @@ rect {
     stroke-width: 3px;
     transition: all 300ms;
 }
+
+text.x-labels {
+    text-anchor: middle;
+    font-size: 12px;
+}

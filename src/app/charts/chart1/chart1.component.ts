@@ -7,7 +7,8 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 })
 export class Chart1Component implements OnInit {
 
-    public data = [125, 100, 50, 75, 200, 60, 70, 180];
+    public data = [125, 100, 50, 75, 200, 60, 70];
+    public xLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
     public rectWidth: number;
     public max: number;
     public dimensions: DOMRect;
@@ -17,8 +18,8 @@ export class Chart1Component implements OnInit {
     public bandwidthCoef = 0.8;
     public left = 10;
     public right = 20;
-    public bottom = 30;
-    public top = 15;
+    public bottom = 16;
+    public top = 55;
     public innerWidth: number;
     public innerHeight: number;
 
