@@ -13,6 +13,7 @@ export class Chart3Component implements OnInit {
 
     constructor(elementRef: ElementRef) {
         this.host = d3.select(elementRef.nativeElement);
+        console.log(this);
     }
 
     public ngOnInit(): void {
