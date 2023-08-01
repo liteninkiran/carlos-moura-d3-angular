@@ -1,10 +1,11 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
     selector: 'app-chart5',
     templateUrl: './chart5.component.html',
     styleUrls: ['./chart5.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class Chart5Component implements OnInit {
 
@@ -16,10 +17,10 @@ export class Chart5Component implements OnInit {
 
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
-        console.log(this);
     }
 
     public ngOnInit(): void {
         this.svg = this.host.select('svg');
+        console.log(this);
     }
 }
