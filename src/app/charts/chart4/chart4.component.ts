@@ -36,6 +36,9 @@ export class Chart4Component implements OnInit, OnChanges {
     public x: any;
     public y: any;
 
+    public xAxis: any;
+    public yAxis: any;
+
     get scatterData() {
         if (!(this.xValue && this.yValue)) {
             return [];
@@ -97,7 +100,7 @@ export class Chart4Component implements OnInit, OnChanges {
         this.xAxisContainer = this.svg
             .append('g')
             .attr('class', 'x-axis-container')
-            .attr('transform', `translate(${this.margins.left}, ${this.margins.bottom + this.innerHeight})`);
+            .attr('transform', `translate(${this.margins.left}, ${this.margins.top + this.innerHeight})`);
 
         this.yAxisContainer = this.svg
             .append('g')
@@ -142,7 +145,25 @@ export class Chart4Component implements OnInit, OnChanges {
     }
 
     private setAxis(): void {
+        this.xAxis = d3.axisBottom(this.x).tickSizeOuter(0);
+        this.xAxisContainer
+            .transition()
+            .duration(500)
+            .call(this.xAxis);
 
+        this.yAxis = d3.axisLeft(this.y)
+            .ticks(5)
+            .tickSizeOuter(0)
+            .tickSizeInner(-this.innerWidth);
+        this.yAxisContainer
+            .transition()
+            .duration(500)
+            .call(this.yAxis);
+
+        this.yAxisContainer
+            .selectAll('.tick:not(:nth-child(2)) line')
+            .style('stroke', '#ddd')
+            .style('stroke-dasharray', '2 2');
     }
 
     private draw(): void {
