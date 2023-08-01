@@ -71,7 +71,14 @@ export class Chart3Component implements OnInit, OnChanges {
         this.yAxis.tickFormat(d3.format('$~s'));
 
         // Set containers
-        this.xAxisContainer.call(this.xAxis);
+        this.xAxisContainer.transition().duration(500).call(this.xAxis);
+        this.xAxisContainer
+            .selectAll('.tick text')
+            .text((d: number) => this.getEmployeeName(d))
+            .attr('transform', 'translate(-9, 2)rotate(-45)')
+            .style('text-anchor', 'end');
+
+
         this.yAxisContainer.call(this.yAxis);
         this.yAxisContainer.selectAll('.tick line').style('stroke', '#ddd');
     }
@@ -102,6 +109,8 @@ export class Chart3Component implements OnInit, OnChanges {
         bars.enter()
             .append('rect')
             .merge(bars)
+            .transition()
+            .duration(500)
             .attr('x', (d) => this.x(d.id))
             .attr('width', this.x.bandwidth())
             .attr('height', (d) => this.innerHeight - this.y(d.employee_salary))
@@ -131,11 +140,6 @@ export class Chart3Component implements OnInit, OnChanges {
             .text('Employee Salary')
             .attr('transform', `rotate(-90)`)
             .style('text-anchor', 'middle');
-        this.xAxisContainer
-            .selectAll('.tick text')
-            .text((d: number) => this.getEmployeeName(d))
-            .attr('transform', 'translate(-9, 2)rotate(-45)')
-            .style('text-anchor', 'end');
     }
 
     private dataChanged(): void {
