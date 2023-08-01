@@ -97,16 +97,15 @@ export class Chart3Component implements OnInit, OnChanges {
             .selectAll('rect')
             .data(this.barsData, (d) => d.id);
 
-        bars.style('fill', 'green');
-
         bars.enter()
             .append('rect')
+            .merge(bars)
             .attr('x', (d) => this.x(d.id))
             .attr('width', this.x.bandwidth())
             .attr('height', (d) => this.innerHeight - this.y(d.employee_salary))
             .attr('y', (d) => this.y(d.employee_salary));
 
-        bars.exit().style('fill', 'red');
+        bars.exit().remove();
     }
 
     private setParams(): void {
