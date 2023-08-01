@@ -61,6 +61,15 @@ export class Chart3Component implements OnInit, OnChanges {
 
     private setAxis(): void {
 
+        const updateXAxis = (xAxisContainer) => {
+            xAxisContainer.call(this.xAxis);
+            xAxisContainer
+                .selectAll('.tick text')
+                .attr('transform', 'translate(-9, 2)rotate(-45)')
+                .style('text-anchor', 'end')
+                .text((d: number) => this.getEmployeeName(d));
+        };
+
         // Set X Axis
         this.xAxis = d3.axisBottom(this.x);
 
@@ -71,13 +80,7 @@ export class Chart3Component implements OnInit, OnChanges {
         this.yAxis.tickFormat(d3.format('$~s'));
 
         // Set containers
-        this.xAxisContainer.transition().duration(500).call(this.xAxis);
-        this.xAxisContainer
-            .selectAll('.tick text')
-            .text((d: number) => this.getEmployeeName(d))
-            .attr('transform', 'translate(-9, 2)rotate(-45)')
-            .style('text-anchor', 'end');
-
+        this.xAxisContainer.transition().duration(500).call(updateXAxis);
 
         this.yAxisContainer.call(this.yAxis);
         this.yAxisContainer.selectAll('.tick line').style('stroke', '#ddd');
