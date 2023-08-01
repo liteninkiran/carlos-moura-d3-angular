@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
     public data1 = [125, 100, 50, 75, 200, 60, 70];
     public data2$: Observable<any[]>;
     public iris$: Observable<any[]>;
+    public covid$: Observable<any[]>;
 
     constructor(private api: ApiService) {
 
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
     public ngOnInit(): void {
         this.data2$ = this.api.getEmployees();
         this.iris$ = this.api.getIris();
+        this.covid$ = this.api.getCovidData();
         setTimeout(() => {
             this.data1 = [...this.data1, 600];
         }, 5000);

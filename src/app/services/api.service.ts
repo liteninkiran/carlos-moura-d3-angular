@@ -23,6 +23,11 @@ export class ApiService {
         return this.getParsedData(url);
     }
 
+    public getCovidData(): Observable<any> {
+        const url = 'assets/daily.json';
+        return this.getParsedData(url);
+    }
+
     private getParsedData(url: string): Observable<any> {
         return this.http.get(url, { responseType: 'text' }).pipe(
             retry(3),
