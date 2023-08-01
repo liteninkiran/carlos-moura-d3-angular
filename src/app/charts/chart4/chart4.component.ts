@@ -33,6 +33,9 @@ export class Chart4Component implements OnInit, OnChanges {
     public xLabel: any;
     public yLabel: any;
 
+    public x: any;
+    public y: any;
+
     get scatterData() {
         if (!(this.xValue && this.yValue)) {
             return [];
@@ -117,7 +120,16 @@ export class Chart4Component implements OnInit, OnChanges {
     }
 
     private setParams(): void {
+        const maxXValue = d3.max(this.data, (d) => +d[this.xValue]) || 1;
+        const maxYValue = d3.max(this.data, (d) => +d[this.yValue]) || 1;
 
+        this.x = d3.scaleLinear()
+            .domain([0, maxXValue])
+            .range([0, this.innerWidth]);
+
+        this.y = d3.scaleLinear()
+            .domain([0, maxYValue])
+            .range([this.innerHeight, 0]);
     }
 
     private setLabels(): void {
