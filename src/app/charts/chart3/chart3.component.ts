@@ -9,7 +9,7 @@ import * as d3 from 'd3';
 })
 export class Chart3Component implements OnInit, OnChanges {
 
-    @Input() public data: Array<number>;
+    @Input() public data: any;
 
     public host: any;
     public svg: any;
@@ -26,7 +26,7 @@ export class Chart3Component implements OnInit, OnChanges {
     public margin = {
         left: 60,
         right: 20,
-        bottom: 16,
+        bottom: 80,
         top: 15,
     };
 
@@ -35,7 +35,6 @@ export class Chart3Component implements OnInit, OnChanges {
 
     constructor(elementRef: ElementRef) {
         this.host = d3.select(elementRef.nativeElement);
-        console.log(this);
     }
 
     public ngOnInit(): void {
@@ -50,6 +49,7 @@ export class Chart3Component implements OnInit, OnChanges {
         }
         this.setParams();
         this.setAxis();
+        this.setLabels();
         this.draw();
     }
 
@@ -80,15 +80,6 @@ export class Chart3Component implements OnInit, OnChanges {
         this.dataContainer = this.svg.append('g')
             .attr('class', 'data-container')
             .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
-        this.svg
-            .append('g')
-            .attr('class', 'y-axis-label')
-            .attr('transform', `translate(15, ${this.margin.top + 0.5 * this.innerHeight})`)
-            .append('text')
-            .attr('class', 'label')
-            .text('Employee Salary')
-            .attr('transform', `rotate(-90)`)
-            .style('text-anchor', 'middle');
     }
 
     private setDimensions(): void {
@@ -116,4 +107,24 @@ export class Chart3Component implements OnInit, OnChanges {
         this.y.domain([0, maxSalary]).range([this.innerHeight, 0]);
     }
 
+    private getEmployeeName(id: number): string {
+        return this.data.find((d: any) => d.id === id).employee_name;
+    }
+
+    private setLabels(): void {
+        this.svg
+            .append('g')
+            .attr('class', 'y-axis-label')
+            .attr('transform', `translate(15, ${this.margin.top + 0.5 * this.innerHeight})`)
+            .append('text')
+            .attr('class', 'label')
+            .text('Employee Salary')
+            .attr('transform', `rotate(-90)`)
+            .style('text-anchor', 'middle');
+        this.xAxisContainer
+            .selectAll('.tick text')
+            .text((d: number) => this.getEmployeeName(d))
+            .attr('transform', 'translate(-9, 2)rotate(-45)')
+            .style('text-anchor', 'end');
+    }
 }
