@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import * as d3 from 'd3';
 
 @Component({
     selector: 'app-chart4',
@@ -12,11 +13,16 @@ export class Chart4Component implements OnInit {
     public xValue: string;
     public yValue: string;
 
-    constructor() {
+    public host: any;
+    public svg: any;
+
+    constructor(element: ElementRef) {
+        this.host = d3.select(element.nativeElement);
         console.log(this);
     }
 
     public ngOnInit(): void {
+        this.svg = this.host.select('svg');
     }
 
     public setOption(option: string, event): void {
