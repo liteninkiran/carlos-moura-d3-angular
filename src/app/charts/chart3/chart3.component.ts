@@ -60,20 +60,14 @@ export class Chart3Component implements OnInit, OnChanges {
 
         // Set Y Axis
         this.yAxis = d3.axisLeft(this.y);
-        // this.yAxis.ticks(3);
-        // const max = this.y.domain()[1];
-        // const values = [0.00, 0.25, 0.50, 0.75, 1.00];
-        // const valuesMapped = values.map((d) => d * max);
-        // this.yAxis.tickValues(valuesMapped);
-        this.yAxis.tickSize(-this.innerWidth);
-        this.yAxis.tickSizeOuter(0);
+        this.yAxis.tickSizeInner(-this.innerWidth);
         this.yAxis.tickPadding(10);
-        //this.yAxis.tickFormat(d3.format('$,'));
         this.yAxis.tickFormat(d3.format('$~s'));
 
         // Set containers
         this.xAxisContainer.call(this.xAxis);
         this.yAxisContainer.call(this.yAxis);
+        this.yAxisContainer.selectAll('.tick line').style('stroke', '#ddd');
     }
 
     private setElements(): void {
@@ -86,6 +80,15 @@ export class Chart3Component implements OnInit, OnChanges {
         this.dataContainer = this.svg.append('g')
             .attr('class', 'data-container')
             .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
+        this.svg
+            .append('g')
+            .attr('class', 'y-axis-label')
+            .attr('transform', `translate(15, ${this.margin.top + 0.5 * this.innerHeight})`)
+            .append('text')
+            .attr('class', 'label')
+            .text('Employee Salary')
+            .attr('transform', `rotate(-90)`)
+            .style('text-anchor', 'middle');
     }
 
     private setDimensions(): void {
