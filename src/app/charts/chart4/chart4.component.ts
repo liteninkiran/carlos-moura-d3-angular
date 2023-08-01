@@ -26,7 +26,6 @@ export class Chart4Component implements OnInit, OnChanges {
         bottom: 40,
     };
 
-
     public dataContainer: any;
     public xAxisContainer: any;
     public yAxisContainer: any;
@@ -34,8 +33,19 @@ export class Chart4Component implements OnInit, OnChanges {
     public xLabel: any;
     public yLabel: any;
 
+    get scatterData() {
+        if (!(this.xValue && this.yValue)) {
+            return [];
+        }
+        return this.data.map((elem) => ({
+            x: +elem[this.xValue],
+            y: +elem[this.yValue],
+        }));
+    }
+
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
+        console.log(this);
     }
 
     public ngOnInit(): void {
