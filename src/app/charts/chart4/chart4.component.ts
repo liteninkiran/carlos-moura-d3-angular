@@ -16,6 +16,16 @@ export class Chart4Component implements OnInit, OnChanges {
     public host: any;
     public svg: any;
 
+    public dimensions: DOMRect;
+    public innerWidth: number;
+    public innerHeight: number;
+    public margins = {
+        left: 40,
+        top: 10,
+        right: 10,
+        bottom: 40,
+    };
+
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
     }
@@ -48,7 +58,10 @@ export class Chart4Component implements OnInit, OnChanges {
     }
 
     private setDimensions(): void {
-
+        this.dimensions = this.svg.node().getBoundingClientRect();
+        this.innerWidth = this.dimensions.width - this.margins.left - this.margins.right;
+        this.innerHeight = this.dimensions.height - this.margins.top - this.margins.bottom;
+        this.svg.attr('viewBox', [0, 0, this.dimensions.width, this.dimensions.height]);
     }
 
     private setElements(): void {
