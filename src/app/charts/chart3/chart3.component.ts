@@ -149,7 +149,6 @@ export class Chart3Component implements OnInit, OnChanges {
     private dataChanged(): void {
         this.sortedBySalary = !this.sortedBySalary
         this.updateChart();
-        console.log('Click');
     }
 
     private updateChart(): void {

@@ -1,0 +1,18 @@
+.chart-4 {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+
+    .controller {
+        margin-bottom: 5px;
+        padding: 5px;
+
+        select {
+            margin-right: 5px;
+        }
+    }
+
+    .body {
+        flex-grow: 1;
+    }
+}

@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
     public ngOnInit(): void {
         this.data2$ = this.api.getEmployees();
         this.iris$ = this.api.getIris();
-        this.iris$.subscribe((c) => console.log(c));
         setTimeout(() => {
             this.data1 = [...this.data1, 600];
         }, 5000);
