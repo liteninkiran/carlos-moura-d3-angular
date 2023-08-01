@@ -35,7 +35,7 @@ export class Chart3Component implements OnInit, OnChanges {
     public y = d3.scaleLinear();
 
     get barsData() {
-        return this.dataIsFiltered ? this.data.filter((d, i) => i < 12) : this.data;
+        return this.dataIsFiltered ? this.data.filter((d, i) => i >= 12) : this.data;
     }
 
     constructor(elementRef: ElementRef) {
@@ -96,6 +96,8 @@ export class Chart3Component implements OnInit, OnChanges {
         const bars = this.dataContainer
             .selectAll('rect')
             .data(this.barsData, (d) => d.id);
+
+        bars.style('fill', 'green');
 
         bars.enter()
             .append('rect')
