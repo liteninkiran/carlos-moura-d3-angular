@@ -26,6 +26,14 @@ export class Chart4Component implements OnInit, OnChanges {
         bottom: 40,
     };
 
+
+    public dataContainer: any;
+    public xAxisContainer: any;
+    public yAxisContainer: any;
+
+    public xLabel: any;
+    public yLabel: any;
+
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
     }
@@ -65,6 +73,36 @@ export class Chart4Component implements OnInit, OnChanges {
     }
 
     private setElements(): void {
+        this.dataContainer = this.svg
+            .append('g')
+            .attr('class', 'data-container')
+            .attr('transform', `translate(${this.margins.left}, ${this.margins.top})`);
+
+        this.xAxisContainer = this.svg
+            .append('g')
+            .attr('class', 'x-axis-container')
+            .attr('transform', `translate(${this.margins.left}, ${this.margins.bottom + this.innerHeight})`);
+
+        this.yAxisContainer = this.svg
+            .append('g')
+            .attr('class', 'y-axis-container')
+            .attr('transform', `translate(${this.margins.left}, ${this.margins.top})`);
+
+        this.xLabel = this.svg
+            .append('g')
+            .attr('class', 'x-label-container')
+            .attr('transform', `translate(${this.margins.left + 0.5 * this.innerWidth}, ${this.dimensions.height - 5})`)
+            .append('text')
+            .attr('class', 'label')
+            .style('text-anchor', 'middle');
+
+        this.yLabel = this.svg
+            .append('g')
+            .attr('class', 'y-label-container')
+            .attr('transform', `translate(15, ${this.margins.top * this.innerHeight})`)
+            .append('text')
+            .attr('class', 'label')
+            .style('text-anchor', 'middle');
 
     }
 
