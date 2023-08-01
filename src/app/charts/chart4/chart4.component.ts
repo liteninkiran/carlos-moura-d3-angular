@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
@@ -6,7 +6,7 @@ import * as d3 from 'd3';
     templateUrl: './chart4.component.html',
     styleUrls: ['./chart4.component.scss'],
 })
-export class Chart4Component implements OnInit {
+export class Chart4Component implements OnInit, OnChanges {
 
     @Input() public data: any;
 
@@ -18,11 +18,16 @@ export class Chart4Component implements OnInit {
 
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
-        console.log(this);
     }
 
     public ngOnInit(): void {
         this.svg = this.host.select('svg');
+    }
+
+    public ngOnChanges(changes: SimpleChanges): void {
+        if (this.svg) {
+            this.updateChart();
+        }
     }
 
     public setOption(option: string, event): void {
@@ -36,7 +41,10 @@ export class Chart4Component implements OnInit {
     }
 
     private updateChart(): void {
-
+        this.setParams();
+        this.setLabels();
+        this.setAxis();
+        this.draw();
     }
 
     private setDimensions(): void {
