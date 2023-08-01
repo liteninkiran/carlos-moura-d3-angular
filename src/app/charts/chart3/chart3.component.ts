@@ -29,16 +29,23 @@ export class Chart3Component implements OnInit, OnChanges {
         bottom: 80,
         top: 15,
     };
+    public dataIsFiltered = false;
 
     public x = d3.scaleBand().paddingInner(0.2).paddingOuter(0.2);
     public y = d3.scaleLinear();
+
+    get barsData() {
+        return this.dataIsFiltered ? this.data.filter((d, i) => i < 12) : this.data;
+    }
 
     constructor(elementRef: ElementRef) {
         this.host = d3.select(elementRef.nativeElement);
     }
 
     public ngOnInit(): void {
-        this.svg = this.host.select('svg');
+        this.svg = this.host.select('svg').on('click', () => {
+            this.dataChanged();
+        });
         this.setDimensions();
         this.setElements();
     }
@@ -47,10 +54,7 @@ export class Chart3Component implements OnInit, OnChanges {
         if (!this.svg) {
             return;
         }
-        this.setParams();
-        this.setAxis();
-        this.setLabels();
-        this.draw();
+        this.updateChart();
     }
 
     private setAxis(): void {
@@ -89,19 +93,22 @@ export class Chart3Component implements OnInit, OnChanges {
     }
 
     private draw(): void {
-        this.dataContainer
+        const bars = this.dataContainer
             .selectAll('rect')
-            .data(this.data || [])
-            .enter()
+            .data(this.barsData, (d) => d.id);
+
+        bars.enter()
             .append('rect')
             .attr('x', (d) => this.x(d.id))
             .attr('width', this.x.bandwidth())
             .attr('height', (d) => this.innerHeight - this.y(d.employee_salary))
             .attr('y', (d) => this.y(d.employee_salary));
+
+        bars.exit().style('fill', 'red');
     }
 
     private setParams(): void {
-        const ids = this.data.map((d: any) => d.id);
+        const ids = this.barsData.map((d: any) => d.id);
         this.x.domain(ids).range([0, this.innerWidth]);
         const maxSalary = Math.max(...this.data.map((item: any) => item.employee_salary)) * 1.3;
         this.y.domain([0, maxSalary]).range([this.innerHeight, 0]);
@@ -126,5 +133,18 @@ export class Chart3Component implements OnInit, OnChanges {
             .text((d: number) => this.getEmployeeName(d))
             .attr('transform', 'translate(-9, 2)rotate(-45)')
             .style('text-anchor', 'end');
+    }
+
+    private dataChanged(): void {
+        this.dataIsFiltered = !this.dataIsFiltered
+        this.updateChart();
+        console.log('Click');
+    }
+
+    private updateChart(): void {
+        this.setParams();
+        this.setAxis();
+        this.setLabels();
+        this.draw();
     }
 }
