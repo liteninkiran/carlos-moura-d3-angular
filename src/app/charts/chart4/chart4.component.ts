@@ -9,11 +9,27 @@ export class Chart4Component implements OnInit {
 
     @Input() public data: any;
 
-    constructor() {
+    public xValue: string;
+    public yValue: string;
 
+    constructor() {
+        console.log(this);
     }
 
     public ngOnInit(): void {
-        
+    }
+
+    public setOption(option: string, event): void {
+        const value = event && event.target && event.target.value;
+        switch (option) {
+            case 'x': this.xValue = value; break;
+            case 'y': this.yValue = value; break;
+        }
+
+        this.updateChart();
+    }
+
+    private updateChart(): void {
+
     }
 }
