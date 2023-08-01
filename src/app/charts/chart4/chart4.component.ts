@@ -127,8 +127,8 @@ export class Chart4Component implements OnInit, OnChanges {
     }
 
     private setParams(): void {
-        const maxXValue = d3.max(this.data, (d) => +d[this.xValue]) || 1;
-        const maxYValue = d3.max(this.data, (d) => +d[this.yValue]) || 1;
+        const maxXValue = this.xValue ? d3.max(this.data, (d) => +d[this.xValue]) : 1;
+        const maxYValue = this.yValue ? d3.max(this.data, (d) => +d[this.yValue]) : 1;
 
         this.x = d3.scaleLinear()
             .domain([0, maxXValue])
