@@ -53,6 +53,9 @@ export class Chart4Component implements OnInit, OnChanges {
 
     public ngOnInit(): void {
         this.svg = this.host.select('svg');
+        this.setDimensions();
+        this.setElements();
+        this.updateChart();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -112,9 +115,10 @@ export class Chart4Component implements OnInit, OnChanges {
         this.yLabel = this.svg
             .append('g')
             .attr('class', 'y-label-container')
-            .attr('transform', `translate(15, ${this.margins.top * this.innerHeight})`)
+            .attr('transform', `translate(15, ${this.margins.top + 0.5 * this.innerHeight})`)
             .append('text')
             .attr('class', 'label')
+            .attr('transform', 'rotate(-90)')
             .style('text-anchor', 'middle');
 
     }
@@ -133,7 +137,8 @@ export class Chart4Component implements OnInit, OnChanges {
     }
 
     private setLabels(): void {
-
+        this.xLabel.text(this.xValue);
+        this.yLabel.text(this.yValue);
     }
 
     private setAxis(): void {
