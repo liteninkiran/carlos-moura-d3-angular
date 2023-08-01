@@ -27,9 +27,10 @@ export class Chart3Component implements OnInit, OnChanges {
         left: 60,
         right: 20,
         bottom: 80,
-        top: 15,
+        top: 35,
     };
     public sortedBySalary = true;
+    public textLabel: any;
 
     public x = d3.scaleBand().paddingInner(0.2).paddingOuter(0.2);
     public y = d3.scaleLinear();
@@ -96,6 +97,14 @@ export class Chart3Component implements OnInit, OnChanges {
         this.dataContainer = this.svg.append('g')
             .attr('class', 'data-container')
             .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
+
+        this.textLabel = this.svg
+            .append('g')
+            .attr('transform', `translate(${0.5 * this.dimensions.width}, 20)`)
+            .append('text')
+            .attr('class', 'label')
+            .style('text-anchor', 'middle')
+            .style('font-weight', 'bold');
     }
 
     private setDimensions(): void {
@@ -134,15 +143,7 @@ export class Chart3Component implements OnInit, OnChanges {
     }
 
     private setLabels(): void {
-        this.svg
-            .append('g')
-            .attr('class', 'y-axis-label')
-            .attr('transform', `translate(15, ${this.margin.top + 0.5 * this.innerHeight})`)
-            .append('text')
-            .attr('class', 'label')
-            .text('Employee Salary')
-            .attr('transform', `rotate(-90)`)
-            .style('text-anchor', 'middle');
+        this.textLabel.text('Employee Salary');
     }
 
     private dataChanged(): void {
