@@ -11,34 +11,44 @@ export class Chart4Component implements OnInit, OnChanges {
 
     @Input() public data: any;
 
-    public xValue: string;
-    public yValue: string;
-
+    // Main elements
     public host: any;
     public svg: any;
 
-    public dimensions: DOMRect;
-    public innerWidth: number;
-    public innerHeight: number;
-    public margins = {
-        left: 40,
-        top: 10,
-        right: 10,
-        bottom: 40,
-    };
-
+    // Containers
     public dataContainer: any;
     public xAxisContainer: any;
     public yAxisContainer: any;
 
+    // Labels
     public xLabel: any;
     public yLabel: any;
 
+    // User options
+    public xValue: string;
+    public yValue: string;
+
+    // Dimensions
+    public dimensions: DOMRect;
+    public innerWidth: number;
+    public innerHeight: number;
+
+    public margins = {
+        left: 40,
+        top: 10,
+        right: 20,
+        bottom: 40,
+    };
+
+    // Scales
     public x: any;
     public y: any;
 
+    // Axes
     public xAxis: any;
     public yAxis: any;
+
+    public colours: any;
 
     get scatterData() {
         if (!(this.xValue && this.yValue)) {
@@ -47,6 +57,7 @@ export class Chart4Component implements OnInit, OnChanges {
         return this.data.map((elem) => ({
             x: +elem[this.xValue],
             y: +elem[this.yValue],
+            species: elem.Species,
         }));
     }
 
@@ -129,6 +140,7 @@ export class Chart4Component implements OnInit, OnChanges {
     private setParams(): void {
         const maxXValue = this.xValue ? d3.max(this.data, (d) => +d[this.xValue]) : 1;
         const maxYValue = this.yValue ? d3.max(this.data, (d) => +d[this.yValue]) : 1;
+        const uniqueSpecies = new Set((this.data || []).map((d) => d.Species));
 
         this.x = d3.scaleLinear()
             .domain([0, maxXValue])
@@ -137,6 +149,10 @@ export class Chart4Component implements OnInit, OnChanges {
         this.y = d3.scaleLinear()
             .domain([0, maxYValue])
             .range([this.innerHeight, 0]);
+
+        this.colours = d3
+            .scaleOrdinal(d3.schemeCategory10)
+            .domain(uniqueSpecies);
     }
 
     private setLabels(): void {
@@ -178,7 +194,7 @@ export class Chart4Component implements OnInit, OnChanges {
             .append('circle')
             .attr('class', 'data')
             .attr('r', 4)
-            .style('fill', '#004494')
+            .style('fill', (d) => this.colours(d.species))
             .style('opacity', 0.4)
             .merge(scatter)
             .attr('cx', (d) => this.x(d.x))
