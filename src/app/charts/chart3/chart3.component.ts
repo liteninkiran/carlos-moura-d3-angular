@@ -29,13 +29,15 @@ export class Chart3Component implements OnInit, OnChanges {
         bottom: 80,
         top: 15,
     };
-    public dataIsFiltered = false;
+    public sortedBySalary = true;
 
     public x = d3.scaleBand().paddingInner(0.2).paddingOuter(0.2);
     public y = d3.scaleLinear();
 
     get barsData() {
-        return this.dataIsFiltered ? this.data.filter((d, i) => i >= 12) : this.data;
+        return this.sortedBySalary
+        ? this.data.sort((a, b) => b.employee_salary - a.employee_salary)
+        : this.data.sort((a, b) => (a.employee_name < b.employee_name) ? -1 : 1)
     }
 
     constructor(elementRef: ElementRef) {
@@ -137,7 +139,7 @@ export class Chart3Component implements OnInit, OnChanges {
     }
 
     private dataChanged(): void {
-        this.dataIsFiltered = !this.dataIsFiltered
+        this.sortedBySalary = !this.sortedBySalary
         this.updateChart();
         console.log('Click');
     }
