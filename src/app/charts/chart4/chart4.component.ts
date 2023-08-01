@@ -38,4 +38,28 @@ export class Chart4Component implements OnInit {
     private updateChart(): void {
 
     }
+
+    private setDimensions(): void {
+
+    }
+
+    private setElements(): void {
+
+    }
+
+    private setParams(): void {
+
+    }
+
+    private setLabels(): void {
+
+    }
+
+    private setAxis(): void {
+
+    }
+
+    private draw(): void {
+
+    }
 }
