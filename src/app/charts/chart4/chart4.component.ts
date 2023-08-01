@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
     selector: 'app-chart4',
     templateUrl: './chart4.component.html',
     styleUrls: ['./chart4.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class Chart4Component implements OnInit, OnChanges {
 
@@ -92,11 +93,6 @@ export class Chart4Component implements OnInit, OnChanges {
     }
 
     private setElements(): void {
-        this.dataContainer = this.svg
-            .append('g')
-            .attr('class', 'data-container')
-            .attr('transform', `translate(${this.margins.left}, ${this.margins.top})`);
-
         this.xAxisContainer = this.svg
             .append('g')
             .attr('class', 'x-axis-container')
@@ -124,6 +120,10 @@ export class Chart4Component implements OnInit, OnChanges {
             .attr('transform', 'rotate(-90)')
             .style('text-anchor', 'middle');
 
+        this.dataContainer = this.svg
+            .append('g')
+            .attr('class', 'data-container')
+            .attr('transform', `translate(${this.margins.left}, ${this.margins.top})`);
     }
 
     private setParams(): void {
@@ -167,6 +167,24 @@ export class Chart4Component implements OnInit, OnChanges {
     }
 
     private draw(): void {
+        // Bind the data
+        const scatter = this.dataContainer
+            .selectAll('circle.data')
+            .data(this.scatterData);
 
+        // Enter and merge
+        scatter
+            .enter()
+            .append('circle')
+            .attr('class', 'data')
+            .attr('r', 4)
+            .style('fill', '#004494')
+            .style('opacity', 0.4)
+            .merge(scatter)
+            .attr('cx', (d) => this.x(d.x))
+            .attr('cy', (d) => this.y(d.y))
+
+        // Exit
+        scatter.exit().remove();
     }
 }

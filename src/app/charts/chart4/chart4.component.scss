@@ -14,5 +14,9 @@
 
     .body {
         flex-grow: 1;
+
+        circle.data {
+            transition: all 500ms;
+        }
     }
 }
