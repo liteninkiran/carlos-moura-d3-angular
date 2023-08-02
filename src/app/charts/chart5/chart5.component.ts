@@ -45,6 +45,7 @@ export class Chart5Component implements OnInit, OnChanges {
 
     // Selected Data
     public selected = ['hospitalized', 'death', 'hospitalizedCurrently'];
+    public active = [true, true, true];
 
     // Axes
     public xAxis: any;
@@ -55,13 +56,15 @@ export class Chart5Component implements OnInit, OnChanges {
 
     // Getters
     get lineData() {
-        return this.selected.map((item) => ({
-            name: item,
-            data: this.data.map((d) => ({
-                x: this.timeParse(d.date),
-                y: d[item],
-            })).sort((a, b) => a.x < b.x ? -1 : 1),
-        }));
+        return this.selected
+            .filter((d, i) => this.active[i])
+            .map((item) => ({
+                name: item,
+                data: this.data.map((d) => ({
+                    x: this.timeParse(d.date),
+                    y: d[item],
+                })).sort((a, b) => a.x < b.x ? -1 : 1),
+            }));
     }
 
     constructor(element: ElementRef) {
