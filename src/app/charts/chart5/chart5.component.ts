@@ -48,10 +48,6 @@ export class Chart5Component implements OnInit, OnChanges {
 
     // Getters
     get lineData() {
-        // return !this.data ? [] : this.data.map((d: any) => ({
-        //     x: this.timeParse(d.date),
-        //     y: d.hospitalized,
-        // }));
         return this.selected.map((item) => ({
             name: item,
             data: this.data.map((d) => ({
@@ -80,10 +76,12 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private updateChart(): void {
-        this.setParams();
-        this.setLabels();
-        this.setAxis();
-        this.draw();
+        if (this.data) {
+            this.setParams();
+            this.setLabels();
+            this.setAxis();
+            this.draw();
+        }
     }
 
     private setDimensions(): void {
@@ -125,12 +123,13 @@ export class Chart5Component implements OnInit, OnChanges {
 
     private setParams(): void {
         // Temporary solution
-        const parsedDates = !this.data ? [] : this.data.map((d: any) => this.timeParse(d.date));
+        const parsedDates = this.data.map((d: any) => this.timeParse(d.date));
 
         // Set Domains
-        const xDomain = !!parsedDates ? d3.extent(parsedDates) : [0, Date.now()];
-        const yDomain = [0, 100];
-        const colourDomain = ['A', 'B', 'C'];
+        const xDomain = d3.extent(parsedDates);
+        const maxValues = this.lineData.map((series) => d3.max(series.data, (d) => d.y));
+        const yDomain = d3.max(maxValues);
+        const colourDomain = this.selected;
 
         // Set Ranges
         const xRange = [0, this.innerWidth];
