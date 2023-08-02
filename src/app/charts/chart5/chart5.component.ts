@@ -38,6 +38,11 @@ export class Chart5Component implements OnInit, OnChanges {
     public timeParse = d3.timeParse('%Y%m%d');
     public niceData = d3.timeFormat('%B %Y');
 
+    // Scales
+    public x: any;
+    public y: any;
+    public colours: any;
+    
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
     }
@@ -101,7 +106,29 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private setParams(): void {
+        // Set Domains
+        const xDomain = [0, Date.now()];
+        const yDomain = [0, 100];
+        const colourDomain = ['A', 'B', 'C'];
 
+        // Set Ranges
+        const xRange = [0, this.innerWidth];
+        const yRange = [this.innerHeight, 0];
+        const colourRange = d3.schemeCategory10;
+
+        // Set scales
+        this.x = d3.scaleTime()
+            .domain(xDomain)
+            .range(xRange);
+
+        this.y = d3.scaleLinear()
+            .domain(yDomain)
+            .range(yRange);
+
+        this.colours = d3
+            .scaleOrdinal()
+            .domain(colourDomain)
+            .range(colourRange);
     }
 
     private setLabels(): void {
