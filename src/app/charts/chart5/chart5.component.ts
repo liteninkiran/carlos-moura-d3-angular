@@ -239,6 +239,23 @@ export class Chart5Component implements OnInit, OnChanges {
 
         // 5 - Remove unneeded groups
         itemContainers.exit().remove();
+
+        // 6 - Repositioning Items
+        let totalPadding = 0;
+        this.legendContainer
+            .selectAll('g.legend-item')
+            .each(function() {
+                const g = d3.select(this); // Arrow function will change scope of "this"
+                g.attr('transform', `translate(${totalPadding}, 0)`);
+                totalPadding += g.node().getBBox().width + 10;
+            });
+
+        // 7 - Repositioning Legend
+        const legendWidth = this.legendContainer.node().getBBox().width;
+        const x = this.margins.left + 0.5 * (this.innerWidth - legendWidth);
+        const y = this.dimensions.height - 0.5 * this.margins.bottom + 10;
+        this.legendContainer.attr('transform', `translate(${x}, ${y})`);
+
     }
 
     private draw(): void {
