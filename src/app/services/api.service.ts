@@ -12,8 +12,7 @@ export class ApiService {
 
     public getEmployees(): Observable<any> {
         const url = 'assets/employees.json';
-        return this.http.get<any>(url).pipe(
-            retry(3),
+        return this.getJson(url).pipe(
             map((answer) => answer.data),
         );
     }
@@ -25,13 +24,19 @@ export class ApiService {
 
     public getCovidData(): Observable<any> {
         const url = 'assets/daily.json';
-        return this.getParsedData(url);
+        return this.getJson(url);
     }
 
     private getParsedData(url: string): Observable<any> {
         return this.http.get(url, { responseType: 'text' }).pipe(
             retry(3),
             map((csv) => d3.csvParse(csv)),
+        );
+    }
+
+    private getJson(url: string): Observable<any> {
+        return this.http.get<any>(url).pipe(
+            retry(3),
         );
     }
 }

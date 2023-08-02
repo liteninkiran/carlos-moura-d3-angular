@@ -34,6 +34,10 @@ export class Chart5Component implements OnInit, OnChanges {
     public legendContainer: any;
     public title: any;
 
+    // Time formatters
+    public timeParse = d3.timeParse('%Y%m%d');
+    public niceData = d3.timeFormat('%B %Y');
+
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
     }
