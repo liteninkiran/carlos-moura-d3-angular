@@ -233,6 +233,7 @@ export class Chart5Component implements OnInit, OnChanges {
         // 2 - Enter:
         //      a: Add new containers
         //      b: Add circle & text
+        //      c: Bind events (click and hover)
         itemContainers.enter()
             .append('g')
             .attr('class', 'legend-item')
@@ -240,17 +241,19 @@ export class Chart5Component implements OnInit, OnChanges {
             .merge(itemContainers)
             .call(updateLegendItems)
             .on('mouseover', () => console.log('hover'))
-            .on('click', () => console.log('click'));
-        //      b: Bind events (click and hover)
+            .on('click', (event: PointerEvent, name: string) => {
+                this.toggleActive(name);
+                this.updateChart();
+            });
 
-        // 4 - Update State:
+        // 3 - Update State:
         //      a: Transition
         //      b: Set opacity (if active => 1 else 0.3)
 
-        // 5 - Remove unneeded groups
+        // 4 - Remove unneeded groups
         itemContainers.exit().remove();
 
-        // 6 - Repositioning Items
+        // 5 - Repositioning Items
         let totalPadding = 0;
         this.legendContainer
             .selectAll('g.legend-item')
@@ -260,7 +263,7 @@ export class Chart5Component implements OnInit, OnChanges {
                 totalPadding += g.node().getBBox().width + 10;
             });
 
-        // 7 - Repositioning Legend
+        // 6 - Repositioning Legend
         const legendWidth = this.legendContainer.node().getBBox().width;
         const x = this.margins.left + 0.5 * (this.innerWidth - legendWidth);
         const y = this.dimensions.height - 0.5 * this.margins.bottom + 10;
@@ -284,5 +287,10 @@ export class Chart5Component implements OnInit, OnChanges {
 
         // Exit
         lines.exit().remove();
+    }
+
+    private toggleActive(selected: string) {
+        const index = this.selected.indexOf(selected);
+        this.active[index] = !this.active[index];
     }
 }
