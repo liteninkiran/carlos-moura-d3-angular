@@ -165,7 +165,7 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private setLabels(): void {
-
+        this.title.text('Covid Evolution in US');
     }
 
     private setAxis(): void {
