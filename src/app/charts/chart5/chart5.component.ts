@@ -200,20 +200,45 @@ export class Chart5Component implements OnInit, OnChanges {
 
     private setLegend(): void {
         // 1 - Select item containers and bind data
+        const itemContainers = this.legendContainer.selectAll('g.legend-item').data(this.selected);
 
         // 2 - Enter:
         //      a: Add new containers
         //      b: Add circle & text
+        const newItems = itemContainers.enter()
+            .append('g')
+            .attr('class', 'legend-item')
+            .each(function(d) {
+                const g = d3.select(this);
+                g.append('circle')
+                    .attr('class', 'legend-icon')
+                    .attr('cx', 3)
+                    .attr('cy', -4)
+                    .attr('r', 3);
+
+                g.append('text')
+                    .attr('class', 'legend-label')
+                    .attr('x', 9)
+                    .style('font-size', '0.8rem');
+            });
 
         // 3 - Merge:
         //      a: Update circle & text (colour and label)
         //      b: Bind events (click and hover)
+        const mergedSelection = newItems.merge(itemContainers);
+        mergedSelection
+            .selectAll('circle.legend-icon')
+            .style('fill', (d) => this.colours(d));
+        mergedSelection
+            .selectAll('text.legend-label')
+            .text((d) => d);
 
         // 4 - Update State:
         //      a: Transition
         //      b: Set opacity (if active => 1 else 0.3)
 
         // 5 - Remove unneeded groups
+        itemContainers.exit().remove();
     }
 
     private draw(): void {
