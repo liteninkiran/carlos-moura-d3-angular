@@ -244,8 +244,10 @@ export class Chart5Component implements OnInit, OnChanges {
             .on('mouseleave', () => this.hoverLine())
             .on('click', (event: PointerEvent, name: string) => {
                 this.toggleActive(name);
+                this.hoverLine();
                 this.updateChart();
-            });
+            })
+            .style('opacity', (d, i) => this.active[i] ? 1 : 0.3);
 
         // 3 - Update State:
         //      a: Transition
@@ -296,7 +298,8 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private hoverLine(selected?: string): void {
-        if (selected) {
+        const index = this.selected.indexOf(selected);
+        if (selected && this.active[index]) {
             this.dataContainer
                 .selectAll('path.data')
                 .attr('opacity', (d) => d.name === selected ? 1 : 0.3)
