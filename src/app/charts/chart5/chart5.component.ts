@@ -27,6 +27,13 @@ export class Chart5Component implements OnInit, OnChanges {
         bottom: 80,
     };
 
+    // Containers
+    public dataContainer: any;
+    public xAxisContainer: any;
+    public yAxisContainer: any;
+    public legendContainer: any;
+    public title: any;
+
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
     }
@@ -60,7 +67,33 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private setElements(): void {
+        this.xAxisContainer = this.svg
+            .append('g')
+            .attr('class', 'x-axis-container')
+            .attr('transform', `translate(${this.margins.left}, ${this.margins.top + this.innerHeight})`);
 
+        this.yAxisContainer = this.svg
+            .append('g')
+            .attr('class', 'y-axis-container')
+            .attr('transform', `translate(${this.margins.left}, ${this.margins.top})`);
+
+        this.title = this.svg
+            .append('g')
+            .attr('class', 'title-container')
+            .attr('transform', `translate(${this.margins.left + 0.5 * this.innerWidth}, ${0.5 * this.margins.top})`)
+            .append('text')
+            .attr('class', 'title')
+            .style('text-anchor', 'middle');
+
+        this.dataContainer = this.svg
+            .append('g')
+            .attr('class', 'data-container')
+            .attr('transform', `translate(${this.margins.left}, ${this.margins.top})`);
+
+        this.legendContainer = this.svg
+            .append('g')
+            .attr('class', 'legend-container')
+            .attr('transform', `translate(${this.margins.left}, ${this.dimensions.height - 0.5 * this.margins.bottom + 10})`);
     }
 
     private setParams(): void {
