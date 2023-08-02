@@ -199,39 +199,46 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private setLegend(): void {
+        // Methods
+        const generateLegendItems = (selection: any) => {
+            selection
+                .append('circle')
+                .attr('class', 'legend-icon')
+                .attr('cx', 3)
+                .attr('cy', -4)
+                .attr('r', 3);
+
+            selection
+                .append('text')
+                .attr('class', 'legend-label')
+                .attr('x', 9)
+                .style('font-size', '0.8rem');
+        };
+
+        const updateLegendItems = (selection: any) => {
+            selection
+                .selectAll('circle.legend-icon')
+                .style('fill', (d) => this.colours(d));
+                selection
+                .selectAll('text.legend-label')
+                .text((d) => d);
+        };
+
         // 1 - Select item containers and bind data
         const itemContainers = this.legendContainer.selectAll('g.legend-item').data(this.selected);
 
         // 2 - Enter:
         //      a: Add new containers
         //      b: Add circle & text
-        const newItems = itemContainers.enter()
+        itemContainers.enter()
             .append('g')
             .attr('class', 'legend-item')
-            .each(function(d) {
-                const g = d3.select(this);
-                g.append('circle')
-                    .attr('class', 'legend-icon')
-                    .attr('cx', 3)
-                    .attr('cy', -4)
-                    .attr('r', 3);
-
-                g.append('text')
-                    .attr('class', 'legend-label')
-                    .attr('x', 9)
-                    .style('font-size', '0.8rem');
-            });
-
-        // 3 - Merge:
-        //      a: Update circle & text (colour and label)
+            .call(generateLegendItems)
+            .merge(itemContainers)
+            .call(updateLegendItems)
+            .on('mouseover', () => console.log('hover'))
+            .on('click', () => console.log('click'));
         //      b: Bind events (click and hover)
-        const mergedSelection = newItems.merge(itemContainers);
-        mergedSelection
-            .selectAll('circle.legend-icon')
-            .style('fill', (d) => this.colours(d));
-        mergedSelection
-            .selectAll('text.legend-label')
-            .text((d) => d);
 
         // 4 - Update State:
         //      a: Transition
