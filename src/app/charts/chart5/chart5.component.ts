@@ -42,7 +42,25 @@ export class Chart5Component implements OnInit, OnChanges {
     public x: any;
     public y: any;
     public colours: any;
-    
+
+    // Selected Data
+    public selected = ['hospitalized', 'death', 'hospitalizedCurrently'];
+
+    // Getters
+    get lineData() {
+        // return !this.data ? [] : this.data.map((d: any) => ({
+        //     x: this.timeParse(d.date),
+        //     y: d.hospitalized,
+        // }));
+        return this.selected.map((item) => ({
+            name: item,
+            data: this.data.map((d) => ({
+                x: this.timeParse(d.date),
+                y: d[item],
+            })).sort((a, b) => a.x < b.x ? -1 : 1),
+        }));
+    }
+
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
     }
@@ -106,8 +124,11 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private setParams(): void {
+        // Temporary solution
+        const parsedDates = !this.data ? [] : this.data.map((d: any) => this.timeParse(d.date));
+
         // Set Domains
-        const xDomain = [0, Date.now()];
+        const xDomain = !!parsedDates ? d3.extent(parsedDates) : [0, Date.now()];
         const yDomain = [0, 100];
         const colourDomain = ['A', 'B', 'C'];
 
