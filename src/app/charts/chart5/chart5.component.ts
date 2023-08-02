@@ -199,7 +199,21 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private setLegend(): void {
+        // 1 - Select item containers and bind data
 
+        // 2 - Enter:
+        //      a: Add new containers
+        //      b: Add circle & text
+
+        // 3 - Merge:
+        //      a: Update circle & text (colour and label)
+        //      b: Bind events (click and hover)
+
+        // 4 - Update State:
+        //      a: Transition
+        //      b: Set opacity (if active => 1 else 0.3)
+
+        // 5 - Remove unneeded groups
     }
 
     private draw(): void {
