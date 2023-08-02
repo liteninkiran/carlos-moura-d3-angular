@@ -50,6 +50,9 @@ export class Chart5Component implements OnInit, OnChanges {
     public xAxis: any;
     public yAxis: any;
 
+    // Line generator
+    public line: any;
+
     // Getters
     get lineData() {
         return this.selected.map((item) => ({
@@ -70,7 +73,7 @@ export class Chart5Component implements OnInit, OnChanges {
         this.setDimensions();
         this.setElements();
         this.updateChart();
-        console.log(this);
+        //console.log(this);
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -81,6 +84,7 @@ export class Chart5Component implements OnInit, OnChanges {
 
     private updateChart(): void {
         if (this.data) {
+            //console.log(this.data);
             this.setParams();
             this.setLabels();
             this.setAxis();
@@ -154,6 +158,10 @@ export class Chart5Component implements OnInit, OnChanges {
             .scaleOrdinal()
             .domain(colourDomain)
             .range(colourRange);
+
+        this.line = d3.line()
+            .x((d) => this.x(d.x))
+            .y((d) => this.y(d.y))
     }
 
     private setLabels(): void {
@@ -195,6 +203,20 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private draw(): void {
+        // Bind data
+        const lines = this.dataContainer.selectAll('path.data').data(this.lineData);
 
+        // Enter and merge
+        lines.enter()
+            .append('path')
+            .attr('class', 'data')
+            .style('fill', 'none')
+            .style('stroke-width', '2px')
+            .merge(lines)
+            .attr('d', (d) => this.line(d.data))
+            .style('stroke', (d) => this.colours(d.name));
+
+        // Exit
+        lines.exit().remove();
     }
 }
