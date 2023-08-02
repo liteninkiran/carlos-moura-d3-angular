@@ -46,6 +46,10 @@ export class Chart5Component implements OnInit, OnChanges {
     // Selected Data
     public selected = ['hospitalized', 'death', 'hospitalizedCurrently'];
 
+    // Axes
+    public xAxis: any;
+    public yAxis: any;
+
     // Getters
     get lineData() {
         return this.selected.map((item) => ({
@@ -80,6 +84,7 @@ export class Chart5Component implements OnInit, OnChanges {
             this.setParams();
             this.setLabels();
             this.setAxis();
+            this.setLegend();
             this.draw();
         }
     }
@@ -128,7 +133,7 @@ export class Chart5Component implements OnInit, OnChanges {
         // Set Domains
         const xDomain = d3.extent(parsedDates);
         const maxValues = this.lineData.map((series) => d3.max(series.data, (d) => d.y));
-        const yDomain = d3.max(maxValues);
+        const yDomain = [0, d3.max(maxValues)];
         const colourDomain = this.selected;
 
         // Set Ranges
@@ -156,6 +161,36 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private setAxis(): void {
+        this.xAxis = d3
+            .axisBottom(this.x)
+            .ticks(d3.timeMonth.every(3))
+            .tickFormat(d3.timeFormat('%b %Y'))
+            .tickSizeOuter(0);
+
+        this.xAxisContainer
+            .transition()
+            .duration(500)
+            .call(this.xAxis);
+
+        this.yAxis = d3.axisLeft(this.y)
+            .ticks(5)
+            .tickSizeOuter(0)
+            .tickSizeInner(-this.innerWidth)
+            .tickFormat(d3.format('~s'));
+
+        this.yAxisContainer
+            .transition()
+            .duration(500)
+            .call(this.yAxis);
+
+        // Apply dashes to all horizontal lines except the x-axis
+        this.yAxisContainer
+            .selectAll('.tick:not(:nth-child(2)) line')
+            .style('stroke', '#ddd')
+            .style('stroke-dasharray', '2 2');
+    }
+
+    private setLegend(): void {
 
     }
 
