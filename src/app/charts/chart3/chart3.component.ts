@@ -81,7 +81,7 @@ export class Chart3Component implements OnInit, OnChanges {
         this.yAxis.tickFormat(d3.format('$~s'));
 
         // Set containers
-        this.xAxisContainer.transition().duration(500).call(updateXAxis);
+        this.xAxisContainer.transition().duration(2000).call(updateXAxis);
 
         this.yAxisContainer.call(this.yAxis);
         this.yAxisContainer.selectAll('.tick line').style('stroke', '#ddd');
@@ -122,7 +122,7 @@ export class Chart3Component implements OnInit, OnChanges {
             .append('rect')
             .merge(bars)
             .transition()
-            .duration(500)
+            .duration(2000)
             .attr('x', (d) => this.x(d.id))
             .attr('width', this.x.bandwidth())
             .attr('height', (d) => this.innerHeight - this.y(d.employee_salary))

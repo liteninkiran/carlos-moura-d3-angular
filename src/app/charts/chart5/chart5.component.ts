@@ -15,6 +15,18 @@ export class Chart5Component implements OnInit, OnChanges {
     public host: any;
     public svg: any;
 
+    // Dimensions
+    public dimensions: DOMRect;
+    public innerWidth: number;
+    public innerHeight: number;
+
+    public margins = {
+        left: 50,
+        top: 40,
+        right: 20,
+        bottom: 80,
+    };
+
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
     }
@@ -41,7 +53,10 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private setDimensions(): void {
-
+        this.dimensions = this.svg.node().getBoundingClientRect();
+        this.innerWidth = this.dimensions.width - this.margins.left - this.margins.right;
+        this.innerHeight = this.dimensions.height - this.margins.top - this.margins.bottom;
+        this.svg.attr('viewBox', [0, 0, this.dimensions.width, this.dimensions.height]);
     }
 
     private setElements(): void {
