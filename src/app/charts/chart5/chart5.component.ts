@@ -240,7 +240,8 @@ export class Chart5Component implements OnInit, OnChanges {
             .call(generateLegendItems)
             .merge(itemContainers)
             .call(updateLegendItems)
-            .on('mouseover', () => console.log('hover'))
+            .on('mouseover', (event: PointerEvent, name: string) => this.hoverLine(name))
+            .on('mouseleave', () => this.hoverLine())
             .on('click', (event: PointerEvent, name: string) => {
                 this.toggleActive(name);
                 this.updateChart();
@@ -289,8 +290,22 @@ export class Chart5Component implements OnInit, OnChanges {
         lines.exit().remove();
     }
 
-    private toggleActive(selected: string) {
+    private toggleActive(selected: string): void {
         const index = this.selected.indexOf(selected);
         this.active[index] = !this.active[index];
+    }
+
+    private hoverLine(selected?: string): void {
+        if (selected) {
+            this.dataContainer
+                .selectAll('path.data')
+                .attr('opacity', (d) => d.name === selected ? 1 : 0.3)
+                .style('stroke-width', (d) => d.name === selected ? '3px' : '2px');
+        } else {
+            this.dataContainer
+                .selectAll('path.data')
+                .style('stroke-width', '2px')
+                .attr('opacity', null);
+        }
     }
 }
