@@ -234,6 +234,8 @@ export class Chart5Component implements OnInit, OnChanges {
         //      a: Add new containers
         //      b: Add circle & text
         //      c: Bind events (click and hover)
+        //      d: Transition
+        //      e: Set opacity (if active => 1 else 0.3)
         itemContainers.enter()
             .append('g')
             .attr('class', 'legend-item')
@@ -247,16 +249,14 @@ export class Chart5Component implements OnInit, OnChanges {
                 this.hoverLine();
                 this.updateChart();
             })
+            .transition()
+            .duration(500)
             .style('opacity', (d, i) => this.active[i] ? 1 : 0.3);
 
-        // 3 - Update State:
-        //      a: Transition
-        //      b: Set opacity (if active => 1 else 0.3)
-
-        // 4 - Remove unneeded groups
+        // 3 - Remove unneeded groups
         itemContainers.exit().remove();
 
-        // 5 - Repositioning Items
+        // 4 - Repositioning Items
         let totalPadding = 0;
         this.legendContainer
             .selectAll('g.legend-item')
@@ -266,17 +266,18 @@ export class Chart5Component implements OnInit, OnChanges {
                 totalPadding += g.node().getBBox().width + 10;
             });
 
-        // 6 - Repositioning Legend
+        // 5 - Repositioning Legend
         const legendWidth = this.legendContainer.node().getBBox().width;
         const x = this.margins.left + 0.5 * (this.innerWidth - legendWidth);
         const y = this.dimensions.height - 0.5 * this.margins.bottom + 10;
         this.legendContainer.attr('transform', `translate(${x}, ${y})`);
-
     }
 
     private draw(): void {
         // Bind data
-        const lines = this.dataContainer.selectAll('path.data').data(this.lineData);
+        const lines = this.dataContainer
+            .selectAll('path.data')
+            .data(this.lineData, (d) => d.name);
 
         // Enter and merge
         lines.enter()
@@ -285,6 +286,8 @@ export class Chart5Component implements OnInit, OnChanges {
             .style('fill', 'none')
             .style('stroke-width', '2px')
             .merge(lines)
+            .transition()
+            .duration(500)
             .attr('d', (d) => this.line(d.data))
             .style('stroke', (d) => this.colours(d.name));
 
