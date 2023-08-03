@@ -66,6 +66,10 @@ export class Chart6Component implements OnInit, OnChanges {
         return this.config.margins;
     }
 
+    get ids() {
+        return this.data.data.map((d) => d.id);
+    }
+
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
     }
@@ -123,6 +127,19 @@ export class Chart6Component implements OnInit, OnChanges {
     }
 
     private setParams(): void {
+        // Arc generator
+        this.arc = d3.arc()
+            .innerRadius(this.innerRadius)
+            .outerRadius(this.radius);
+
+        // Pie generator
+        this.pie = d3.pie()
+            .value((d) => d.value);
+
+        // Colour scale
+        this.colours = d3
+            .scaleOrdinal(d3.schemeCategory10)
+            .domain(this.ids);
     }
 
     private setLabels(): void {
