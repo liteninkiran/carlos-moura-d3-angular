@@ -22,7 +22,17 @@ export class AppComponent implements OnInit, OnDestroy {
         data: [],
     };
     public sub: Subscription;
-    public pieConfig = {
+    public pieConfig1 = {
+        innerRadiusCoef: 0.5,
+        transition: 800,
+        arcs: {
+            stroke: '#fff',
+            strokeWidth: 2,
+            radius: 6,
+            padAngle: 0,
+        },
+    };
+    public pieConfig2 = {
         innerRadiusCoef: 0,
         arcs: {
             radius: 0,

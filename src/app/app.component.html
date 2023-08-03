@@ -55,7 +55,7 @@
                     <option value="now" selected>Now</option>
                     <option value="before">Before</option>
                 </select>
-                <app-chart6 [data]="pieData"></app-chart6>
+                <app-chart6 [data]="pieData" [config]="pieConfig1"></app-chart6>
             </div>
         </div>
 
@@ -81,11 +81,7 @@
         <!-- Col 3 -->
         <div class="col-4">
             <div class="chart">
-                <select class="chart-options" (change)="setPieData($event)">
-                    <option value="now" selected>Now</option>
-                    <option value="before">Before</option>
-                </select>
-                <app-chart6 [data]="pieData" [config]="pieConfig"></app-chart6>
+                <app-chart6 [data]="pieData" [config]="pieConfig2"></app-chart6>
             </div>
         </div>
 

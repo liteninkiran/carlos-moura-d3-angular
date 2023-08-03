@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation } from '@angular/core';
 import { IPieConfig } from 'src/app/interfaces/chart.interfaces';
 import * as d3 from 'd3';
+import ObjectHelper from 'src/app/helpers/object.helper';
 
 @Component({
     selector: 'app-chart6',
@@ -41,7 +42,7 @@ export class Chart6Component implements OnInit, OnChanges {
     // Config
     @Input()
     public set config(values) {
-        this._config = Object.assign({}, this._defaultConfig, values);
+        this._config = ObjectHelper.UpdateObjectWithPartialValues<IPieConfig>(this._defaultConfig, values);
     };
 
     private _config: IPieConfig;
