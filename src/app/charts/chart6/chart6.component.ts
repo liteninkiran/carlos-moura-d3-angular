@@ -23,6 +23,7 @@ export class Chart6Component implements OnInit, OnChanges {
     // Functions
     public pie: any;
     public arc: any;
+    public arcTween: any;
 
     // Scales
     public colours: any;
@@ -84,7 +85,7 @@ export class Chart6Component implements OnInit, OnChanges {
         this.setDimensions();
         this.setElements();
         this.updateChart();
-        console.log(this);
+        //console.log(this);
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -145,6 +146,18 @@ export class Chart6Component implements OnInit, OnChanges {
         this.colours = d3
             .scaleOrdinal(d3.schemeCategory10)
             .domain(this.ids);
+
+        const chart = this;
+
+        this.arcTween = function(d: any) {
+            const current = d;
+            const previous = this._previous;
+            const interpolate = d3.interpolate(previous, current);
+            this._previous = current;
+            return function(t: any) {
+                return chart.arc(interpolate(t));
+            };
+        };
     }
 
     private setLabels(): void {
@@ -155,22 +168,17 @@ export class Chart6Component implements OnInit, OnChanges {
     }
 
     private draw(): void {
-        // // 1 - Bind the data
-        // // 2 - Enter / update
-        // // 3 - Exit / remove
-        // const arcs = this.dataContainer.selectAll('path.data').data(this.pieData);
-        // arcs.enter().append('path').attr('class', 'data').merge(arcs).attr('d', this.arc).style('fill', (d) => this.colours(d.data.id));
-        // arcs.exit().remove();
-
-        // 1-3 Using "Join"
+        const data = this.pieData;
         this.dataContainer
             .selectAll('path.data')
-            .data(this.pieData)
+            .data(data, (d: any) => d.data.id)
             .join('path')
             .attr('class', 'data')
-            .attr('d', this.arc)
-            .style('fill', (d) => this.colours(d.data.id));
-}
+            .style('fill', (d: any) => this.colours(d.data.id))
+            .transition()
+            .duration(1000)
+            .attrTween('d', this.arcTween);
+    }
 
     private highlight(): void {
     }
