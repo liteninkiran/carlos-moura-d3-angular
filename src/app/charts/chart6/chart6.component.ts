@@ -167,6 +167,7 @@ export class Chart6Component implements OnInit, OnChanges {
             .selectAll('path.data')
             .data(this.pieData)
             .join('path')
+            .attr('class', 'data')
             .attr('d', this.arc)
             .style('fill', (d) => this.colours(d.data.id));
 }
