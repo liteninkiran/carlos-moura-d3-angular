@@ -241,12 +241,21 @@ export class Chart6Component implements OnInit, OnChanges {
         const data = this.pieData;
         const previousData = this.dataContainer.selectAll('path.data').data();
         const extendedPreviousData = this.extendPreviousDataWithEnter(previousData, data);
+        const extendedCurrentData = this.extendCurrentDataWithExit(previousData, data);
         const enterArcTween = this.arcTweenFactory(extendedPreviousData, true);
+        const exitArcTween = this.arcTweenFactory(extendedCurrentData, false);
 
         this.dataContainer
             .selectAll('path.data')
             .data(data, (d: any) => d.data.id)
-            .join('path')
+            .join(
+                enter => enter.append('path'),
+                update => update,
+                exit => exit.transition()
+                    .duration(1000)
+                    .attrTween('d', exitArcTween)
+                    .remove()
+            )
             .attr('class', 'data')
             .style('fill', (d: any) => this.colours(d.data.id))
             .style('stroke', this.config.arcs.stroke)
@@ -294,6 +303,10 @@ export class Chart6Component implements OnInit, OnChanges {
             };
         });
         return [...previous, ...newElements];
+    }
+
+    private extendCurrentDataWithExit = (previous, current) => {
+        return this.extendPreviousDataWithEnter(current, previous);
     }
 
     private arcTweenFactory = (data, enter: boolean) => {
