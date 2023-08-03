@@ -53,7 +53,7 @@ export class Chart6Component implements OnInit, OnChanges {
             stroke: '#fff',
             strokeWidth: 2,
             radius: 6,
-            padAngle: 0,
+            padAngle: 0.05,
         },
         margins: {
             left: 10,
@@ -167,7 +167,9 @@ export class Chart6Component implements OnInit, OnChanges {
         // Arc generator
         this.arc = d3.arc()
             .innerRadius(this.innerRadius)
-            .outerRadius(this.radius);
+            .outerRadius(this.radius)
+            .cornerRadius(this.config.arcs.radius)
+            .padAngle(this.config.arcs.padAngle);
 
         // Pie generator
         this.pie = d3.pie()
@@ -243,6 +245,8 @@ export class Chart6Component implements OnInit, OnChanges {
             .join('path')
             .attr('class', 'data')
             .style('fill', (d: any) => this.colours(d.data.id))
+            .style('stroke', this.config.arcs.stroke)
+            .style('stroke-width', this.config.arcs.strokeWidth)
             .transition()
             .duration(1000)
             .attrTween('d', this.arcTween);      
