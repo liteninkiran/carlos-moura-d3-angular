@@ -6,4 +6,11 @@
     border-radius: 3px;
     overflow: hidden;
     box-shadow: rgba(158, 158, 158, 0.16) 1px 1px 8px 0px;
+    position: relative;
+}
+
+.chart-options {
+    position: absolute;
+    top: 5px;
+    left: 5px;
 }

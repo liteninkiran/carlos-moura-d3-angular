@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from './services/api.service';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { IPieData } from './interfaces/chart.interfaces';
+import { PieHelper } from './helpers/pie.helper';
 
 @Component({
     selector: 'app-root',
@@ -32,8 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.browsers$ = this.api.getBrowsersData();
         this.sub = this.browsers$.subscribe((data) => {
             this.browser = data;
-            this.pieData = this.convertBrowserToPieData('now');
-            console.log(this.pieData);
+            this.setPieData('now');
         });
         setTimeout(() => {
             this.data1 = [...this.data1, 600];
@@ -44,15 +44,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
-    private convertBrowserToPieData(valueAttr: string): IPieData {
-        const data = this.browser.map((elem) => ({
-            id: elem.name,
-            label: elem.name,
-            value: elem[valueAttr],
-        }));
-        return {
-            title: 'Browser Market Share',
-            data,
-        };
+    public setPieData(event: any): void {
+        const valueAttr: string =  typeof event === 'string' ? event : (event.target as HTMLInputElement).value;
+        this.pieData = PieHelper.convert(this.browser, 'Browser Market Share', valueAttr, 'name', 'name');
     }
 }
