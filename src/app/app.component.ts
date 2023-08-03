@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from './services/api.service';
 import { Observable, Subscription } from 'rxjs';
-import { IPieData } from './interfaces/chart.interfaces';
+import { IPieConfig, IPieData } from './interfaces/chart.interfaces';
 import { PieHelper } from './helpers/pie.helper';
 
 @Component({
@@ -22,10 +22,17 @@ export class AppComponent implements OnInit, OnDestroy {
         data: [],
     };
     public sub: Subscription;
+    public pieConfig = {
+        innerRadiusCoef: 0,
+        arcs: {
+            radius: 0,
+        },
+    };
 
     constructor(private api: ApiService) {
 
     }
+
     public ngOnInit(): void {
         this.data2$ = this.api.getEmployees();
         this.iris$ = this.api.getIris();

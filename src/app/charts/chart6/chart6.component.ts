@@ -39,7 +39,13 @@ export class Chart6Component implements OnInit, OnChanges {
     public innerRadius = 0;
 
     // Config
-    public config: IPieConfig = {
+    @Input()
+    public set config(values) {
+        this._config = Object.assign({}, this._defaultConfig, values);
+    };
+
+    private _config: IPieConfig;
+    private _defaultConfig: IPieConfig = {
         innerRadiusCoef: 0.7,
         hiddenOpacity: 0.3,
         legendItem: {
@@ -53,14 +59,14 @@ export class Chart6Component implements OnInit, OnChanges {
             stroke: '#fff',
             strokeWidth: 2,
             radius: 6,
-            padAngle: 0.05,
+            padAngle: 0,
         },
         margins: {
             left: 10,
             top: 40,
             right: 130,
             bottom: 10,
-        }
+        },
     };
 
     // Getters
@@ -74,6 +80,10 @@ export class Chart6Component implements OnInit, OnChanges {
 
     get pieData() {
         return this.pie(this.data.data.filter((elem) => !this.hiddenIds.has(elem.id)));
+    }
+
+    get config() {
+        return this._config || this._defaultConfig;
     }
 
     constructor(element: ElementRef) {
