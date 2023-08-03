@@ -1,0 +1,8 @@
+[
+  { "name": "Chrome", "now": 64.06, "before": 5.94 },
+  { "name": "Firefox", "now": 3.91, "before": 31.15 },
+  { "name": "Edge", "now": 4.19, "before": 0 },
+  { "name": "Safari", "now": 19.22, "before": 4.22 },
+  { "name": "IExplorer", "now": 0.49, "before": 54.39 },
+  { "name": "Others", "now": 8.13, "before": 4.3 }
+]

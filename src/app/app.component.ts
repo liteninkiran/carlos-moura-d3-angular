@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
     public data2$: Observable<any[]>;
     public iris$: Observable<any[]>;
     public covid$: Observable<any[]>;
+    public browsers$: Observable<any[]>;
 
     constructor(private api: ApiService) {
 
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
         this.data2$ = this.api.getEmployees();
         this.iris$ = this.api.getIris();
         this.covid$ = this.api.getCovidData();
+        this.browsers$ = this.api.getBrowsersData();
         setTimeout(() => {
             this.data1 = [...this.data1, 600];
         }, 5000);
