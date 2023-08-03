@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation } from '@angular/core';
-import * as d3 from 'd3';
 import { IPieConfig } from 'src/app/interfaces/chart.interfaces';
+import * as d3 from 'd3';
 
 @Component({
     selector: 'app-chart6',
@@ -29,7 +29,7 @@ export class Chart6Component implements OnInit, OnChanges {
     public colours: any;
 
     // State
-    public hiddenIds = new Map();
+    public hiddenIds = new Set();
 
     // Dimensions
     public dimensions: DOMRect;
@@ -73,7 +73,7 @@ export class Chart6Component implements OnInit, OnChanges {
     }
 
     get pieData() {
-        return this.pie(this.data.data);
+        return this.pie(this.data.data.filter((elem) => !this.hiddenIds.has(elem.id)));
     }
 
     constructor(element: ElementRef) {
@@ -113,23 +113,54 @@ export class Chart6Component implements OnInit, OnChanges {
     }
 
     private setElements(): void {
+        const coords = {
+            data: this.getTranslations('data-container'),
+            legend: this.getTranslations('legend-container'),
+            title: this.getTranslations('title-container'),
+        };
+        // Data Container
         this.dataContainer = this.svg
             .append('g')
             .attr('class', 'data-container')
-            .attr('transform', `translate(${this.margins.left + 0.5 * this.innerWidth}, ${this.margins.top + 0.5 * this.innerHeight})`);
+            .attr('transform', `translate(${coords.data.x}, ${coords.data.y})`);
 
+        // Legend Container
         this.legendContainer = this.svg
             .append('g')
             .attr('class', 'legend-container')
-            .attr('transform', `translate(${this.innerWidth - 0.5 * this.margins.right}, ${this.margins.top + 0.5 * this.innerHeight})`);
+            .attr('transform', `translate(${coords.legend.x}, ${coords.legend.y})`);
 
+        // Title Container
         this.title = this.svg
             .append('g')
             .attr('class', 'title-container')
-            .attr('transform', `translate(${this.dimensions.width * 0.5}, ${this.margins.top * 0.5})`)
+            .attr('transform', `translate(${coords.title.x}, ${coords.title.y})`)
             .append('text')
             .attr('class', 'title')
             .style('text-anchor', 'middle');
+    }
+
+    private getTranslations(container: string): any {
+        switch (container) {
+            case 'data-container': return {
+                x: this.margins.left + 0.5 * this.innerWidth,
+                y: this.margins.top + 0.5 * this.innerHeight,
+            };
+            case 'legend-container': return {
+                x: this.innerWidth - 0.5 * this.margins.right,
+                y: this.margins.top + 0.5 * this.innerHeight,
+            };
+            case 'title-container': return {
+                x: this.dimensions.width * 0.5,
+                y: this.margins.top * 0.5,
+            };
+            case 'legend': 
+                const dimensions = this.legendContainer.node().getBBox();
+                return {
+                    x: this.dimensions.width - this.margins.right,
+                    y: this.margins.top + 0.5 * this.innerHeight - 0.5 * dimensions.height,
+                };
+        }
     }
 
     private setParams(): void {
@@ -172,7 +203,11 @@ export class Chart6Component implements OnInit, OnChanges {
             .data(data)
             .join('g')
             .attr('class', 'legend-item')
-            .attr('transform', (d, i) => `translate(0, ${i * this.config.legendItem.height})`);
+            .attr('transform', (d, i) => `translate(0, ${i * this.config.legendItem.height})`)
+            .style('opacity', (d) => this.hiddenIds.has(d.id) ? this.config.hiddenOpacity : null)
+            .on('mouseenter', (event, d) => this.setHighlights(d.id))
+            .on('mouseleave', (d) => this.resetHighlights())
+            .on('click', (event, d) => this.toggleHighlight(d.id));
 
         // Add symbols
         this.legendContainer
@@ -196,11 +231,8 @@ export class Chart6Component implements OnInit, OnChanges {
             .text((d) => d.label);
 
         // Reposition legend
-        const dimensions = this.legendContainer.node().getBBox();
-        const x = this.dimensions.width - this.margins.right;
-        const y = this.margins.top + 0.5 * this.innerHeight - 0.5 * dimensions.height;
-        this.legendContainer
-            .attr('transform', `translate(${x}, ${y})`)
+        const coords = this.getTranslations('legend');
+        this.legendContainer.attr('transform', `translate(${coords.x}, ${coords.y})`)
     }
 
     private draw(): void {
@@ -216,6 +248,28 @@ export class Chart6Component implements OnInit, OnChanges {
             .attrTween('d', this.arcTween);      
     }
 
-    private highlight(): void {
+    private setHighlights(id): void {
+        this.dataContainer
+            .selectAll('path')
+            .style('opacity', (d) => d.data.id === id ? null : this.config.hiddenOpacity);
+        
+        this.legendContainer
+            .selectAll('g.legend-item')
+            .style('opacity', (d) => d.id === id ? null : this.config.hiddenOpacity);
+    }
+
+    private resetHighlights(): void {
+        this.dataContainer
+            .selectAll('path')
+            .style('opacity', null);
+        
+        this.legendContainer
+            .selectAll('g.legend-item')
+            .style('opacity', null);
+    }
+
+    private toggleHighlight(id): void {
+        this.hiddenIds.has(id) ? this.hiddenIds.delete(id) : this.hiddenIds.add(id);
+        this.updateChart();
     }
 }
