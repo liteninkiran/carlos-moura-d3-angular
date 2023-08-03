@@ -14,6 +14,37 @@ export class Chart6Component implements OnInit, OnChanges {
     public host: any;
     public svg: any;
 
+    // Containers
+    public dataContainer: any;
+    public legendContainer: any;
+    public title: any;
+
+    // Functions
+    public pie: any;
+    public arc: any;
+
+    // Scales
+    public colours: any;
+
+    // State
+    public hiddenIds = new Map();
+
+    // Dimensions
+    public dimensions: DOMRect;
+    public innerWidth: number;
+    public innerHeight: number;
+    public radius: number;
+    public innerRadius = 0;
+    public margins = {
+        left: 50,
+        top: 40,
+        right: 20,
+        bottom: 80,
+    };
+
+    // Config
+    public config: any;
+
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
     }
