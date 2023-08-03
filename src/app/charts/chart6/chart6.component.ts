@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation } from '@angular/core';
 import { IPieConfig } from 'src/app/interfaces/chart.interfaces';
 import ObjectHelper from 'src/app/helpers/object.helper';
-import * as d3 from 'd3';
 import { PieHelper } from 'src/app/helpers/pie.helper';
+import * as d3 from 'd3';
 
 @Component({
     selector: 'app-chart6',
