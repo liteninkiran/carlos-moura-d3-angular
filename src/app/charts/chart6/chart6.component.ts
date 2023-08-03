@@ -103,6 +103,23 @@ export class Chart6Component implements OnInit, OnChanges {
     }
 
     private setElements(): void {
+        this.dataContainer = this.svg
+            .append('g')
+            .attr('class', 'data-container')
+            .attr('transform', `translate(${this.margins.left + 0.5 * this.innerWidth}, ${this.margins.top + 0.5 * this.innerHeight})`);
+
+        this.legendContainer = this.svg
+            .append('g')
+            .attr('class', 'legend-container')
+            .attr('transform', `translate(${this.innerWidth - 0.5 * this.margins.right}, ${this.margins.top + 0.5 * this.innerHeight})`);
+
+        this.title = this.svg
+            .append('g')
+            .attr('class', 'title-container')
+            .attr('transform', `translate(${this.dimensions.width * 0.5}, ${this.margins.top * 0.5})`)
+            .append('text')
+            .attr('class', 'title')
+            .style('text-anchor', 'middle');
     }
 
     private setParams(): void {
