@@ -154,7 +154,7 @@ export class Chart6Component implements OnInit, OnChanges {
                 x: this.dimensions.width * 0.5,
                 y: this.margins.top * 0.5,
             };
-            case 'legend': 
+            case 'legend':
                 const dimensions = this.legendContainer.node().getBBox();
                 return {
                     x: this.dimensions.width - this.margins.right,
@@ -182,12 +182,12 @@ export class Chart6Component implements OnInit, OnChanges {
 
         const chart = this;
 
-        this.arcTween = function(d: any) {
+        this.arcTween = function (d: any) {
             const current = d;
             const previous = this._previous;
             const interpolate = d3.interpolate(previous, current);
             this._previous = current;
-            return function(t: any) {
+            return function (t: any) {
                 return chart.arc(interpolate(t));
             };
         };
@@ -239,6 +239,10 @@ export class Chart6Component implements OnInit, OnChanges {
 
     private draw(): void {
         const data = this.pieData;
+        const previousData = this.dataContainer.selectAll('path.data').data();
+        const extendedPreviousData = this.extendPreviousDataWithEnter(previousData, data);
+        const enterArcTween = this.arcTweenFactory(extendedPreviousData, true);
+
         this.dataContainer
             .selectAll('path.data')
             .data(data, (d: any) => d.data.id)
@@ -249,14 +253,14 @@ export class Chart6Component implements OnInit, OnChanges {
             .style('stroke-width', this.config.arcs.strokeWidth)
             .transition()
             .duration(1000)
-            .attrTween('d', this.arcTween);      
+            .attrTween('d', enterArcTween);
     }
 
     private setHighlights(id): void {
         this.dataContainer
             .selectAll('path')
             .style('opacity', (d) => d.data.id === id ? null : this.config.hiddenOpacity);
-        
+
         this.legendContainer
             .selectAll('g.legend-item')
             .style('opacity', (d) => d.id === id ? null : this.config.hiddenOpacity);
@@ -266,7 +270,7 @@ export class Chart6Component implements OnInit, OnChanges {
         this.dataContainer
             .selectAll('path')
             .style('opacity', null);
-        
+
         this.legendContainer
             .selectAll('g.legend-item')
             .style('opacity', null);
@@ -275,5 +279,33 @@ export class Chart6Component implements OnInit, OnChanges {
     private toggleHighlight(id): void {
         this.hiddenIds.has(id) ? this.hiddenIds.delete(id) : this.hiddenIds.add(id);
         this.updateChart();
+    }
+
+    private extendPreviousDataWithEnter = (previous, current) => {
+        const previousIds = new Set(previous.map((d) => d.data.id));
+        const beforeEndAngle = (id) => previous.find((d) => d.data.id === id)?.endAngle || 0;
+        const newElements = current.filter((elem) => !previousIds.has(elem.data.id)).map((elem) => {
+            const before = current.find((d) => d.index === elem.index - 1);
+            const angle = beforeEndAngle(before?.data?.id);
+            return {
+                ...elem,
+                startAngle: angle,
+                endAngle: angle,
+            };
+        });
+        return [...previous, ...newElements];
+    }
+
+    private arcTweenFactory = (data, enter: boolean) => {
+        const chart = this;
+        const arcTween = function (elementData) {
+            const previousElemData = data.find((d) => d.data.id === elementData.data.id);
+            const [start, end] = enter ? [previousElemData, elementData] : [elementData, previousElemData];
+            const interpolate = d3.interpolate(start, end);
+            return function (t) {
+                return chart.arc(interpolate(t));
+            }
+        }
+        return arcTween;
     }
 }
