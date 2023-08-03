@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation } from '@angular/core';
 import * as d3 from 'd3';
+import { IPieConfig } from 'src/app/interfaces/chart.interfaces';
 
 @Component({
     selector: 'app-chart6',
@@ -36,14 +37,36 @@ export class Chart6Component implements OnInit, OnChanges {
     public radius: number;
     public innerRadius = 0;
     public margins = {
-        left: 50,
-        top: 40,
-        right: 20,
-        bottom: 80,
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
     };
 
     // Config
-    public config: any;
+    public config: IPieConfig = {
+        innerRadiusCoef: 0.7,
+        hiddenOpacity: 0.3,
+        legendItem: {
+            symbolSize: 10,
+            height: 20,
+            fontSize: 12,
+            textSeparator: 15,
+        },
+        transition: 800,
+        arcs: {
+            stroke: '#fff',
+            strokeWidth: 2,
+            radius: 6,
+            padAngle: 0,
+        },
+        margins: {
+            left: 10,
+            top: 40,
+            right: 130,
+            bottom: 10,
+        }
+    };
 
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
