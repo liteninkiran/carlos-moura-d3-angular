@@ -74,6 +74,8 @@ export class Chart6Component implements OnInit, OnChanges {
 
     public ngOnInit(): void {
         this.svg = this.host.select('svg');
+        this.setDimensions();
+        this.setElements();
         this.updateChart();
         console.log(this);
     }
@@ -86,8 +88,32 @@ export class Chart6Component implements OnInit, OnChanges {
 
     private updateChart(): void {
         if (this.data) {
-
+            this.setParams();
+            this.setLabels();
+            this.setLegend();
+            this.draw();
         }
+    }
+
+    private setDimensions(): void {
+    }
+
+    private setElements(): void {
+    }
+
+    private setParams(): void {
+    }
+
+    private setLabels(): void {
+    }
+
+    private setLegend(): void {
+    }
+
+    private draw(): void {
+    }
+
+    private highlight(): void {
     }
 
 }
