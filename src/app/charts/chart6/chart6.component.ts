@@ -36,12 +36,6 @@ export class Chart6Component implements OnInit, OnChanges {
     public innerHeight: number;
     public radius: number;
     public innerRadius = 0;
-    public margins = {
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0,
-    };
 
     // Config
     public config: IPieConfig = {
@@ -67,6 +61,10 @@ export class Chart6Component implements OnInit, OnChanges {
             bottom: 10,
         }
     };
+
+    get margins() {
+        return this.config.margins;
+    }
 
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
@@ -96,6 +94,12 @@ export class Chart6Component implements OnInit, OnChanges {
     }
 
     private setDimensions(): void {
+        this.dimensions = this.svg.node().getBoundingClientRect();
+        this.innerWidth = this.dimensions.width - this.margins.left - this.margins.right;
+        this.innerHeight = this.dimensions.height - this.margins.top - this.margins.bottom;
+        this.radius = 0.5 * Math.min(this.innerWidth, this.innerHeight);
+        this.innerRadius = this.radius * this.config.innerRadiusCoef;
+        this.svg.attr('viewBox', [0, 0, this.dimensions.width, this.dimensions.height]);
     }
 
     private setElements(): void {
