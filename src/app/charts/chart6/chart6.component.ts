@@ -260,6 +260,8 @@ export class Chart6Component implements OnInit, OnChanges {
             .style('fill', (d: any) => this.colours(d.data.id))
             .style('stroke', this.config.arcs.stroke)
             .style('stroke-width', this.config.arcs.strokeWidth)
+            .on('mouseenter', (event, d) => this.setHighlights(d.data.id))
+            .on('mouseleave', (d) => this.resetHighlights())
             .transition()
             .duration(1000)
             .attrTween('d', enterArcTween);
