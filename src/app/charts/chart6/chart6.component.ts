@@ -62,12 +62,17 @@ export class Chart6Component implements OnInit, OnChanges {
         }
     };
 
+    // Getters
     get margins() {
         return this.config.margins;
     }
 
     get ids() {
         return this.data.data.map((d) => d.id);
+    }
+
+    get pieData() {
+        return this.pie(this.data.data);
     }
 
     constructor(element: ElementRef) {
@@ -150,7 +155,21 @@ export class Chart6Component implements OnInit, OnChanges {
     }
 
     private draw(): void {
-    }
+        // // 1 - Bind the data
+        // // 2 - Enter / update
+        // // 3 - Exit / remove
+        // const arcs = this.dataContainer.selectAll('path.data').data(this.pieData);
+        // arcs.enter().append('path').attr('class', 'data').merge(arcs).attr('d', this.arc).style('fill', (d) => this.colours(d.data.id));
+        // arcs.exit().remove();
+
+        // 1-3 Using "Join"
+        this.dataContainer
+            .selectAll('path.data')
+            .data(this.pieData)
+            .join('path')
+            .attr('d', this.arc)
+            .style('fill', (d) => this.colours(d.data.id));
+}
 
     private highlight(): void {
     }
