@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from './services/api.service';
 import { Observable, Subscription } from 'rxjs';
-import { IPieConfig, IPieData } from './interfaces/chart.interfaces';
+import { IPieData } from './interfaces/chart.interfaces';
 import { PieHelper } from './helpers/pie.helper';
+import * as d3 from 'd3';
 
 @Component({
     selector: 'app-root',
@@ -16,13 +17,15 @@ export class AppComponent implements OnInit, OnDestroy {
     public iris$: Observable<any>;
     public covid$: Observable<any>;
     public population$: Observable<any>;
+    public population: any;
     public browsers$: Observable<any>;
     public browser: any;
     public pieData: IPieData = {
         title: '',
         data: [],
     };
-    public sub: Subscription;
+    public populationSub: Subscription;
+    public browserSub: Subscription;
     public pieConfig1 = {
         innerRadiusCoef: 0.5,
         transition: 800,
@@ -49,8 +52,12 @@ export class AppComponent implements OnInit, OnDestroy {
         this.iris$ = this.api.getIris();
         this.covid$ = this.api.getCovidData();
         this.population$ = this.api.getPopulationData();
+        this.populationSub = this.population$.subscribe(data => {
+            this.population = data;
+            this.setStacks();
+        });
         this.browsers$ = this.api.getBrowsersData();
-        this.sub = this.browsers$.subscribe((data) => {
+        this.browserSub = this.browsers$.subscribe((data) => {
             this.browser = data;
             this.setPieData('now');
         });
@@ -60,11 +67,22 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
-        this.sub.unsubscribe();
+        this.populationSub.unsubscribe();
+        this.browserSub.unsubscribe();
     }
 
     public setPieData(event: any): void {
         const valueAttr: string =  typeof event === 'string' ? event : (event.target as HTMLInputElement).value;
         this.pieData = PieHelper.convert(this.browser, 'Browser Market Share', valueAttr, 'name', 'name');
+    }
+
+    private setStacks(): void {
+        const group = d3.flatRollup(
+            this.population,
+            v => d3.sum(v, d => d.value),
+            d => d.year,
+            d=> d.gender
+        );
+        console.log(group);
     }
 }
