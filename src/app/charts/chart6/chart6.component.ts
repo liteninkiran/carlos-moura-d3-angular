@@ -165,6 +165,42 @@ export class Chart6Component implements OnInit, OnChanges {
     }
 
     private setLegend(): void {
+        const data = this.data.data;
+        // Add legend item containers
+        this.legendContainer
+            .selectAll('g.legend-item')
+            .data(data)
+            .join('g')
+            .attr('class', 'legend-item')
+            .attr('transform', (d, i) => `translate(0, ${i * this.config.legendItem.height})`);
+
+        // Add symbols
+        this.legendContainer
+            .selectAll('g.legend-item')
+            .selectAll('rect')
+            .data((d) => [d])
+            .join('rect')
+            .attr('width', this.config.legendItem.symbolSize)
+            .attr('height', this.config.legendItem.symbolSize)
+            .style('fill', (d) => this.colours(d.id));
+
+        // Add labels
+        this.legendContainer
+            .selectAll('g.legend-item')
+            .selectAll('text')
+            .data((d) => [d])
+            .join('text')
+            .style('font-size', this.config.legendItem.fontSize + 'px')
+            .attr('x', this.config.legendItem.textSeparator)
+            .attr('y', this.config.legendItem.symbolSize)
+            .text((d) => d.label);
+
+        // Reposition legend
+        const dimensions = this.legendContainer.node().getBBox();
+        const x = this.dimensions.width - this.margins.right;
+        const y = this.margins.top + 0.5 * this.innerHeight - 0.5 * dimensions.height;
+        this.legendContainer
+            .attr('transform', `translate(${x}, ${y})`)
     }
 
     private draw(): void {
@@ -177,10 +213,9 @@ export class Chart6Component implements OnInit, OnChanges {
             .style('fill', (d: any) => this.colours(d.data.id))
             .transition()
             .duration(1000)
-            .attrTween('d', this.arcTween);
+            .attrTween('d', this.arcTween);      
     }
 
     private highlight(): void {
     }
-
 }
