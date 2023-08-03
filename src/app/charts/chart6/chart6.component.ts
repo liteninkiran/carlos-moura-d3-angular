@@ -143,6 +143,7 @@ export class Chart6Component implements OnInit, OnChanges {
     }
 
     private setLabels(): void {
+        this.title.text(this.data.title);
     }
 
     private setLegend(): void {
