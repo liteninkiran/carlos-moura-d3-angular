@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { IPieData } from './interfaces/chart.interfaces';
 import { PieHelper } from './helpers/pie.helper';
 import * as d3 from 'd3';
+import { StackHelper } from './helpers/stack.helper';
 
 @Component({
     selector: 'app-root',
@@ -54,7 +55,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.population$ = this.api.getPopulationData();
         this.populationSub = this.population$.subscribe(data => {
             this.population = data;
-            this.setStacks();
+            StackHelper.SetStacks(data, 'year', 'gender', 'age_group', 'value');
         });
         this.browsers$ = this.api.getBrowsersData();
         this.browserSub = this.browsers$.subscribe((data) => {
@@ -74,15 +75,5 @@ export class AppComponent implements OnInit, OnDestroy {
     public setPieData(event: any): void {
         const valueAttr: string =  typeof event === 'string' ? event : (event.target as HTMLInputElement).value;
         this.pieData = PieHelper.convert(this.browser, 'Browser Market Share', valueAttr, 'name', 'name');
-    }
-
-    private setStacks(): void {
-        const group = d3.flatRollup(
-            this.population,
-            v => d3.sum(v, d => d.value),
-            d => d.year,
-            d=> d.gender
-        );
-        console.log(group);
     }
 }

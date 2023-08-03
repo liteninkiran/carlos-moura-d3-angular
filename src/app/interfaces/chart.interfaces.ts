@@ -34,3 +34,11 @@ export interface IPieConfig {
     };
     margins: IChartMargins;
 }
+
+export interface IGroupStackDataElem {
+    key?: string;
+    domain: string;
+    group: string;
+    stack: string;
+    value: number;
+}
