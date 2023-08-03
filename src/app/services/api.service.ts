@@ -22,6 +22,11 @@ export class ApiService {
         return this.getParsedData(url);
     }
 
+    public getPopulationData(): Observable<any> {
+        const url = 'assets/population.csv';
+        return this.getParsedData(url);
+    }
+
     public getCovidData(): Observable<any> {
         const url = 'assets/daily.json';
         return this.getJson(url);

@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public data2$: Observable<any[]>;
     public iris$: Observable<any>;
     public covid$: Observable<any>;
+    public population$: Observable<any>;
     public browsers$: Observable<any>;
     public browser: any;
     public pieData: IPieData = {
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.data2$ = this.api.getEmployees();
         this.iris$ = this.api.getIris();
         this.covid$ = this.api.getCovidData();
+        this.population$ = this.api.getPopulationData();
         this.browsers$ = this.api.getBrowsersData();
         this.sub = this.browsers$.subscribe((data) => {
             this.browser = data;
