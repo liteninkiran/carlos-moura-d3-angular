@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation } from '@angular/core';
 import { IPieConfig } from 'src/app/interfaces/chart.interfaces';
-import * as d3 from 'd3';
 import ObjectHelper from 'src/app/helpers/object.helper';
+import * as d3 from 'd3';
+import { PieHelper } from 'src/app/helpers/pie.helper';
 
 @Component({
     selector: 'app-chart6',
@@ -251,10 +252,10 @@ export class Chart6Component implements OnInit, OnChanges {
     private draw(): void {
         const data = this.pieData;
         const previousData = this.dataContainer.selectAll('path.data').data();
-        const extendedPreviousData = this.extendPreviousDataWithEnter(previousData, data);
-        const extendedCurrentData = this.extendCurrentDataWithExit(previousData, data);
-        const enterArcTween = this.arcTweenFactory(extendedPreviousData, true);
-        const exitArcTween = this.arcTweenFactory(extendedCurrentData, false);
+        const extendedPreviousData = PieHelper.ExtendPreviousDataWithEnter(previousData, data);
+        const extendedCurrentData = PieHelper.ExtendCurrentDataWithExit(previousData, data);
+        const enterArcTween = PieHelper.ArcTweenFactory(extendedPreviousData, true, this.arc);
+        const exitArcTween = PieHelper.ArcTweenFactory(extendedCurrentData, false, this.arc);
 
         this.dataContainer
             .selectAll('path.data')
@@ -303,35 +304,4 @@ export class Chart6Component implements OnInit, OnChanges {
         this.updateChart();
     }
 
-    private extendPreviousDataWithEnter = (previous, current) => {
-        const previousIds = new Set(previous.map((d) => d.data.id));
-        const beforeEndAngle = (id) => previous.find((d) => d.data.id === id)?.endAngle || 0;
-        const newElements = current.filter((elem) => !previousIds.has(elem.data.id)).map((elem) => {
-            const before = current.find((d) => d.index === elem.index - 1);
-            const angle = beforeEndAngle(before?.data?.id);
-            return {
-                ...elem,
-                startAngle: angle,
-                endAngle: angle,
-            };
-        });
-        return [...previous, ...newElements];
-    }
-
-    private extendCurrentDataWithExit = (previous, current) => {
-        return this.extendPreviousDataWithEnter(current, previous);
-    }
-
-    private arcTweenFactory = (data, enter: boolean) => {
-        const chart = this;
-        const arcTween = function (elementData) {
-            const previousElemData = data.find((d) => d.data.id === elementData.data.id);
-            const [start, end] = enter ? [previousElemData, elementData] : [elementData, previousElemData];
-            const interpolate = d3.interpolate(start, end);
-            return function (t) {
-                return chart.arc(interpolate(t));
-            }
-        }
-        return arcTween;
-    }
 }
