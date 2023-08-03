@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from './services/api.service';
 import { Observable, Subscription } from 'rxjs';
-import { IPieData } from './interfaces/chart.interfaces';
+import { IGroupStackData, IPieData } from './interfaces/chart.interfaces';
 import { PieHelper } from './helpers/pie.helper';
-import * as d3 from 'd3';
 import { StackHelper } from './helpers/stack.helper';
 
 @Component({
@@ -43,6 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
             radius: 0,
         },
     };
+    public stackedData: IGroupStackData;
 
     constructor(private api: ApiService) {
 
@@ -55,7 +55,13 @@ export class AppComponent implements OnInit, OnDestroy {
         this.population$ = this.api.getPopulationData();
         this.populationSub = this.population$.subscribe(data => {
             this.population = data;
-            StackHelper.SetStacks(data, 'year', 'gender', 'age_group', 'value');
+            const stacks = StackHelper.SetStacks(data, 'year', 'gender', 'age_group', 'value');
+            this.stackedData = {
+                title: 'Population by year, gender and age group (in millions)',
+                yLabel: 'Population (millions)',
+                unit: 'million',
+                data: stacks,
+            };
         });
         this.browsers$ = this.api.getBrowsersData();
         this.browserSub = this.browsers$.subscribe((data) => {

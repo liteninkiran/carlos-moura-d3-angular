@@ -42,3 +42,16 @@ export interface IGroupStackDataElem {
     stack: string;
     value: number;
 }
+
+export interface IGroupStackData {
+    title: string;
+    yLabel: string;
+    unit: string;
+    data: IGroupStackDataElem[];
+}
+
+export interface IGroupStackConfig {
+    hiddenOpacity: number;
+    fontSize: number;
+    margins: IChartMargins;
+}
