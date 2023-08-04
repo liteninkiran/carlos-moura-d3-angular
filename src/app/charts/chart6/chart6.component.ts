@@ -97,7 +97,6 @@ export class Chart6Component implements OnInit, OnChanges {
         this.setDimensions();
         this.setElements();
         this.updateChart();
-        //console.log(this);
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -246,7 +245,7 @@ export class Chart6Component implements OnInit, OnChanges {
 
         // Reposition legend
         const coords = this.getTranslations('legend');
-        this.legendContainer.attr('transform', `translate(${coords.x}, ${coords.y})`)
+        this.legendContainer.attr('transform', `translate(${coords.x}, ${coords.y})`);
     }
 
     private draw(): void {
