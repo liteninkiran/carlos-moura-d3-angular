@@ -61,6 +61,7 @@ export class Chart7Component implements OnInit, OnChanges {
         if (this.data) {
             this.setParams();
             this.setLabels();
+            this.setAxis();
             this.setLegend();
             this.draw();
         }
@@ -85,6 +86,10 @@ export class Chart7Component implements OnInit, OnChanges {
 
     }
 
+    private setAxis(): void {
+
+    }
+
     private setLegend(): void {
 
     }
@@ -92,4 +97,8 @@ export class Chart7Component implements OnInit, OnChanges {
     private draw(): void {
 
     }
+
+    // Tooltip methods...
+
+    // Highlight methods...
 }
