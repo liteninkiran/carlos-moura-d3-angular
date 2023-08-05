@@ -165,7 +165,8 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setAxis(): void {
-
+        this.setXAxis();
+        this.setYAxis();
     }
 
     private setLegend(): void {
@@ -231,7 +232,15 @@ export class Chart7Component implements OnInit, OnChanges {
         this.scales.colour = d3.scaleSequential(d3.interpolateSpectral).domain(domain);
     }
 
+    private setXAxis(): void {
+        this.xAxis = d3.axisBottom(this.scales.x);
+        this.xAxisContainer.call(this.xAxis);
+    }
 
+    private setYAxis(): void {
+        this.yAxis = d3.axisLeft(this.scales.y);
+        this.yAxisContainer.call(this.yAxis);
+    }
 
     // Tooltip methods...
 
