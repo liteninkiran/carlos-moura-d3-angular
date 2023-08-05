@@ -141,7 +141,10 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setParams(): void {
-
+        this.setXScale();
+        this.setYScale();
+        this.setGroupScale();
+        this.setColorScale();
     }
 
     private setLabels(): void {
@@ -188,6 +191,24 @@ export class Chart7Component implements OnInit, OnChanges {
             };
         }
     }
+
+    setXScale(): void {
+
+    }
+
+    setYScale(): void {
+
+    }
+
+    setGroupScale(): void {
+
+    }
+
+    setColorScale(): void {
+
+    }
+
+
 
     // Tooltip methods...
 
