@@ -144,7 +144,7 @@ export class Chart7Component implements OnInit, OnChanges {
         this.setXScale();
         this.setYScale();
         this.setGroupScale();
-        this.setColorScale();
+        this.setColourScale();
     }
 
     private setLabels(): void {
@@ -212,8 +212,10 @@ export class Chart7Component implements OnInit, OnChanges {
         this.scales.group = d3.scaleBand().domain(domain).range(range).paddingInner(0.15);
     }
 
-    private setColorScale(): void {
-
+    private setColourScale(): void {
+        const stacks = Array.from(new Set(this.data.data.map((d) => d.stack)));
+        const domain = [stacks.length - 1, 0];
+        this.scales.colour = d3.scaleSequential(d3.interpolateSpectral).domain(domain);
     }
 
 
