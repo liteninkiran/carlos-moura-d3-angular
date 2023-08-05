@@ -6,7 +6,19 @@ import { IGroupStackConfig } from 'src/app/interfaces/chart.interfaces';
 
 @Component({
     selector: 'app-chart7',
-    templateUrl: './chart7.component.html',
+    template: `
+    <svg class="chart7">
+        <style>
+            .chart7 {
+                font-size: 12px;
+            }
+
+            .chart7 text.title {
+                font-weight: bold;
+            }
+        </style>
+    </svg>`,
+    styles: []
 })
 export class Chart7Component implements OnInit, OnChanges {
     @Input() public data: any;
@@ -69,7 +81,7 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     public ngOnInit(): void {
-        this.svg = this.host.select('svg');
+        this.svg = this.host.select('svg').attr('xmlns', 'http://www.w3.org/2000/svg');
         this.setDimensions();
         this.setElements();
         this.updateChart();
@@ -148,7 +160,8 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setLabels(): void {
-
+        this.title.text(this.data.title);
+        this.yLabel.text(this.data.yLabel);
     }
 
     private setAxis(): void {

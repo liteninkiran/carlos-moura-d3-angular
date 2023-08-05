@@ -46,9 +46,12 @@ export class Chart3Component implements OnInit, OnChanges {
     }
 
     public ngOnInit(): void {
-        this.svg = this.host.select('svg').on('click', () => {
+        this.svg = this.host.select('svg').attr('xmlns', 'http://www.w3.org/2000/svg').on('click', () => {
             this.dataChanged();
         });
+        // this.svg = this.host.select('svg').on('click', () => {
+        //     this.dataChanged();
+        // });
         this.setDimensions();
         this.setElements();
     }
