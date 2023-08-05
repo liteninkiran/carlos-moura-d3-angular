@@ -207,7 +207,9 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setGroupScale(): void {
-
+        const domain = Array.from(new Set(this.data.data.map((d) => d.group))).sort(d3.ascending);
+        const range = [0, this.scales.x.bandwidth()];
+        this.scales.group = d3.scaleBand().domain(domain).range(range).paddingInner(0.15);
     }
 
     private setColorScale(): void {
