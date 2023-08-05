@@ -52,6 +52,6 @@ export interface IGroupStackData {
 
 export interface IGroupStackConfig {
     hiddenOpacity: number;
-    fontSize: number;
+    transition: number;
     margins: IChartMargins;
 }

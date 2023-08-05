@@ -1,5 +1,7 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as d3 from 'd3';
+import ObjectHelper from 'src/app/helpers/object.helper';
+import { IGroupStackConfig } from 'src/app/interfaces/chart.interfaces';
 
 @Component({
     selector: 'app-chart7',
@@ -7,7 +9,9 @@ import * as d3 from 'd3';
 })
 export class Chart7Component implements OnInit, OnChanges {
     @Input() public data: any;
-    @Input() public config: any;
+    @Input() public set config(values) {
+        this._config = ObjectHelper.UpdateObjectWithPartialValues<IGroupStackConfig>(this._defaultConfig, values);
+    };
 
     // Main elements
     public host: any;
@@ -32,12 +36,26 @@ export class Chart7Component implements OnInit, OnChanges {
     public innerHeight: number;
     public radius: number;
     public innerRadius = 0;
-    public margins = {
-        left: 50,
-        top: 40,
-        right: 20,
-        bottom: 80,
+
+    private _config: IGroupStackConfig;
+    private _defaultConfig: IGroupStackConfig = {
+        hiddenOpacity: 0.3,
+        transition: 300,
+        margins: {
+            top: 40,
+            right: 20,
+            bottom: 60,
+            left: 50,
+        },
     };
+
+    get config() {
+        if (!this._config) {
+            this.config = this._defaultConfig;
+        }
+
+        return this._config;
+    }
 
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
@@ -69,8 +87,8 @@ export class Chart7Component implements OnInit, OnChanges {
 
     private setDimensions(): void {
         this.dimensions = this.svg.node().getBoundingClientRect();
-        this.innerWidth = this.dimensions.width - this.margins.left - this.margins.right;
-        this.innerHeight = this.dimensions.height - this.margins.top - this.margins.bottom;
+        // this.innerWidth = this.dimensions.width - this.margins.left - this.margins.right;
+        // this.innerHeight = this.dimensions.height - this.margins.top - this.margins.bottom;
         this.svg.attr('viewBox', [0, 0, this.dimensions.width, this.dimensions.height]);
     }
 
