@@ -34,7 +34,7 @@ export class Chart7Component implements OnInit, OnChanges {
     public yLabel: any;
 
     // Scales
-    public colours: any;
+    public scales: any = {};
 
     // State
     public hiddenIds = new Set();
@@ -192,19 +192,21 @@ export class Chart7Component implements OnInit, OnChanges {
         }
     }
 
-    setXScale(): void {
+    private setXScale(): void {
+        const domain = Array.from(new Set(this.data.data.map((d) => d.domain))).sort(d3.ascending);
+        const range = [0, this.dimensions.innerWidth];
+        this.scales.x = d3.scaleBand().domain(domain).range(range).paddingInner(0.2);
+    }
+
+    private setYScale(): void {
 
     }
 
-    setYScale(): void {
+    private setGroupScale(): void {
 
     }
 
-    setGroupScale(): void {
-
-    }
-
-    setColorScale(): void {
+    private setColorScale(): void {
 
     }
 
