@@ -199,7 +199,11 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setYScale(): void {
-
+        const minVal = Math.min(0, d3.min(this.data.data, d => d.value));
+        const maxVal = d3.max(d3.flatRollup(this.data.data, v => d3.sum(v, d => d.value), d => d.domain, d => d.group), d => d[2]);
+        const domain = [minVal, maxVal];
+        const range = [this.dimensions.innerHeight, 0];
+        this.scales.y = d3.scaleLinear().domain(domain).range(range);
     }
 
     private setGroupScale(): void {
