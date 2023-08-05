@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as d3 from 'd3';
+import { ChartDimensions } from 'src/app/helpers/chart.dimensions.helper';
 import ObjectHelper from 'src/app/helpers/object.helper';
 import { IGroupStackConfig } from 'src/app/interfaces/chart.interfaces';
 
@@ -31,12 +32,9 @@ export class Chart7Component implements OnInit, OnChanges {
     public hiddenIds = new Set();
 
     // Dimensions
-    public dimensions: DOMRect;
-    public innerWidth: number;
-    public innerHeight: number;
-    public radius: number;
-    public innerRadius = 0;
+    public dimensions: ChartDimensions;
 
+    // Config
     private _config: IGroupStackConfig;
     private _defaultConfig: IGroupStackConfig = {
         hiddenOpacity: 0.3,
@@ -86,10 +84,7 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setDimensions(): void {
-        this.dimensions = this.svg.node().getBoundingClientRect();
-        // this.innerWidth = this.dimensions.width - this.margins.left - this.margins.right;
-        // this.innerHeight = this.dimensions.height - this.margins.top - this.margins.bottom;
-        this.svg.attr('viewBox', [0, 0, this.dimensions.width, this.dimensions.height]);
+        this.dimensions = new ChartDimensions(this.svg.node().getBoundingClientRect(), this.config.margins);
     }
 
     private setElements(): void {
