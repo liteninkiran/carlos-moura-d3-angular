@@ -55,7 +55,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.population$ = this.api.getPopulationData();
         this.populationSub = this.population$.subscribe(data => {
             this.population = data;
-            const stacks = StackHelper.SetStacks(data, 'year', 'gender', 'age_group', 'value');
+            const stacks = StackHelper.SetStacks(data, 'year', 'gender', 'age_group', 'value', (val) => val/1e6);
             this.stackedData = {
                 title: 'Population by year, gender and age group (in millions)',
                 yLabel: 'Population (millions)',
