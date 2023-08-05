@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '
 import * as d3 from 'd3';
 import { ChartDimensions } from 'src/app/helpers/chart.dimensions.helper';
 import ObjectHelper from 'src/app/helpers/object.helper';
-import { IGroupStackConfig } from 'src/app/interfaces/chart.interfaces';
+import { IGroupStackConfig, IGroupStackData } from 'src/app/interfaces/chart.interfaces';
 
 @Component({
     selector: 'app-chart7',
@@ -21,7 +21,10 @@ import { IGroupStackConfig } from 'src/app/interfaces/chart.interfaces';
     styles: []
 })
 export class Chart7Component implements OnInit, OnChanges {
-    @Input() public data: any;
+    @Input() set data(values) {
+        this._data = ObjectHelper.UpdateObjectWithPartialValues(this._defaultData, values);
+    };
+
     @Input() public set config(values) {
         this._config = ObjectHelper.UpdateObjectWithPartialValues<IGroupStackConfig>(this._defaultConfig, values);
     };
@@ -67,12 +70,28 @@ export class Chart7Component implements OnInit, OnChanges {
         },
     };
 
-    get config() {
+    private _defaultData: IGroupStackData = {
+        title: '',
+        yLabel: '',
+        unit: '',
+        data: [],
+    };
+
+    private _data: IGroupStackData;
+
+    get config(): IGroupStackConfig {
         if (!this._config) {
             this.config = this._defaultConfig;
         }
 
         return this._config;
+    }
+
+    get data(): IGroupStackData {
+        if (!this._data) {
+            this._data = this._defaultData;
+        }
+        return this._data;
     }
 
     constructor(element: ElementRef) {
@@ -94,13 +113,11 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private updateChart(): void {
-        if (this.data) {
-            this.setParams();
-            this.setLabels();
-            this.setAxis();
-            this.setLegend();
-            this.draw();
-        }
+        this.setParams();
+        this.setLabels();
+        this.setAxis();
+        this.setLegend();
+        this.draw();
     }
 
     private setDimensions(): void {
@@ -233,13 +250,22 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setXAxis(): void {
-        this.xAxis = d3.axisBottom(this.scales.x);
+        this.xAxis = d3.axisBottom(this.scales.x).tickSizeOuter(0);
         this.xAxisContainer.call(this.xAxis);
     }
 
     private setYAxis(): void {
-        this.yAxis = d3.axisLeft(this.scales.y);
+        this.yAxis = d3.axisLeft(this.scales.y)
+            .ticks(5)
+            .tickSizeOuter(0)
+            .tickSizeInner(-this.dimensions.innerWidth);
+
         this.yAxisContainer.call(this.yAxis);
+
+        this.yAxisContainer
+            .selectAll('.tick line')
+            .style('opacity', 0.3)
+            .style('stroke-dasharray', '3 3');
     }
 
     // Tooltip methods...
