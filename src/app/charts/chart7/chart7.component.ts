@@ -16,6 +16,11 @@ import { IGroupStackConfig, IGroupStackData } from 'src/app/interfaces/chart.int
             .chart7 text.title {
                 font-weight: bold;
             }
+
+            .chart7 rect {
+                fill: unset;
+            }
+
         </style>
     </svg>`,
     styles: []
@@ -78,6 +83,123 @@ export class Chart7Component implements OnInit, OnChanges {
     };
 
     private _data: IGroupStackData;
+
+    private stackedData: any;
+
+    private data1 = [
+        {
+            year: 2002,
+            apples: 3840,
+            bananas: 1920,
+            cherries: 960,
+            dates: 400,
+        },
+        {
+            year: 2003,
+            apples: 1600,
+            bananas: 1440,
+            cherries: 960,
+            dates: 400,
+        },
+        {
+            year: 2004,
+            apples: 640,
+            bananas: 960,
+            cherries: 640,
+            dates: 400,
+        },
+        {
+            year: 2005,
+            apples: 320,
+            bananas: 480,
+            cherries: 640,
+            dates: 400,
+        },
+    ];
+
+    private data2 = [
+        {
+            year: 2002,
+            fruit: 'apples',
+            value: 3840,
+        },
+        {
+            year: 2003,
+            fruit: 'apples',
+            value: 1600,
+        },
+        {
+            year: 2004,
+            fruit: 'apples',
+            value: 640,
+        },
+        {
+            year: 2005,
+            fruit: 'apples',
+            value: 320,
+        },
+        {
+            year: 2002,
+            fruit: 'bananas',
+            value: 1920,
+        },
+        {
+            year: 2003,
+            fruit: 'bananas',
+            value: 1440,
+        },
+        {
+            year: 2004,
+            fruit: 'bananas',
+            value: 960,
+        },
+        {
+            year: 2005,
+            fruit: 'bananas',
+            value: 480,
+        },
+        {
+            year: 2002,
+            fruit: 'cherries',
+            value: 960,
+        },
+        {
+            year: 2003,
+            fruit: 'cherries',
+            value: 960,
+        },
+        {
+            year: 2004,
+            fruit: 'cherries',
+            value: 640,
+        },
+        {
+            year: 2005,
+            fruit: 'cherries',
+            value: 640,
+        },
+        {
+            year: 2002,
+            fruit: 'dates',
+            value: 400,
+        },
+        {
+            year: 2003,
+            fruit: 'dates',
+            value: 400,
+        },
+        {
+            year: 2004,
+            fruit: 'dates',
+            value: 400,
+        },
+        {
+            year: 2005,
+            fruit: 'dates',
+            value: 400,
+        },
+    ];
+
 
     get config(): IGroupStackConfig {
         if (!this._config) {
@@ -191,7 +313,8 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private draw(): void {
-
+        this.setStackedData();
+        this.drawRectangles();
     }
 
     private getTranslations(container: string): any {
@@ -266,6 +389,37 @@ export class Chart7Component implements OnInit, OnChanges {
             .selectAll('.tick line')
             .style('opacity', 0.3)
             .style('stroke-dasharray', '3 3');
+    }
+
+    private setStackedData(): void {
+        const data = this.data2;
+        const groupedData = d3.groups(data, d => d.year);
+        const stack = d3
+            .stack()
+            .keys(['apples', 'bananas', 'cherries', 'dates'])
+            .value((element, key) => element[1].find(d => d.fruit === key).value);
+        this.stackedData = stack(groupedData);
+    }
+
+    private drawRectangles(): void {
+        const data = this.stackedData;
+        this.scales.y.domain([0, 8000]);
+        const colours = d3.schemeCategory10;
+        this.dataContainer
+            .selectAll('g.series')
+            .data(data, d => d.key)
+            .join('g')
+            .attr('class', 'series')
+            .style('fill', (d, i) => colours[i])
+            .selectAll('rect.data')
+            .data(d => d, d => d.data.year)
+            .join('rect')
+            .attr('class', 'data')
+            .attr('x', d => this.scales.x(d.data[0] + ''))
+            .attr('width', this.scales.x.bandwidth())
+            .attr('y', d => this.scales.y(d[1]))
+            .attr('height', d => Math.abs(this.scales.y(d[0]) - this.scales.y(d[1])))
+            .attr('stroke', 'white');
     }
 
     // Tooltip methods...
