@@ -21,9 +21,17 @@ export class Chart7Component implements OnInit, OnChanges {
     // Containers
     public dataContainer: any;
     public legendContainer: any;
-    public title: any;
+    public xAxisContainer: any;
+    public yAxisContainer: any;
+    public tooltipContainer: any;
 
-    // Functions
+    // Axes
+    public xAxis: any;
+    public yAxis: any;
+
+    // Labels
+    public title: any;
+    public yLabel: any;
 
     // Scales
     public colours: any;
@@ -88,7 +96,48 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setElements(): void {
+        const coords = {
+            xAxis: this.getTranslations('x-axis-container'),
+            yAxis: this.getTranslations('y-axis-container'),
+            data: this.getTranslations('data-container'),
+            legend: this.getTranslations('legend-container'),
+            title: this.getTranslations('title'),
+            yLabel: this.getTranslations('y-label'),
+        };
+        this.xAxisContainer = this.svg
+            .append('g').attr('class', 'x-axis-container')
+            .attr('transform', `translate(${coords.xAxis.x}, ${coords.xAxis.y})`);
+  
+        this.yAxisContainer = this.svg
+            .append('g')
+            .attr('class', 'y-axis-container')
+            .attr('transform', `translate(${coords.yAxis.x}, ${coords.yAxis.y})`);
+  
+        this.dataContainer = this.svg
+            .append('g').attr('class', 'data-container')
+            .attr('transform', `translate(${coords.data.x}, ${coords.data.y})`);
+  
+        this.legendContainer = this.svg
+            .append('g')
+            .attr('class', 'legend-container')
+            .attr('transform', `translate(${coords.legend.x}, ${coords.legend.y})`);
+  
+        this.title = this.svg
+            .append('g')
+            .attr('class', 'title-container')
+            .attr('transform', `translate(${coords.title.x}, ${coords.title.y})`)
+            .append('text').attr('class', 'title')
+            .style('text-anchor', 'middle');
 
+        this.yLabel = this.svg
+            .append('g')
+            .attr('class', 'y-label-container')
+            .attr('transform', `translate(${coords.yLabel.x}, ${coords.yLabel.y})`)
+            .append('text').attr('class', 'yLabel')
+            .style('text-anchor', 'middle')
+            .attr('transform', 'rotate(-90)');
+
+        // TODO... add tooltip
     }
 
     private setParams(): void {
@@ -109,6 +158,35 @@ export class Chart7Component implements OnInit, OnChanges {
 
     private draw(): void {
 
+    }
+
+    private getTranslations(container: string): any {
+        switch (container) {
+            case 'x-axis-container': return {
+                x: this.dimensions.marginLeft,
+                y: this.dimensions.marginBottom + 1,
+            };
+            case 'y-axis-container': return {
+                x: this.dimensions.marginLeft - 2,
+                y: this.dimensions.marginTop,
+            };
+            case 'data-container': return {
+                x: this.dimensions.marginLeft,
+                y: this.dimensions.marginTop,
+            };
+            case 'legend-container': return {
+                x: this.dimensions.marginLeft,
+                y: this.dimensions.marginBottom + 30,
+            };
+            case 'title': return {
+                x: this.dimensions.midWidth,
+                y: this.dimensions.midMarginTop,
+            };
+            case 'y-label': return {
+                x: this.dimensions.marginLeft - 30,
+                y: this.dimensions.midHeight,
+            };
+        }
     }
 
     // Tooltip methods...
