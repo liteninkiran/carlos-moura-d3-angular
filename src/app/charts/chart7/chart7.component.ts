@@ -500,10 +500,24 @@ export class Chart7Component implements OnInit, OnChanges {
             .attr('width', this.scales.group.bandwidth())
             .attr('y', d => this.scales.y(d[1]))
             .attr('height', d => Math.abs(this.scales.y(d[0]) - this.scales.y(d[1])))
-            .attr('stroke', 'white');
+            .attr('stroke', 'white')
+            .on('mouseenter', (event: MouseEvent, data: any) => {
+                this.tooltip(event, data);
+            });
     }
 
     // Tooltip methods...
+    private tooltip(event: MouseEvent, data: any): void {
+        // Set title
+
+        // Set value
+
+        // Set background
+
+        // Resize
+
+        // Set position
+    }
 
     // Highlight methods...
 }
