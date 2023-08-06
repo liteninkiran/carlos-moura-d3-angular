@@ -56,3 +56,17 @@ export interface IGroupStackConfig {
     transition: number;
     margins: IChartMargins;
 }
+
+export interface IGroupStackRectData extends IGroupStackDataElem {
+    min: number;
+    max: number;
+    key: string;
+    index: number;
+}
+
+export interface ITooltipData {
+    title: string;
+    colour: string;
+    key: string;
+    value: number | string;
+}

@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ChartDimensions } from 'src/app/helpers/chart.dimensions.helper';
-import { IGroupStackConfig, IGroupStackData } from 'src/app/interfaces/chart.interfaces';
+import { IGroupStackConfig, IGroupStackData, IGroupStackRectData, ITooltipData } from 'src/app/interfaces/chart.interfaces';
 import ObjectHelper from 'src/app/helpers/object.helper';
 import * as d3 from 'd3';
 
@@ -494,7 +494,6 @@ export class Chart7Component implements OnInit, OnChanges {
 
     private drawRectangles(): void {
         const data = this.stackedData;
-        console.log(data[0]);
         this.dataContainer
             .selectAll('rect.data')
             .data(data, d => d.key)
@@ -508,13 +507,22 @@ export class Chart7Component implements OnInit, OnChanges {
             .attr('height', d => Math.abs(this.scales.y(d.min) - this.scales.y(d.max)))
             .attr('stroke', 'white')
             .style('fill', d => this.scales.colour(d.index))
-            .on('mouseenter', (event: MouseEvent, data: any) => {
-                this.tooltip(event, data);
-            });
+            .on('mouseenter', this.tooltip);
     }
 
     // Tooltip methods...
-    private tooltip(event: MouseEvent, data: any): void {
+    private tooltip = (event: MouseEvent, data: IGroupStackRectData): void => {
+        // Convert element to tooltip data
+        const value = Math.round(10 * data.value) / 10 + ' ' + this.data.unit;
+        const tooltipData: ITooltipData = {
+            title: data.group + ' ' + data.domain,
+            colour: this.scales.colour(data.index),
+            key: data.stack,
+            value,
+        };
+
+        console.log(tooltipData);
+
         // Set title
 
         // Set value
