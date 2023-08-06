@@ -80,6 +80,7 @@ export class Chart7Component implements OnInit, OnChanges {
         yLabel: '',
         unit: '',
         data: [],
+        stackOrder: [],
     };
 
     private _data: IGroupStackData;
@@ -394,12 +395,13 @@ export class Chart7Component implements OnInit, OnChanges {
     private setStackedData(): void {
         const data = this.data.data;
         const groupedData = d3.groups(data, d => d.domain + '__' + d.group);
-        const keys = d3.groups(data, d => d.stack).map((d) => d[0]);
+        const keys = this.data.stackOrder;
         const stack = d3
             .stack()
             .keys(keys)
             .value((element, key) => element[1].find(d => d.stack === key).value);
         this.stackedData = stack(groupedData);
+        console.log(groupedData, keys);
     }
 
     private drawRectangles(): void {

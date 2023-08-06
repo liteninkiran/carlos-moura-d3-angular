@@ -1,0 +1,1521 @@
+﻿iso2,country,age_group,gender,year,value
+AUS,Australia,<3,Males,2002,387615
+AUS,Australia,<3,Males,2003,383667
+AUS,Australia,<3,Males,2004,383000
+AUS,Australia,<3,Males,2005,388292
+AUS,Australia,<3,Males,2006,397908
+AUS,Australia,<3,Males,2007,415999
+AUS,Australia,<3,Males,2008,432015
+AUS,Australia,<3,Males,2009,448588
+AUS,Australia,<3,Males,2010,457984
+AUS,Australia,<3,Males,2011,455388
+AUS,Australia,<3,Males,2012,454656
+AUS,Australia,<3,Females,2002,368493
+AUS,Australia,<3,Females,2003,364391
+AUS,Australia,<3,Females,2004,363106
+AUS,Australia,<3,Females,2005,367255
+AUS,Australia,<3,Females,2006,375821
+AUS,Australia,<3,Females,2007,394360
+AUS,Australia,<3,Females,2008,409971
+AUS,Australia,<3,Females,2009,425102
+AUS,Australia,<3,Females,2010,434989
+AUS,Australia,<3,Females,2011,431697
+AUS,Australia,<3,Females,2012,431283
+CAN,Canada,<3,Males,2003,521054
+CAN,Canada,<3,Males,2004,518704
+CAN,Canada,<3,Males,2005,514870
+CAN,Canada,<3,Males,2006,521084
+CAN,Canada,<3,Males,2007,528971
+CAN,Canada,<3,Males,2008,544782
+CAN,Canada,<3,Males,2009,560719
+CAN,Canada,<3,Males,2010,564634
+CAN,Canada,<3,Males,2011,581444
+CAN,Canada,<3,Males,2012,586637
+CAN,Canada,<3,Females,2003,497034
+CAN,Canada,<3,Females,2004,495108
+CAN,Canada,<3,Females,2005,491077
+CAN,Canada,<3,Females,2006,496594
+CAN,Canada,<3,Females,2007,503945
+CAN,Canada,<3,Females,2008,514967
+CAN,Canada,<3,Females,2009,531999
+CAN,Canada,<3,Females,2010,536850
+CAN,Canada,<3,Females,2011,555207
+CAN,Canada,<3,Females,2012,556888
+AUT,Austria,<3,Males,2002,118888
+AUT,Austria,<3,Males,2003,119846
+AUT,Austria,<3,Males,2004,120748
+AUT,Austria,<3,Males,2005,122385
+AUT,Austria,<3,Males,2006,122324
+AUT,Austria,<3,Males,2007,121809
+AUT,Austria,<3,Males,2008,120068
+AUT,Austria,<3,Males,2009,120273
+AUT,Austria,<3,Males,2010,119342
+AUT,Austria,<3,Males,2011,120714
+AUT,Austria,<3,Males,2012,121066
+AUT,Austria,<3,Females,2002,113753
+AUT,Austria,<3,Females,2003,114648
+AUT,Austria,<3,Females,2004,113868
+AUT,Austria,<3,Females,2005,116155
+AUT,Austria,<3,Females,2006,116412
+AUT,Austria,<3,Females,2007,116351
+AUT,Austria,<3,Females,2008,115113
+AUT,Austria,<3,Females,2009,114440
+AUT,Austria,<3,Females,2010,113253
+AUT,Austria,<3,Females,2011,114343
+AUT,Austria,<3,Females,2012,114685
+USA,United States,4,Males,2002,1995031
+USA,United States,4,Males,2003,1977080
+USA,United States,4,Males,2004,1963057
+USA,United States,4,Males,2005,2023439
+USA,United States,4,Males,2006,2074973
+USA,United States,4,Males,2007,2061055
+USA,United States,4,Males,2008,2102517
+USA,United States,4,Males,2009,2126156
+USA,United States,4,Males,2010,2147011
+USA,United States,4,Males,2011,2088979
+USA,United States,4,Males,2012,2107838
+USA,United States,4,Females,2002,1932164
+USA,United States,4,Females,2003,1893148
+USA,United States,4,Females,2004,1879148
+USA,United States,4,Females,2005,1931073
+USA,United States,4,Females,2006,1986921
+USA,United States,4,Females,2007,1970876
+USA,United States,4,Females,2008,2008417
+USA,United States,4,Females,2009,2033696
+USA,United States,4,Females,2010,2052249
+USA,United States,4,Females,2011,1996615
+USA,United States,4,Females,2012,2018964
+AUS,Australia,5-9,Males,2002,691399
+AUS,Australia,5-9,Males,2003,686684
+AUS,Australia,5-9,Males,2004,682309
+AUS,Australia,5-9,Males,2005,678755
+AUS,Australia,5-9,Males,2006,676395
+AUS,Australia,5-9,Males,2007,687558
+AUS,Australia,5-9,Males,2008,690749
+AUS,Australia,5-9,Males,2009,695212
+AUS,Australia,5-9,Males,2010,701203
+AUS,Australia,5-9,Males,2011,710036
+AUS,Australia,5-9,Males,2012,721135
+AUS,Australia,5-9,Females,2002,654942
+AUS,Australia,5-9,Females,2003,650780
+AUS,Australia,5-9,Females,2004,647710
+AUS,Australia,5-9,Females,2005,644571
+AUS,Australia,5-9,Females,2006,642855
+AUS,Australia,5-9,Females,2007,653928
+AUS,Australia,5-9,Females,2008,657446
+AUS,Australia,5-9,Females,2009,660823
+AUS,Australia,5-9,Females,2010,664544
+AUS,Australia,5-9,Females,2011,673012
+AUS,Australia,5-9,Females,2012,682656
+AUS,Australia,10-14,Males,2002,700013
+AUS,Australia,10-14,Males,2003,707035
+AUS,Australia,10-14,Males,2004,711924
+AUS,Australia,10-14,Males,2005,715346
+AUS,Australia,10-14,Males,2006,714009
+AUS,Australia,10-14,Males,2007,718848
+AUS,Australia,10-14,Males,2008,719870
+AUS,Australia,10-14,Males,2009,720782
+AUS,Australia,10-14,Males,2010,719763
+AUS,Australia,10-14,Males,2011,720348
+AUS,Australia,10-14,Males,2012,708804
+AUS,Australia,10-14,Females,2002,666903
+AUS,Australia,10-14,Females,2003,672422
+AUS,Australia,10-14,Females,2004,675561
+AUS,Australia,10-14,Females,2005,678685
+AUS,Australia,10-14,Females,2006,676901
+AUS,Australia,10-14,Females,2007,681637
+AUS,Australia,10-14,Females,2008,682444
+AUS,Australia,10-14,Females,2009,684214
+AUS,Australia,10-14,Females,2010,684015
+AUS,Australia,10-14,Females,2011,684836
+AUS,Australia,10-14,Females,2012,673832
+AUS,Australia,15-19,Males,2002,696033
+AUS,Australia,15-19,Males,2003,698587
+AUS,Australia,15-19,Males,2004,702012
+AUS,Australia,15-19,Males,2005,708305
+AUS,Australia,15-19,Males,2006,720491
+AUS,Australia,15-19,Males,2007,739515
+AUS,Australia,15-19,Males,2008,756525
+AUS,Australia,15-19,Males,2009,767426
+AUS,Australia,15-19,Males,2010,770614
+AUS,Australia,15-19,Males,2011,765850
+AUS,Australia,15-19,Males,2012,748674
+AUS,Australia,15-19,Females,2002,664072
+AUS,Australia,15-19,Females,2003,665547
+AUS,Australia,15-19,Females,2004,668445
+AUS,Australia,15-19,Females,2005,672774
+AUS,Australia,15-19,Females,2006,684928
+AUS,Australia,15-19,Females,2007,700766
+AUS,Australia,15-19,Females,2008,714624
+AUS,Australia,15-19,Females,2009,726372
+AUS,Australia,15-19,Females,2010,730396
+AUS,Australia,15-19,Females,2011,726523
+AUS,Australia,15-19,Females,2012,711514
+AUS,Australia,20-24,Males,2002,676737
+AUS,Australia,20-24,Males,2003,696402
+AUS,Australia,20-24,Males,2004,714044
+AUS,Australia,20-24,Males,2005,729792
+AUS,Australia,20-24,Males,2006,746088
+AUS,Australia,20-24,Males,2007,759719
+AUS,Australia,20-24,Males,2008,782998
+AUS,Australia,20-24,Males,2009,810048
+AUS,Australia,20-24,Males,2010,849732
+AUS,Australia,20-24,Males,2011,853731
+AUS,Australia,20-24,Males,2012,827157
+AUS,Australia,20-24,Females,2002,652455
+AUS,Australia,20-24,Females,2003,667642
+AUS,Australia,20-24,Females,2004,678268
+AUS,Australia,20-24,Females,2005,690799
+AUS,Australia,20-24,Females,2006,707341
+AUS,Australia,20-24,Females,2007,734417
+AUS,Australia,20-24,Females,2008,747592
+AUS,Australia,20-24,Females,2009,771739
+AUS,Australia,20-24,Females,2010,799927
+AUS,Australia,20-24,Females,2011,804741
+AUS,Australia,20-24,Females,2012,795267
+AUS,Australia,25-29,Males,2002,689035
+AUS,Australia,25-29,Males,2003,683946
+AUS,Australia,25-29,Males,2004,683704
+AUS,Australia,25-29,Males,2005,691706
+AUS,Australia,25-29,Males,2006,706314
+AUS,Australia,25-29,Males,2007,729722
+AUS,Australia,25-29,Males,2008,765653
+AUS,Australia,25-29,Males,2009,803368
+AUS,Australia,25-29,Males,2010,844968
+AUS,Australia,25-29,Males,2011,858021
+AUS,Australia,25-29,Males,2012,854925
+AUS,Australia,25-29,Females,2002,687472
+AUS,Australia,25-29,Females,2003,677970
+AUS,Australia,25-29,Females,2004,672576
+AUS,Australia,25-29,Females,2005,675196
+AUS,Australia,25-29,Females,2006,685650
+AUS,Australia,25-29,Females,2007,714739
+AUS,Australia,25-29,Females,2008,747311
+AUS,Australia,25-29,Females,2009,781035
+AUS,Australia,25-29,Females,2010,820295
+AUS,Australia,25-29,Females,2011,833045
+AUS,Australia,25-29,Females,2012,832921
+AUS,Australia,30-34,Males,2002,744130
+AUS,Australia,30-34,Males,2003,753661
+AUS,Australia,30-34,Males,2004,755563
+AUS,Australia,30-34,Males,2005,753521
+AUS,Australia,30-34,Males,2006,738918
+AUS,Australia,30-34,Males,2007,732302
+AUS,Australia,30-34,Males,2008,736174
+AUS,Australia,30-34,Males,2009,747424
+AUS,Australia,30-34,Males,2010,768096
+AUS,Australia,30-34,Males,2011,785511
+AUS,Australia,30-34,Males,2012,795158
+AUS,Australia,30-34,Females,2002,756676
+AUS,Australia,30-34,Females,2003,766190
+AUS,Australia,30-34,Females,2004,765164
+AUS,Australia,30-34,Females,2005,760169
+AUS,Australia,30-34,Females,2006,741858
+AUS,Australia,30-34,Females,2007,735911
+AUS,Australia,30-34,Females,2008,736811
+AUS,Australia,30-34,Females,2009,744406
+AUS,Australia,30-34,Females,2010,765947
+AUS,Australia,30-34,Females,2011,782266
+AUS,Australia,30-34,Females,2012,789819
+AUS,Australia,35-39,Males,2002,733565
+AUS,Australia,35-39,Males,2003,726362
+AUS,Australia,35-39,Males,2004,726262
+AUS,Australia,35-39,Males,2005,734334
+AUS,Australia,35-39,Males,2006,754177
+AUS,Australia,35-39,Males,2007,777748
+AUS,Australia,35-39,Males,2008,793960
+AUS,Australia,35-39,Males,2009,801377
+AUS,Australia,35-39,Males,2010,802527
+AUS,Australia,35-39,Males,2011,791154
+AUS,Australia,35-39,Males,2012,774443
+AUS,Australia,35-39,Females,2002,741963
+AUS,Australia,35-39,Females,2003,735055
+AUS,Australia,35-39,Females,2004,735150
+AUS,Australia,35-39,Females,2005,741694
+AUS,Australia,35-39,Females,2006,760402
+AUS,Australia,35-39,Females,2007,787231
+AUS,Australia,35-39,Females,2008,804385
+AUS,Australia,35-39,Females,2009,810110
+AUS,Australia,35-39,Females,2010,813524
+AUS,Australia,35-39,Females,2011,799551
+AUS,Australia,35-39,Females,2012,780149
+AUS,Australia,>=40,Males,2002,4170665
+AUS,Australia,>=40,Males,2003,4272490
+AUS,Australia,>=40,Males,2004,4367733
+AUS,Australia,>=40,Males,2005,4461271
+AUS,Australia,>=40,Males,2006,4546147
+AUS,Australia,>=40,Males,2007,4614752
+AUS,Australia,>=40,Males,2008,4708661
+AUS,Australia,>=40,Males,2009,4811782
+AUS,Australia,>=40,Males,2010,4917740
+AUS,Australia,>=40,Males,2011,5020366
+AUS,Australia,>=40,Males,2012,5090237
+AUS,Australia,>=40,Females,2002,4443998
+AUS,Australia,>=40,Females,2003,4547256
+AUS,Australia,>=40,Females,2004,4643832
+AUS,Australia,>=40,Females,2005,4740066
+AUS,Australia,>=40,Females,2006,4827849
+AUS,Australia,>=40,Females,2007,4912909
+AUS,Australia,>=40,Females,2008,5011311
+AUS,Australia,>=40,Females,2009,5115194
+AUS,Australia,>=40,Females,2010,5228019
+AUS,Australia,>=40,Females,2011,5339162
+AUS,Australia,>=40,Females,2012,5415113
+AUS,Australia,4,Males,2002,131952
+AUS,Australia,4,Males,2003,132763
+AUS,Australia,4,Males,2004,132647
+AUS,Australia,4,Males,2005,132127
+AUS,Australia,4,Males,2006,128838
+AUS,Australia,4,Males,2007,133904
+AUS,Australia,4,Males,2008,136293
+AUS,Australia,4,Males,2009,139662
+AUS,Australia,4,Males,2010,144625
+AUS,Australia,4,Males,2011,148283
+AUS,Australia,4,Males,2012,151748
+AUS,Australia,4,Females,2002,125372
+AUS,Australia,4,Females,2003,126140
+AUS,Australia,4,Females,2004,126493
+AUS,Australia,4,Females,2005,125578
+AUS,Australia,4,Females,2006,122392
+AUS,Australia,4,Females,2007,127075
+AUS,Australia,4,Females,2008,129080
+AUS,Australia,4,Females,2009,131508
+AUS,Australia,4,Females,2010,137638
+AUS,Australia,4,Females,2011,140160
+AUS,Australia,4,Females,2012,144370
+AUT,Austria,10-14,Males,2002,242190
+AUT,Austria,10-14,Males,2003,248227
+AUT,Austria,10-14,Males,2004,249762
+AUT,Austria,10-14,Males,2005,250501
+AUT,Austria,10-14,Males,2006,248527
+AUT,Austria,10-14,Males,2007,245280
+AUT,Austria,10-14,Males,2008,240075
+AUT,Austria,10-14,Males,2009,234363
+AUT,Austria,10-14,Males,2010,227924
+AUT,Austria,10-14,Males,2011,223438
+AUT,Austria,10-14,Males,2012,217467
+AUT,Austria,10-14,Females,2002,229607
+AUT,Austria,10-14,Females,2003,235133
+AUT,Austria,10-14,Females,2004,237542
+AUT,Austria,10-14,Females,2005,237869
+AUT,Austria,10-14,Females,2006,236113
+AUT,Austria,10-14,Females,2007,233120
+AUT,Austria,10-14,Females,2008,228885
+AUT,Austria,10-14,Females,2009,223355
+AUT,Austria,10-14,Females,2010,217314
+AUT,Austria,10-14,Females,2011,212831
+AUT,Austria,10-14,Females,2012,206738
+AUT,Austria,15-19,Males,2002,245626
+AUT,Austria,15-19,Males,2003,244981
+AUT,Austria,15-19,Males,2004,247729
+AUT,Austria,15-19,Males,2005,249903
+AUT,Austria,15-19,Males,2006,252013
+AUT,Austria,15-19,Males,2007,254215
+AUT,Austria,15-19,Males,2008,256644
+AUT,Austria,15-19,Males,2009,257309
+AUT,Austria,15-19,Males,2010,257147
+AUT,Austria,15-19,Males,2011,254348
+AUT,Austria,15-19,Males,2012,251511
+AUT,Austria,15-19,Females,2002,234806
+AUT,Austria,15-19,Females,2003,233352
+AUT,Austria,15-19,Females,2004,235329
+AUT,Austria,15-19,Females,2005,237215
+AUT,Austria,15-19,Females,2006,239767
+AUT,Austria,15-19,Females,2007,242109
+AUT,Austria,15-19,Females,2008,244053
+AUT,Austria,15-19,Females,2009,245051
+AUT,Austria,15-19,Females,2010,244097
+AUT,Austria,15-19,Females,2011,241415
+AUT,Austria,15-19,Females,2012,238107
+AUT,Austria,20-24,Males,2002,245262
+AUT,Austria,20-24,Males,2003,250006
+AUT,Austria,20-24,Males,2004,258452
+AUT,Austria,20-24,Males,2005,264775
+AUT,Austria,20-24,Males,2006,267160
+AUT,Austria,20-24,Males,2007,265186
+AUT,Austria,20-24,Males,2008,263114
+AUT,Austria,20-24,Males,2009,263320
+AUT,Austria,20-24,Males,2010,263387
+AUT,Austria,20-24,Males,2011,265026
+AUT,Austria,20-24,Males,2012,269844
+AUT,Austria,20-24,Females,2002,237374
+AUT,Austria,20-24,Females,2003,243018
+AUT,Austria,20-24,Females,2004,252243
+AUT,Austria,20-24,Females,2005,259551
+AUT,Austria,20-24,Females,2006,261651
+AUT,Austria,20-24,Females,2007,259879
+AUT,Austria,20-24,Females,2008,258266
+AUT,Austria,20-24,Females,2009,257633
+AUT,Austria,20-24,Females,2010,257599
+AUT,Austria,20-24,Females,2011,259122
+AUT,Austria,20-24,Females,2012,262119
+AUT,Austria,25-29,Males,2002,266121
+AUT,Austria,25-29,Males,2003,253962
+AUT,Austria,25-29,Males,2004,255358
+AUT,Austria,25-29,Males,2005,256676
+AUT,Austria,25-29,Males,2006,261672
+AUT,Austria,25-29,Males,2007,267215
+AUT,Austria,25-29,Males,2008,273760
+AUT,Austria,25-29,Males,2009,277079
+AUT,Austria,25-29,Males,2010,279220
+AUT,Austria,25-29,Males,2011,279155
+AUT,Austria,25-29,Males,2012,279148
+AUT,Austria,25-29,Females,2002,267902
+AUT,Austria,25-29,Females,2003,254559
+AUT,Austria,25-29,Females,2004,253799
+AUT,Austria,25-29,Females,2005,252684
+AUT,Austria,25-29,Females,2006,256237
+AUT,Austria,25-29,Females,2007,262292
+AUT,Austria,25-29,Females,2008,269906
+AUT,Austria,25-29,Females,2009,274070
+AUT,Austria,25-29,Females,2010,277868
+AUT,Austria,25-29,Females,2011,277711
+AUT,Austria,25-29,Females,2012,276526
+AUT,Austria,30-34,Males,2002,343256
+AUT,Austria,30-34,Males,2003,317280
+AUT,Austria,30-34,Males,2004,305526
+AUT,Austria,30-34,Males,2005,294985
+AUT,Austria,30-34,Males,2006,287515
+AUT,Austria,30-34,Males,2007,278683
+AUT,Austria,30-34,Males,2008,271858
+AUT,Austria,30-34,Males,2009,268029
+AUT,Austria,30-34,Males,2010,265521
+AUT,Austria,30-34,Males,2011,267818
+AUT,Austria,30-34,Males,2012,274319
+AUT,Austria,30-34,Females,2002,335918
+AUT,Austria,30-34,Females,2003,316403
+AUT,Austria,30-34,Females,2004,307044
+AUT,Austria,30-34,Females,2005,297448
+AUT,Austria,30-34,Females,2006,289722
+AUT,Austria,30-34,Females,2007,280454
+AUT,Austria,30-34,Females,2008,273222
+AUT,Austria,30-34,Females,2009,268151
+AUT,Austria,30-34,Females,2010,263825
+AUT,Austria,30-34,Females,2011,264966
+AUT,Austria,30-34,Females,2012,271360
+AUT,Austria,35-39,Males,2002,368337
+AUT,Austria,35-39,Males,2003,357688
+AUT,Austria,35-39,Males,2004,358683
+AUT,Austria,35-39,Males,2005,355624
+AUT,Austria,35-39,Males,2006,348761
+AUT,Austria,35-39,Males,2007,339455
+AUT,Austria,35-39,Males,2008,328207
+AUT,Austria,35-39,Males,2009,313003
+AUT,Austria,35-39,Males,2010,299500
+AUT,Austria,35-39,Males,2011,290072
+AUT,Austria,35-39,Males,2012,281762
+AUT,Austria,35-39,Females,2002,352582
+AUT,Austria,35-39,Females,2003,347648
+AUT,Austria,35-39,Females,2004,348446
+AUT,Austria,35-39,Females,2005,346660
+AUT,Austria,35-39,Females,2006,341710
+AUT,Austria,35-39,Females,2007,334979
+AUT,Austria,35-39,Females,2008,326995
+AUT,Austria,35-39,Females,2009,314971
+AUT,Austria,35-39,Females,2010,303457
+AUT,Austria,35-39,Females,2011,294508
+AUT,Austria,35-39,Females,2012,285389
+AUT,Austria,4,Males,2002,43315
+AUT,Austria,4,Males,2003,42489
+AUT,Austria,4,Males,2004,41140
+AUT,Austria,4,Males,2005,41615
+AUT,Austria,4,Males,2006,40904
+AUT,Austria,4,Males,2007,41811
+AUT,Austria,4,Males,2008,41090
+AUT,Austria,4,Males,2009,41882
+AUT,Austria,4,Males,2010,41043
+AUT,Austria,4,Males,2011,40866
+AUT,Austria,4,Males,2012,40148
+AUT,Austria,4,Females,2002,41594
+AUT,Austria,4,Females,2003,40365
+AUT,Austria,4,Females,2004,39196
+AUT,Austria,4,Females,2005,39513
+AUT,Austria,4,Females,2006,38120
+AUT,Austria,4,Females,2007,39875
+AUT,Austria,4,Females,2008,38884
+AUT,Austria,4,Females,2009,39665
+AUT,Austria,4,Females,2010,39356
+AUT,Austria,4,Females,2011,39260
+AUT,Austria,4,Females,2012,38372
+AUT,Austria,>=40,Males,2002,1806365
+AUT,Austria,>=40,Males,2003,1801281
+AUT,Austria,>=40,Males,2004,1842831
+AUT,Austria,>=40,Males,2005,1885961
+AUT,Austria,>=40,Males,2006,1929153
+AUT,Austria,>=40,Males,2007,1968755
+AUT,Austria,>=40,Males,2008,2006387
+AUT,Austria,>=40,Males,2009,2042754
+AUT,Austria,>=40,Males,2010,2076441
+AUT,Austria,>=40,Males,2011,2106249
+AUT,Austria,>=40,Males,2012,2133816
+AUT,Austria,>=40,Females,2002,2099667
+AUT,Austria,>=40,Females,2003,2111955
+AUT,Austria,>=40,Females,2004,2145830
+AUT,Austria,>=40,Females,2005,2182492
+AUT,Austria,>=40,Females,2006,2217881
+AUT,Austria,>=40,Females,2007,2250983
+AUT,Austria,>=40,Females,2008,2282422
+AUT,Austria,>=40,Females,2009,2312302
+AUT,Austria,>=40,Females,2010,2342358
+AUT,Austria,>=40,Females,2011,2369101
+AUT,Austria,>=40,Females,2012,2394756
+AUT,Austria,5-9,Males,2002,238159
+AUT,Austria,5-9,Males,2003,232677
+AUT,Austria,5-9,Males,2004,228360
+AUT,Austria,5-9,Males,2005,223271
+AUT,Austria,5-9,Males,2006,219641
+AUT,Austria,5-9,Males,2007,213869
+AUT,Austria,5-9,Males,2008,211283
+AUT,Austria,5-9,Males,2009,209078
+AUT,Austria,5-9,Males,2010,208830
+AUT,Austria,5-9,Males,2011,207685
+AUT,Austria,5-9,Males,2012,207883
+AUT,Austria,5-9,Females,2002,226685
+AUT,Austria,5-9,Females,2003,222315
+AUT,Austria,5-9,Females,2004,217859
+AUT,Austria,5-9,Females,2005,212883
+AUT,Austria,5-9,Females,2006,209169
+AUT,Austria,5-9,Females,2007,202949
+AUT,Austria,5-9,Females,2008,200381
+AUT,Austria,5-9,Females,2009,198264
+AUT,Austria,5-9,Females,2010,197949
+AUT,Austria,5-9,Females,2011,197414
+AUT,Austria,5-9,Females,2012,198426
+CAN,Canada,10-14,Males,2003,1077514
+CAN,Canada,10-14,Males,2004,1077954
+CAN,Canada,10-14,Males,2005,1087432
+CAN,Canada,10-14,Males,2006,1080498
+CAN,Canada,10-14,Males,2007,1070899
+CAN,Canada,10-14,Males,2008,1052294
+CAN,Canada,10-14,Males,2009,1031559
+CAN,Canada,10-14,Males,2010,1034900
+CAN,Canada,10-14,Males,2011,1001805
+CAN,Canada,10-14,Males,2012,972285
+CAN,Canada,10-14,Females,2003,1026872
+CAN,Canada,10-14,Females,2004,1027307
+CAN,Canada,10-14,Females,2005,1034324
+CAN,Canada,10-14,Females,2006,1026835
+CAN,Canada,10-14,Females,2007,1018745
+CAN,Canada,10-14,Females,2008,1003650
+CAN,Canada,10-14,Females,2009,982530
+CAN,Canada,10-14,Females,2010,985622
+CAN,Canada,10-14,Females,2011,952905
+CAN,Canada,10-14,Females,2012,920822
+CAN,Canada,15-19,Males,2003,1092730
+CAN,Canada,15-19,Males,2004,1093259
+CAN,Canada,15-19,Males,2005,1091921
+CAN,Canada,15-19,Males,2006,1100600
+CAN,Canada,15-19,Males,2007,1112570
+CAN,Canada,15-19,Males,2008,1148538
+CAN,Canada,15-19,Males,2009,1157023
+CAN,Canada,15-19,Males,2010,1166118
+CAN,Canada,15-19,Males,2011,1146713
+CAN,Canada,15-19,Males,2012,1115081
+CAN,Canada,15-19,Females,2003,1033433
+CAN,Canada,15-19,Females,2004,1033987
+CAN,Canada,15-19,Females,2005,1036695
+CAN,Canada,15-19,Females,2006,1047142
+CAN,Canada,15-19,Females,2007,1058976
+CAN,Canada,15-19,Females,2008,1089315
+CAN,Canada,15-19,Females,2009,1100082
+CAN,Canada,15-19,Females,2010,1108300
+CAN,Canada,15-19,Females,2011,1092680
+CAN,Canada,15-19,Females,2012,1065141
+CAN,Canada,20-24,Males,2003,1099002
+CAN,Canada,20-24,Males,2004,1099373
+CAN,Canada,20-24,Males,2005,1138434
+CAN,Canada,20-24,Males,2006,1148777
+CAN,Canada,20-24,Males,2007,1157368
+CAN,Canada,20-24,Males,2008,1163895
+CAN,Canada,20-24,Males,2009,1173389
+CAN,Canada,20-24,Males,2010,1183104
+CAN,Canada,20-24,Males,2011,1203703
+CAN,Canada,20-24,Males,2012,1225393
+CAN,Canada,20-24,Females,2003,1050627
+CAN,Canada,20-24,Females,2004,1050997
+CAN,Canada,20-24,Females,2005,1087472
+CAN,Canada,20-24,Females,2006,1096952
+CAN,Canada,20-24,Females,2007,1104984
+CAN,Canada,20-24,Females,2008,1105812
+CAN,Canada,20-24,Females,2009,1113826
+CAN,Canada,20-24,Females,2010,1123751
+CAN,Canada,20-24,Females,2011,1139460
+CAN,Canada,20-24,Females,2012,1159659
+CAN,Canada,25-29,Males,2003,1063469
+CAN,Canada,25-29,Males,2004,1064293
+CAN,Canada,25-29,Males,2005,1095340
+CAN,Canada,25-29,Males,2006,1112389
+CAN,Canada,25-29,Males,2007,1129918
+CAN,Canada,25-29,Males,2008,1123269
+CAN,Canada,25-29,Males,2009,1153190
+CAN,Canada,25-29,Males,2010,1162031
+CAN,Canada,25-29,Males,2011,1198618
+CAN,Canada,25-29,Males,2012,1223651
+CAN,Canada,25-29,Females,2003,1032779
+CAN,Canada,25-29,Females,2004,1033584
+CAN,Canada,25-29,Females,2005,1065991
+CAN,Canada,25-29,Females,2006,1085408
+CAN,Canada,25-29,Females,2007,1106368
+CAN,Canada,25-29,Females,2008,1107611
+CAN,Canada,25-29,Females,2009,1134849
+CAN,Canada,25-29,Females,2010,1145888
+CAN,Canada,25-29,Females,2011,1171777
+CAN,Canada,25-29,Females,2012,1185491
+CAN,Canada,30-34,Males,2003,1129134
+CAN,Canada,30-34,Males,2004,1130157
+CAN,Canada,30-34,Males,2005,1125067
+CAN,Canada,30-34,Males,2006,1123931
+CAN,Canada,30-34,Males,2007,1123984
+CAN,Canada,30-34,Males,2008,1098671
+CAN,Canada,30-34,Males,2009,1111720
+CAN,Canada,30-34,Males,2010,1118443
+CAN,Canada,30-34,Males,2011,1140522
+CAN,Canada,30-34,Males,2012,1168175
+CAN,Canada,30-34,Females,2003,1108222
+CAN,Canada,30-34,Females,2004,1108807
+CAN,Canada,30-34,Females,2005,1103572
+CAN,Canada,30-34,Females,2006,1103489
+CAN,Canada,30-34,Females,2007,1103287
+CAN,Canada,30-34,Females,2008,1088614
+CAN,Canada,30-34,Females,2009,1106956
+CAN,Canada,30-34,Females,2010,1114100
+CAN,Canada,30-34,Females,2011,1139518
+CAN,Canada,30-34,Females,2012,1168005
+CAN,Canada,35-39,Males,2003,1295051
+CAN,Canada,35-39,Males,2004,1296412
+CAN,Canada,35-39,Males,2005,1214294
+CAN,Canada,35-39,Males,2006,1190816
+CAN,Canada,35-39,Males,2007,1185790
+CAN,Canada,35-39,Males,2008,1167642
+CAN,Canada,35-39,Males,2009,1165767
+CAN,Canada,35-39,Males,2010,1169482
+CAN,Canada,35-39,Males,2011,1156191
+CAN,Canada,35-39,Males,2012,1144416
+CAN,Canada,35-39,Females,2003,1276091
+CAN,Canada,35-39,Females,2004,1276846
+CAN,Canada,35-39,Females,2005,1200100
+CAN,Canada,35-39,Females,2006,1176658
+CAN,Canada,35-39,Females,2007,1171444
+CAN,Canada,35-39,Females,2008,1144484
+CAN,Canada,35-39,Females,2009,1144095
+CAN,Canada,35-39,Females,2010,1148596
+CAN,Canada,35-39,Females,2011,1141368
+CAN,Canada,35-39,Females,2012,1136106
+CAN,Canada,4,Males,2003,185248
+CAN,Canada,4,Males,2004,185328
+CAN,Canada,4,Males,2005,182231
+CAN,Canada,4,Males,2006,177372
+CAN,Canada,4,Males,2007,174504
+CAN,Canada,4,Males,2008,178774
+CAN,Canada,4,Males,2009,182951
+CAN,Canada,4,Males,2010,183915.5
+CAN,Canada,4,Males,2011,185778.5
+CAN,Canada,4,Males,2012,191916.5
+CAN,Canada,4,Females,2003,177666
+CAN,Canada,4,Females,2004,177724
+CAN,Canada,4,Females,2005,174022
+CAN,Canada,4,Females,2006,169361
+CAN,Canada,4,Females,2007,166779
+CAN,Canada,4,Females,2008,168827
+CAN,Canada,4,Females,2009,172524
+CAN,Canada,4,Females,2010,173445
+CAN,Canada,4,Females,2011,175278
+CAN,Canada,4,Females,2012,182607
+CAN,Canada,>=40,Males,2003,6869410
+CAN,Canada,>=40,Males,2004,6872602
+CAN,Canada,>=40,Males,2005,7235174
+CAN,Canada,>=40,Males,2006,7403074
+CAN,Canada,>=40,Males,2007,7567174
+CAN,Canada,>=40,Males,2008,7742535
+CAN,Canada,>=40,Males,2009,7884437
+CAN,Canada,>=40,Males,2010,7835038
+CAN,Canada,>=40,Males,2011,8095969
+CAN,Canada,>=40,Males,2012,8354896
+CAN,Canada,>=40,Females,2003,7484194
+CAN,Canada,>=40,Females,2004,7486832
+CAN,Canada,>=40,Females,2005,7848898
+CAN,Canada,>=40,Females,2006,8015785
+CAN,Canada,>=40,Females,2007,8176109
+CAN,Canada,>=40,Females,2008,8331100
+CAN,Canada,>=40,Females,2009,8472887
+CAN,Canada,>=40,Females,2010,8423434
+CAN,Canada,>=40,Females,2011,8680783
+CAN,Canada,>=40,Females,2012,8935207
+CAN,Canada,5-9,Males,2003,1019013
+CAN,Canada,5-9,Males,2004,1019639
+CAN,Canada,5-9,Males,2005,982442
+CAN,Canada,5-9,Males,2006,964274
+CAN,Canada,5-9,Males,2007,944994
+CAN,Canada,5-9,Males,2008,924780
+CAN,Canada,5-9,Males,2009,922085
+CAN,Canada,5-9,Males,2010,926429
+CAN,Canada,5-9,Males,2011,926970
+CAN,Canada,5-9,Males,2012,934969
+CAN,Canada,5-9,Females,2003,969516
+CAN,Canada,5-9,Females,2004,970065
+CAN,Canada,5-9,Females,2005,936810
+CAN,Canada,5-9,Females,2006,920462
+CAN,Canada,5-9,Females,2007,901102
+CAN,Canada,5-9,Females,2008,876110
+CAN,Canada,5-9,Females,2009,871879
+CAN,Canada,5-9,Females,2010,875704
+CAN,Canada,5-9,Females,2011,874165
+CAN,Canada,5-9,Females,2012,881761
+FRA,France,10-14,Males,2002,1955074
+FRA,France,10-14,Males,2003,1943217
+FRA,France,10-14,Males,2004,1913613
+FRA,France,10-14,Males,2005,1977854
+FRA,France,10-14,Males,2006,1962763
+FRA,France,10-14,Males,2007,1952313
+FRA,France,10-14,Males,2008,1944493
+FRA,France,10-14,Males,2009,1999166
+FRA,France,10-14,Males,2010,2026744
+FRA,France,10-14,Males,2011,2057630
+FRA,France,10-14,Males,2012,2076059
+FRA,France,10-14,Females,2002,1866113
+FRA,France,10-14,Females,2003,1852661
+FRA,France,10-14,Females,2004,1824206
+FRA,France,10-14,Females,2005,1885222
+FRA,France,10-14,Females,2006,1871405
+FRA,France,10-14,Females,2007,1860932
+FRA,France,10-14,Females,2008,1852670
+FRA,France,10-14,Females,2009,1902817
+FRA,France,10-14,Females,2010,1925126
+FRA,France,10-14,Females,2011,1954436
+FRA,France,10-14,Females,2012,1981215
+FRA,France,15-19,Males,2002,1978965
+FRA,France,15-19,Males,2003,1967636
+FRA,France,15-19,Males,2004,1980999
+FRA,France,15-19,Males,2005,2077600
+FRA,France,15-19,Males,2006,2086671
+FRA,France,15-19,Males,2007,2077724
+FRA,France,15-19,Males,2008,2063895
+FRA,France,15-19,Males,2009,2065520
+FRA,France,15-19,Males,2010,2037478
+FRA,France,15-19,Males,2011,2022689
+FRA,France,15-19,Males,2012,2041156
+FRA,France,15-19,Females,2002,1898459
+FRA,France,15-19,Females,2003,1890046
+FRA,France,15-19,Females,2004,1902626
+FRA,France,15-19,Females,2005,1998478
+FRA,France,15-19,Females,2006,2005548
+FRA,France,15-19,Females,2007,1995013
+FRA,France,15-19,Females,2008,1979319
+FRA,France,15-19,Females,2009,1977959
+FRA,France,15-19,Females,2010,1951345
+FRA,France,15-19,Females,2011,1939289
+FRA,France,15-19,Females,2012,1948165
+FRA,France,20-24,Males,2002,1945631
+FRA,France,20-24,Males,2003,1972684
+FRA,France,20-24,Males,2004,1978894
+FRA,France,20-24,Males,2005,2063748
+FRA,France,20-24,Males,2006,2055178
+FRA,France,20-24,Males,2007,2046498
+FRA,France,20-24,Males,2008,2036208
+FRA,France,20-24,Males,2009,2067387
+FRA,France,20-24,Males,2010,2069721
+FRA,France,20-24,Males,2011,2065906
+FRA,France,20-24,Males,2012,2015802
+FRA,France,20-24,Females,2002,1901653
+FRA,France,20-24,Females,2003,1926612
+FRA,France,20-24,Females,2004,1931131
+FRA,France,20-24,Females,2005,2024589
+FRA,France,20-24,Females,2006,2017943
+FRA,France,20-24,Females,2007,2012338
+FRA,France,20-24,Females,2008,2004542
+FRA,France,20-24,Females,2009,2036478
+FRA,France,20-24,Females,2010,2036452
+FRA,France,20-24,Females,2011,2026334
+FRA,France,20-24,Females,2012,1986450
+FRA,France,25-29,Males,2002,1972728
+FRA,France,25-29,Males,2003,1915823
+FRA,France,25-29,Males,2004,1865506
+FRA,France,25-29,Males,2005,1940313
+FRA,France,25-29,Males,2006,1983028
+FRA,France,25-29,Males,2007,2036145
+FRA,France,25-29,Males,2008,2067230
+FRA,France,25-29,Males,2009,2003798
+FRA,France,25-29,Males,2010,1999457
+FRA,France,25-29,Males,2011,1977913
+FRA,France,25-29,Males,2012,1952233
+FRA,France,25-29,Females,2002,1960558
+FRA,France,25-29,Females,2003,1899580
+FRA,France,25-29,Females,2004,1847593
+FRA,France,25-29,Females,2005,1927874
+FRA,France,25-29,Females,2006,1962278
+FRA,France,25-29,Females,2007,2009880
+FRA,France,25-29,Females,2008,2040374
+FRA,France,25-29,Females,2009,2039355
+FRA,France,25-29,Females,2010,2038285
+FRA,France,25-29,Females,2011,2018780
+FRA,France,25-29,Females,2012,2006447
+FRA,France,<3,Males,2002,1161716
+FRA,France,<3,Males,2003,1173901
+FRA,France,<3,Males,2004,1164419
+FRA,France,<3,Males,2005,1217067
+FRA,France,<3,Males,2006,1221774
+FRA,France,<3,Males,2007,1239859
+FRA,France,<3,Males,2008,1247193
+FRA,France,<3,Males,2009,1245031
+FRA,France,<3,Males,2010,1241769
+FRA,France,<3,Males,2011,1260829
+FRA,France,<3,Males,2012,1258338
+FRA,France,<3,Females,2002,1107475
+FRA,France,<3,Females,2003,1120657
+FRA,France,<3,Females,2004,1114130
+FRA,France,<3,Females,2005,1163520
+FRA,France,<3,Females,2006,1167710
+FRA,France,<3,Females,2007,1183916
+FRA,France,<3,Females,2008,1191642
+FRA,France,<3,Females,2009,1190301
+FRA,France,<3,Females,2010,1187990
+FRA,France,<3,Females,2011,1206935
+FRA,France,<3,Females,2012,1205101
+FRA,France,30-34,Males,2002,2112474
+FRA,France,30-34,Males,2003,2132789
+FRA,France,30-34,Males,2004,2141308
+FRA,France,30-34,Males,2005,2211479
+FRA,France,30-34,Males,2006,2166953
+FRA,France,30-34,Males,2007,2104631
+FRA,France,30-34,Males,2008,2050615
+FRA,France,30-34,Males,2009,1971170
+FRA,France,30-34,Males,2010,1951119
+FRA,France,30-34,Males,2011,1971924
+FRA,France,30-34,Males,2012,1999982
+FRA,France,30-34,Females,2002,2121830
+FRA,France,30-34,Females,2003,2134965
+FRA,France,30-34,Females,2004,2136498
+FRA,France,30-34,Females,2005,2211295
+FRA,France,30-34,Females,2006,2164390
+FRA,France,30-34,Females,2007,2093087
+FRA,France,30-34,Females,2008,2034383
+FRA,France,30-34,Females,2009,1999194
+FRA,France,30-34,Females,2010,1985518
+FRA,France,30-34,Females,2011,2018245
+FRA,France,30-34,Females,2012,2061026
+FRA,France,35-39,Males,2002,2160329
+FRA,France,35-39,Males,2003,2156737
+FRA,France,35-39,Males,2004,2138982
+FRA,France,35-39,Males,2005,2214813
+FRA,France,35-39,Males,2006,2210698
+FRA,France,35-39,Males,2007,2223505
+FRA,France,35-39,Males,2008,2244292
+FRA,France,35-39,Males,2009,2244031
+FRA,France,35-39,Males,2010,2227773
+FRA,France,35-39,Males,2011,2182026
+FRA,France,35-39,Males,2012,2131431
+FRA,France,35-39,Females,2002,2195205
+FRA,France,35-39,Females,2003,2189323
+FRA,France,35-39,Females,2004,2168528
+FRA,France,35-39,Females,2005,2250313
+FRA,France,35-39,Females,2006,2242157
+FRA,France,35-39,Females,2007,2249124
+FRA,France,35-39,Females,2008,2262998
+FRA,France,35-39,Females,2009,2281012
+FRA,France,35-39,Females,2010,2265159
+FRA,France,35-39,Females,2011,2220053
+FRA,France,35-39,Females,2012,2156739
+FRA,France,4,Males,2002,367636
+FRA,France,4,Males,2003,368664
+FRA,France,4,Males,2004,377499
+FRA,France,4,Males,2005,414821
+FRA,France,4,Males,2006,411376
+FRA,France,4,Males,2007,406203
+FRA,France,4,Males,2008,405204
+FRA,France,4,Males,2009,400944
+FRA,France,4,Males,2010,403636
+FRA,France,4,Males,2011,422880
+FRA,France,4,Males,2012,415746
+FRA,France,4,Females,2002,348497
+FRA,France,4,Females,2003,353227
+FRA,France,4,Females,2004,359025
+FRA,France,4,Females,2005,395442
+FRA,France,4,Females,2006,394490
+FRA,France,4,Females,2007,388909
+FRA,France,4,Females,2008,388643
+FRA,France,4,Females,2009,382008
+FRA,France,4,Females,2010,386689
+FRA,France,4,Females,2011,404369
+FRA,France,4,Females,2012,397651
+FRA,France,>=40,Males,2002,12970476
+FRA,France,>=40,Males,2003,13135748
+FRA,France,>=40,Males,2004,13311455
+FRA,France,>=40,Males,2005,13891529
+FRA,France,>=40,Males,2006,14112473
+FRA,France,>=40,Males,2007,14297276
+FRA,France,>=40,Males,2008,14478805
+FRA,France,>=40,Males,2009,14713192
+FRA,France,>=40,Males,2010,14907413
+FRA,France,>=40,Males,2011,15097985
+FRA,France,>=40,Males,2012,15287324
+FRA,France,>=40,Females,2002,15009228
+FRA,France,>=40,Females,2003,15187079
+FRA,France,>=40,Females,2004,15371870
+FRA,France,>=40,Females,2005,16037833
+FRA,France,>=40,Females,2006,16277989
+FRA,France,>=40,Females,2007,16483547
+FRA,France,>=40,Females,2008,16681095
+FRA,France,>=40,Females,2009,17062814
+FRA,France,>=40,Females,2010,17255202
+FRA,France,>=40,Females,2011,17448592
+FRA,France,>=40,Females,2012,17598492
+FRA,France,5-9,Males,2002,1835057
+FRA,France,5-9,Males,2003,1830858
+FRA,France,5-9,Males,2004,1843833
+FRA,France,5-9,Males,2005,1951514
+FRA,France,5-9,Males,2006,1992550
+FRA,France,5-9,Males,2007,2015564
+FRA,France,5-9,Males,2008,2037017
+FRA,France,5-9,Males,2009,2047423
+FRA,France,5-9,Males,2010,2054507
+FRA,France,5-9,Males,2011,2055360
+FRA,France,5-9,Males,2012,2072594
+FRA,France,5-9,Females,2002,1748893
+FRA,France,5-9,Females,2003,1743338
+FRA,France,5-9,Females,2004,1756990
+FRA,France,5-9,Females,2005,1859526
+FRA,France,5-9,Females,2006,1898245
+FRA,France,5-9,Females,2007,1923316
+FRA,France,5-9,Females,2008,1946653
+FRA,France,5-9,Females,2009,1952062
+FRA,France,5-9,Females,2010,1959981
+FRA,France,5-9,Females,2011,1963874
+FRA,France,5-9,Females,2012,1980061
+DEU,Germany,10-14,Males,2002,2417205
+DEU,Germany,10-14,Males,2003,2362254
+DEU,Germany,10-14,Males,2004,2284044
+DEU,Germany,10-14,Males,2005,2203007
+DEU,Germany,10-14,Males,2006,2108459
+DEU,Germany,10-14,Males,2007,2070893
+DEU,Germany,10-14,Males,2008,2058119
+DEU,Germany,10-14,Males,2009,2041802
+DEU,Germany,10-14,Males,2010,2035044
+DEU,Germany,10-14,Males,2011,2033008
+DEU,Germany,10-14,Males,2012,2004013
+DEU,Germany,10-14,Females,2002,2291497
+DEU,Germany,10-14,Females,2003,2242963
+DEU,Germany,10-14,Females,2004,2169563
+DEU,Germany,10-14,Females,2005,2090343
+DEU,Germany,10-14,Females,2006,2002035
+DEU,Germany,10-14,Females,2007,1965491
+DEU,Germany,10-14,Females,2008,1952253
+DEU,Germany,10-14,Females,2009,1937135
+DEU,Germany,10-14,Females,2010,1930255
+DEU,Germany,10-14,Females,2011,1930728
+DEU,Germany,10-14,Females,2012,1903524
+DEU,Germany,15-19,Males,2002,2381213
+DEU,Germany,15-19,Males,2003,2397934
+DEU,Germany,15-19,Males,2004,2433437
+DEU,Germany,15-19,Males,2005,2455342
+DEU,Germany,15-19,Males,2006,2479805
+DEU,Germany,15-19,Males,2007,2441856
+DEU,Germany,15-19,Males,2008,2379143
+DEU,Germany,15-19,Males,2009,2295761
+DEU,Germany,15-19,Males,2010,2214032
+DEU,Germany,15-19,Males,2011,2123829
+DEU,Germany,15-19,Males,2012,2094790
+DEU,Germany,15-19,Females,2002,2259414
+DEU,Germany,15-19,Females,2003,2275502
+DEU,Germany,15-19,Females,2004,2308768
+DEU,Germany,15-19,Females,2005,2332522
+DEU,Germany,15-19,Females,2006,2355984
+DEU,Germany,15-19,Females,2007,2320508
+DEU,Germany,15-19,Females,2008,2263821
+DEU,Germany,15-19,Females,2009,2183869
+DEU,Germany,15-19,Females,2010,2103040
+DEU,Germany,15-19,Females,2011,2016565
+DEU,Germany,15-19,Females,2012,1985672
+DEU,Germany,20-24,Males,2002,2417125
+DEU,Germany,20-24,Males,2003,2459625
+DEU,Germany,20-24,Males,2004,2476210
+DEU,Germany,20-24,Males,2005,2480735
+DEU,Germany,20-24,Males,2006,2461472
+DEU,Germany,20-24,Males,2007,2461417
+DEU,Germany,20-24,Males,2008,2468554
+DEU,Germany,20-24,Males,2009,2496201
+DEU,Germany,20-24,Males,2010,2516653
+DEU,Germany,20-24,Males,2011,2552434
+DEU,Germany,20-24,Males,2012,2537958
+DEU,Germany,20-24,Females,2002,2336992
+DEU,Germany,20-24,Females,2003,2381398
+DEU,Germany,20-24,Females,2004,2403261
+DEU,Germany,20-24,Females,2005,2409481
+DEU,Germany,20-24,Females,2006,2392336
+DEU,Germany,20-24,Females,2007,2386853
+DEU,Germany,20-24,Females,2008,2386946
+DEU,Germany,20-24,Females,2009,2403638
+DEU,Germany,20-24,Females,2010,2417804
+DEU,Germany,20-24,Females,2011,2443557
+DEU,Germany,20-24,Females,2012,2421962
+DEU,Germany,25-29,Males,2002,2423549
+DEU,Germany,25-29,Males,2003,2384438
+DEU,Germany,25-29,Males,2004,2393041
+DEU,Germany,25-29,Males,2005,2410315
+DEU,Germany,25-29,Males,2006,2459058
+DEU,Germany,25-29,Males,2007,2489938
+DEU,Germany,25-29,Males,2008,2518610
+DEU,Germany,25-29,Males,2009,2523056
+DEU,Germany,25-29,Males,2010,2522868
+DEU,Germany,25-29,Males,2011,2514459
+DEU,Germany,25-29,Males,2012,2543493
+DEU,Germany,25-29,Females,2002,2324098
+DEU,Germany,25-29,Females,2003,2294967
+DEU,Germany,25-29,Females,2004,2310896
+DEU,Germany,25-29,Females,2005,2334933
+DEU,Germany,25-29,Females,2006,2393019
+DEU,Germany,25-29,Females,2007,2429190
+DEU,Germany,25-29,Females,2008,2458120
+DEU,Germany,25-29,Females,2009,2461136
+DEU,Germany,25-29,Females,2010,2455552
+DEU,Germany,25-29,Females,2011,2436127
+DEU,Germany,25-29,Females,2012,2447109
+DEU,Germany,<3,Males,2002,1173042
+DEU,Germany,<3,Males,2003,1146586
+DEU,Germany,<3,Males,2004,1113328
+DEU,Germany,<3,Males,2005,1097267
+DEU,Germany,<3,Males,2006,1079389
+DEU,Germany,<3,Males,2007,1062228
+DEU,Germany,<3,Males,2008,1052938
+DEU,Germany,<3,Males,2009,1051372
+DEU,Germany,<3,Males,2010,1047632
+DEU,Germany,<3,Males,2011,1044863
+DEU,Germany,<3,Males,2012,1036432
+DEU,Germany,<3,Females,2002,1110778
+DEU,Germany,<3,Females,2003,1085983
+DEU,Germany,<3,Females,2004,1057201
+DEU,Germany,<3,Females,2005,1041897
+DEU,Germany,<3,Females,2006,1025205
+DEU,Germany,<3,Females,2007,1007760
+DEU,Germany,<3,Females,2008,997880
+DEU,Germany,<3,Females,2009,996978
+DEU,Germany,<3,Females,2010,994825
+DEU,Germany,<3,Females,2011,994102
+DEU,Germany,<3,Females,2012,985676
+DEU,Germany,30-34,Males,2002,3301927
+DEU,Germany,30-34,Males,2003,3115225
+DEU,Germany,30-34,Males,2004,2893463
+DEU,Germany,30-34,Males,2005,2696175
+DEU,Germany,30-34,Males,2006,2544755
+DEU,Germany,30-34,Males,2007,2432230
+DEU,Germany,30-34,Males,2008,2384764
+DEU,Germany,30-34,Males,2009,2381693
+DEU,Germany,30-34,Males,2010,2394924
+DEU,Germany,30-34,Males,2011,2450907
+DEU,Germany,30-34,Males,2012,2505090
+DEU,Germany,30-34,Females,2002,3121211
+DEU,Germany,30-34,Females,2003,2956742
+DEU,Germany,30-34,Females,2004,2763337
+DEU,Germany,30-34,Females,2005,2592650
+DEU,Germany,30-34,Females,2006,2458421
+DEU,Germany,30-34,Females,2007,2358356
+DEU,Germany,30-34,Females,2008,2318650
+DEU,Germany,30-34,Females,2009,2320977
+DEU,Germany,30-34,Females,2010,2336333
+DEU,Germany,30-34,Females,2011,2391659
+DEU,Germany,30-34,Females,2012,2437824
+DEU,Germany,35-39,Males,2002,3741779
+DEU,Germany,35-39,Males,2003,3725201
+DEU,Germany,35-39,Males,2004,3662829
+DEU,Germany,35-39,Males,2005,3562188
+DEU,Germany,35-39,Males,2006,3428625
+DEU,Germany,35-39,Males,2007,3272559
+DEU,Germany,35-39,Males,2008,3084167
+DEU,Germany,35-39,Males,2009,2857095
+DEU,Germany,35-39,Males,2010,2660706
+DEU,Germany,35-39,Males,2011,2517194
+DEU,Germany,35-39,Males,2012,2425249
+DEU,Germany,35-39,Females,2002,3519282
+DEU,Germany,35-39,Females,2003,3510175
+DEU,Germany,35-39,Females,2004,3460603
+DEU,Germany,35-39,Females,2005,3375463
+DEU,Germany,35-39,Females,2006,3262517
+DEU,Germany,35-39,Females,2007,3124861
+DEU,Germany,35-39,Females,2008,2955766
+DEU,Germany,35-39,Females,2009,2756448
+DEU,Germany,35-39,Females,2010,2583366
+DEU,Germany,35-39,Females,2011,2449650
+DEU,Germany,35-39,Females,2012,2359922
+DEU,Germany,4,Males,2002,419190
+DEU,Germany,4,Males,2003,407275
+DEU,Germany,4,Males,2004,400273
+DEU,Germany,4,Males,2005,396435
+DEU,Germany,4,Males,2006,380501
+DEU,Germany,4,Males,2007,371355
+DEU,Germany,4,Males,2008,364085
+DEU,Germany,4,Males,2009,363038
+DEU,Germany,4,Males,2010,353611
+DEU,Germany,4,Males,2011,348845
+DEU,Germany,4,Males,2012,355973
+DEU,Germany,4,Females,2002,397776
+DEU,Germany,4,Females,2003,386866
+DEU,Germany,4,Females,2004,378483
+DEU,Germany,4,Females,2005,379012
+DEU,Germany,4,Females,2006,361251
+DEU,Germany,4,Females,2007,352584
+DEU,Germany,4,Females,2008,345799
+DEU,Germany,4,Females,2009,344729
+DEU,Germany,4,Females,2010,335900
+DEU,Germany,4,Females,2011,330122
+DEU,Germany,4,Females,2012,337482
+DEU,Germany,>=40,Males,2002,19532224
+DEU,Germany,>=40,Males,2003,19890667
+DEU,Germany,>=40,Males,2004,20258653
+DEU,Germany,>=40,Males,2005,20631749
+DEU,Germany,>=40,Males,2006,20990699
+DEU,Germany,>=40,Males,2007,21333916
+DEU,Germany,>=40,Males,2008,21650547
+DEU,Germany,>=40,Males,2009,21915958
+DEU,Germany,>=40,Males,2010,22140006
+DEU,Germany,>=40,Males,2011,22341711
+DEU,Germany,>=40,Males,2012,22544514
+DEU,Germany,>=40,Females,2002,22462651
+DEU,Germany,>=40,Females,2003,22729226
+DEU,Germany,>=40,Females,2004,23005063
+DEU,Germany,>=40,Females,2005,23294638
+DEU,Germany,>=40,Females,2006,23561432
+DEU,Germany,>=40,Females,2007,23821856
+DEU,Germany,>=40,Females,2008,24067053
+DEU,Germany,>=40,Females,2009,24267418
+DEU,Germany,>=40,Females,2010,24434339
+DEU,Germany,>=40,Females,2011,24572309
+DEU,Germany,>=40,Females,2012,24708072
+DEU,Germany,5-9,Males,2002,2060980
+DEU,Germany,5-9,Males,2003,2055853
+DEU,Germany,5-9,Males,2004,2044529
+DEU,Germany,5-9,Males,2005,2039986
+DEU,Germany,5-9,Males,2006,2035528
+DEU,Germany,5-9,Males,2007,2000521
+DEU,Germany,5-9,Males,2008,1949974
+DEU,Germany,5-9,Males,2009,1904962
+DEU,Germany,5-9,Males,2010,1869921
+DEU,Germany,5-9,Males,2011,1830380
+DEU,Germany,5-9,Males,2012,1803899
+DEU,Germany,5-9,Females,2002,1956178
+DEU,Germany,5-9,Females,2003,1949989
+DEU,Germany,5-9,Females,2004,1939654
+DEU,Germany,5-9,Females,2005,1935000
+DEU,Germany,5-9,Females,2006,1932992
+DEU,Germany,5-9,Females,2007,1900315
+DEU,Germany,5-9,Females,2008,1852306
+DEU,Germany,5-9,Females,2009,1810035
+DEU,Germany,5-9,Females,2010,1777806
+DEU,Germany,5-9,Females,2011,1737965
+DEU,Germany,5-9,Females,2012,1711890
+GBR,United Kingdom,10-14,Males,2002,2020922
+GBR,United Kingdom,10-14,Males,2003,2003877
+GBR,United Kingdom,10-14,Males,2004,1990038
+GBR,United Kingdom,10-14,Males,2005,1975512
+GBR,United Kingdom,10-14,Males,2006,1943167
+GBR,United Kingdom,10-14,Males,2007,1911345
+GBR,United Kingdom,10-14,Males,2008,1885851
+GBR,United Kingdom,10-14,Males,2009,1860462
+GBR,United Kingdom,10-14,Males,2010,1837375
+GBR,United Kingdom,10-14,Males,2011,1808888
+GBR,United Kingdom,10-14,Males,2012,1809704
+GBR,United Kingdom,10-14,Females,2002,1919479
+GBR,United Kingdom,10-14,Females,2003,1904347
+GBR,United Kingdom,10-14,Females,2004,1888158
+GBR,United Kingdom,10-14,Females,2005,1871483
+GBR,United Kingdom,10-14,Females,2006,1841832
+GBR,United Kingdom,10-14,Females,2007,1816464
+GBR,United Kingdom,10-14,Females,2008,1795708
+GBR,United Kingdom,10-14,Females,2009,1774098
+GBR,United Kingdom,10-14,Females,2010,1752163
+GBR,United Kingdom,10-14,Females,2011,1728255
+GBR,United Kingdom,10-14,Females,2012,1726324
+GBR,United Kingdom,15-19,Males,2002,1923400
+GBR,United Kingdom,15-19,Males,2003,1936897
+GBR,United Kingdom,15-19,Males,2004,2009241
+GBR,United Kingdom,15-19,Males,2005,2038078
+GBR,United Kingdom,15-19,Males,2006,2044956
+GBR,United Kingdom,15-19,Males,2007,2064406
+GBR,United Kingdom,15-19,Males,2008,2058635
+GBR,United Kingdom,15-19,Males,2009,2042124
+GBR,United Kingdom,15-19,Males,2010,2024124
+GBR,United Kingdom,15-19,Males,2011,1991947
+GBR,United Kingdom,15-19,Males,2012,1996315
+GBR,United Kingdom,15-19,Females,2002,1819764
+GBR,United Kingdom,15-19,Females,2003,1838183
+GBR,United Kingdom,15-19,Females,2004,1894753
+GBR,United Kingdom,15-19,Females,2005,1920253
+GBR,United Kingdom,15-19,Females,2006,1931406
+GBR,United Kingdom,15-19,Females,2007,1941552
+GBR,United Kingdom,15-19,Females,2008,1943224
+GBR,United Kingdom,15-19,Females,2009,1933594
+GBR,United Kingdom,15-19,Females,2010,1913953
+GBR,United Kingdom,15-19,Females,2011,1882775
+GBR,United Kingdom,15-19,Females,2012,1893805
+GBR,United Kingdom,20-24,Males,2002,1878807
+GBR,United Kingdom,20-24,Males,2003,1819228
+GBR,United Kingdom,20-24,Males,2004,1904969
+GBR,United Kingdom,20-24,Males,2005,1957853
+GBR,United Kingdom,20-24,Males,2006,2023923
+GBR,United Kingdom,20-24,Males,2007,2086274
+GBR,United Kingdom,20-24,Males,2008,2145364
+GBR,United Kingdom,20-24,Males,2009,2171520
+GBR,United Kingdom,20-24,Males,2010,2194291
+GBR,United Kingdom,20-24,Males,2011,2225705
+GBR,United Kingdom,20-24,Males,2012,2239298
+GBR,United Kingdom,20-24,Females,2002,1786492
+GBR,United Kingdom,20-24,Females,2003,1831762
+GBR,United Kingdom,20-24,Females,2004,1883382
+GBR,United Kingdom,20-24,Females,2005,1916341
+GBR,United Kingdom,20-24,Females,2006,1952604
+GBR,United Kingdom,20-24,Females,2007,1995933
+GBR,United Kingdom,20-24,Females,2008,2038700
+GBR,United Kingdom,20-24,Females,2009,2073161
+GBR,United Kingdom,20-24,Females,2010,2088714
+GBR,United Kingdom,20-24,Females,2011,2107054
+GBR,United Kingdom,20-24,Females,2012,2138979
+GBR,United Kingdom,25-29,Males,2002,2034500
+GBR,United Kingdom,25-29,Males,2003,1873555
+GBR,United Kingdom,25-29,Males,2004,1841404
+GBR,United Kingdom,25-29,Males,2005,1860106
+GBR,United Kingdom,25-29,Males,2006,1904315
+GBR,United Kingdom,25-29,Males,2007,1961171
+GBR,United Kingdom,25-29,Males,2008,2030227
+GBR,United Kingdom,25-29,Males,2009,2092161
+GBR,United Kingdom,25-29,Males,2010,2142063
+GBR,United Kingdom,25-29,Males,2011,2195946
+GBR,United Kingdom,25-29,Males,2012,2216544
+GBR,United Kingdom,25-29,Females,2002,1923540
+GBR,United Kingdom,25-29,Females,2003,1879849
+GBR,United Kingdom,25-29,Females,2004,1834800
+GBR,United Kingdom,25-29,Females,2005,1849709
+GBR,United Kingdom,25-29,Females,2006,1904586
+GBR,United Kingdom,25-29,Females,2007,1950025
+GBR,United Kingdom,25-29,Females,2008,1990058
+GBR,United Kingdom,25-29,Females,2009,2026269
+GBR,United Kingdom,25-29,Females,2010,2061569
+GBR,United Kingdom,25-29,Females,2011,2100063
+GBR,United Kingdom,25-29,Females,2012,2150971
+GBR,United Kingdom,<3,Males,2002,361277
+GBR,United Kingdom,<3,Males,2003,1004540
+GBR,United Kingdom,<3,Males,2004,1038061
+GBR,United Kingdom,<3,Males,2005,1066678
+GBR,United Kingdom,<3,Males,2006,1089794
+GBR,United Kingdom,<3,Males,2007,1115285
+GBR,United Kingdom,<3,Males,2008,1147298
+GBR,United Kingdom,<3,Males,2009,1178880
+GBR,United Kingdom,<3,Males,2010,1202897
+GBR,United Kingdom,<3,Males,2011,1219029
+GBR,United Kingdom,<3,Males,2012,1238587
+GBR,United Kingdom,<3,Females,2002,343679
+GBR,United Kingdom,<3,Females,2003,952301
+GBR,United Kingdom,<3,Females,2004,988167
+GBR,United Kingdom,<3,Females,2005,1012846
+GBR,United Kingdom,<3,Females,2006,1037185
+GBR,United Kingdom,<3,Females,2007,1062990
+GBR,United Kingdom,<3,Females,2008,1092911
+GBR,United Kingdom,<3,Females,2009,1123093
+GBR,United Kingdom,<3,Females,2010,1145269
+GBR,United Kingdom,<3,Females,2011,1159844
+GBR,United Kingdom,<3,Females,2012,1178875
+GBR,United Kingdom,30-34,Males,2002,2408665
+GBR,United Kingdom,30-34,Males,2003,2238994
+GBR,United Kingdom,30-34,Males,2004,2153112
+GBR,United Kingdom,30-34,Males,2005,2091704
+GBR,United Kingdom,30-34,Males,2006,2041890
+GBR,United Kingdom,30-34,Males,2007,1977020
+GBR,United Kingdom,30-34,Males,2008,1930074
+GBR,United Kingdom,30-34,Males,2009,1924431
+GBR,United Kingdom,30-34,Males,2010,1945674
+GBR,United Kingdom,30-34,Males,2011,1985983
+GBR,United Kingdom,30-34,Males,2012,2063522
+GBR,United Kingdom,30-34,Females,2002,2284230
+GBR,United Kingdom,30-34,Females,2003,2261912
+GBR,United Kingdom,30-34,Females,2004,2190007
+GBR,United Kingdom,30-34,Females,2005,2125464
+GBR,United Kingdom,30-34,Females,2006,2065129
+GBR,United Kingdom,30-34,Females,2007,1989697
+GBR,United Kingdom,30-34,Females,2008,1929616
+GBR,United Kingdom,30-34,Females,2009,1907356
+GBR,United Kingdom,30-34,Females,2010,1917906
+GBR,United Kingdom,30-34,Females,2011,1953660
+GBR,United Kingdom,30-34,Females,2012,2045886
+GBR,United Kingdom,35-39,Males,2002,2502931
+GBR,United Kingdom,35-39,Males,2003,2313491
+GBR,United Kingdom,35-39,Males,2004,2329992
+GBR,United Kingdom,35-39,Males,2005,2313730
+GBR,United Kingdom,35-39,Males,2006,2293655
+GBR,United Kingdom,35-39,Males,2007,2263526
+GBR,United Kingdom,35-39,Males,2008,2221228
+GBR,United Kingdom,35-39,Males,2009,2168170
+GBR,United Kingdom,35-39,Males,2010,2110910
+GBR,United Kingdom,35-39,Males,2011,2055003
+GBR,United Kingdom,35-39,Males,2012,2016138
+GBR,United Kingdom,35-39,Females,2002,2402329
+GBR,United Kingdom,35-39,Females,2003,2369802
+GBR,United Kingdom,35-39,Females,2004,2368672
+GBR,United Kingdom,35-39,Females,2005,2351655
+GBR,United Kingdom,35-39,Females,2006,2326683
+GBR,United Kingdom,35-39,Females,2007,2302879
+GBR,United Kingdom,35-39,Females,2008,2264916
+GBR,United Kingdom,35-39,Females,2009,2211137
+GBR,United Kingdom,35-39,Females,2010,2148945
+GBR,United Kingdom,35-39,Females,2011,2079388
+GBR,United Kingdom,35-39,Females,2012,2031276
+GBR,United Kingdom,4,Males,2002,377614
+GBR,United Kingdom,4,Males,2003,362897
+GBR,United Kingdom,4,Males,2004,353557
+GBR,United Kingdom,4,Males,2005,344098
+GBR,United Kingdom,4,Males,2006,339024
+GBR,United Kingdom,4,Males,2007,344554
+GBR,United Kingdom,4,Males,2008,356174
+GBR,United Kingdom,4,Males,2009,364748
+GBR,United Kingdom,4,Males,2010,371450
+GBR,United Kingdom,4,Males,2011,381907
+GBR,United Kingdom,4,Males,2012,396800
+GBR,United Kingdom,4,Females,2002,359843
+GBR,United Kingdom,4,Females,2003,346190
+GBR,United Kingdom,4,Females,2004,336124
+GBR,United Kingdom,4,Females,2005,328386
+GBR,United Kingdom,4,Females,2006,324856
+GBR,United Kingdom,4,Females,2007,328020
+GBR,United Kingdom,4,Females,2008,338172
+GBR,United Kingdom,4,Females,2009,347426
+GBR,United Kingdom,4,Females,2010,354140
+GBR,United Kingdom,4,Females,2011,363471
+GBR,United Kingdom,4,Females,2012,377648
+GBR,United Kingdom,>=40,Males,2002,13141347
+GBR,United Kingdom,>=40,Males,2003,13142630
+GBR,United Kingdom,>=40,Males,2004,13371784
+GBR,United Kingdom,>=40,Males,2005,13571457
+GBR,United Kingdom,>=40,Males,2006,13768377
+GBR,United Kingdom,>=40,Males,2007,13958155
+GBR,United Kingdom,>=40,Males,2008,14150576
+GBR,United Kingdom,>=40,Males,2009,14351724
+GBR,United Kingdom,>=40,Males,2010,14546700
+GBR,United Kingdom,>=40,Males,2011,14732246
+GBR,United Kingdom,>=40,Males,2012,14932518
+GBR,United Kingdom,>=40,Females,2002,14722492
+GBR,United Kingdom,>=40,Females,2003,14817970
+GBR,United Kingdom,>=40,Females,2004,15025672
+GBR,United Kingdom,>=40,Females,2005,15215449
+GBR,United Kingdom,>=40,Females,2006,15385410
+GBR,United Kingdom,>=40,Females,2007,15561487
+GBR,United Kingdom,>=40,Females,2008,15739253
+GBR,United Kingdom,>=40,Females,2009,15920304
+GBR,United Kingdom,>=40,Females,2010,16098441
+GBR,United Kingdom,>=40,Females,2011,16273967
+GBR,United Kingdom,>=40,Females,2012,16443915
+GBR,United Kingdom,5-9,Males,2002,1936472
+GBR,United Kingdom,5-9,Males,2003,1878732
+GBR,United Kingdom,5-9,Males,2004,1857527
+GBR,United Kingdom,5-9,Males,2005,1837022
+GBR,United Kingdom,5-9,Males,2006,1802094
+GBR,United Kingdom,5-9,Males,2007,1767566
+GBR,United Kingdom,5-9,Males,2008,1743740
+GBR,United Kingdom,5-9,Males,2009,1738670
+GBR,United Kingdom,5-9,Males,2010,1751706
+GBR,United Kingdom,5-9,Males,2011,1779739
+GBR,United Kingdom,5-9,Males,2012,1828149
+GBR,United Kingdom,5-9,Females,2002,1842036
+GBR,United Kingdom,5-9,Females,2003,1790593
+GBR,United Kingdom,5-9,Females,2004,1769422
+GBR,United Kingdom,5-9,Females,2005,1749472
+GBR,United Kingdom,5-9,Females,2006,1720053
+GBR,United Kingdom,5-9,Females,2007,1689436
+GBR,United Kingdom,5-9,Females,2008,1665898
+GBR,United Kingdom,5-9,Females,2009,1660728
+GBR,United Kingdom,5-9,Females,2010,1674012
+GBR,United Kingdom,5-9,Females,2011,1700663
+GBR,United Kingdom,5-9,Females,2012,1742981
+USA,United States,10-14,Males,2002,10657595
+USA,United States,10-14,Males,2003,10820818
+USA,United States,10-14,Males,2004,10856750
+USA,United States,10-14,Males,2005,10797642
+USA,United States,10-14,Males,2006,10664529
+USA,United States,10-14,Males,2007,10531958
+USA,United States,10-14,Males,2008,10233680
+USA,United States,10-14,Males,2009,10265975
+USA,United States,10-14,Males,2010,10203664
+USA,United States,10-14,Males,2011,10575813
+USA,United States,10-14,Males,2012,10585377
+USA,United States,10-14,Females,2002,10163705
+USA,United States,10-14,Females,2003,10303034
+USA,United States,10-14,Females,2004,10336610
+USA,United States,10-14,Females,2005,10284140
+USA,United States,10-14,Females,2006,10159838
+USA,United States,10-14,Females,2007,10035888
+USA,United States,10-14,Females,2008,9767646
+USA,United States,10-14,Females,2009,9790505
+USA,United States,10-14,Females,2010,9733529
+USA,United States,10-14,Females,2011,10101538
+USA,United States,10-14,Females,2012,10116606
+USA,United States,15-19,Males,2002,10323042
+USA,United States,15-19,Males,2003,10471798
+USA,United States,15-19,Males,2004,10518659
+USA,United States,15-19,Males,2005,10667116
+USA,United States,15-19,Males,2006,10840931
+USA,United States,15-19,Males,2007,10958686
+USA,United States,15-19,Males,2008,11029619
+USA,United States,15-19,Males,2009,11101092
+USA,United States,15-19,Males,2010,11023112
+USA,United States,15-19,Males,2011,11230969
+USA,United States,15-19,Males,2012,11067371
+USA,United States,15-19,Females,2002,9940146
+USA,United States,15-19,Females,2003,9892430
+USA,United States,15-19,Females,2004,9959759
+USA,United States,15-19,Females,2005,10126965
+USA,United States,15-19,Females,2006,10295584
+USA,United States,15-19,Females,2007,10416012
+USA,United States,15-19,Females,2008,10490025
+USA,United States,15-19,Females,2009,10531444
+USA,United States,15-19,Females,2010,10461420
+USA,United States,15-19,Females,2011,10647855
+USA,United States,15-19,Females,2012,10480232
+USA,United States,20-24,Males,2002,9381105
+USA,United States,20-24,Males,2003,10507286
+USA,United States,20-24,Males,2004,10663917
+USA,United States,20-24,Males,2005,10818406
+USA,United States,20-24,Males,2006,10858485
+USA,United States,20-24,Males,2007,10906338
+USA,United States,20-24,Males,2008,10858613
+USA,United States,20-24,Males,2009,11002382
+USA,United States,20-24,Males,2010,11125428
+USA,United States,20-24,Males,2011,11142186
+USA,United States,20-24,Males,2012,11367809
+USA,United States,20-24,Females,2002,9567611
+USA,United States,20-24,Females,2003,9953464
+USA,United States,20-24,Females,2004,10063769
+USA,United States,20-24,Females,2005,10174607
+USA,United States,20-24,Females,2006,10183744
+USA,United States,20-24,Females,2007,10192701
+USA,United States,20-24,Females,2008,10233077
+USA,United States,20-24,Females,2009,10349879
+USA,United States,20-24,Females,2010,10478470
+USA,United States,20-24,Females,2011,10680913
+USA,United States,20-24,Females,2012,10900133
+USA,United States,25-29,Males,2002,8557661
+USA,United States,25-29,Males,2003,9644042
+USA,United States,25-29,Males,2004,9772710
+USA,United States,25-29,Males,2005,10048707
+USA,United States,25-29,Males,2006,10333099
+USA,United States,25-29,Males,2007,10669994
+USA,United States,25-29,Males,2008,10983779
+USA,United States,25-29,Males,2009,11014874
+USA,United States,25-29,Males,2010,11141656
+USA,United States,25-29,Males,2011,10688093
+USA,United States,25-29,Males,2012,10778315
+USA,United States,25-29,Females,2002,8964683
+USA,United States,25-29,Females,2003,9305030
+USA,United States,25-29,Females,2004,9395244
+USA,United States,25-29,Females,2005,9610486
+USA,United States,25-29,Females,2006,9901069
+USA,United States,25-29,Females,2007,10200551
+USA,United States,25-29,Females,2008,10417986
+USA,United States,25-29,Females,2009,10503602
+USA,United States,25-29,Females,2010,10569948
+USA,United States,25-29,Females,2011,10485670
+USA,United States,25-29,Females,2012,10534510
+USA,United States,<3,Males,2002,6059306
+USA,United States,<3,Males,2003,6112605
+USA,United States,<3,Males,2004,6154902
+USA,United States,<3,Males,2005,6215454
+USA,United States,<3,Males,2006,6269107
+USA,United States,<3,Males,2007,6315159
+USA,United States,<3,Males,2008,6563567
+USA,United States,<3,Males,2009,6563888
+USA,United States,<3,Males,2010,6591233
+USA,United States,<3,Males,2011,6120990
+USA,United States,<3,Males,2012,6073231
+USA,United States,<3,Females,2002,5754664
+USA,United States,<3,Females,2003,5842367
+USA,United States,<3,Females,2004,5893408
+USA,United States,<3,Females,2005,5937069
+USA,United States,<3,Females,2006,5986490
+USA,United States,<3,Females,2007,6031595
+USA,United States,<3,Females,2008,6262368
+USA,United States,<3,Females,2009,6277702
+USA,United States,<3,Females,2010,6306965
+USA,United States,<3,Females,2011,5863878
+USA,United States,<3,Females,2012,5816125
+USA,United States,30-34,Males,2002,9589513
+USA,United States,30-34,Males,2003,10490845
+USA,United States,30-34,Males,2004,10449776
+USA,United States,30-34,Males,2005,10298573
+USA,United States,30-34,Males,2006,10093509
+USA,United States,30-34,Males,2007,9960874
+USA,United States,30-34,Males,2008,10009008
+USA,United States,30-34,Males,2009,9957770
+USA,United States,30-34,Males,2010,10158972
+USA,United States,30-34,Males,2011,10127927
+USA,United States,30-34,Males,2012,10349674
+USA,United States,30-34,Females,2002,9923716
+USA,United States,30-34,Females,2003,10307142
+USA,United States,30-34,Females,2004,10254868
+USA,United States,30-34,Females,2005,10085580
+USA,United States,30-34,Females,2006,9879329
+USA,United States,30-34,Females,2007,9698079
+USA,United States,30-34,Females,2008,9676626
+USA,United States,30-34,Females,2009,9646769
+USA,United States,30-34,Females,2010,9827914
+USA,United States,30-34,Females,2011,10084298
+USA,United States,30-34,Females,2012,10296814
+USA,United States,35-39,Males,2002,10510095
+USA,United States,35-39,Males,2003,10850027
+USA,United States,35-39,Males,2004,10726550
+USA,United States,35-39,Males,2005,10550439
+USA,United States,35-39,Males,2006,10577196
+USA,United States,35-39,Males,2007,10675585
+USA,United States,35-39,Males,2008,10539128
+USA,United States,35-39,Males,2009,10467836
+USA,United States,35-39,Males,2010,10308328
+USA,United States,35-39,Males,2011,9929971
+USA,United States,35-39,Males,2012,9729700
+USA,United States,35-39,Females,2002,10930615
+USA,United States,35-39,Females,2003,10836210
+USA,United States,35-39,Females,2004,10681456
+USA,United States,35-39,Females,2005,10450437
+USA,United States,35-39,Females,2006,10471701
+USA,United States,35-39,Females,2007,10554533
+USA,United States,35-39,Females,2008,10392840
+USA,United States,35-39,Females,2009,10313215
+USA,United States,35-39,Females,2010,10139430
+USA,United States,35-39,Females,2011,10014569
+USA,United States,35-39,Females,2012,9803348
+USA,United States,>=40,Males,2002,55926127
+USA,United States,>=40,Males,2003,58947635
+USA,United States,>=40,Males,2004,59823574
+USA,United States,>=40,Males,2005,61450069
+USA,United States,>=40,Males,2006,62617006
+USA,United States,>=40,Males,2007,63657287
+USA,United States,>=40,Males,2008,65598351
+USA,United States,>=40,Males,2009,65396892
+USA,United States,>=40,Males,2010,66388608
+USA,United States,>=40,Males,2011,68055314
+USA,United States,>=40,Males,2012,69048064
+USA,United States,>=40,Females,2002,62984478
+USA,United States,>=40,Females,2003,66910385
+USA,United States,>=40,Females,2004,67762522
+USA,United States,>=40,Females,2005,69355968
+USA,United States,>=40,Females,2006,70519574
+USA,United States,>=40,Females,2007,71516161
+USA,United States,>=40,Females,2008,73396595
+USA,United States,>=40,Females,2009,73203145
+USA,United States,>=40,Females,2010,74152366
+USA,United States,>=40,Females,2011,75695524
+USA,United States,>=40,Females,2012,76704157
+USA,United States,5-9,Males,2002,10269331
+USA,United States,5-9,Males,2003,10182103
+USA,United States,5-9,Males,2004,10119909
+USA,United States,5-9,Males,2005,10009835
+USA,United States,5-9,Males,2006,10011093
+USA,United States,5-9,Males,2007,10102511
+USA,United States,5-9,Males,2008,10299813
+USA,United States,5-9,Males,2009,10427822
+USA,United States,5-9,Males,2010,10573091
+USA,United States,5-9,Males,2011,10386204
+USA,United States,5-9,Males,2012,10404826
+USA,United States,5-9,Females,2002,9829337
+USA,United States,5-9,Females,2003,9707393
+USA,United States,5-9,Females,2004,9655367
+USA,United States,5-9,Females,2005,9558727
+USA,United States,5-9,Females,2006,9565182
+USA,United States,5-9,Females,2007,9656514
+USA,United States,5-9,Females,2008,9842097
+USA,United States,5-9,Females,2009,9966400
+USA,United States,5-9,Females,2010,10109282
+USA,United States,5-9,Females,2011,9955119
+USA,United States,5-9,Females,2012,9967690

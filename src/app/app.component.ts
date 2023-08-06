@@ -61,6 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
                 yLabel: 'Population (millions)',
                 unit: 'million',
                 data: stacks,
+                stackOrder: ['<3', '4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '>=40'],
             };
         });
         this.browsers$ = this.api.getBrowsersData();

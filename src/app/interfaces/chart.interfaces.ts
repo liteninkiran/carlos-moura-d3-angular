@@ -48,6 +48,7 @@ export interface IGroupStackData {
     yLabel: string;
     unit: string;
     data: IGroupStackDataElem[];
+    stackOrder: string[];
 }
 
 export interface IGroupStackConfig {

@@ -23,7 +23,7 @@ export class ApiService {
     }
 
     public getPopulationData(): Observable<any> {
-        const url = 'assets/population.csv';
+        const url = 'assets/population2.csv';
         return this.getParsedData(url);
     }
 
