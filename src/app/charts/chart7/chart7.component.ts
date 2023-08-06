@@ -494,25 +494,20 @@ export class Chart7Component implements OnInit, OnChanges {
 
     private drawRectangles(): void {
         const data = this.stackedData;
-        const colours = d3.schemeCategory10;
+        console.log(data[0]);
         this.dataContainer
-            .selectAll('g.series')
-            .data(data, d => d.key)
-            .join('g')
-            .attr('class', 'series')
-            .style('fill', (d, i) => this.scales.colour(i))
             .selectAll('rect.data')
-            .data(d => d, d => d.data.year)
+            .data(data, d => d.key)
             .join('rect')
             .attr('class', 'data')
             .attr('x', d => {
-                const [domain, group] = d.data[0].split('__');
-                return this.scales.x(domain) + this.scales.group(group);
+                return this.scales.x(d.domain) + this.scales.group(d.group);
             })
             .attr('width', this.scales.group.bandwidth())
-            .attr('y', d => this.scales.y(d[1]))
-            .attr('height', d => Math.abs(this.scales.y(d[0]) - this.scales.y(d[1])))
+            .attr('y', d => this.scales.y(d.max))
+            .attr('height', d => Math.abs(this.scales.y(d.min) - this.scales.y(d.max)))
             .attr('stroke', 'white')
+            .style('fill', d => this.scales.colour(d.index))
             .on('mouseenter', (event: MouseEvent, data: any) => {
                 this.tooltip(event, data);
             });
