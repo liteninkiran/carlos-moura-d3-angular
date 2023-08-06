@@ -218,7 +218,7 @@ export class Chart7Component implements OnInit, OnChanges {
 
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
-        console.log(this);
+        //console.log(this);
     }
 
     public ngOnInit(): void {
@@ -392,31 +392,34 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setStackedData(): void {
-        const data = this.data2;
-        const groupedData = d3.groups(data, d => d.year);
+        const data = this.data.data;
+        const groupedData = d3.groups(data, d => d.domain + '__' + d.group);
+        const keys = d3.groups(data, d => d.stack).map((d) => d[0]);
         const stack = d3
             .stack()
-            .keys(['apples', 'bananas', 'cherries', 'dates'])
-            .value((element, key) => element[1].find(d => d.fruit === key).value);
+            .keys(keys)
+            .value((element, key) => element[1].find(d => d.stack === key).value);
         this.stackedData = stack(groupedData);
     }
 
     private drawRectangles(): void {
         const data = this.stackedData;
-        this.scales.y.domain([0, 8000]);
         const colours = d3.schemeCategory10;
         this.dataContainer
             .selectAll('g.series')
             .data(data, d => d.key)
             .join('g')
             .attr('class', 'series')
-            .style('fill', (d, i) => colours[i])
+            .style('fill', (d, i) => this.scales.colour(i))
             .selectAll('rect.data')
             .data(d => d, d => d.data.year)
             .join('rect')
             .attr('class', 'data')
-            .attr('x', d => this.scales.x(d.data[0] + ''))
-            .attr('width', this.scales.x.bandwidth())
+            .attr('x', d => {
+                const [domain, group] = d.data[0].split('__');
+                return this.scales.x(domain) + this.scales.group(group);
+            })
+            .attr('width', this.scales.group.bandwidth())
             .attr('y', d => this.scales.y(d[1]))
             .attr('height', d => Math.abs(this.scales.y(d[0]) - this.scales.y(d[1])))
             .attr('stroke', 'white');
