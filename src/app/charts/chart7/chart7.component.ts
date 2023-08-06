@@ -476,8 +476,20 @@ export class Chart7Component implements OnInit, OnChanges {
             .stack()
             .keys(keys)
             .value((element, key) => element[1].find(d => d.stack === key).value);
-        this.stackedData = stack(groupedData);
-        console.log(groupedData, keys);
+        this.stackedData = stack(groupedData).flatMap((v) => v.map((elem) => {
+            const [domain, group] = elem.data[0].split('__');
+            const data = elem.data[1].find((d) => d.stack === v.key) || {
+                domain,
+                group,
+                key: v.key,
+            };
+            return {
+                index: v.index,
+                min: elem[0],
+                max: elem[1],
+                ...data,
+            };
+        }));
     }
 
     private drawRectangles(): void {
