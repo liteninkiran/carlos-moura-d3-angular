@@ -521,13 +521,18 @@ export class Chart7Component implements OnInit, OnChanges {
             value,
         };
 
-        console.log(tooltipData);
-
         // Set title
+        this.tooltipContainer.select('text.svg-tooltip__title').text(tooltipData.title);
 
         // Set value
+        this.tooltipContainer.select('tspan.svg-tooltip__value--key').text(tooltipData.key);
+        this.tooltipContainer.select('tspan.svg-tooltip__value--value').text(tooltipData.value);
 
         // Set background
+        this.tooltipContainer.select('text.svg-tooltip__title').text(tooltipData.title);
+
+        // Symbol colour
+        this.tooltipContainer.select('rect.svg-tooltip__symbol').style('fill', tooltipData.colour);
 
         // Resize
 
