@@ -1,13 +1,26 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import * as d3 from 'd3';
 import { ChartDimensions } from 'src/app/helpers/chart.dimensions.helper';
-import ObjectHelper from 'src/app/helpers/object.helper';
 import { IGroupStackConfig, IGroupStackData } from 'src/app/interfaces/chart.interfaces';
+import ObjectHelper from 'src/app/helpers/object.helper';
+import * as d3 from 'd3';
 
 @Component({
     selector: 'app-chart7',
     template: `
     <svg class="chart7">
+
+        <g class="tooltip-container">
+            <rect class="svg-tooltip__background"></rect>
+            <g class="svg-tooltip">
+                <text class="svg-tooltip__title"></text>
+                <rect class="svg-tooltip__symbol"></rect>
+                <text class="svg-tooltip__value">
+                    <tspan class="svg-tooltip__value--key"></tspan>
+                    <tspan class="svg-tooltip__value--value"></tspan>
+                </text>
+            </g>
+        </g>
+
         <style>
             .chart7 {
                 font-size: 12px;
@@ -289,7 +302,9 @@ export class Chart7Component implements OnInit, OnChanges {
             .style('text-anchor', 'middle')
             .attr('transform', 'rotate(-90)');
 
-        // TODO... add tooltip
+        this.tooltipContainer = this.svg
+            .select('g.tooltip-container')
+            .raise();
     }
 
     private setParams(): void {
@@ -332,7 +347,7 @@ export class Chart7Component implements OnInit, OnChanges {
                 .attr('y', height + fontSize + 1)
                 .style('font-size', fontSize + 'px')
                 .style('text-anchor', 'middle')
-                .text(d => d)
+                .text(d => d);
         };
 
         // Update function
@@ -364,7 +379,7 @@ export class Chart7Component implements OnInit, OnChanges {
 
         // Re-position legend
         const coords = this.getTranslations('legend');
-        this.legendContainer.attr('transform', `translate(${coords.x}, ${coords.y})`)
+        this.legendContainer.attr('transform', `translate(${coords.x}, ${coords.y})`);
     }
 
     private draw(): void {
