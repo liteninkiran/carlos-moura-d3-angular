@@ -310,7 +310,61 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setLegend(): void {
+        const data = this.data.stackOrder;
+        const width = 35;
+        const height = 15;
+        const fontSize = 10;
+        const colour = (elem) => this.scales.colour(data.indexOf(elem));
 
+        // Enter function
+        const generateLegendItem = (selection) => {
+            selection
+                .append('rect')
+                .attr('class', 'legend-icon')
+                .attr('width', width)
+                .attr('height', height)
+                .style('fill', (d) => colour(d));
+            
+            selection
+                .append('text')
+                .attr('class', 'legend-label')
+                .attr('x', width * 0.5)
+                .attr('y', height + fontSize + 1)
+                .style('font-size', fontSize + 'px')
+                .style('text-anchor', 'middle')
+                .text(d => d)
+        };
+
+        // Update function
+        const updateLegendItem = (selection) => {
+            selection.selectAll('rect.lengend-icon').style('fill', (d) => d.colour);
+            selection.append('text').text((d) => d);
+        }
+
+        // Set item containers
+        this.legendContainer
+            .selectAll('g.legend-item')
+            .data(data, d => d)
+            .join(
+                enter => enter.append('g').call(generateLegendItem),
+                update => update.each().call(updateLegendItem),
+            )
+            .attr('class', 'legend-item');
+
+        // Re-position legend elements
+        let padding = 0;
+
+        this.legendContainer
+            .selectAll('g.legend-item')
+            .each(function () {
+                const g = d3.select(this);
+                g.attr('transform', `translate(${padding}, 0)`);
+                padding += g.node().getBBox().width;
+            });
+
+        // Re-position legend
+        const coords = this.getTranslations('legend');
+        this.legendContainer.attr('transform', `translate(${coords.x}, ${coords.y})`)
     }
 
     private draw(): void {
@@ -344,6 +398,13 @@ export class Chart7Component implements OnInit, OnChanges {
                 x: this.dimensions.marginLeft - 30,
                 y: this.dimensions.midHeight,
             };
+            case 'legend':
+                const legendWidth = this.legendContainer.node().getBBox().width;
+                const axisHeight = this.xAxisContainer.node().getBBox().height;
+                return {
+                    x: this.dimensions.midWidth - 0.5 * legendWidth,
+                    y: this.dimensions.marginBottom + axisHeight + 10,
+                };
         }
     }
 
