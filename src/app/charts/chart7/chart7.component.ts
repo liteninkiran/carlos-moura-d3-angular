@@ -125,7 +125,11 @@ export class Chart7Component implements OnInit, OnChanges {
             symbol: {
                 width: 6,
                 height: 6,
-            },            
+            },
+            offset: {
+                x: 20,
+                y: 20,
+            },
         },
     };
 
@@ -462,12 +466,37 @@ export class Chart7Component implements OnInit, OnChanges {
                     y: this.dimensions.marginBottom + axisHeight + 10,
                 };
             case 'tooltip':
-                const position = d3.pointer(event, this.svg.node());
-                return {
-                    x: position[0] - 80,
-                    y: position[1] - 80,
-                };
+                // Find position of pointer
+                const position: Array<number> = d3.pointer(event, this.svg.node());
 
+                // Get tooltip container dimensions
+                const dims: DOMRect = this.tooltipContainer.node().getBoundingClientRect();
+
+                // Find which side of the chart the cursor is on
+                const cursorRhs: boolean = (position[0] > this.dimensions.midWidth);
+
+                // Find tooltip X position
+                const xPosition: number = position[0] + (cursorRhs ? -dims.width : this.config.tooltip.offset.x);
+
+                // Find tooltip Y initial position
+                let yPosition: number = position[1] + this.config.tooltip.offset.y - 0.5 * dims.height;
+
+                // Check if tooltip has disappeared off the top of the chart
+                const capTop: boolean = yPosition + dims.height > this.dimensions.height;
+
+                // Prevent tooltip from disappearing off the bottom of the chart
+                yPosition = capTop ? this.dimensions.height - dims.height : yPosition;
+
+                // Check if tooltip has disappeared off the bottom of the chart
+                const capBottom: boolean = yPosition < this.config.tooltip.offset.y;
+
+                // Prevent tooltip from disappearing off the top of the chart
+                yPosition = capBottom ? yPosition = this.config.tooltip.offset.y : yPosition;
+
+                return {
+                    x: xPosition,
+                    y: yPosition,
+                };
         }
     }
 
@@ -610,8 +639,7 @@ export class Chart7Component implements OnInit, OnChanges {
         // Resize
 
         // Set position
-        const coords = this.getTranslations('tooltip', event);
-        this.tooltipContainer.attr('transform', `translate(${coords.x}, ${coords.y})`)
+        this.moveTooltip(event);
     }
 
     private showTooltip = (): void => {
@@ -620,6 +648,11 @@ export class Chart7Component implements OnInit, OnChanges {
 
     private hideTooltip = (): void => {
         this.tooltipContainer.style('visibility', 'hidden');
+    }
+
+    private moveTooltip(event: MouseEvent) {
+        const coords = this.getTranslations('tooltip', event);
+        this.tooltipContainer.attr('transform', `translate(${coords.x}, ${coords.y})`);
     }
 
     // Highlight methods...

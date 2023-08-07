@@ -94,4 +94,8 @@ export interface ITooltipConfig {
         width: number;
         height: number;
     };
+    offset: {
+        x: number;
+        y: number;
+    };
 }
