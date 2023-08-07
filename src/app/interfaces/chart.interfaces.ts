@@ -3,18 +3,18 @@ export interface IChartMargins {
     right: number;
     bottom: number;
     left: number;
-}
+};
 
 export interface IPieDataElements {
     id: string | number;
     label: string;
     value: number;
-}
+};
 
 export interface IPieData {
     title: string;
     data: IPieDataElements[];
-}
+};
 
 export interface IPieConfig {
     innerRadiusCoef: number;
@@ -33,7 +33,7 @@ export interface IPieConfig {
         padAngle: number;
     };
     margins: IChartMargins;
-}
+};
 
 export interface IGroupStackDataElem {
     key?: string;
@@ -41,7 +41,7 @@ export interface IGroupStackDataElem {
     group: string;
     stack: string;
     value: number;
-}
+};
 
 export interface IGroupStackData {
     title: string;
@@ -49,7 +49,7 @@ export interface IGroupStackData {
     unit: string;
     data: IGroupStackDataElem[];
     stackOrder: string[];
-}
+};
 
 export interface IGroupStackConfig {
     hiddenOpacity: number;
@@ -57,21 +57,25 @@ export interface IGroupStackConfig {
     transition: number;
     margins: IChartMargins;
     tooltip: ITooltipConfig;
-}
+    transitions: {
+        normal: number;
+        slow: number;
+    };
+};
 
 export interface IGroupStackRectData extends IGroupStackDataElem {
     min: number;
     max: number;
     key: string;
     index: number;
-}
+};
 
 export interface ITooltipData {
     title: string;
     colour: string;
     key: string;
     value: number | string;
-}
+};
 
 export interface ITooltipConfig {
     background: {
@@ -98,4 +102,4 @@ export interface ITooltipConfig {
         x: number;
         y: number;
     };
-}
+};

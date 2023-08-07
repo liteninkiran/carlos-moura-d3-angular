@@ -52,6 +52,14 @@ import * as d3 from 'd3';
                 ry: {{ config.tooltip.background.ry }}px;
             }
 
+            .chart7 rect.faded {
+                opacity: 0.3;
+            }
+
+            .chart7 rect.data {
+                transition: opacity {{ config.transitions.normal }}ms;
+            }
+
         </style>
     </svg>`,
     styles: []
@@ -131,6 +139,10 @@ export class Chart7Component implements OnInit, OnChanges {
                 y: 20,
             },
         },
+        transitions: {
+            normal: 300,
+            slow: 600,
+        }
     };
 
     private _defaultData: IGroupStackData = {
@@ -321,21 +333,21 @@ export class Chart7Component implements OnInit, OnChanges {
         this.xAxisContainer = this.svg
             .append('g').attr('class', 'x-axis-container')
             .attr('transform', `translate(${coords.xAxis.x}, ${coords.xAxis.y})`);
-  
+
         this.yAxisContainer = this.svg
             .append('g')
             .attr('class', 'y-axis-container')
             .attr('transform', `translate(${coords.yAxis.x}, ${coords.yAxis.y})`);
-  
+
         this.dataContainer = this.svg
             .append('g').attr('class', 'data-container')
             .attr('transform', `translate(${coords.data.x}, ${coords.data.y})`);
-  
+
         this.legendContainer = this.svg
             .append('g')
             .attr('class', 'legend-container')
             .attr('transform', `translate(${coords.legend.x}, ${coords.legend.y})`);
-  
+
         this.title = this.svg
             .append('g')
             .attr('class', 'title-container')
@@ -388,7 +400,7 @@ export class Chart7Component implements OnInit, OnChanges {
                 .attr('width', width)
                 .attr('height', height)
                 .style('fill', (d) => colour(d));
-            
+
             selection
                 .append('text')
                 .attr('class', 'legend-label')
@@ -588,7 +600,10 @@ export class Chart7Component implements OnInit, OnChanges {
             .attr('height', d => Math.abs(this.scales.y(d.min) - this.scales.y(d.max)))
             .attr('stroke', 'white')
             .style('fill', d => this.scales.colour(d.index))
-            .on('mouseenter', this.tooltip);
+            .on('mouseenter', (event, data) => {
+                this.tooltip(event, data);
+                this.highlightRectangle(data);
+            });
     }
 
     // Tooltip methods...
@@ -651,6 +666,7 @@ export class Chart7Component implements OnInit, OnChanges {
 
     private hideTooltip = (): void => {
         this.tooltipContainer.style('visibility', 'hidden');
+        this.resetHighlights();
     }
 
     private moveTooltip(event: MouseEvent) {
@@ -659,4 +675,15 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     // Highlight methods...
+    private highlightRectangle = (data: IGroupStackRectData): void => {
+        this.dataContainer
+            .selectAll('rect.data')
+            .classed('faded', (d: IGroupStackRectData) => d.key !== data.key);
+    }
+
+    private resetHighlights = () => {
+        this.dataContainer
+            .selectAll('rect.data')
+            .classed('faded', false);
+    }
 }
