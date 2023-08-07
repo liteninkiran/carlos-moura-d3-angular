@@ -314,6 +314,10 @@ export class Chart7Component implements OnInit, OnChanges {
             title: this.getTranslations('title'),
             yLabel: this.getTranslations('y-label'),
         };
+        this.svg
+            .on('mousemove', event => this.moveTooltip(event))
+            .on('mouseleave', this.hideTooltip);
+
         this.xAxisContainer = this.svg
             .append('g').attr('class', 'x-axis-container')
             .attr('transform', `translate(${coords.xAxis.x}, ${coords.xAxis.y})`);
@@ -584,8 +588,7 @@ export class Chart7Component implements OnInit, OnChanges {
             .attr('height', d => Math.abs(this.scales.y(d.min) - this.scales.y(d.max)))
             .attr('stroke', 'white')
             .style('fill', d => this.scales.colour(d.index))
-            .on('mousemove', this.tooltip)
-            .on('mouseleave', this.hideTooltip);
+            .on('mouseenter', this.tooltip);
     }
 
     // Tooltip methods...
