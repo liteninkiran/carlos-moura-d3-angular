@@ -425,7 +425,15 @@ export class Chart7Component implements OnInit, OnChanges {
                 enter => enter.append('g').call(generateLegendItem),
                 update => update.each().call(updateLegendItem),
             )
-            .attr('class', 'legend-item');
+            .attr('class', 'legend-item')
+            .on('mouseenter', (event, key) => {
+                this.highlightSeries(key);
+                this.highlightLegendItems(key);
+            })
+            .on('mouseleave', () => {
+                this.resetHighlights();
+                this.resetLegendItems();
+            });
 
         // Re-position legend elements
         let padding = 0;
@@ -681,9 +689,27 @@ export class Chart7Component implements OnInit, OnChanges {
             .classed('faded', (d: IGroupStackRectData) => d.key !== data.key);
     }
 
+    private highlightSeries = (stack: string): void => {
+        this.dataContainer
+            .selectAll('rect.data')
+            .classed('faded', (d: IGroupStackRectData) => d.stack !== stack);
+    }
+
+    private highlightLegendItems = (stack: string): void => {
+        this.legendContainer
+            .selectAll('rect.legend-icon')
+            .classed('faded', (d: string) => d !== stack);
+    }
+
     private resetHighlights = () => {
         this.dataContainer
             .selectAll('rect.data')
+            .classed('faded', false);
+    }
+
+    private resetLegendItems = () => {
+        this.legendContainer
+            .selectAll('rect.legend-icon')
             .classed('faded', false);
     }
 }
