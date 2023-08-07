@@ -387,7 +387,7 @@ export class Chart7Component implements OnInit, OnChanges {
         this.drawRectangles();
     }
 
-    private getTranslations(container: string): any {
+    private getTranslations(container: string, event?): any {
         switch (container) {
             case 'x-axis-container': return {
                 x: this.dimensions.marginLeft,
@@ -420,6 +420,13 @@ export class Chart7Component implements OnInit, OnChanges {
                     x: this.dimensions.midWidth - 0.5 * legendWidth,
                     y: this.dimensions.marginBottom + axisHeight + 10,
                 };
+            case 'tooltip':
+                const position = d3.pointer(event, this.svg.node());
+                return {
+                    x: position[0],
+                    y: position[1] - 10,
+                };
+
         }
     }
 
@@ -507,7 +514,7 @@ export class Chart7Component implements OnInit, OnChanges {
             .attr('height', d => Math.abs(this.scales.y(d.min) - this.scales.y(d.max)))
             .attr('stroke', 'white')
             .style('fill', d => this.scales.colour(d.index))
-            .on('mouseenter', this.tooltip);
+            .on('mousemove', this.tooltip);
     }
 
     // Tooltip methods...
@@ -537,6 +544,8 @@ export class Chart7Component implements OnInit, OnChanges {
         // Resize
 
         // Set position
+        const coords = this.getTranslations('tooltip', event);
+        this.tooltipContainer.attr('transform', `translate(${coords.x}, ${coords.y})`)
     }
 
     // Highlight methods...
