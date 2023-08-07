@@ -14,7 +14,11 @@ import * as d3 from 'd3';
             <g class="svg-tooltip">
                 <text class="svg-tooltip__title"></text>
                 <rect class="svg-tooltip__symbol"></rect>
-                <text class="svg-tooltip__value">
+                <text
+                    class="svg-tooltip__value"
+                    [attr.x]="config.tooltip.labels.textSeparator"
+                    [attr.y]="config.tooltip.labels.height"
+                >
                     <tspan class="svg-tooltip__value--key"></tspan>
                     <tspan class="svg-tooltip__value--value"></tspan>
                 </text>
@@ -32,6 +36,11 @@ import * as d3 from 'd3';
 
             .chart7 rect {
                 fill: unset;
+            }
+
+            .chart7 .svg-tooltip__value--value {
+                font-size: {{ config.tooltip.labels.fontSize }}px;
+                font-weight: bold;
             }
 
         </style>
@@ -85,6 +94,19 @@ export class Chart7Component implements OnInit, OnChanges {
             right: 20,
             bottom: 60,
             left: 50,
+        },
+        tooltip: {
+            background: {
+                xPadding: 10,
+                yPadding: 10,
+                colour: '#000',
+            },
+            labels: {
+                symbolSize: 6,
+                fontSize: 30,
+                height: 30,
+                textSeparator: 10
+            },
         },
     };
 
@@ -423,8 +445,8 @@ export class Chart7Component implements OnInit, OnChanges {
             case 'tooltip':
                 const position = d3.pointer(event, this.svg.node());
                 return {
-                    x: position[0],
-                    y: position[1] - 10,
+                    x: position[0] - 40,
+                    y: position[1] - 50,
                 };
 
         }
