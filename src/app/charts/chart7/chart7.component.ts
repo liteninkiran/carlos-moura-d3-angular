@@ -16,8 +16,8 @@ import * as d3 from 'd3';
                 <rect class="svg-tooltip__symbol"></rect>
                 <text
                     class="svg-tooltip__value"
-                    [attr.x]="config.tooltip.labels.textSeparator"
-                    [attr.y]="config.tooltip.labels.height"
+                    [attr.x]="config.tooltip.labels.textSeparator + config.tooltip.symbol.width"
+                    [attr.y]="config.tooltip.labels.height + config.fontSize"
                 >
                     <tspan class="svg-tooltip__value--key"></tspan>
                     <tspan class="svg-tooltip__value--value"></tspan>
@@ -27,7 +27,7 @@ import * as d3 from 'd3';
 
         <style>
             .chart7 {
-                font-size: 12px;
+                font-size: {{ config.fontSize }}px;
             }
 
             .chart7 text.title {
@@ -41,6 +41,15 @@ import * as d3 from 'd3';
             .chart7 .svg-tooltip__value--value {
                 font-size: {{ config.tooltip.labels.fontSize }}px;
                 font-weight: bold;
+            }
+
+            .chart7 .svg-tooltip__background {
+                fill: {{ config.tooltip.background.colour }};
+                fill-opacity: {{ config.tooltip.background.opacity }};
+                stroke: {{ config.tooltip.background.stroke }};
+                stroke-width: {{ config.tooltip.background.strokeWidth }}px;
+                rx: {{ config.tooltip.background.rx }}px;
+                ry: {{ config.tooltip.background.ry }}px;
             }
 
         </style>
@@ -88,6 +97,7 @@ export class Chart7Component implements OnInit, OnChanges {
     private _config: IGroupStackConfig;
     private _defaultConfig: IGroupStackConfig = {
         hiddenOpacity: 0.3,
+        fontSize: 12,
         transition: 300,
         margins: {
             top: 40,
@@ -99,7 +109,12 @@ export class Chart7Component implements OnInit, OnChanges {
             background: {
                 xPadding: 10,
                 yPadding: 10,
-                colour: '#000',
+                colour: '#fff',
+                opacity: 0.9,
+                stroke: '#000',
+                strokeWidth: 2,
+                rx: 3,
+                ry: 3,
             },
             labels: {
                 symbolSize: 6,
@@ -107,6 +122,10 @@ export class Chart7Component implements OnInit, OnChanges {
                 height: 30,
                 textSeparator: 10
             },
+            symbol: {
+                width: 6,
+                height: 6,
+            },            
         },
     };
 
@@ -445,8 +464,8 @@ export class Chart7Component implements OnInit, OnChanges {
             case 'tooltip':
                 const position = d3.pointer(event, this.svg.node());
                 return {
-                    x: position[0] - 40,
-                    y: position[1] - 50,
+                    x: position[0] - 80,
+                    y: position[1] - 80,
                 };
 
         }
@@ -551,17 +570,39 @@ export class Chart7Component implements OnInit, OnChanges {
         };
 
         // Set title
-        this.tooltipContainer.select('text.svg-tooltip__title').text(tooltipData.title);
+        this.tooltipContainer
+            .select('text.svg-tooltip__title')
+            .attr('y', this.config.fontSize + 'px')
+            .text(tooltipData.title);
 
         // Set value
-        this.tooltipContainer.select('tspan.svg-tooltip__value--key').text(tooltipData.key);
-        this.tooltipContainer.select('tspan.svg-tooltip__value--value').text(tooltipData.value);
+        this.tooltipContainer
+            .select('tspan.svg-tooltip__value--key')
+            .text(tooltipData.key);
+        this.tooltipContainer
+            .select('tspan.svg-tooltip__value--value')
+            .text(tooltipData.value);
+
+        // Set symbol
+        const y = this.config.tooltip.labels.height + this.config.fontSize - this.config.tooltip.symbol.height;
+        this.tooltipContainer
+            .select('rect.svg-tooltip__symbol')
+            .attr('y', y)
+            .attr('width', this.config.tooltip.symbol.width)
+            .attr('height', this.config.tooltip.symbol.height)
+            .style('fill', tooltipData.colour);
 
         // Set background
-        this.tooltipContainer.select('text.svg-tooltip__title').text(tooltipData.title);
-
-        // Symbol colour
-        this.tooltipContainer.select('rect.svg-tooltip__symbol').style('fill', tooltipData.colour);
+        const tooltipDimensions: DOMRect = this.tooltipContainer
+            .select('g.svg-tooltip')
+            .node()
+            .getBoundingClientRect();
+        this.tooltipContainer
+            .select('rect.svg-tooltip__background')
+            .attr('width', tooltipDimensions.width + 2 * this.config.tooltip.background.xPadding)
+            .attr('height', tooltipDimensions.height + 2 * this.config.tooltip.background.yPadding)
+            .attr('x', -this.config.tooltip.background.xPadding)
+            .attr('y', -this.config.tooltip.background.yPadding);
 
         // Resize
 
