@@ -555,11 +555,14 @@ export class Chart7Component implements OnInit, OnChanges {
             .attr('height', d => Math.abs(this.scales.y(d.min) - this.scales.y(d.max)))
             .attr('stroke', 'white')
             .style('fill', d => this.scales.colour(d.index))
-            .on('mousemove', this.tooltip);
+            .on('mousemove', this.tooltip)
+            .on('mouseleave', this.hideTooltip);
     }
 
     // Tooltip methods...
     private tooltip = (event: MouseEvent, data: IGroupStackRectData): void => {
+        this.showTooltip();
+
         // Convert element to tooltip data
         const value = Math.round(10 * data.value) / 10 + ' ' + this.data.unit;
         const tooltipData: ITooltipData = {
@@ -609,6 +612,14 @@ export class Chart7Component implements OnInit, OnChanges {
         // Set position
         const coords = this.getTranslations('tooltip', event);
         this.tooltipContainer.attr('transform', `translate(${coords.x}, ${coords.y})`)
+    }
+
+    private showTooltip = (): void => {
+        this.tooltipContainer.style('visibility', null);
+    }
+
+    private hideTooltip = (): void => {
+        this.tooltipContainer.style('visibility', 'hidden');
     }
 
     // Highlight methods...
