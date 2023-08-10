@@ -1,0 +1,978 @@
+[
+  {
+    "location": "Afghanistan",
+    "iso3": "AFG"
+  },
+  {
+    "location": "Africa",
+    "iso3": "OWID_AFR"
+  },
+  {
+    "location": "Albania",
+    "iso3": "ALB"
+  },
+  {
+    "location": "Algeria",
+    "iso3": "DZA"
+  },
+  {
+    "location": "Andorra",
+    "iso3": "AND"
+  },
+  {
+    "location": "Angola",
+    "iso3": "AGO"
+  },
+  {
+    "location": "Anguilla",
+    "iso3": "AIA"
+  },
+  {
+    "location": "Antigua and Barbuda",
+    "iso3": "ATG"
+  },
+  {
+    "location": "Argentina",
+    "iso3": "ARG"
+  },
+  {
+    "location": "Armenia",
+    "iso3": "ARM"
+  },
+  {
+    "location": "Aruba",
+    "iso3": "ABW"
+  },
+  {
+    "location": "Asia",
+    "iso3": "OWID_ASI"
+  },
+  {
+    "location": "Australia",
+    "iso3": "AUS"
+  },
+  {
+    "location": "Austria",
+    "iso3": "AUT"
+  },
+  {
+    "location": "Azerbaijan",
+    "iso3": "AZE"
+  },
+  {
+    "location": "Bahamas",
+    "iso3": "BHS"
+  },
+  {
+    "location": "Bahrain",
+    "iso3": "BHR"
+  },
+  {
+    "location": "Bangladesh",
+    "iso3": "BGD"
+  },
+  {
+    "location": "Barbados",
+    "iso3": "BRB"
+  },
+  {
+    "location": "Belarus",
+    "iso3": "BLR"
+  },
+  {
+    "location": "Belgium",
+    "iso3": "BEL"
+  },
+  {
+    "location": "Belize",
+    "iso3": "BLZ"
+  },
+  {
+    "location": "Benin",
+    "iso3": "BEN"
+  },
+  {
+    "location": "Bermuda",
+    "iso3": "BMU"
+  },
+  {
+    "location": "Bhutan",
+    "iso3": "BTN"
+  },
+  {
+    "location": "Bolivia",
+    "iso3": "BOL"
+  },
+  {
+    "location": "Bonaire Sint Eustatius and Saba",
+    "iso3": "BES"
+  },
+  {
+    "location": "Bosnia and Herzegovina",
+    "iso3": "BIH"
+  },
+  {
+    "location": "Botswana",
+    "iso3": "BWA"
+  },
+  {
+    "location": "Brazil",
+    "iso3": "BRA"
+  },
+  {
+    "location": "British Virgin Islands",
+    "iso3": "VGB"
+  },
+  {
+    "location": "Brunei",
+    "iso3": "BRN"
+  },
+  {
+    "location": "Bulgaria",
+    "iso3": "BGR"
+  },
+  {
+    "location": "Burkina Faso",
+    "iso3": "BFA"
+  },
+  {
+    "location": "Burundi",
+    "iso3": "BDI"
+  },
+  {
+    "location": "Cambodia",
+    "iso3": "KHM"
+  },
+  {
+    "location": "Cameroon",
+    "iso3": "CMR"
+  },
+  {
+    "location": "Canada",
+    "iso3": "CAN"
+  },
+  {
+    "location": "Cape Verde",
+    "iso3": "CPV"
+  },
+  {
+    "location": "Cayman Islands",
+    "iso3": "CYM"
+  },
+  {
+    "location": "Central African Republic",
+    "iso3": "CAF"
+  },
+  {
+    "location": "Chad",
+    "iso3": "TCD"
+  },
+  {
+    "location": "Chile",
+    "iso3": "CHL"
+  },
+  {
+    "location": "China",
+    "iso3": "CHN"
+  },
+  {
+    "location": "Colombia",
+    "iso3": "COL"
+  },
+  {
+    "location": "Comoros",
+    "iso3": "COM"
+  },
+  {
+    "location": "Congo",
+    "iso3": "COG"
+  },
+  {
+    "location": "Cook Islands",
+    "iso3": "COK"
+  },
+  {
+    "location": "Costa Rica",
+    "iso3": "CRI"
+  },
+  {
+    "location": "Cote d'Ivoire",
+    "iso3": "CIV"
+  },
+  {
+    "location": "Croatia",
+    "iso3": "HRV"
+  },
+  {
+    "location": "Cuba",
+    "iso3": "CUB"
+  },
+  {
+    "location": "Curacao",
+    "iso3": "CUW"
+  },
+  {
+    "location": "Cyprus",
+    "iso3": "CYP"
+  },
+  {
+    "location": "Czechia",
+    "iso3": "CZE"
+  },
+  {
+    "location": "Democratic Republic of Congo",
+    "iso3": "COD"
+  },
+  {
+    "location": "Denmark",
+    "iso3": "DNK"
+  },
+  {
+    "location": "Djibouti",
+    "iso3": "DJI"
+  },
+  {
+    "location": "Dominica",
+    "iso3": "DMA"
+  },
+  {
+    "location": "Dominican Republic",
+    "iso3": "DOM"
+  },
+  {
+    "location": "Ecuador",
+    "iso3": "ECU"
+  },
+  {
+    "location": "Egypt",
+    "iso3": "EGY"
+  },
+  {
+    "location": "El Salvador",
+    "iso3": "SLV"
+  },
+  {
+    "location": "Equatorial Guinea",
+    "iso3": "GNQ"
+  },
+  {
+    "location": "Eritrea",
+    "iso3": "ERI"
+  },
+  {
+    "location": "Estonia",
+    "iso3": "EST"
+  },
+  {
+    "location": "Eswatini",
+    "iso3": "SWZ"
+  },
+  {
+    "location": "Ethiopia",
+    "iso3": "ETH"
+  },
+  {
+    "location": "Europe",
+    "iso3": "OWID_EUR"
+  },
+  {
+    "location": "European Union",
+    "iso3": "OWID_EUN"
+  },
+  {
+    "location": "Faeroe Islands",
+    "iso3": "FRO"
+  },
+  {
+    "location": "Falkland Islands",
+    "iso3": "FLK"
+  },
+  {
+    "location": "Fiji",
+    "iso3": "FJI"
+  },
+  {
+    "location": "Finland",
+    "iso3": "FIN"
+  },
+  {
+    "location": "France",
+    "iso3": "FRA"
+  },
+  {
+    "location": "French Polynesia",
+    "iso3": "PYF"
+  },
+  {
+    "location": "Gabon",
+    "iso3": "GAB"
+  },
+  {
+    "location": "Gambia",
+    "iso3": "GMB"
+  },
+  {
+    "location": "Georgia",
+    "iso3": "GEO"
+  },
+  {
+    "location": "Germany",
+    "iso3": "DEU"
+  },
+  {
+    "location": "Ghana",
+    "iso3": "GHA"
+  },
+  {
+    "location": "Gibraltar",
+    "iso3": "GIB"
+  },
+  {
+    "location": "Greece",
+    "iso3": "GRC"
+  },
+  {
+    "location": "Greenland",
+    "iso3": "GRL"
+  },
+  {
+    "location": "Grenada",
+    "iso3": "GRD"
+  },
+  {
+    "location": "Guam",
+    "iso3": "GUM"
+  },
+  {
+    "location": "Guatemala",
+    "iso3": "GTM"
+  },
+  {
+    "location": "Guernsey",
+    "iso3": "GGY"
+  },
+  {
+    "location": "Guinea",
+    "iso3": "GIN"
+  },
+  {
+    "location": "Guinea-Bissau",
+    "iso3": "GNB"
+  },
+  {
+    "location": "Guyana",
+    "iso3": "GUY"
+  },
+  {
+    "location": "Haiti",
+    "iso3": "HTI"
+  },
+  {
+    "location": "High income",
+    "iso3": "OWID_HIC"
+  },
+  {
+    "location": "Honduras",
+    "iso3": "HND"
+  },
+  {
+    "location": "Hong Kong",
+    "iso3": "HKG"
+  },
+  {
+    "location": "Hungary",
+    "iso3": "HUN"
+  },
+  {
+    "location": "Iceland",
+    "iso3": "ISL"
+  },
+  {
+    "location": "India",
+    "iso3": "IND"
+  },
+  {
+    "location": "Indonesia",
+    "iso3": "IDN"
+  },
+  {
+    "location": "International",
+    "iso3": "OWID_INT"
+  },
+  {
+    "location": "Iran",
+    "iso3": "IRN"
+  },
+  {
+    "location": "Iraq",
+    "iso3": "IRQ"
+  },
+  {
+    "location": "Ireland",
+    "iso3": "IRL"
+  },
+  {
+    "location": "Isle of Man",
+    "iso3": "IMN"
+  },
+  {
+    "location": "Israel",
+    "iso3": "ISR"
+  },
+  {
+    "location": "Italy",
+    "iso3": "ITA"
+  },
+  {
+    "location": "Jamaica",
+    "iso3": "JAM"
+  },
+  {
+    "location": "Japan",
+    "iso3": "JPN"
+  },
+  {
+    "location": "Jersey",
+    "iso3": "JEY"
+  },
+  {
+    "location": "Jordan",
+    "iso3": "JOR"
+  },
+  {
+    "location": "Kazakhstan",
+    "iso3": "KAZ"
+  },
+  {
+    "location": "Kenya",
+    "iso3": "KEN"
+  },
+  {
+    "location": "Kiribati",
+    "iso3": "KIR"
+  },
+  {
+    "location": "Kosovo",
+    "iso3": "OWID_KOS"
+  },
+  {
+    "location": "Kuwait",
+    "iso3": "KWT"
+  },
+  {
+    "location": "Kyrgyzstan",
+    "iso3": "KGZ"
+  },
+  {
+    "location": "Laos",
+    "iso3": "LAO"
+  },
+  {
+    "location": "Latvia",
+    "iso3": "LVA"
+  },
+  {
+    "location": "Lebanon",
+    "iso3": "LBN"
+  },
+  {
+    "location": "Lesotho",
+    "iso3": "LSO"
+  },
+  {
+    "location": "Liberia",
+    "iso3": "LBR"
+  },
+  {
+    "location": "Libya",
+    "iso3": "LBY"
+  },
+  {
+    "location": "Liechtenstein",
+    "iso3": "LIE"
+  },
+  {
+    "location": "Lithuania",
+    "iso3": "LTU"
+  },
+  {
+    "location": "Low income",
+    "iso3": "OWID_LIC"
+  },
+  {
+    "location": "Lower middle income",
+    "iso3": "OWID_LMC"
+  },
+  {
+    "location": "Luxembourg",
+    "iso3": "LUX"
+  },
+  {
+    "location": "Macao",
+    "iso3": "MAC"
+  },
+  {
+    "location": "Madagascar",
+    "iso3": "MDG"
+  },
+  {
+    "location": "Malawi",
+    "iso3": "MWI"
+  },
+  {
+    "location": "Malaysia",
+    "iso3": "MYS"
+  },
+  {
+    "location": "Maldives",
+    "iso3": "MDV"
+  },
+  {
+    "location": "Mali",
+    "iso3": "MLI"
+  },
+  {
+    "location": "Malta",
+    "iso3": "MLT"
+  },
+  {
+    "location": "Marshall Islands",
+    "iso3": "MHL"
+  },
+  {
+    "location": "Mauritania",
+    "iso3": "MRT"
+  },
+  {
+    "location": "Mauritius",
+    "iso3": "MUS"
+  },
+  {
+    "location": "Mexico",
+    "iso3": "MEX"
+  },
+  {
+    "location": "Micronesia (country)",
+    "iso3": "FSM"
+  },
+  {
+    "location": "Moldova",
+    "iso3": "MDA"
+  },
+  {
+    "location": "Monaco",
+    "iso3": "MCO"
+  },
+  {
+    "location": "Mongolia",
+    "iso3": "MNG"
+  },
+  {
+    "location": "Montenegro",
+    "iso3": "MNE"
+  },
+  {
+    "location": "Montserrat",
+    "iso3": "MSR"
+  },
+  {
+    "location": "Morocco",
+    "iso3": "MAR"
+  },
+  {
+    "location": "Mozambique",
+    "iso3": "MOZ"
+  },
+  {
+    "location": "Myanmar",
+    "iso3": "MMR"
+  },
+  {
+    "location": "Namibia",
+    "iso3": "NAM"
+  },
+  {
+    "location": "Nauru",
+    "iso3": "NRU"
+  },
+  {
+    "location": "Nepal",
+    "iso3": "NPL"
+  },
+  {
+    "location": "Netherlands",
+    "iso3": "NLD"
+  },
+  {
+    "location": "New Caledonia",
+    "iso3": "NCL"
+  },
+  {
+    "location": "New Zealand",
+    "iso3": "NZL"
+  },
+  {
+    "location": "Nicaragua",
+    "iso3": "NIC"
+  },
+  {
+    "location": "Niger",
+    "iso3": "NER"
+  },
+  {
+    "location": "Nigeria",
+    "iso3": "NGA"
+  },
+  {
+    "location": "Niue",
+    "iso3": "NIU"
+  },
+  {
+    "location": "North America",
+    "iso3": "OWID_NAM"
+  },
+  {
+    "location": "North Korea",
+    "iso3": "PRK"
+  },
+  {
+    "location": "North Macedonia",
+    "iso3": "MKD"
+  },
+  {
+    "location": "Northern Cyprus",
+    "iso3": "OWID_CYN"
+  },
+  {
+    "location": "Northern Mariana Islands",
+    "iso3": "MNP"
+  },
+  {
+    "location": "Norway",
+    "iso3": "NOR"
+  },
+  {
+    "location": "Oceania",
+    "iso3": "OWID_OCE"
+  },
+  {
+    "location": "Oman",
+    "iso3": "OMN"
+  },
+  {
+    "location": "Pakistan",
+    "iso3": "PAK"
+  },
+  {
+    "location": "Palau",
+    "iso3": "PLW"
+  },
+  {
+    "location": "Palestine",
+    "iso3": "PSE"
+  },
+  {
+    "location": "Panama",
+    "iso3": "PAN"
+  },
+  {
+    "location": "Papua New Guinea",
+    "iso3": "PNG"
+  },
+  {
+    "location": "Paraguay",
+    "iso3": "PRY"
+  },
+  {
+    "location": "Peru",
+    "iso3": "PER"
+  },
+  {
+    "location": "Philippines",
+    "iso3": "PHL"
+  },
+  {
+    "location": "Pitcairn",
+    "iso3": "PCN"
+  },
+  {
+    "location": "Poland",
+    "iso3": "POL"
+  },
+  {
+    "location": "Portugal",
+    "iso3": "PRT"
+  },
+  {
+    "location": "Puerto Rico",
+    "iso3": "PRI"
+  },
+  {
+    "location": "Qatar",
+    "iso3": "QAT"
+  },
+  {
+    "location": "Romania",
+    "iso3": "ROU"
+  },
+  {
+    "location": "Russia",
+    "iso3": "RUS"
+  },
+  {
+    "location": "Rwanda",
+    "iso3": "RWA"
+  },
+  {
+    "location": "Saint Helena",
+    "iso3": "SHN"
+  },
+  {
+    "location": "Saint Kitts and Nevis",
+    "iso3": "KNA"
+  },
+  {
+    "location": "Saint Lucia",
+    "iso3": "LCA"
+  },
+  {
+    "location": "Saint Pierre and Miquelon",
+    "iso3": "SPM"
+  },
+  {
+    "location": "Saint Vincent and the Grenadines",
+    "iso3": "VCT"
+  },
+  {
+    "location": "Samoa",
+    "iso3": "WSM"
+  },
+  {
+    "location": "San Marino",
+    "iso3": "SMR"
+  },
+  {
+    "location": "Sao Tome and Principe",
+    "iso3": "STP"
+  },
+  {
+    "location": "Saudi Arabia",
+    "iso3": "SAU"
+  },
+  {
+    "location": "Senegal",
+    "iso3": "SEN"
+  },
+  {
+    "location": "Serbia",
+    "iso3": "SRB"
+  },
+  {
+    "location": "Seychelles",
+    "iso3": "SYC"
+  },
+  {
+    "location": "Sierra Leone",
+    "iso3": "SLE"
+  },
+  {
+    "location": "Singapore",
+    "iso3": "SGP"
+  },
+  {
+    "location": "Sint Maarten (Dutch part)",
+    "iso3": "SXM"
+  },
+  {
+    "location": "Slovakia",
+    "iso3": "SVK"
+  },
+  {
+    "location": "Slovenia",
+    "iso3": "SVN"
+  },
+  {
+    "location": "Solomon Islands",
+    "iso3": "SLB"
+  },
+  {
+    "location": "Somalia",
+    "iso3": "SOM"
+  },
+  {
+    "location": "South Africa",
+    "iso3": "ZAF"
+  },
+  {
+    "location": "South America",
+    "iso3": "OWID_SAM"
+  },
+  {
+    "location": "South Korea",
+    "iso3": "KOR"
+  },
+  {
+    "location": "South Sudan",
+    "iso3": "SSD"
+  },
+  {
+    "location": "Spain",
+    "iso3": "ESP"
+  },
+  {
+    "location": "Sri Lanka",
+    "iso3": "LKA"
+  },
+  {
+    "location": "Sudan",
+    "iso3": "SDN"
+  },
+  {
+    "location": "Suriname",
+    "iso3": "SUR"
+  },
+  {
+    "location": "Sweden",
+    "iso3": "SWE"
+  },
+  {
+    "location": "Switzerland",
+    "iso3": "CHE"
+  },
+  {
+    "location": "Syria",
+    "iso3": "SYR"
+  },
+  {
+    "location": "Taiwan",
+    "iso3": "TWN"
+  },
+  {
+    "location": "Tajikistan",
+    "iso3": "TJK"
+  },
+  {
+    "location": "Tanzania",
+    "iso3": "TZA"
+  },
+  {
+    "location": "Thailand",
+    "iso3": "THA"
+  },
+  {
+    "location": "Timor",
+    "iso3": "TLS"
+  },
+  {
+    "location": "Togo",
+    "iso3": "TGO"
+  },
+  {
+    "location": "Tokelau",
+    "iso3": "TKL"
+  },
+  {
+    "location": "Tonga",
+    "iso3": "TON"
+  },
+  {
+    "location": "Trinidad and Tobago",
+    "iso3": "TTO"
+  },
+  {
+    "location": "Tunisia",
+    "iso3": "TUN"
+  },
+  {
+    "location": "Turkey",
+    "iso3": "TUR"
+  },
+  {
+    "location": "Turkmenistan",
+    "iso3": "TKM"
+  },
+  {
+    "location": "Turks and Caicos Islands",
+    "iso3": "TCA"
+  },
+  {
+    "location": "Tuvalu",
+    "iso3": "TUV"
+  },
+  {
+    "location": "Uganda",
+    "iso3": "UGA"
+  },
+  {
+    "location": "Ukraine",
+    "iso3": "UKR"
+  },
+  {
+    "location": "United Arab Emirates",
+    "iso3": "ARE"
+  },
+  {
+    "location": "United Kingdom",
+    "iso3": "GBR"
+  },
+  {
+    "location": "United States",
+    "iso3": "USA"
+  },
+  {
+    "location": "United States Virgin Islands",
+    "iso3": "VIR"
+  },
+  {
+    "location": "Upper middle income",
+    "iso3": "OWID_UMC"
+  },
+  {
+    "location": "Uruguay",
+    "iso3": "URY"
+  },
+  {
+    "location": "Uzbekistan",
+    "iso3": "UZB"
+  },
+  {
+    "location": "Vanuatu",
+    "iso3": "VUT"
+  },
+  {
+    "location": "Vatican",
+    "iso3": "VAT"
+  },
+  {
+    "location": "Venezuela",
+    "iso3": "VEN"
+  },
+  {
+    "location": "Vietnam",
+    "iso3": "VNM"
+  },
+  {
+    "location": "Wallis and Futuna",
+    "iso3": "WLF"
+  },
+  {
+    "location": "Western Sahara",
+    "iso3": "ESH"
+  },
+  {
+    "location": "World",
+    "iso3": "OWID_WRL"
+  },
+  {
+    "location": "Yemen",
+    "iso3": "YEM"
+  },
+  {
+    "location": "Zambia",
+    "iso3": "ZMB"
+  },
+  {
+    "location": "Zimbabwe",
+    "iso3": "ZWE"
+  }
+]
