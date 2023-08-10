@@ -42,6 +42,11 @@ export class ApiService {
         return this.getJson(url);
     }
 
+    public getCovidByCountry(): Observable<any> {
+        const url = 'assets/megafile--deaths.json';
+        return this.getJson(url);
+    }
+
     private getParsedData(url: string): Observable<any> {
         return this.http.get(url, { responseType: 'text' }).pipe(
             retry(3),
