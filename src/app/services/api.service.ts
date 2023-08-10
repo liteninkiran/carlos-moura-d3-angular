@@ -37,6 +37,11 @@ export class ApiService {
         return this.getJson(url);
     }
 
+    public getCountriesGeoData(): Observable<any> {
+        const url = 'assets/CNTR_RG_60M_2020_4326.json';
+        return this.getJson(url);
+    }
+
     private getParsedData(url: string): Observable<any> {
         return this.http.get(url, { responseType: 'text' }).pipe(
             retry(3),

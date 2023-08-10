@@ -44,6 +44,9 @@ export class AppComponent implements OnInit, OnDestroy {
     };
     public stackedData: IGroupStackData;
 
+    public geoCountries$: Observable<any>;
+    public geoCountries: any;
+
     constructor(private api: ApiService) {
 
     }
@@ -72,6 +75,7 @@ export class AppComponent implements OnInit, OnDestroy {
         setTimeout(() => {
             this.data1 = [...this.data1, 600];
         }, 5000);
+        this.geoCountries$ = this.api.getCountriesGeoData();
     }
 
     public ngOnDestroy(): void {

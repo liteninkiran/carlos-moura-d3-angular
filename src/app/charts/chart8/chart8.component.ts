@@ -46,7 +46,7 @@ export class Chart8Component implements OnInit, OnChanges {
 
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
-        //console.log(this);
+        console.log(this);
     }
 
     public ngOnInit(): void {
