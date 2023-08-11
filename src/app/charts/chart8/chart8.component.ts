@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, ElementRef, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
-import { IMapConfig, IMapData } from 'src/app/interfaces/chart.interfaces';
+import { IMapConfig, IMapData, IMapContainer } from 'src/app/interfaces/chart.interfaces';
 import { DimensionService } from 'src/app/services/dimension.service';
 import ObjectHelper from 'src/app/helpers/object.helper';
 import * as d3 from 'd3';
@@ -45,6 +45,15 @@ export class Chart8Component implements OnInit, OnChanges {
     public host: d3.Selection<any, any, any, any>;
     public svg: d3.Selection<any, any, any, any>;
 
+    public containers: IMapContainer = {
+        country: '',
+        data: undefined,
+        titleContainer: undefined,
+        legend: undefined,
+    };
+
+    public title: any;
+
     private _geodata: any;
     private _data: IMapData;
     private _config: IMapConfig;
@@ -69,6 +78,7 @@ export class Chart8Component implements OnInit, OnChanges {
         this.setSvg();
         this.setDimensions();
         this.setElements();
+        this.repositionElements();
         this.updateChart();
     }
 
@@ -94,7 +104,18 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private setElements(): void {
+        this.containers.country = this.svg.append('g').attr('class', 'countries');
+        this.containers.data = this.svg.append('g').attr('class', 'data');
+        this.containers.titleContainer = this.svg.append('g').attr('class', 'title');
+        this.title = this.containers.titleContainer.append('g').attr('class', 'title');
+        this.containers.legend = this.svg.append('g').attr('class', 'legend');
+    }
 
+    private repositionElements(): void {
+        this.containers.country.attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginTop})`);
+        this.containers.data.attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginTop})`);
+        this.containers.titleContainer.attr('transform', `translate(${this.dimensions.midWidth}, ${this.dimensions.midMarginTop})`);
+        this.containers.legend.attr('transform', `translate(${this.dimensions.midWidth}, ${this.dimensions.midMarginBottom})`);
     }
 
     private setParams(): void {

@@ -137,3 +137,10 @@ export interface IMapDataElement {
 export interface IMapConfig {
     margins: IChartMargins;
 };
+
+export interface IMapContainer {
+    country: any;
+    data: any;
+    titleContainer: any;
+    legend: any;
+};
