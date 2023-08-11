@@ -74,7 +74,7 @@ export class Chart8Component implements OnInit, OnChanges {
         public dimensions: DimensionService,
     ) {
         this.host = d3.select(element.nativeElement);
-        //console.log(this);
+        console.log(this);
     }
 
     public ngOnInit(): void {
@@ -110,6 +110,7 @@ export class Chart8Component implements OnInit, OnChanges {
 
     private setElements(): void {
         this.containers.countries = this.svg.append('g').attr('class', 'countries');
+        this.containers.countries.append('path').attr('class', 'countries');
         this.containers.data = this.svg.append('g').attr('class', 'data');
         this.containers.titleContainer = this.svg.append('g').attr('class', 'title');
         this.title = this.containers.titleContainer.append('text').attr('class', 'title');
@@ -130,7 +131,10 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private setProjection(): void {
-        this.projection = d3.geoEquirectangular();
+        this.projection = d3
+            .geoEquirectangular()
+            .scale(80)
+            .translate([this.dimensions.midWidth, this.dimensions.midHeight + 20]);
     }
 
     private setPath(): void {
@@ -151,8 +155,27 @@ export class Chart8Component implements OnInit, OnChanges {
 
     private draw(): void {
         this.containers.countries
-            .append('path')
+            .select('path')
             .datum(this.features)
             .attr('d', this.path);
     }
+
+    private setScale(scale: number): void {
+        this.projection.scale(scale);
+        this.setPath();
+        this.draw();
+    }
+
+    private setTranslate(x: number, y: number): void {
+        this.projection.translate([x, y]);
+        this.setPath();
+        this.draw();
+    }
+
+    private setCentre(x: number, y: number): void {
+        this.projection.center([x, y]);
+        this.setPath();
+        this.draw();
+    }
+
 }
