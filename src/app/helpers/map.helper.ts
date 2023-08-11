@@ -24,7 +24,7 @@ export class MapHelper {
         this.dataByDate = d3.group(this.fullDataSet, (d: ICovidData) => d.date);
         this.dateRange = d3.extent(this.fullDataSet, (d: ICovidData) => d.date);
         this.setMapData(this.dateRange[1]);
-        console.log(this);
+        //console.log(this);
     }
 
     private parseDate(date: string): number {

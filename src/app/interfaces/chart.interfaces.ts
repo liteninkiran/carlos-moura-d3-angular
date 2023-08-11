@@ -139,7 +139,7 @@ export interface IMapConfig {
 };
 
 export interface IMapContainer {
-    country: any;
+    countries: any;
     data: any;
     titleContainer: any;
     legend: any;

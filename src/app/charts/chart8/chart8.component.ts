@@ -46,13 +46,14 @@ export class Chart8Component implements OnInit, OnChanges {
     public svg: d3.Selection<any, any, any, any>;
 
     public containers: IMapContainer = {
-        country: '',
+        countries: undefined,
         data: undefined,
         titleContainer: undefined,
         legend: undefined,
     };
-
     public title: any;
+    public projection: any;
+    public path: any;
 
     private _geodata: any;
     private _data: IMapData;
@@ -71,19 +72,20 @@ export class Chart8Component implements OnInit, OnChanges {
         public dimensions: DimensionService,
     ) {
         this.host = d3.select(element.nativeElement);
-        console.log(this);
+        //console.log(this);
     }
 
     public ngOnInit(): void {
         this.setSvg();
         this.setDimensions();
         this.setElements();
-        this.repositionElements();
         this.updateChart();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        this.updateChart();
+        if (this.svg) {
+            this.updateChart();
+        }
     }
 
     private setSvg(): void {
@@ -91,6 +93,7 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private updateChart(): void {
+        this.repositionElements();
         this.setParams();
         this.setLabels();
         this.setLegend();
@@ -104,21 +107,35 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private setElements(): void {
-        this.containers.country = this.svg.append('g').attr('class', 'countries');
+        this.containers.countries = this.svg.append('g').attr('class', 'countries');
         this.containers.data = this.svg.append('g').attr('class', 'data');
         this.containers.titleContainer = this.svg.append('g').attr('class', 'title');
-        this.title = this.containers.titleContainer.append('g').attr('class', 'title');
+        this.title = this.containers.titleContainer.append('text').attr('class', 'title');
         this.containers.legend = this.svg.append('g').attr('class', 'legend');
     }
 
     private repositionElements(): void {
-        this.containers.country.attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginTop})`);
+        this.containers.countries.attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginTop})`);
         this.containers.data.attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginTop})`);
         this.containers.titleContainer.attr('transform', `translate(${this.dimensions.midWidth}, ${this.dimensions.midMarginTop})`);
         this.containers.legend.attr('transform', `translate(${this.dimensions.midWidth}, ${this.dimensions.midMarginBottom})`);
     }
 
     private setParams(): void {
+        this.setProjection();
+        this.setPath();
+        this.setFeatures();
+    }
+
+    private setProjection(): void {
+        this.projection = d3.geoEquirectangular();
+    }
+
+    private setPath(): void {
+        this.path = d3.geoPath(this.projection);
+    }
+
+    private setFeatures(): void {
 
     }
 
