@@ -2,12 +2,12 @@ import { Component, OnInit, OnChanges, ElementRef, SimpleChanges, Input, Output,
 import { IMapConfig, IMapData, IMapContainer } from 'src/app/interfaces/chart.interfaces';
 import { DimensionService } from 'src/app/services/dimension.service';
 import ObjectHelper from 'src/app/helpers/object.helper';
+import * as topojson from 'topojson';
 import * as d3 from 'd3';
 
 @Component({
     selector: 'app-chart8',
     template: `
-        <p>Chart 8</p>
         <svg class="chart8"></svg>
         <style>
 
@@ -19,6 +19,7 @@ export class Chart8Component implements OnInit, OnChanges {
 
     @Input() set geodata(values) {
         this._geodata = values;
+        this.setFeatures();
     };
     @Input() set data(values) {
         this._data = values;
@@ -54,6 +55,7 @@ export class Chart8Component implements OnInit, OnChanges {
     public title: any;
     public projection: any;
     public path: any;
+    public features: any;
 
     private _geodata: any;
     private _data: IMapData;
@@ -136,7 +138,12 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private setFeatures(): void {
-
+        this.features = topojson.feature(this.geodata, this.geodata.objects['CNTR_RG_60M_2020_4326']);
+        console.log(this.features);
+        this.containers.countries
+            .append('path')
+            .datum(this.features)
+            .attr('d', this.path);
     }
 
     private setLabels(): void {
