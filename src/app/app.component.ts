@@ -4,6 +4,7 @@ import { Observable, Subscription, combineLatest } from 'rxjs';
 import { IGroupStackData, IPieData } from './interfaces/chart.interfaces';
 import { PieHelper } from './helpers/pie.helper';
 import { StackHelper } from './helpers/stack.helper';
+import { MapHelper } from './helpers/map.helper';
 
 @Component({
     selector: 'app-root',
@@ -46,6 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public covidByCountry$: Observable<any>;
     public countryCodes$: Observable<any>;
     public subscriptions: Subscription[] = [];
+    public covidMap = new MapHelper();
 
     constructor(private api: ApiService) {
 
@@ -85,7 +87,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.covidByCountry$,
             this.countryCodes$,
         ]).subscribe(([data, codes]) => {
-            console.log(data, codes);
+            this.covidMap.setData(data, codes);
         });
         this.subscriptions.push(sub);
     }

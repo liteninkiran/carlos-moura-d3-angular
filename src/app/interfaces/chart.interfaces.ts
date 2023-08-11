@@ -103,3 +103,27 @@ export interface ITooltipConfig {
         y: number;
     };
 };
+
+export interface ICovidData {
+    cfr: Array<number>;
+    cfr_short_term: Array<number>;
+    continent: Array<string>;
+    date: Array<string>;
+    location: Array<string>;
+    new_deaths: Array<number>;
+    new_deaths_per_million: Array<number>;
+    new_deaths_smoothed: Array<number>;
+    new_deaths_smoothed_per_million: Array<number>;
+    total_deaths: Array<number>;
+    total_deaths_per_million: Array<number>;
+};
+
+export interface ICountryCodes {
+    location: string;
+    iso3: string;
+};
+
+export interface IHelperData {
+    title: string;
+    data: any;
+};

@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 @Component({
     selector: 'app-chart8',
     template: `
+        <p>Chart 8</p>
         <svg class="chart8"></svg>
         <style>
 
@@ -46,7 +47,7 @@ export class Chart8Component implements OnInit, OnChanges {
 
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
-        console.log(this);
+        //console.log(this);
     }
 
     public ngOnInit(): void {
