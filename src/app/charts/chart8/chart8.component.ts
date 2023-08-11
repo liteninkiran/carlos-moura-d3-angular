@@ -1,4 +1,7 @@
 import { Component, OnInit, OnChanges, ElementRef, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
+import { IMapConfig, IMapData } from 'src/app/interfaces/chart.interfaces';
+import { DimensionService } from 'src/app/services/dimension.service';
+import ObjectHelper from 'src/app/helpers/object.helper';
 import * as d3 from 'd3';
 
 @Component({
@@ -10,6 +13,7 @@ import * as d3 from 'd3';
 
         </style>
     `,
+    providers: [DimensionService],
 })
 export class Chart8Component implements OnInit, OnChanges {
 
@@ -20,7 +24,7 @@ export class Chart8Component implements OnInit, OnChanges {
         this._data = values;
     };
     @Input() set config(values) {
-        this._config = values;
+        this._config = ObjectHelper.UpdateObjectWithPartialValues<IMapConfig>(this._defaultConfig, values);
     };
 
     @Output() tooltip = new EventEmitter<any>();
@@ -34,7 +38,7 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     get config() {
-        return this._config;
+        return this._config || this._defaultConfig;
     }
 
     // Main elements
@@ -42,12 +46,23 @@ export class Chart8Component implements OnInit, OnChanges {
     public svg: d3.Selection<any, any, any, any>;
 
     private _geodata: any;
-    private _data: any;
-    private _config: any;
+    private _data: IMapData;
+    private _config: IMapConfig;
+    private _defaultConfig: IMapConfig = {
+        margins: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+        },
+    };
 
-    constructor(element: ElementRef) {
+    constructor(
+        element: ElementRef,
+        public dimensions: DimensionService,
+    ) {
         this.host = d3.select(element.nativeElement);
-        //console.log(this);
+        console.log(this);
     }
 
     public ngOnInit(): void {
@@ -73,7 +88,9 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private setDimensions(): void {
-
+        const dimensions: DOMRect = this.svg.node().getBoundingClientRect();
+        this.dimensions.setDimensions(dimensions);
+        this.dimensions.setMargins(this.config.margins);
     }
 
     private setElements(): void {
