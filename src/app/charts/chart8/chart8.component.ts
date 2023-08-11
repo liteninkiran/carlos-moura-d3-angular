@@ -52,13 +52,47 @@ export class Chart8Component implements OnInit, OnChanges {
 
     public ngOnInit(): void {
         this.setSvg();
+        this.setDimensions();
+        this.setElements();
+        this.updateChart();
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-
+        this.updateChart();
     }
 
     private setSvg(): void {
         this.svg = this.host.select('svg').attr('xmlns', 'http://www.w3.org/2000/svg');
+    }
+
+    private updateChart(): void {
+        this.setParams();
+        this.setLabels();
+        this.setLegend();
+        this.draw();
+    }
+
+    private setDimensions(): void {
+
+    }
+
+    private setElements(): void {
+
+    }
+
+    private setParams(): void {
+
+    }
+
+    private setLabels(): void {
+
+    }
+
+    private setLegend(): void {
+
+    }
+
+    private draw(): void {
+
     }
 }
