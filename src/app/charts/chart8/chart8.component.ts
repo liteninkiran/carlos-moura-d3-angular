@@ -133,6 +133,7 @@ export class Chart8Component implements OnInit, OnChanges {
     private setProjection(): void {
         this.projection = d3
             .geoEquirectangular()
+            //.geoOrthographic()
             .scale(80)
             .translate([this.dimensions.midWidth, this.dimensions.midHeight + 20]);
     }
@@ -178,4 +179,9 @@ export class Chart8Component implements OnInit, OnChanges {
         this.draw();
     }
 
+    public setRotate(x: number, y: number, z: number): void {
+        this.projection.rotate([x, y, z]);
+        this.setPath();
+        this.draw();
+    }
 }
