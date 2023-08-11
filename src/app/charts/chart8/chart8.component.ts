@@ -19,7 +19,7 @@ export class Chart8Component implements OnInit, OnChanges {
 
     @Input() set geodata(values) {
         this._geodata = values;
-        this.setFeatures();
+        this.updateChart();
     };
     @Input() set data(values) {
         this._data = values;
@@ -85,9 +85,7 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
-        if (this.svg) {
-            this.updateChart();
-        }
+        this.updateChart();
     }
 
     private setSvg(): void {
@@ -95,11 +93,13 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private updateChart(): void {
-        this.repositionElements();
-        this.setParams();
-        this.setLabels();
-        this.setLegend();
-        this.draw();
+        if (this.geodata && this.svg) {
+            this.repositionElements();
+            this.setParams();
+            this.setLabels();
+            this.setLegend();
+            this.draw();
+        }
     }
 
     private setDimensions(): void {
@@ -139,11 +139,6 @@ export class Chart8Component implements OnInit, OnChanges {
 
     private setFeatures(): void {
         this.features = topojson.feature(this.geodata, this.geodata.objects['CNTR_RG_60M_2020_4326']);
-        console.log(this.features);
-        this.containers.countries
-            .append('path')
-            .datum(this.features)
-            .attr('d', this.path);
     }
 
     private setLabels(): void {
@@ -155,6 +150,9 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private draw(): void {
-
+        this.containers.countries
+            .append('path')
+            .datum(this.features)
+            .attr('d', this.path);
     }
 }
