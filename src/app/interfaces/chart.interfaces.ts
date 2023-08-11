@@ -118,12 +118,22 @@ export interface ICovidData {
     total_deaths_per_million: Array<number>;
 };
 
-export interface ICountryCodes {
+export interface ICountryCode {
     location: string;
     iso3: string;
 };
 
-export interface IHelperData {
+export interface IMapData {
     title: string;
-    data: any;
+    data: IMapDataElement[];
+};
+
+export interface IMapDataElement {
+    id: string;
+    value: number;
+    date: number;
+};
+
+export interface IMapConfig {
+    margins: IChartMargins;
 };

@@ -1,30 +1,29 @@
-import { ICountryCodes, ICovidData, IHelperData } from '../interfaces/chart.interfaces';
+import { ICountryCode, ICovidData, IMapData, IMapDataElement } from '../interfaces/chart.interfaces';
 import * as d3 from 'd3';
 
 export class MapHelper {
 
-    public fullDataSet = [];
-    public dataByDate = new Map<number, any>();
+    public fullDataSet: IMapDataElement[] = [];
+    public dataByDate = new Map<number, IMapDataElement[]>();
     public currentDate = 0;
     public dateRange: [number, number];
-    public data: IHelperData;
+    public data: IMapData = {
+        title: 'Covid-19 new death cases',
+        data: [],
+    };
 
-    public setData(data: ICovidData, countryCodes: Array<ICountryCodes>, dataAttr: string = 'new_deaths_smoothed_per_million'): void {
-        const ids = new Map(countryCodes.map((code) => [code.location, code.iso3]));
-        this.fullDataSet = data.location.map((location, i) => ({
+    private timeFormat: d3.timeFormat = d3.timeFormat('%Y-%m-%d');
+
+    public setData(data: ICovidData, countryCodes: Array<ICountryCode>, dataAttr: string = 'new_deaths_smoothed_per_million'): void {
+        const ids: Map<string, string> = new Map(countryCodes.map((code: ICountryCode) => [code.location, code.iso3]));
+        this.fullDataSet = data.location.map((location: string, i: number) => ({
             id: ids.get(location),
             value: data[dataAttr][i],
             date: this.parseDate(data.date[i]),
         }));
-
-        this.dataByDate = d3.group(this.fullDataSet, (d) => d.date);
-        this.dateRange = d3.extent(this.fullDataSet, (d) => d.date);
-        this.currentDate = this.dateRange[1];
-        this.data = {
-            title: `Covid-19 new death cases (${this.timeFormat(this.currentDate)})`,
-            data: this.dataByDate.get(this.currentDate),
-        };
-    
+        this.dataByDate = d3.group(this.fullDataSet, (d: ICovidData) => d.date);
+        this.dateRange = d3.extent(this.fullDataSet, (d: ICovidData) => d.date);
+        this.setMapData(this.dateRange[1]);
         console.log(this);
     }
 
@@ -32,7 +31,12 @@ export class MapHelper {
         return Date.parse(date);
     }
 
-    private timeFormat(date: number): d3.timeFormat {
-        return d3.timeFormat('%Y-%m-%d')(date);
+    private setMapData(date: number): void {
+        this.currentDate = date;
+        this.data = {
+            title: `Covid-19 new death cases (${this.timeFormat(date)})`,
+            data: this.dataByDate.get(date),
+        };
     }
+
 }
