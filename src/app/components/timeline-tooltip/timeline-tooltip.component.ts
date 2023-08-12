@@ -186,7 +186,8 @@ export class TimelineTooltipComponent implements OnInit {
 }
 
     private setLabels(): void {
-
+        this.svg.select('text.title').text(this.data.title);
+        this.svg.select('text.max-value').text(this.maxValue);
     }
 
     private setLines(): void {
