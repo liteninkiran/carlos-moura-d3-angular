@@ -26,8 +26,12 @@ import * as d3 from 'd3';
                     dominant-baseline: middle;
                 }
 
-                .chart8 .highlighted rect {
+                .chart8 .highlighted rect, .chart8 path.data.highlighted {
                     stroke: black;
+                }
+
+                .chart8 .faded {
+                    opacity: 0.3;
                 }
             </style>
         </svg>
@@ -361,7 +365,21 @@ export class Chart8Component implements OnInit {
     }
 
     private highlightFeatures = (value: number | null) => {
+        const colour = d3.color(this.colour(value)).toString();
+        this.containers.countries
+            .selectAll('path')
+            .classed('faded', true);
 
+        this.containers.data
+            .selectAll('path.data')
+            .classed('highlighted', function (d) {
+                const featureColour = d3.select(this).style('fill');
+                return featureColour === colour
+            })
+            .classed('faded', function (d) {
+                const featureColour = d3.select(this).style('fill');
+                return featureColour !== colour
+            });
     }
 
     private resetLegendItems = () => {
@@ -371,6 +389,12 @@ export class Chart8Component implements OnInit {
     }
 
     private resetFeatures = () => {
+        this.containers.countries
+            .selectAll('path')
+            .classed('faded', false);
 
+        this.containers.data
+            .selectAll('path.data')
+            .classed('highlighted faded', false);
     }
 }
