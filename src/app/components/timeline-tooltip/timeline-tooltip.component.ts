@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import * as d3 from 'd3';
+import { ITimelineConfig, ITimelineData } from 'src/app/interfaces/chart.interfaces';
 import { DimensionService } from 'src/app/services/dimension.service';
 
 @Component({
@@ -34,23 +35,38 @@ export class TimelineTooltipComponent implements OnInit {
 
     @Input() set data(values: any) {
         this._data = values;
+        this.updateChart();
     };
 
     public host: any;
     public svg: any;
-    public config = {
+    public config: ITimelineConfig = {
         margins: {
             left: 25,
             right: 20,
             top: 25,
             bottom: 20,
         },
+        dimensions: {
+            width: 270,
+            height: 150,
+        },
+        title: {
+            fontSize: 12,
+            fontWeight: 'bold',
+        },
+        background: {
+            color: '#fff',
+        },
+        labels: {
+            fontSize: 9,
+        },
     };
 
-    private _data: any;
+    private _data: ITimelineData;
 
-    get data() {
-        return this._data;
+    get data(): ITimelineData {
+        return this._data || { title: '', activeTime: null, data: [], timeFormat: '' };
     }
 
     constructor(
@@ -64,6 +80,7 @@ export class TimelineTooltipComponent implements OnInit {
     public ngOnInit(): void {
         this.setSvg();
         this.setDimensions();
+        this.updateChart();
     }
 
     private setSvg(): void {
@@ -75,4 +92,9 @@ export class TimelineTooltipComponent implements OnInit {
         this.dimensions.setMargins(this.config.margins);
     }
 
+    private updateChart(): void {
+        if (this.svg) {
+
+        }
+    }
 }
