@@ -72,6 +72,13 @@
                     [data]="covidMap.data"
                     (tooltip)="covidMap.tooltip($event)"
                 ></app-chart8>
+                <div class="map-tooltip" [ngStyle]="{
+                    'visibility': covidMap.tooltipState.visible ? '' : 'hidden',
+                    'left.px': covidMap.tooltipState.x,
+                    'top.px': covidMap.tooltipState.y
+                }">
+                    <app-timeline-tooltip></app-timeline-tooltip>
+                </div>
             </div>
         </div>
 

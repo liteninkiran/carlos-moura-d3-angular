@@ -13,6 +13,11 @@ export class MapHelper {
         data: [],
         thresholds: [],
     };
+    public tooltipState = {
+        visible: false,
+        x: 0,
+        y: 0,
+    };
 
     private timeFormat: d3.timeFormat = d3.timeFormat('%B %Y');
 
@@ -41,12 +46,22 @@ export class MapHelper {
 
     public showTooltip(action: ShowMapTooltip): void {
         // Set position
+        this.tooltipState = {
+            visible: true,
+            x: action.payload.x,
+            y: action.payload.y,
+        };
         // Set data
         // Set visible to true
     }
 
     public hideTooltip(): void {
         // Set position
+        this.tooltipState = {
+            visible: false,
+            x: 0,
+            y: 0,
+        };
         // Set visible to false
     }
 
