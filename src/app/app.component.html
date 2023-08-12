@@ -70,6 +70,7 @@
                 <app-chart8
                     [geodata]="geoCountries$ | async"
                     [data]="covidMap.data"
+                    (tooltip)="covidMap.tooltip($event)"
                 ></app-chart8>
             </div>
         </div>

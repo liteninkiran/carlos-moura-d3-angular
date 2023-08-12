@@ -301,6 +301,7 @@ export class Chart8Component implements OnInit {
                 const currentValue = this.getValueByFeature(d);
                 this.highlightLegendItems(currentValue);
                 // Show the tooltip
+                this.showTooltip();
             })
             .on('mouseleave', () => {
                 // Reset current feature
@@ -308,6 +309,7 @@ export class Chart8Component implements OnInit {
                 // Reset legend item
                 this.resetLegendItems();
                 // Hide the tooltip
+                this.hideTooltip();
             });
     }
 
@@ -373,7 +375,7 @@ export class Chart8Component implements OnInit {
         }
     }
 
-    private highlightLegendItems = (value: number | null) => {
+    private highlightLegendItems = (value: number | null): void => {
         const colour = d3.color(this.colour(value)).toString();
         this.containers.legend
             .selectAll('g.legend-item')
@@ -382,7 +384,7 @@ export class Chart8Component implements OnInit {
             });
     }
 
-    private highlightFeatures = (value: number | null) => {
+    private highlightFeatures = (value: number | null): void => {
         const colour = d3.color(this.colour(value)).toString();
         this.containers.countries
             .selectAll('path')
@@ -400,13 +402,13 @@ export class Chart8Component implements OnInit {
             });
     }
 
-    private resetLegendItems = () => {
+    private resetLegendItems = (): void => {
         this.containers.legend
             .selectAll('g.legend-item')
             .classed('highlighted', false);
     }
 
-    private resetFeatures = () => {
+    private resetFeatures = (): void => {
         this.containers.countries
             .selectAll('path')
             .classed('faded', false);
@@ -416,7 +418,7 @@ export class Chart8Component implements OnInit {
             .classed('highlighted faded', false);
     }
 
-    private highlightFeature(feature) {
+    private highlightFeature(feature): void {
         const id = this.getFeatureId(feature);
         this.containers.data
             .selectAll('path.data')
@@ -425,5 +427,13 @@ export class Chart8Component implements OnInit {
 
     private getFeatureId(feature): string {
         return feature.properties.ISO3_CODE;
+    }
+
+    private showTooltip(): void {
+        this.tooltip.emit('show tooltip');
+    }
+
+    private hideTooltip(): void {
+        this.tooltip.emit('hide tooltip');
     }
 }
