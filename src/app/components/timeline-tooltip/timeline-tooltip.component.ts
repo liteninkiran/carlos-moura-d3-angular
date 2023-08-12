@@ -144,6 +144,19 @@ export class TimelineTooltipComponent implements OnInit {
     private setParams(): void {
         this.calculateMaxValue();
         this.getActiveValue();
+        this.setScales();
+    }
+
+    private setScales(): void {
+        const xDomain = d3.extent(this.data.data, (d) => d.date);
+        this.scales.x = d3.scaleLinear()
+            .domain(xDomain)
+            .range([0, this.dimensions.innerWidth]);
+
+        const yDomain = [0, this.maxValue];
+        this.scales.y = d3.scaleLinear()
+            .domain(yDomain)
+            .range([this.dimensions.innerHeight, 0]);
     }
 
     private calculateMaxValue(): void {
