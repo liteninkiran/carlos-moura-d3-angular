@@ -11,8 +11,12 @@ import * as d3 from 'd3';
         <svg class="chart8">
             <style>
                 .chart8 path.countries {
-                    fill: white;
-                    stroke: #b4b4b4;
+                    fill: #fff;
+                    stroke: #aaa;
+                }
+
+                .chart8 path.data {
+                    stroke: none;
                 }
             </style>
         </svg>
@@ -61,6 +65,7 @@ export class Chart8Component implements OnInit, OnChanges {
     public projection: any;
     public path: any;
     public features: any;
+    public dataFeatures: any;
     public colours: any;
 
     private _geodata: any;
@@ -102,6 +107,7 @@ export class Chart8Component implements OnInit, OnChanges {
         if (this.geodata && this.svg) {
             this.repositionElements();
             this.setParams();
+            this.setDataFeatures();
             this.setLabels();
             this.setLegend();
             this.draw();
@@ -218,12 +224,31 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private drawDataLayer(): void {
-
+        this.containers.data.selectAll('path.data')
+            .data(this.dataFeatures)
+            .join('path')
+            .attr('class', 'data')
+            .attr('d', this.path)
+            .style('fill', (d) => this.colour(this.getValueByFeature(d)));
     }
 
     private setColours(): void {
         this.colours = d3.scaleThreshold()
             .domain(this.data.thresholds)
             .range(d3.schemeOranges[9]);
+    }
+
+    private setDataFeatures(): void {
+        const ids = new Set(this.data.data.map((d) => d.id));
+        this.dataFeatures = this.features.features?.filter((feature) => ids.has(feature.properties.ISO3_CODE)) || [];
+    }
+
+    private getValueByFeature(feature: any): number {
+        const id = feature.properties.ISO3_CODE;
+        return this.data.data.find((d) => d.id === id)?.value || null;
+    }
+
+    private colour(value: number | null): string {
+        return value ? this.colours(value) : '#b4b4b4';
     }
 }
