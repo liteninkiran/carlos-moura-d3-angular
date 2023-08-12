@@ -66,6 +66,11 @@ export class TimelineTooltipComponent implements OnInit {
             fontSize: 9,
         },
     };
+    public maxValue: number;
+    public activeValue: number;
+    public scales: any = {};
+    public line: any;
+    public area: any;
 
     private _data: ITimelineData;
 
@@ -78,7 +83,7 @@ export class TimelineTooltipComponent implements OnInit {
         public dimensions: DimensionService,
     ) {
         this.host = d3.select(element.nativeElement);
-        console.log(this);
+        //console.log(this);
     }
 
     public ngOnInit(): void {
@@ -102,7 +107,10 @@ export class TimelineTooltipComponent implements OnInit {
 
     private updateChart(): void {
         if (this.svg) {
-
+            this.setParams();
+            this.setLabels();
+            this.setLines();
+            this.setActiveData();
         }
     }
 
@@ -131,5 +139,31 @@ export class TimelineTooltipComponent implements OnInit {
                     ${this.dimensions.marginTop}
                 )`;
         }
-}
+    }
+
+    private setParams(): void {
+        this.calculateMaxValue();
+        this.getActiveValue();
+    }
+
+    private calculateMaxValue(): void {
+        const maxIndex = d3.maxIndex(this.data.data, (d) => d.value);
+        this.maxValue = maxIndex > 0 ? this.data.data[maxIndex].value : 0;
+    }
+
+    private getActiveValue(): void {
+        this.activeValue = this.data.data.find((d) => d.date === this.data.activeTime)?.value || null;
+    }
+
+    private setLabels(): void {
+
+    }
+
+    private setLines(): void {
+
+    }
+
+    private setActiveData(): void {
+
+    }
 }
