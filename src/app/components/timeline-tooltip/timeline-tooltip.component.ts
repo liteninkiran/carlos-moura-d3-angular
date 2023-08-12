@@ -145,6 +145,17 @@ export class TimelineTooltipComponent implements OnInit {
         this.calculateMaxValue();
         this.getActiveValue();
         this.setScales();
+        this.setArea();
+        this.setLine();
+    }
+
+    private calculateMaxValue(): void {
+        const maxIndex = d3.maxIndex(this.data.data, (d) => d.value);
+        this.maxValue = maxIndex > 0 ? this.data.data[maxIndex].value : 0;
+    }
+
+    private getActiveValue(): void {
+        this.activeValue = this.data.data.find((d) => d.date === this.data.activeTime)?.value || null;
     }
 
     private setScales(): void {
@@ -159,14 +170,20 @@ export class TimelineTooltipComponent implements OnInit {
             .range([this.dimensions.innerHeight, 0]);
     }
 
-    private calculateMaxValue(): void {
-        const maxIndex = d3.maxIndex(this.data.data, (d) => d.value);
-        this.maxValue = maxIndex > 0 ? this.data.data[maxIndex].value : 0;
+    private setArea(): void {
+        this.area = d3.area()
+            .defined((d) => d.value !== null)
+            .x((d) => this.scales.x(d.date))
+            .y0(this.dimensions.innerHeight)
+            .y1((d) => this.scales.y(d.value));
     }
 
-    private getActiveValue(): void {
-        this.activeValue = this.data.data.find((d) => d.date === this.data.activeTime)?.value || null;
-    }
+    private setLine(): void {
+        this.line = d3.line()
+            .defined((d) => d.value !== null)
+            .x((d) => this.scales.x(d.date))
+            .y((d) => this.scales.y(d.value));
+}
 
     private setLabels(): void {
 
