@@ -26,6 +26,14 @@ import { DimensionService } from 'src/app/services/dimension.service';
                 font-size: {{ config.labels.fontSize }}px;
             }
 
+            .timeline-tooltip .axis {
+                stroke: #444;
+            }
+
+            .timeline-tooltip .axis--max {
+                stroke-dasharray: 1 1;
+            }
+
         </style>
         <g class="title">
             <text class="title"></text>
@@ -200,7 +208,17 @@ export class TimelineTooltipComponent implements OnInit {
     }
 
     private setLines(): void {
+        this.svg.select('line.axis--x')
+            .attr('x1', 0)
+            .attr('x2', this.dimensions.innerWidth)
+            .attr('y1', this.dimensions.innerHeight)
+            .attr('y2', this.dimensions.innerHeight);
 
+        this.svg.select('line.axis--max')
+            .attr('x1', 0)
+            .attr('x2', this.dimensions.innerWidth)
+            .attr('y1', 0)
+            .attr('y2', 0);
     }
 
     private setActiveData(): void {
