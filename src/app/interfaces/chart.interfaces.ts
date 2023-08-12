@@ -182,7 +182,7 @@ export interface ITimelineConfig {
         height: number;
     };
     background: {
-        color: string;
+        colour: string;
     };
     title: {
         fontSize: number;

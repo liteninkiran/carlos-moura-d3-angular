@@ -8,9 +8,22 @@ import { DimensionService } from 'src/app/services/dimension.service';
     template: `
     <svg class="timeline-tooltip">
         <style>
+
             .timeline-tooltip {
-                background-color: red;
+                background-color: {{ config.background.colour }};
                 box-shadow: rgba(158, 158, 158, 0.16) 1px 1px 8px 0px;
+            }
+
+            .timeline-tooltip text.title {
+                text-align: center;
+                font-weight: {{ config.title.fontWeight }};
+                font-size: {{ config.title.fontSize }}px;
+                text-anchor: middle;
+                dominant-baseline: middle;
+            }
+
+            .timeline-tooltip .label {
+                font-size: {{ config.labels.fontSize }}px;
             }
 
         </style>
@@ -60,7 +73,7 @@ export class TimelineTooltipComponent implements OnInit {
             fontWeight: 'bold',
         },
         background: {
-            color: '#fff',
+            colour: '#fff',
         },
         labels: {
             fontSize: 9,
@@ -107,6 +120,7 @@ export class TimelineTooltipComponent implements OnInit {
 
     private updateChart(): void {
         if (this.svg) {
+            this.positionElements();
             this.setParams();
             this.setLabels();
             this.setLines();
@@ -117,20 +131,15 @@ export class TimelineTooltipComponent implements OnInit {
     private positionElements(): void {
         const title = this.getTranslations('title');
         const titleContainer = this.getTranslations('title-container');
-        this.svg
-            .select('g.title')
-            .attr('transform', title);
-
-        this.svg
-            .selectAll('g.container, g.active-container')
-            .attr('transform', titleContainer);
+        this.svg.select('g.title').attr('transform', title);
+        this.svg.selectAll('g.container, g.active-container').attr('transform', titleContainer);
     }
 
     private getTranslations(container: string, options: any = {}): string {
         switch (container) {
             case 'title':
                 return `translate(
-                    ${this.dimensions.marginLeft},
+                    ${this.dimensions.midWidth},
                     ${this.dimensions.midMarginTop}
                 )`;
             case 'title-container':
