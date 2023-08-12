@@ -8,6 +8,10 @@ import { DimensionService } from 'src/app/services/dimension.service';
     template: `
     <svg class="timeline-tooltip">
         <style>
+            .timeline-tooltip {
+                background-color: red;
+                box-shadow: rgba(158, 158, 158, 0.16) 1px 1px 8px 0px;
+            }
 
         </style>
         <g class="title">
@@ -84,7 +88,11 @@ export class TimelineTooltipComponent implements OnInit {
     }
 
     private setSvg(): void {
-        this.svg = this.host.select('svg').attr('xmlns', 'http://www.w3.org/2000/svg');
+        this.svg = this.host
+            .select('svg')
+            .attr('xmlns', 'http://www.w3.org/2000/svg')
+            .style('width', this.config.dimensions.width + 'px')
+            .style('height', this.config.dimensions.height + 'px');
     }
 
     private setDimensions(): void {
@@ -97,4 +105,31 @@ export class TimelineTooltipComponent implements OnInit {
 
         }
     }
+
+    private positionElements(): void {
+        const title = this.getTranslations('title');
+        const titleContainer = this.getTranslations('title-container');
+        this.svg
+            .select('g.title')
+            .attr('transform', title);
+
+        this.svg
+            .selectAll('g.container, g.active-container')
+            .attr('transform', titleContainer);
+    }
+
+    private getTranslations(container: string, options: any = {}): string {
+        switch (container) {
+            case 'title':
+                return `translate(
+                    ${this.dimensions.marginLeft},
+                    ${this.dimensions.midMarginTop}
+                )`;
+            case 'title-container':
+                return `translate(
+                    ${this.dimensions.marginLeft},
+                    ${this.dimensions.marginTop}
+                )`;
+        }
+}
 }
