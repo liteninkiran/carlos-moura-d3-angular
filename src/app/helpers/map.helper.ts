@@ -8,12 +8,12 @@ export class MapHelper {
     public currentDate = 0;
     public dateRange: [number, number];
     public data: IMapData = {
-        title: 'Covid-19 new death cases',
+        title: 'Covid-19 New Death Cases',
         data: [],
         thresholds: [],
     };
 
-    private timeFormat: d3.timeFormat = d3.timeFormat('%Y-%m-%d');
+    private timeFormat: d3.timeFormat = d3.timeFormat('%B %Y');
 
     public setData(data: ICovidData, countryCodes: Array<ICountryCode>, dataAttr: string = 'new_deaths_smoothed_per_million'): void {
         const ids: Map<string, string> = new Map(countryCodes.map((code: ICountryCode) => [code.location, code.iso3]));
@@ -35,10 +35,9 @@ export class MapHelper {
     private setMapData(date: number): void {
         this.currentDate = date;
         this.data = {
-            title: `Covid-19 new death cases (${this.timeFormat(date)})`,
+            title: `Covid-19 New Death Cases - ${this.timeFormat(date)}`,
             data: this.dataByDate.get(date),
             thresholds: [0.1, 0.2, 0.5, 1, 2, 5, 10, 20],
         };
     }
-
 }

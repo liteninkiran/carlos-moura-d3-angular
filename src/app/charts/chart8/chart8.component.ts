@@ -18,6 +18,13 @@ import * as d3 from 'd3';
                 .chart8 path.data {
                     stroke: none;
                 }
+
+                .chart8 text.title {
+                    text-anchor: middle;
+                    font-size: 12px;
+                    font-weight: bold;
+                    dominant-baseline: middle;
+                }
             </style>
         </svg>
     `,
@@ -73,7 +80,7 @@ export class Chart8Component implements OnInit, OnChanges {
     private _config: IMapConfig;
     private _defaultConfig: IMapConfig = {
         margins: {
-            top: 20,
+            top: 40,
             left: 20,
             right: 20,
             bottom: 20,
@@ -162,7 +169,7 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private setLabels(): void {
-
+        this.title.text(this.data.title);
     }
 
     private setLegend(): void {
