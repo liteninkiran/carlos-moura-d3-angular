@@ -126,6 +126,7 @@ export interface ICountryCode {
 export interface IMapData {
     title: string;
     data: IMapDataElement[];
+    thresholds: Array<number>;
 };
 
 export interface IMapDataElement {

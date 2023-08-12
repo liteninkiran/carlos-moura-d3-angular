@@ -69,8 +69,7 @@
             <div class="chart">
                 <app-chart8
                     [geodata]="geoCountries$ | async"
-                    [data]="covidByCountry$ | async"
-                    [config]="countryCodes$ | async"
+                    [data]="covidMap.data"
                 ></app-chart8>
             </div>
         </div>

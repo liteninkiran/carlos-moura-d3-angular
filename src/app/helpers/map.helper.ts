@@ -10,6 +10,7 @@ export class MapHelper {
     public data: IMapData = {
         title: 'Covid-19 new death cases',
         data: [],
+        thresholds: [],
     };
 
     private timeFormat: d3.timeFormat = d3.timeFormat('%Y-%m-%d');
@@ -36,6 +37,7 @@ export class MapHelper {
         this.data = {
             title: `Covid-19 new death cases (${this.timeFormat(date)})`,
             data: this.dataByDate.get(date),
+            thresholds: [0.1, 0.2, 0.5, 1, 2, 5, 10, 20],
         };
     }
 

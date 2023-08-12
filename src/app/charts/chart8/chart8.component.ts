@@ -8,10 +8,14 @@ import * as d3 from 'd3';
 @Component({
     selector: 'app-chart8',
     template: `
-        <svg class="chart8"></svg>
-        <style>
-
-        </style>
+        <svg class="chart8">
+            <style>
+                .chart8 path.countries {
+                    fill: white;
+                    stroke: #b4b4b4;
+                }
+            </style>
+        </svg>
     `,
     providers: [DimensionService],
 })
@@ -23,6 +27,7 @@ export class Chart8Component implements OnInit, OnChanges {
     };
     @Input() set data(values) {
         this._data = values;
+        this.updateChart();
     };
     @Input() set config(values) {
         this._config = ObjectHelper.UpdateObjectWithPartialValues<IMapConfig>(this._defaultConfig, values);
@@ -56,16 +61,17 @@ export class Chart8Component implements OnInit, OnChanges {
     public projection: any;
     public path: any;
     public features: any;
+    public colours: any;
 
     private _geodata: any;
     private _data: IMapData;
     private _config: IMapConfig;
     private _defaultConfig: IMapConfig = {
         margins: {
-            top: 40,
+            top: 20,
             left: 20,
             right: 20,
-            bottom: 40,
+            bottom: 20,
         },
     };
 
@@ -128,6 +134,7 @@ export class Chart8Component implements OnInit, OnChanges {
         this.setFeatures();
         this.setProjection();
         this.setPath();
+        this.setColours();
     }
 
     private setProjection(): void {
@@ -157,12 +164,8 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private draw(): void {
-        this.containers.countries
-            .selectAll('path.base')
-            .data(this.features.features)
-            .join('path')
-            .attr('class', 'base')
-            .attr('d', this.path);
+        this.drawBaseLayer();
+        this.drawDataLayer();
     }
 
     private setScale(scale: number): void {
@@ -205,5 +208,22 @@ export class Chart8Component implements OnInit, OnChanges {
         this.projection.fitHeight(height, this.features);
         this.setPath();
         this.draw();
+    }
+
+    private drawBaseLayer(): void {
+        this.containers.countries
+            .select('path.countries')
+            .datum(this.features)
+            .attr('d', this.path);
+    }
+
+    private drawDataLayer(): void {
+
+    }
+
+    private setColours(): void {
+        this.colours = d3.scaleThreshold()
+            .domain(this.data.thresholds)
+            .range(d3.schemeOranges[9]);
     }
 }
