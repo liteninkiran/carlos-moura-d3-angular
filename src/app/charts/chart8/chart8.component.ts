@@ -293,7 +293,22 @@ export class Chart8Component implements OnInit {
             .join('path')
             .attr('class', 'data')
             .attr('d', this.path)
-            .style('fill', (d) => this.colour(this.getValueByFeature(d)));
+            .style('fill', (d) => this.colour(this.getValueByFeature(d)))
+            .on('mouseenter', (event: MouseEvent, d) => {
+                // Highlight current feature
+                this.highlightFeature(d);
+                // Highlight legend item
+                const currentValue = this.getValueByFeature(d);
+                this.highlightLegendItems(currentValue);
+                // Show the tooltip
+            })
+            .on('mouseleave', () => {
+                // Reset current feature
+                this.resetFeatures();
+                // Reset legend item
+                this.resetLegendItems();
+                // Hide the tooltip
+            });
     }
 
     private setColours(): void {
@@ -304,11 +319,11 @@ export class Chart8Component implements OnInit {
 
     private setDataFeatures(): void {
         const ids = new Set(this.data.data.map((d) => d.id));
-        this.dataFeatures = this.features.features?.filter((feature) => ids.has(feature.properties.ISO3_CODE)) || [];
+        this.dataFeatures = this.features.features?.filter((feature) => ids.has(this.getFeatureId(feature))) || [];
     }
 
     private getValueByFeature(feature: any): number {
-        const id = feature.properties.ISO3_CODE;
+        const id = this.getFeatureId(feature);
         return this.data.data.find((d) => d.id === id)?.value || null;
     }
 
@@ -359,9 +374,12 @@ export class Chart8Component implements OnInit {
     }
 
     private highlightLegendItems = (value: number | null) => {
+        const colour = d3.color(this.colour(value)).toString();
         this.containers.legend
             .selectAll('g.legend-item')
-            .classed('highlighted', (d: number | null) => d === value);
+            .classed('highlighted', (d: number | null, i, nodes) => {
+                return d3.select(nodes[i]).select('rect').style('fill') === colour;
+            });
     }
 
     private highlightFeatures = (value: number | null) => {
@@ -396,5 +414,16 @@ export class Chart8Component implements OnInit {
         this.containers.data
             .selectAll('path.data')
             .classed('highlighted faded', false);
+    }
+
+    private highlightFeature(feature) {
+        const id = this.getFeatureId(feature);
+        this.containers.data
+            .selectAll('path.data')
+            .classed('highlighted', (d) => this.getFeatureId(d) === id);
+    }
+
+    private getFeatureId(feature): string {
+        return feature.properties.ISO3_CODE;
     }
 }
