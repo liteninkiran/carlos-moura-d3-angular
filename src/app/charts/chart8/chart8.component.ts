@@ -62,10 +62,10 @@ export class Chart8Component implements OnInit, OnChanges {
     private _config: IMapConfig;
     private _defaultConfig: IMapConfig = {
         margins: {
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
+            top: 40,
+            left: 20,
+            right: 20,
+            bottom: 40,
         },
     };
 
@@ -132,10 +132,10 @@ export class Chart8Component implements OnInit, OnChanges {
 
     private setProjection(): void {
         this.projection = d3
-            .geoEquirectangular()
+            .geoEquirectangular();
             //.geoOrthographic()
-            .scale(80)
-            .translate([this.dimensions.midWidth, this.dimensions.midHeight + 20]);
+            // .scale(80)
+            // .translate([this.dimensions.midWidth, this.dimensions.midHeight + 20]);
     }
 
     private setPath(): void {
@@ -179,8 +179,26 @@ export class Chart8Component implements OnInit, OnChanges {
         this.draw();
     }
 
-    public setRotate(x: number, y: number, z: number): void {
+    private setRotate(x: number, y: number, z: number): void {
         this.projection.rotate([x, y, z]);
+        this.setPath();
+        this.draw();
+    }
+
+    private setExtent(width: number, height: number): void {
+        this.projection.fitSize([width, height], this.features);
+        this.setPath();
+        this.draw();
+    }
+
+    private setWidth(width: number): void {
+        this.projection.fitWidth(width, this.features);
+        this.setPath();
+        this.draw();
+    }
+
+    private setHeight(height: number): void {
+        this.projection.fitHeight(height, this.features);
         this.setPath();
         this.draw();
     }
