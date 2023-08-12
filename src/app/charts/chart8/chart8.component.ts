@@ -25,6 +25,10 @@ import * as d3 from 'd3';
                     font-weight: bold;
                     dominant-baseline: middle;
                 }
+
+                .chart8 .highlighted rect {
+                    stroke: black;
+                }
             </style>
         </svg>
     `,
@@ -128,10 +132,10 @@ export class Chart8Component implements OnInit {
     }
 
     private repositionElements(): void {
-        this.containers.countries.attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginTop})`);
-        this.containers.data.attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginTop})`);
-        this.containers.titleContainer.attr('transform', `translate(${this.dimensions.midWidth}, ${this.dimensions.midMarginTop})`);
-        this.containers.legend.attr('transform', `translate(${this.dimensions.midWidth}, ${this.dimensions.midMarginBottom})`);
+        this.containers.countries.attr('transform', this.getTranslations('countries-container'));
+        this.containers.data.attr('transform', this.getTranslations('data-container'));
+        this.containers.titleContainer.attr('transform', this.getTranslations('title-container'));
+        this.containers.legend.attr('transform', this.getTranslations('legend-container'));
     }
 
     private setParams(): void {
@@ -197,6 +201,7 @@ export class Chart8Component implements OnInit {
         }
 
         // Set legend items
+        let coords: any;
         this.containers.legend
             .selectAll('g.legend-item')
             .data(data)
@@ -205,11 +210,22 @@ export class Chart8Component implements OnInit {
                 (update: d3.Update) => update.call(updateLegendItem),
             )
             .attr('class', 'legend-item')
-            .attr('transform', (d, i) => `translate(${i * width + (i && noDataSeparator || 0)}, 0)`);
+            .attr('transform', (d: any, i: any) => this.getTranslations('legend-items', { i, width, noDataSeparator }))
+            .on('mouseenter', (event: MouseEvent, data: number | null) => {
+                // Highlight legend items
+                this.highlightLegendItems(data);
+                // Highlight features
+                this.highlightFeatures(data);
+            })
+            .on('mouseleave', () => {
+                // Reset legend items
+                this.resetLegendItems();
+                // Reset features
+                this.resetFeatures();
+            });
 
         // Re-position legend
-        const coords = this.getTranslations('legend');
-        this.containers.legend.attr('transform', `translate(${coords.x}, ${coords.y})`);
+        this.containers.legend.attr('transform', this.getTranslations('legend'));
     }
 
     private draw(): void {
@@ -296,14 +312,65 @@ export class Chart8Component implements OnInit {
         return value === null ? '#b4b4b4' : this.colours(value);
     }
 
-    private getTranslations(container: string): any {
+    private getTranslations(container: string, options: any = {}): string {
         switch (container) {
+
+            case 'countries-container':
+                return `translate(
+                    ${this.dimensions.marginLeft},
+                    ${this.dimensions.marginTop}
+                )`;
+
+            case 'data-container':
+                return `translate(
+                    ${this.dimensions.marginLeft},
+                    ${this.dimensions.marginTop}
+                )`;
+
+            case 'title-container':
+                return `translate(
+                    ${this.dimensions.midWidth},
+                    ${this.dimensions.midMarginTop}
+                )`;
+    
+            case 'legend-container':
+                return `translate(
+                    ${this.dimensions.midWidth},
+                    ${this.dimensions.midMarginBottom}
+                )`;
+
+            case 'legend-items':
+                return `translate(
+                    ${options.i * options.width + (options.i && options.noDataSeparator || 0)},
+                    ${0}
+                )`;
+
             case 'legend':
                 const legendBox = this.containers.legend.node().getBBox();
-                return {
-                    x: this.dimensions.midWidth - 0.5 * legendBox.width,
-                    y: this.dimensions.midMarginBottom - 0.5 * legendBox.height,
-                };
+                return `translate(
+                    ${this.dimensions.midWidth - 0.5 * legendBox.width},
+                    ${this.dimensions.midMarginBottom - 0.5 * legendBox.height}
+                )`;
         }
+    }
+
+    private highlightLegendItems = (value: number | null) => {
+        this.containers.legend
+            .selectAll('g.legend-item')
+            .classed('highlighted', (d: number | null) => d === value);
+    }
+
+    private highlightFeatures = (value: number | null) => {
+
+    }
+
+    private resetLegendItems = () => {
+        this.containers.legend
+            .selectAll('g.legend-item')
+            .classed('highlighted', false);
+    }
+
+    private resetFeatures = () => {
+
     }
 }
