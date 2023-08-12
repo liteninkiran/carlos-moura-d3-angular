@@ -37,7 +37,7 @@ export class MapHelper {
         this.data = {
             title: `Covid-19 New Death Cases - ${this.timeFormat(date)}`,
             data: this.dataByDate.get(date),
-            thresholds: [0.1, 0.2, 0.5, 1, 2, 5, 10, 20],
+            thresholds: [null, 0, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20],
         };
     }
 }

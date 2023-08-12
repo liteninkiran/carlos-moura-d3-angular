@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ElementRef, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { IMapConfig, IMapData, IMapContainer } from 'src/app/interfaces/chart.interfaces';
 import { DimensionService } from 'src/app/services/dimension.service';
 import ObjectHelper from 'src/app/helpers/object.helper';
@@ -30,7 +30,7 @@ import * as d3 from 'd3';
     `,
     providers: [DimensionService],
 })
-export class Chart8Component implements OnInit, OnChanges {
+export class Chart8Component implements OnInit {
 
     @Input() set geodata(values) {
         this._geodata = values;
@@ -62,18 +62,13 @@ export class Chart8Component implements OnInit, OnChanges {
     public host: d3.Selection<any, any, any, any>;
     public svg: d3.Selection<any, any, any, any>;
 
-    public containers: IMapContainer = {
-        countries: undefined,
-        data: undefined,
-        titleContainer: undefined,
-        legend: undefined,
-    };
+    public containers: any = {};
     public title: any;
     public projection: any;
     public path: any;
     public features: any;
     public dataFeatures: any;
-    public colours: any;
+    public colours: d3.ScaleThreshold;
 
     private _geodata: any;
     private _data: IMapData;
@@ -83,7 +78,7 @@ export class Chart8Component implements OnInit, OnChanges {
             top: 40,
             left: 20,
             right: 20,
-            bottom: 20,
+            bottom: 40,
         },
     };
 
@@ -99,10 +94,6 @@ export class Chart8Component implements OnInit, OnChanges {
         this.setSvg();
         this.setDimensions();
         this.setElements();
-        this.updateChart();
-    }
-
-    public ngOnChanges(changes: SimpleChanges): void {
         this.updateChart();
     }
 
@@ -173,7 +164,52 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private setLegend(): void {
+        const width = 35;
+        const height = 12;
+        const fontSize = 10;
+        const noDataSeparator = 20;
+        const noDataLabel = 'No Data';
+        const data = this.data.thresholds;
 
+        // Enter function
+        const generateLegendItem = (selection) => {
+            selection
+                .append('rect')
+                .attr('class', 'legend-icon')
+                .attr('width', width)
+                .attr('height', height)
+                .style('fill', (d) => this.colour(d));
+
+            selection
+                .append('text')
+                .attr('class', 'legend-label')
+                .attr('x', d => d === null ? 0.5 * width : 0)
+                .attr('y', height + fontSize + 1)
+                .style('font-size', fontSize + 'px')
+                .style('text-anchor', 'middle')
+                .text(d => d === null ? noDataLabel : d);
+        };
+
+        // Update function
+        const updateLegendItem = (selection) => {
+            selection.selectAll('rect.lengend-icon').style('fill', (d) => d.colour);
+            selection.select('text.legend-label').text((d) => d);
+        }
+
+        // Set legend items
+        this.containers.legend
+            .selectAll('g.legend-item')
+            .data(data)
+            .join(
+                (enter: d3.Enter) => enter.append('g').call(generateLegendItem),
+                (update: d3.Update) => update.call(updateLegendItem),
+            )
+            .attr('class', 'legend-item')
+            .attr('transform', (d, i) => `translate(${i * width + (i && noDataSeparator || 0)}, 0)`);
+
+        // Re-position legend
+        const coords = this.getTranslations('legend');
+        this.containers.legend.attr('transform', `translate(${coords.x}, ${coords.y})`);
     }
 
     private draw(): void {
@@ -231,7 +267,8 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private drawDataLayer(): void {
-        this.containers.data.selectAll('path.data')
+        this.containers.data
+            .selectAll('path.data')
             .data(this.dataFeatures)
             .join('path')
             .attr('class', 'data')
@@ -241,7 +278,7 @@ export class Chart8Component implements OnInit, OnChanges {
 
     private setColours(): void {
         this.colours = d3.scaleThreshold()
-            .domain(this.data.thresholds)
+            .domain(this.data.thresholds.slice(2, this.data.thresholds.length))
             .range(d3.schemeOranges[9]);
     }
 
@@ -256,6 +293,17 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private colour(value: number | null): string {
-        return value ? this.colours(value) : '#b4b4b4';
+        return value === null ? '#b4b4b4' : this.colours(value);
+    }
+
+    private getTranslations(container: string): any {
+        switch (container) {
+            case 'legend':
+                const legendBox = this.containers.legend.node().getBBox();
+                return {
+                    x: this.dimensions.midWidth - 0.5 * legendBox.width,
+                    y: this.dimensions.midMarginBottom - 0.5 * legendBox.height,
+                };
+        }
     }
 }
