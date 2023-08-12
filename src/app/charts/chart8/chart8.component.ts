@@ -125,17 +125,19 @@ export class Chart8Component implements OnInit, OnChanges {
     }
 
     private setParams(): void {
+        this.setFeatures();
         this.setProjection();
         this.setPath();
-        this.setFeatures();
     }
 
     private setProjection(): void {
+        const coords: Array<number> = [
+            this.dimensions.innerWidth,
+            this.dimensions.innerHeight,
+        ];
         this.projection = d3
-            .geoEquirectangular();
-            //.geoOrthographic()
-            // .scale(80)
-            // .translate([this.dimensions.midWidth, this.dimensions.midHeight + 20]);
+            .geoEquirectangular()
+            .fitSize(coords, this.features);
     }
 
     private setPath(): void {
@@ -156,8 +158,10 @@ export class Chart8Component implements OnInit, OnChanges {
 
     private draw(): void {
         this.containers.countries
-            .select('path')
-            .datum(this.features)
+            .selectAll('path.base')
+            .data(this.features.features)
+            .join('path')
+            .attr('class', 'base')
             .attr('d', this.path);
     }
 
