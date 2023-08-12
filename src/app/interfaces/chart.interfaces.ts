@@ -145,3 +145,19 @@ export interface IMapContainer {
     titleContainer: any;
     legend: any;
 };
+
+export interface IMapFeature {
+    geometry: {
+        coordinates: any;
+        type: string;
+    };
+    id: string;
+    properties: {
+        CNTR_ID: string;
+        CNTR_NAME: string;
+        FID: string;
+        ISO3_CODE: string;
+        NAME_ENGL: string;
+    };
+    type: string;
+};

@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, Input, Output, EventEmitter } from '@angular/core';
-import { IMapConfig, IMapData, IMapContainer } from 'src/app/interfaces/chart.interfaces';
+import { IMapConfig, IMapData, IMapFeature } from 'src/app/interfaces/chart.interfaces';
 import { DimensionService } from 'src/app/services/dimension.service';
+import { HideMapTooltip, IPayload, MapTooltipActions, ShowMapTooltip } from 'src/app/actions/map-tooltip.actions';
 import ObjectHelper from 'src/app/helpers/object.helper';
 import * as topojson from 'topojson';
 import * as d3 from 'd3';
@@ -52,7 +53,7 @@ export class Chart8Component implements OnInit {
         this._config = ObjectHelper.UpdateObjectWithPartialValues<IMapConfig>(this._defaultConfig, values);
     };
 
-    @Output() tooltip = new EventEmitter<any>();
+    @Output() tooltip = new EventEmitter<MapTooltipActions>();
 
     get geodata() {
         return this._geodata;
@@ -294,14 +295,14 @@ export class Chart8Component implements OnInit {
             .attr('class', 'data')
             .attr('d', this.path)
             .style('fill', (d) => this.colour(this.getValueByFeature(d)))
-            .on('mouseenter', (event: MouseEvent, d) => {
+            .on('mouseenter', (event: MouseEvent, d: IMapFeature) => {
                 // Highlight current feature
                 this.highlightFeature(d);
                 // Highlight legend item
                 const currentValue = this.getValueByFeature(d);
                 this.highlightLegendItems(currentValue);
                 // Show the tooltip
-                this.showTooltip();
+                this.showTooltip(event, d);
             })
             .on('mouseleave', () => {
                 // Reset current feature
@@ -324,7 +325,7 @@ export class Chart8Component implements OnInit {
         this.dataFeatures = this.features.features?.filter((feature) => ids.has(this.getFeatureId(feature))) || [];
     }
 
-    private getValueByFeature(feature: any): number {
+    private getValueByFeature(feature: IMapFeature): number {
         const id = this.getFeatureId(feature);
         return this.data.data.find((d) => d.id === id)?.value || null;
     }
@@ -418,22 +419,30 @@ export class Chart8Component implements OnInit {
             .classed('highlighted faded', false);
     }
 
-    private highlightFeature(feature): void {
+    private highlightFeature(feature: IMapFeature): void {
         const id = this.getFeatureId(feature);
         this.containers.data
             .selectAll('path.data')
             .classed('highlighted', (d) => this.getFeatureId(d) === id);
     }
 
-    private getFeatureId(feature): string {
+    private getFeatureId(feature: IMapFeature): string {
         return feature.properties.ISO3_CODE;
     }
 
-    private showTooltip(): void {
-        this.tooltip.emit('show tooltip');
+    private showTooltip(event: MouseEvent, feature: IMapFeature): void {
+        const position = d3.pointer(event, this.svg.node());
+        const payload: IPayload = {
+            id: this.getFeatureId(feature),
+            x: position[0],
+            y: position[1],
+        };
+        const action = new ShowMapTooltip(payload);
+        this.tooltip.emit(action);
     }
 
     private hideTooltip(): void {
-        this.tooltip.emit('hide tooltip');
+        const action = new HideMapTooltip();
+        this.tooltip.emit(action);
     }
 }
