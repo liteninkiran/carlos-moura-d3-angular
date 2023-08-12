@@ -1,3 +1,4 @@
+import { MapTooltipActions, MapTooltipActionsTypes, ShowMapTooltip } from '../actions/map-tooltip.actions';
 import { ICountryCode, ICovidData, IMapData, IMapDataElement } from '../interfaces/chart.interfaces';
 import * as d3 from 'd3';
 
@@ -27,8 +28,26 @@ export class MapHelper {
         this.setMapData(this.dateRange[1]);
     }
 
-    public tooltip = (event: any) => {
-        console.log(event);
+    public tooltip = (action: MapTooltipActions) => {
+        switch(action.type) {
+            case MapTooltipActionsTypes.showTooltip:
+                this.showTooltip(action);
+                break;
+            case MapTooltipActionsTypes.hideTooltip:
+                this.hideTooltip();
+                break;
+        }
+    }
+
+    public showTooltip(action: ShowMapTooltip): void {
+        // Set position
+        // Set data
+        // Set visible to true
+    }
+
+    public hideTooltip(): void {
+        // Set position
+        // Set visible to false
     }
 
     private parseDate(date: string): number {
