@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from './services/api.service';
 import { Observable, Subscription, combineLatest } from 'rxjs';
-import { IGroupStackData, IPieData } from './interfaces/chart.interfaces';
+import { IGroupStackConfig, IGroupStackData, IPieConfig, IPieData } from './interfaces/chart.interfaces';
 import { PieHelper } from './helpers/pie.helper';
 import { StackHelper } from './helpers/stack.helper';
 import { MapHelper } from './helpers/map.helper';
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
         title: '',
         data: [],
     };
-    public pieConfig1 = {
+    public pieConfig1: IPieConfig = {
         innerRadiusCoef: 0.5,
         transition: 800,
         arcs: {
@@ -34,14 +34,45 @@ export class AppComponent implements OnInit, OnDestroy {
             radius: 6,
             padAngle: 0,
         },
+        hiddenOpacity: 0,
+        legendItem: {
+            symbolSize: 0,
+            height: 0,
+            fontSize: 0,
+            textSeparator: 0,
+        },
+        margins: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+        },
     };
-    public pieConfig2 = {
+    public pieConfig2: IPieConfig = {
         innerRadiusCoef: 0,
         arcs: {
             radius: 0,
+            stroke: '',
+            strokeWidth: 0,
+            padAngle: 0,
+        },
+        hiddenOpacity: 0,
+        legendItem: {
+            symbolSize: 0,
+            height: 0,
+            fontSize: 0,
+            textSeparator: 0,
+        },
+        transition: 0,
+        margins: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
         },
     };
     public stackedData: IGroupStackData = {} as any;
+    public config: IGroupStackConfig = {} as any;
 
     public geoCountries$: Observable<any> = new Observable();
     public covidByCountry$: Observable<any> = new Observable();

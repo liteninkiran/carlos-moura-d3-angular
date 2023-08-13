@@ -5,37 +5,219 @@
 </nav>
 <div class="container-fluid">
 
-    <div class="chart">
+    <!-- Row 1: Introduction -->
+    <div class="row">
 
-        <!-- Chart -->
-        <div class="chart-body">
-            <app-chart8
-                [geodata]="geoCountries$ | async"
-                [data]="covidMap.data"
-                (tooltip)="covidMap.tooltip($event)"
-            ></app-chart8>
+        <!-- Col 1 -->
+        <div class="col-4">
+            <div class="chart">
+                <app-chart1 [data]="data1"></app-chart1>
+            </div>
         </div>
 
-        <!-- Play Slider -->
-        <div class="chart-controller">
-            <app-play-slider
-                [min]="covidMap.sliderState.min"
-                [max]="covidMap.sliderState.max"
-                [step]="covidMap.sliderState.step"
-                [speed]="covidMap.sliderState.speed"
-                [value]="covidMap.currentDate"
-                (changeValue)="covidMap.setMapData($event)"
-            ></app-play-slider>
+        <!-- Col 2 -->
+        <div class="col-4">
+            <div class="chart">
+                <app-chart2 [data]="data2$ | async"></app-chart2>
+            </div>
         </div>
 
-        <!-- Tooltip -->
-        <div class="map-tooltip" [ngStyle]="{
-            'visibility': covidMap.tooltipState.visible ? '' : 'hidden',
-            'left.px': covidMap.tooltipState.x,
-            'top.px': covidMap.tooltipState.y
-        }">
-            <app-timeline-tooltip [data]="covidMap.tooltipData"></app-timeline-tooltip>
+        <!-- Col 3 -->
+        <div class="col-4">
+            <div class="chart">
+                <app-chart3 [data]="data2$ | async"></app-chart3>
+            </div>
         </div>
+
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row">
+
+        <!-- Scatterplot -->
+        <div class="col-4">
+            <div class="chart">
+                <app-chart4 [data]="iris$ | async"></app-chart4>
+            </div>
+        </div>
+
+        <!-- Line Chart -->
+        <div class="col-4">
+            <div class="chart">
+                <app-chart5 [data]="covid$ | async"></app-chart5>
+            </div>
+        </div>
+
+        <!-- Pie / Donut Chart -->
+        <div class="col-4">
+            <div class="chart">
+                <select class="chart-options" (change)="setPieData($event)">
+                    <option value="now" selected>Now</option>
+                    <option value="before">Before</option>
+                </select>
+                <app-chart6 [data]="pieData" [config]="pieConfig1"></app-chart6>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Row 3 -->
+    <div class="row">
+
+        <!-- Col 1 -->
+        <div class="col-4">
+            <div class="chart">
+
+                <!-- Chart -->
+                <div class="chart-body">
+                    <app-chart8
+                        [geodata]="geoCountries$ | async"
+                        [data]="covidMap.data"
+                        (tooltip)="covidMap.tooltip($event)"
+                    ></app-chart8>
+                </div>
+
+                <!-- Play Slider -->
+                <div class="chart-controller">
+                    <app-play-slider
+                        [min]="covidMap.sliderState.min"
+                        [max]="covidMap.sliderState.max"
+                        [step]="covidMap.sliderState.step"
+                        [speed]="covidMap.sliderState.speed"
+                        [value]="covidMap.currentDate"
+                        (changeValue)="covidMap.setMapData($event)"
+                    ></app-play-slider>
+                </div>
+
+                <!-- Tooltip -->
+                <div class="map-tooltip" [ngStyle]="{
+                    'visibility': covidMap.tooltipState.visible ? '' : 'hidden',
+                    'left.px': covidMap.tooltipState.x,
+                    'top.px': covidMap.tooltipState.y
+                }">
+                    <app-timeline-tooltip [data]="covidMap.tooltipData"></app-timeline-tooltip>
+                </div>
+            </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="col-4">
+            <div class="chart">
+                <app-chart6 [data]="pieData" [config]="pieConfig2"></app-chart6>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Row 4 -->
+    <div class="row">
+
+        <!-- Col 1 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="col-4">
+            <div class="chart">
+                <app-chart7 [data]="stackedData" [config]="config"></app-chart7>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Row 5 -->
+    <div class="row">
+
+        <!-- Col 1 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Row 6 -->
+    <div class="row">
+
+        <!-- Col 1 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Row 7 -->
+    <div class="row">
+
+        <!-- Col 1 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="col-4">
+            <div class="chart">
+                
+            </div>
+        </div>
+
     </div>
 
 </div>

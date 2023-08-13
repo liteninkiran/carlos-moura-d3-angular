@@ -128,13 +128,18 @@ export class TimelineTooltipComponent implements OnInit {
             yPadding: 12,
         },
     };
-    public maxValue: number;
-    public activeValue: number;
+    public maxValue: number = 0;
+    public activeValue: number | null = null;
     public scales: any = {};
     public line: any;
     public area: any;
 
-    private _data: ITimelineData;
+    private _data: ITimelineData = {
+        title: '',
+        activeTime: 0,
+        data: [],
+        timeFormat: '',
+    };
 
     get data(): ITimelineData {
         return this._data || { title: '', activeTime: null, data: [], timeFormat: '' };
@@ -199,6 +204,7 @@ export class TimelineTooltipComponent implements OnInit {
                     ${this.dimensions.marginTop}
                 )`;
         }
+        return '';
     }
 
     private setParams(): void {
@@ -219,7 +225,7 @@ export class TimelineTooltipComponent implements OnInit {
     }
 
     private setScales(): void {
-        const xDomain = d3.extent(this.data.data, (d) => d.date);
+        const xDomain: [number, number] = d3.extent(this.data.data, (d) => d.date) as [number, number];
         this.scales.x = d3.scaleLinear()
             .domain(xDomain)
             .range([0, this.dimensions.innerWidth]);
@@ -232,17 +238,17 @@ export class TimelineTooltipComponent implements OnInit {
 
     private setArea(): void {
         this.area = d3.area()
-            .defined((d) => d.value !== null)
-            .x((d) => this.scales.x(d.date))
+            .defined((d: any) => d.value !== null)
+            .x((d: any) => this.scales.x(d.date))
             .y0(this.dimensions.innerHeight)
-            .y1((d) => this.scales.y(d.value));
+            .y1((d: any) => this.scales.y(d.value));
     }
 
     private setLine(): void {
         this.line = d3.line()
-            .defined((d) => d.value !== null)
-            .x((d) => this.scales.x(d.date))
-            .y((d) => this.scales.y(d.value));
+            .defined((d: any) => d.value !== null)
+            .x((d: any) => this.scales.x(d.date))
+            .y((d: any) => this.scales.y(d.value));
 }
 
     private setLabels(): void {
@@ -321,7 +327,7 @@ export class TimelineTooltipComponent implements OnInit {
         const isLeftSide = x < 0.5 * this.dimensions.innerWidth;
         const padding = this.config.values.yPadding *  (isLeftSide ? -1 : 1);
         this.svg.select('text.active-date')
-            .text(d3.timeFormat(this.data.timeFormat)(this.data.activeTime))
+            .text(d3.timeFormat(this.data.timeFormat)(this.data.activeTime as any))
             .attr('x', x + padding)
             .attr('y', this.dimensions.innerHeight + this.config.values.yPadding)
             .style('text-anchor', isLeftSide ? 'start' : 'end');

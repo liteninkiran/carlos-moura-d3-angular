@@ -7,7 +7,7 @@ import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '
 })
 export class Chart2Component implements OnInit, OnChanges {
 
-    @Input() public data: Array<number> = [];
+    @Input() public data: any = [];
 
     public xLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
     public rectWidth: number = 80;
