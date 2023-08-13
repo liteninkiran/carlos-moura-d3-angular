@@ -100,6 +100,28 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private setScales = (): void => {
+        this.setXScale();
+        this.setYScale();
+        this.setColourScale();
+    }
+
+    private setXScale = (): void => {
+        const domain = d3.groups(this.data.data, (d: ISwarmDataElement) => d.category)
+            .map((d: any) => d[0])
+            .sort(d3.ascending);
+
+        const range = [0, this.dimensions.innerWidth];
+
+        this.scales['x'] = d3.scalePoint()
+            .domain(domain)
+            .range(range)
+            .padding(0.5);
+    }
+
+    private setYScale = (): void => {
+    }
+
+    private setColourScale = (): void => {
     }
 
     private setScaledData = (): void => {
