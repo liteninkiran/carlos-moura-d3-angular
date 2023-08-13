@@ -267,4 +267,13 @@ export interface ISwarmDataElement {
 export interface IBaseConfig {
     margins: IChartMargins;
 }
-  
+
+export interface ISimulatedSwarmDataElement extends ISwarmDataElement {
+    cx: number;
+    cy: number;
+    index: number;
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+}

@@ -1,6 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { DimensionService } from 'src/app/services/dimension.service';
-import { ISwarmData, ISwarmDataElement } from 'src/app/interfaces/chart.interfaces';
+import { ISimulatedSwarmDataElement, ISwarmData, ISwarmDataElement } from 'src/app/interfaces/chart.interfaces';
 import { Chart } from '../charts';
 import * as d3 from 'd3';
 
@@ -83,6 +83,8 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     public draw = (): void => {
+        this.drawCircles();
+        this.drawVoronoi();
     }
 
     public onSetData = (): void => {
@@ -141,5 +143,21 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private setAxis = (): void => {
+    }
+
+    private drawCircles = (): void => {
+        const data = this.data.data;
+
+        this.svg.select('g.data').selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
+            .data(data)
+            .join('circle')
+            .attr('class', 'data')
+            .attr('cx', (d: any) => this.scales.x(d.category))
+            .attr('cy', (d: any) => this.scales.y(d.value))
+            .attr('r', 3)
+            .style('fill', (d: any) => this.scales.colours(d.group));
+    }
+
+    private drawVoronoi = (): void => {
     }
 }
