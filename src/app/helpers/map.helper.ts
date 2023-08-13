@@ -1,5 +1,5 @@
 import { MapTooltipActions, MapTooltipActionsTypes, ShowMapTooltip } from '../actions/map-tooltip.actions';
-import { ICountryCode, ICovidData, IMapData, IMapDataElement, ITimelineData, ITooltipState } from '../interfaces/chart.interfaces';
+import { ICountryCode, ICovidData, IMapData, IMapDataElement, IPlaySlider, ITimelineData, ITooltipState } from '../interfaces/chart.interfaces';
 import * as d3 from 'd3';
 
 export class MapHelper {
@@ -26,6 +26,12 @@ export class MapHelper {
         data: [],
         timeFormat: '',
     };
+    public sliderState: IPlaySlider = {
+        min: 0,
+        max: 100,
+        step: 1000 * 60 * 60 * 24,
+        speed: 300,
+    };
 
     private timeFormatString = '%B %Y';
     private timeFormat: d3.timeFormat = d3.timeFormat(this.timeFormatString);
@@ -42,6 +48,7 @@ export class MapHelper {
         this.dataByCountry = d3.group(this.fullDataSet, (d: any) => d.id);
         this.dateRange = d3.extent(this.fullDataSet, (d: ICovidData) => d.date);
         this.setMapData(this.dateRange[1]);
+        this.setSlider();
     }
 
     public tooltip = (action: MapTooltipActions) => {
@@ -86,16 +93,25 @@ export class MapHelper {
         };
     }
 
-    private parseDate(date: string): number {
-        return Date.parse(date);
-    }
-
-    private setMapData(date: number): void {
+    public setMapData(date: number): void {
         this.currentDate = date;
         this.data = {
             title: `Covid-19 New Death Cases - ${this.timeFormat(date)}`,
             data: this.dataByDate.get(date),
             thresholds: [null, 0, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20],
         };
+    }
+
+    private parseDate(date: string): number {
+        return Date.parse(date);
+    }
+
+    private setSlider(): void {
+        this.sliderState = {
+            ...this.sliderState,
+            min: this.dateRange[0],
+            max: this.dateRange[1],
+        };
+
     }
 }

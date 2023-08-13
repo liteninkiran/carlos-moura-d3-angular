@@ -212,3 +212,10 @@ export interface ITimelineConfig {
         yPadding: number;
     };
 }
+
+export interface IPlaySlider {
+    min: number;
+    max: number;
+    step: number;
+    speed: number;
+}
