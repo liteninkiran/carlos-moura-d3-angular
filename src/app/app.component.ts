@@ -77,6 +77,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public geoCountries$: Observable<any> = new Observable();
     public covidByCountry$: Observable<any> = new Observable();
     public countryCodes$: Observable<any> = new Observable();
+    public demographics$: Observable<any> = new Observable();
     public subscriptions: Subscription[] = [];
     public covidMap = new MapHelper();
 
@@ -119,6 +120,12 @@ export class AppComponent implements OnInit, OnDestroy {
             this.countryCodes$,
         ]).subscribe(([data, codes]) => {
             this.covidMap.setData(data, codes);
+        });
+        this.subscriptions.push(sub);
+
+        this.demographics$ = this.api.getDemographics();
+        sub = this.demographics$.subscribe((data: any) => {
+
         });
         this.subscriptions.push(sub);
     }
