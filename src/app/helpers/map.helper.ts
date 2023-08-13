@@ -60,8 +60,8 @@ export class MapHelper {
         // Set visible to true
         this.tooltipState = {
             visible: true,
-            x: action.payload.x,
-            y: action.payload.y,
+            x: action.payload.x - 125,
+            y: action.payload.y - 170,
         };
         // Set data
         this.setTooltipData(action.payload.id);
