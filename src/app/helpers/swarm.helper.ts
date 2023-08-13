@@ -18,5 +18,10 @@ export class SwarmHelper {
         unit: string,
         decimals?: number
     ) {
+        this.data = {
+            title,
+            unit,
+            data: [],
+        };
     }
 }
