@@ -27,7 +27,7 @@ import { DimensionService } from 'src/app/services/dimension.service';
             }
 
             .timeline-tooltip .axis {
-                stroke: #444;
+                stroke: {{ config.axis.colour }};
             }
 
             .timeline-tooltip .axis--max {
@@ -35,14 +35,14 @@ import { DimensionService } from 'src/app/services/dimension.service';
             }
 
             .timeline-tooltip .area {
-                fill: rgb(253, 141, 60);
+                fill: {{ config.area.fill }};
                 stroke: none;
-                opacity: 0.5;
+                opacity: {{ config.area.opacity }};
             }
 
             .timeline-tooltip .line {
                 fill: none;
-                stroke: rgb(253, 141, 60);
+                stroke: {{ config.line.stroke }};
             }
 
         </style>
@@ -96,6 +96,16 @@ export class TimelineTooltipComponent implements OnInit {
         },
         labels: {
             fontSize: 9,
+        },
+        line: {
+            stroke: 'rgb(253, 141, 60)',
+        },
+        area: {
+            fill: 'rgb(253, 141, 60)',
+            opacity: 0.5,
+        },
+        axis: {
+            colour: '#444',
         },
     };
     public maxValue: number;

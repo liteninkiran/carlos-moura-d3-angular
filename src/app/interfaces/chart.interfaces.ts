@@ -191,4 +191,14 @@ export interface ITimelineConfig {
     labels: {
         fontSize: number;
     };
+    line: {
+        stroke: string;
+    };
+    area: {
+        fill: string;
+        opacity: number;
+    };
+    axis: {
+        colour: string;
+    };
 }
