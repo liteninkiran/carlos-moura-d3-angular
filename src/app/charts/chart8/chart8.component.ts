@@ -86,7 +86,7 @@ export class Chart8Component implements OnInit, OnDestroy {
         data: [],
         thresholds: [],
     };
-    private _config: IMapConfig = {} as any;
+    private _config: IMapConfig = null as any;
     private _defaultConfig: IMapConfig = {
         margins: {
             top: 40,

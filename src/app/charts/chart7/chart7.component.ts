@@ -102,7 +102,7 @@ export class Chart7Component implements OnInit, OnChanges {
     public dimensions: ChartDimensions = new ChartDimensions(new DOMRect(), {});
 
     // Config
-    private _config: IGroupStackConfig = {} as any;
+    private _config: IGroupStackConfig = null as any;
     private _defaultConfig: IGroupStackConfig = {
         hiddenOpacity: 0.3,
         fontSize: 12,
@@ -294,7 +294,7 @@ export class Chart7Component implements OnInit, OnChanges {
 
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
-        //console.log(this);
+        console.log(this);
     }
 
     public ngOnInit(): void {
