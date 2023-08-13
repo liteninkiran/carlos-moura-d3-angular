@@ -143,6 +143,28 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private setAxis = (): void => {
+        const xAxis: d3.Axis<d3.AxisDomain> = d3
+            .axisBottom(this.scales.x)
+            .tickSizeOuter(0);
+
+        this.svg
+            .select<SVGGElement>('g.xAxis')
+            .call(xAxis);
+
+        const yAxis: d3.Axis<d3.AxisDomain> = d3
+            .axisLeft(this.scales.y)
+            .tickSizeOuter(0)
+            .tickSizeInner(-this.dimensions.innerWidth);
+
+        this.svg
+            .select<SVGGElement>('g.yAxis')
+            .call(yAxis);
+
+        this.svg
+            .select('g.yAxis')
+            .selectAll('.tick line')
+            .style('stroke', '#ddd')
+            .style('stroke-dasharray', '2 2');
     }
 
     private drawCircles = (): void => {
