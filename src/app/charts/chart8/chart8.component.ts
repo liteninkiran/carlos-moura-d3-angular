@@ -132,7 +132,6 @@ export class Chart8Component implements OnInit, OnDestroy {
         public dimensions: DimensionService,
     ) {
         this.host = d3.select(element.nativeElement);
-        //console.log(this);
     }
 
     public ngOnInit(): void {

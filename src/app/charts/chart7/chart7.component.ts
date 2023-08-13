@@ -294,7 +294,6 @@ export class Chart7Component implements OnInit, OnChanges {
 
     constructor(element: ElementRef) {
         this.host = d3.select(element.nativeElement);
-        console.log(this);
     }
 
     public ngOnInit(): void {

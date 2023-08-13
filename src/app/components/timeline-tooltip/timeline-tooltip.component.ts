@@ -150,7 +150,6 @@ export class TimelineTooltipComponent implements OnInit {
         public dimensions: DimensionService,
     ) {
         this.host = d3.select(element.nativeElement);
-        //console.log(this);
     }
 
     public ngOnInit(): void {

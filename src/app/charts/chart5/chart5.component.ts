@@ -76,7 +76,6 @@ export class Chart5Component implements OnInit, OnChanges {
         this.setDimensions();
         this.setElements();
         this.updateChart();
-        //console.log(this);
     }
 
     public ngOnChanges(changes: SimpleChanges): void {
@@ -87,7 +86,6 @@ export class Chart5Component implements OnInit, OnChanges {
 
     private updateChart(): void {
         if (this.data) {
-            //console.log(this.data);
             this.setParams();
             this.setLabels();
             this.setAxis();
