@@ -66,6 +66,11 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     public setParams = (): void => {
+        this.setGroups();
+        this.setScales();
+        this.setScaledData();
+        this.setSimulatedData();
+        this.setAxis();
     }
 
     public setLabels = (): void => {
@@ -83,4 +88,18 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     public onSetConfig = (): void => {
     }
 
+    private setGroups = (): void => {
+    }
+
+    private setScales = (): void => {
+    }
+
+    private setScaledData = (): void => {
+    }
+
+    private setSimulatedData = (): void => {
+    }
+
+    private setAxis = (): void => {
+    }
 }
