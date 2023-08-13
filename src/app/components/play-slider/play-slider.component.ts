@@ -35,18 +35,34 @@ export class PlaySliderComponent implements OnInit {
     }
 
     public play(): void {
+        if (!this.paused) {
+            return;
+        }
 
+        this.paused = false;
+
+        this.interval = setInterval(() => {
+            if (this.value < this.max) {
+                this.value += this.step;
+                this.changeValue.emit(this.value);
+            } else {
+                clearInterval(this.interval);
+            }
+        }, this.speed);
     }
 
     public pause(): void {
-
+        this.paused = true;
+        clearInterval(this.interval);
     }
 
     public toggle(): void {
-
+        this.paused ? this.play() : this.pause();
     }
 
-    public onChangeValue(event: Event): void {
-        console.log(event);
+    public onChangeValue(event): void {
+        const value: number = +event.target.value;
+        this.value = value;
+        this.changeValue.emit(value);
     }
 }
