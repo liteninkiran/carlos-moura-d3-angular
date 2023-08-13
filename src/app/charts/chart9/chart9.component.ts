@@ -6,11 +6,22 @@ import { Chart } from '../charts';
 @Component({
     selector: 'app-chart9',
     template: `
-    <p>
-        chart9 works!
-    </p>
+    <svg class="swarm-chart">
+        <style>
+            .swarm-chart .label {
+
+            }
+
+            .swarm-chart .title {
+
+            }
+
+            .swarm-chart .yLabel {
+
+            }
+        </style>
+    </svg>
     `,
-    styles: [],
     providers: [DimensionService],
 })
 export class Chart9Component extends Chart<ISwarmData, any> {
@@ -46,6 +57,12 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     public positionElements = (): void => {
+        this.svg.select('g.title').attr('transform', `translate(${this.dimensions.midWidth}, ${this.dimensions.midMarginTop})`);
+        this.svg.select('g.yAxis').attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginTop})`);
+        this.svg.select('g.xAxis').attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginBottom})`);
+        this.svg.select('g.yLabel').attr('transform', `translate(${12 + 5}, ${this.dimensions.midHeight})`);
+        this.svg.select('g.data').attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginTop})`);
+        this.svg.select('g.voronoi').attr('transform', `translate(${this.dimensions.marginLeft}, ${this.dimensions.marginTop})`);
     }
 
     public setParams = (): void => {
