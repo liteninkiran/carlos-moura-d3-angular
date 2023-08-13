@@ -1,0 +1,27 @@
+.play-slider {
+    display: flex;
+    align-items: center;
+    margin: 0px 10px;
+
+    input.slider {
+        -webkit-appearance: none;
+        flex-grow: 1;
+        height: 5px;
+        background-color: #bbb;
+        opacity: 0.7;
+        transition: opacity .2s;
+
+        &::-webkit-slider-thumb {
+            appearance: none;
+            height: 15px;
+            width: 15px;
+            border-radius: 15px;
+            border: solid 1px #444;
+            background-color: #fff;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

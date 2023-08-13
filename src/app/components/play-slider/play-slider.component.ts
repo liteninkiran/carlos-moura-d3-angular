@@ -9,8 +9,8 @@ export class PlaySliderComponent implements OnInit {
 
     @Input() public min = 0;
     @Input() public max = 100;
-    @Input() public step = 100;
-    @Input() public speed = 100;
+    @Input() public step = 1;
+    @Input() public speed = 300;
     @Input() public set value(value: number) {
         this._value = value;
     }
@@ -46,4 +46,7 @@ export class PlaySliderComponent implements OnInit {
 
     }
 
+    public onChangeValue(event: Event): void {
+        console.log(event);
+    }
 }

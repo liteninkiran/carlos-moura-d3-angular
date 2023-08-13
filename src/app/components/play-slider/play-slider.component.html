@@ -1,1 +1,16 @@
-<p>play-slider works!</p>
+<div class="play-slider">
+    <span type="button" (click)="toggle()">
+        <i *ngIf="paused" class="bi bi-play"></i>
+        <i *ngIf="!paused" class="bi bi-pause"></i>
+    </span>
+    <input
+        type="range"
+        id="play-slider"
+        class="slider"
+        [attr.min]="min"
+        [attr.max]="max"
+        [attr.step]="step"
+        [attr.value]="value"
+        (change)="onChangeValue($event)"
+    >
+</div>
