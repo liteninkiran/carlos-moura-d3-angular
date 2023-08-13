@@ -1,7 +1,8 @@
 import { Component, ElementRef } from '@angular/core';
 import { DimensionService } from 'src/app/services/dimension.service';
-import { ISwarmData } from 'src/app/interfaces/chart.interfaces';
+import { ISwarmData, ISwarmDataElement } from 'src/app/interfaces/chart.interfaces';
 import { Chart } from '../charts';
+import * as d3 from 'd3';
 
 @Component({
     selector: 'app-chart9',
@@ -25,6 +26,8 @@ import { Chart } from '../charts';
     providers: [DimensionService],
 })
 export class Chart9Component extends Chart<ISwarmData, any> {
+
+    public groups: Array<string | number> = [];
 
     protected _defaultConfig: any = {
         margins: {
@@ -83,12 +86,17 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     public onSetData = (): void => {
+        if (!this.chartIsInitialized || !this.dataIsInitialized) { return; }
+        this.updateChart();
     }
 
     public onSetConfig = (): void => {
     }
 
     private setGroups = (): void => {
+        this.groups = d3.groups(this.data.data, (d: ISwarmDataElement) => d.group)
+            .map((d: any) => d[0])
+            .sort(d3.ascending);
     }
 
     private setScales = (): void => {
