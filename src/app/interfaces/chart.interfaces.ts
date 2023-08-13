@@ -263,3 +263,8 @@ export interface ISwarmDataElement {
     category: string | number;
     group: string | number;
 }
+
+export interface IBaseConfig {
+    margins: IChartMargins;
+}
+  
