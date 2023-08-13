@@ -5,6 +5,7 @@ import { IGroupStackConfig, IGroupStackData, IPieConfig, IPieData } from './inte
 import { PieHelper } from './helpers/pie.helper';
 import { StackHelper } from './helpers/stack.helper';
 import { MapHelper } from './helpers/map.helper';
+import { SwarmHelper } from './helpers/swarm.helper';
 
 @Component({
     selector: 'app-root',
@@ -80,6 +81,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public demographics$: Observable<any> = new Observable();
     public subscriptions: Subscription[] = [];
     public covidMap = new MapHelper();
+    public swarmHelper = new SwarmHelper();
 
     constructor(private api: ApiService) {
 
@@ -125,7 +127,18 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.demographics$ = this.api.getDemographics();
         sub = this.demographics$.subscribe((data: any) => {
-
+            this.swarmHelper.setData(
+                data,
+                'Demographics by Country and Year',
+                'year',
+                'code',
+                'name',
+                'median_age',
+                'continent',
+                'median age (years)',
+                1
+            );
+            console.log(this.swarmHelper);
         });
         this.subscriptions.push(sub);
     }
