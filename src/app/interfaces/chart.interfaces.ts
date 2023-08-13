@@ -137,6 +137,36 @@ export interface IMapDataElement {
 
 export interface IMapConfig {
     margins: IChartMargins;
+    title: {
+        fontWeight: string;
+        fontSize: number;
+    };
+    features: {
+        base: {
+            stroke: string;
+            fill: string;
+        };
+        data: {
+            stroke: string;
+        };
+        highlighted: {
+            stroke: string;
+        };
+    };
+    faded: {
+        opacity: number;
+    };
+    noData: {
+        colour: string;
+        label: string;
+    };
+    legend: {
+        width: number;
+        height: number;
+        fontSize: number;
+        noDataSeparator: number;
+    };
+    colours: string[];
 };
 
 export interface IMapContainer {

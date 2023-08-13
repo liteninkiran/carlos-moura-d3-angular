@@ -33,7 +33,7 @@ export class MapHelper {
         speed: 300,
     };
 
-    private timeFormatString = '%B %Y';
+    private timeFormatString = '%d %B %Y';
     private timeFormat: d3.timeFormat = d3.timeFormat(this.timeFormatString);
 
     public setData(data: ICovidData, countryCodes: Array<ICountryCode>, dataAttr: string = 'new_deaths_smoothed_per_million'): void {

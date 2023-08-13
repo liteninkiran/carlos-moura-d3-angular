@@ -12,27 +12,27 @@ import * as d3 from 'd3';
         <svg class="chart8">
             <style>
                 .chart8 path.countries {
-                    fill: #fff;
-                    stroke: #aaa;
+                    fill: {{ config.features.base.fill }};
+                    stroke: {{ config.features.base.stroke }};
                 }
 
                 .chart8 path.data {
-                    stroke: none;
+                    stroke: {{ config.features.data.stroke }};
                 }
 
                 .chart8 text.title {
                     text-anchor: middle;
-                    font-size: 12px;
-                    font-weight: bold;
+                    font-size: {{ config.title.fontSize }}px;
+                    font-weight: {{ config.title.fontWeight }};
                     dominant-baseline: middle;
                 }
 
                 .chart8 .highlighted rect, .chart8 path.data.highlighted {
-                    stroke: black;
+                    stroke: {{ config.features.highlighted.stroke }};
                 }
 
                 .chart8 .faded {
-                    opacity: 0.3;
+                    opacity: {{ config.faded.opacity }};
                 }
             </style>
         </svg>
@@ -89,6 +89,36 @@ export class Chart8Component implements OnInit {
             right: 20,
             bottom: 40,
         },
+        title: {
+            fontWeight: 'bold',
+            fontSize: 12,
+        },
+        features: {
+            base: {
+                stroke: '#aaa',
+                fill: '#fff'
+            },
+            data: {
+                stroke: 'none',
+            },
+            highlighted: {
+                stroke: '#000',
+            },
+        },
+        faded: {
+            opacity: 0.3
+        },
+        noData: {
+            colour: '#b4b4b4',
+            label: 'No Data',
+        },
+        legend: {
+            width: 30,
+            height: 10,
+            fontSize: 10,
+            noDataSeparator: 20,
+        },
+        colours: d3.schemeOranges[9],
     };
 
     constructor(
@@ -173,11 +203,11 @@ export class Chart8Component implements OnInit {
     }
 
     private setLegend(): void {
-        const width = 35;
-        const height = 12;
-        const fontSize = 10;
-        const noDataSeparator = 20;
-        const noDataLabel = 'No Data';
+        const width = this.config.legend.width;
+        const height = this.config.legend.height;
+        const fontSize = this.config.legend.fontSize;
+        const noDataSeparator = this.config.legend.noDataSeparator;
+        const noDataLabel = this.config.noData.label;
         const data = this.data.thresholds;
 
         // Enter function
@@ -317,7 +347,7 @@ export class Chart8Component implements OnInit {
     private setColours(): void {
         this.colours = d3.scaleThreshold()
             .domain(this.data.thresholds.slice(2, this.data.thresholds.length))
-            .range(d3.schemeOranges[9]);
+            .range(this.config.colours);
     }
 
     private setDataFeatures(): void {
@@ -331,7 +361,7 @@ export class Chart8Component implements OnInit {
     }
 
     private colour(value: number | null): string {
-        return value === null ? '#b4b4b4' : this.colours(value);
+        return value === null ? this.config.noData.colour : this.colours(value);
     }
 
     private getTranslations(container: string, options: any = {}): string {

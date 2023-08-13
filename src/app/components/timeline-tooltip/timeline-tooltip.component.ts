@@ -280,7 +280,6 @@ export class TimelineTooltipComponent implements OnInit {
     }
 
     private setActiveData(): void {
-
         this.svg
             .select('g.active-container')
             .style('visibility', this.activeValue === null ? 'hidden' : '');
@@ -288,7 +287,6 @@ export class TimelineTooltipComponent implements OnInit {
         if (this.activeValue === null) {
             return;
         }
-
 
         const x = this.scales.x(this.data.activeTime);
         const y = this.scales.y(this.activeValue);
