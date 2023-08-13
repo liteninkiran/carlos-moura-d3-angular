@@ -1,7 +1,8 @@
-import { Component, OnInit, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { IMapConfig, IMapData, IMapFeature } from 'src/app/interfaces/chart.interfaces';
 import { DimensionService } from 'src/app/services/dimension.service';
 import { HideMapTooltip, IPayload, MapTooltipActions, ShowMapTooltip } from 'src/app/actions/map-tooltip.actions';
+import { Observable, Subscription, debounceTime, fromEvent } from 'rxjs';
 import ObjectHelper from 'src/app/helpers/object.helper';
 import * as topojson from 'topojson';
 import * as d3 from 'd3';
@@ -39,7 +40,7 @@ import * as d3 from 'd3';
     `,
     providers: [DimensionService],
 })
-export class Chart8Component implements OnInit {
+export class Chart8Component implements OnInit, OnDestroy {
 
     @Input() set geodata(values) {
         this._geodata = values;
@@ -120,6 +121,7 @@ export class Chart8Component implements OnInit {
         },
         colours: d3.schemeOranges[9],
     };
+    private subscriptions: Array<Subscription> = [];
 
     constructor(
         element: ElementRef,
@@ -130,10 +132,27 @@ export class Chart8Component implements OnInit {
     }
 
     public ngOnInit(): void {
+        this.subscribeToChart();
         this.setSvg();
         this.setDimensions();
         this.setElements();
         this.updateChart();
+    }
+
+    public ngOnDestroy(): void {
+        this.subscriptions.map((sub) => sub.unsubscribe());
+    }
+
+    private subscribeToChart() {
+        const resize$: Observable<any> = fromEvent(window, 'resize');
+        const sub = resize$
+            .pipe(debounceTime(300))
+            .subscribe(this.resizeChart);
+        this.subscriptions.push(sub);
+    }
+
+    private resizeChart() {
+
     }
 
     private setSvg(): void {
