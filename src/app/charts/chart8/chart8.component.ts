@@ -218,7 +218,7 @@ export class Chart8Component implements OnInit, OnDestroy {
     }
 
     private setFeatures(): void {
-        this.features = topojson.feature(this.geodata, this.geodata.objects['CNTR_RG_60M_2020_4326']);
+        this.features = topojson?.feature(this.geodata, this.geodata.objects['CNTR_RG_60M_2020_4326']) || [];
     }
 
     private setLabels(): void {

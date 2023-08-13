@@ -33,6 +33,16 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     public setElements = (): void => {
+        this.svg.append('g').attr('class', 'title')
+            .append('text')
+            .attr('class', 'title label');
+        this.svg.append('g').attr('class', 'yAxis');
+        this.svg.append('g').attr('class', 'xAxis');
+        this.svg.append('g').attr('class', 'yLabel')
+            .append('text')
+            .attr('class', 'yLabel label')
+            .attr('transform', 'rotate(-90)');
+        this.svg.append('g').attr('class', 'data');
     }
 
     public positionElements = (): void => {
