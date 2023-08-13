@@ -132,7 +132,7 @@ export class Chart8Component implements OnInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.subscribeToChart();
+        this.subscribeToChartResize();
         this.setSvg();
         this.setDimensions();
         this.setElements();
@@ -143,16 +143,17 @@ export class Chart8Component implements OnInit, OnDestroy {
         this.subscriptions.map((sub) => sub.unsubscribe());
     }
 
-    private subscribeToChart() {
+    private subscribeToChartResize() {
         const resize$: Observable<any> = fromEvent(window, 'resize');
         const sub = resize$
             .pipe(debounceTime(300))
-            .subscribe(this.resizeChart);
+            .subscribe(() => this.resizeChart());
         this.subscriptions.push(sub);
     }
 
     private resizeChart() {
-
+        this.setDimensions();
+        this.updateChart();
     }
 
     private setSvg(): void {
