@@ -1,6 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
 import { DimensionService } from 'src/app/services/dimension.service';
-import * as d3 from 'd3';
 import { ISwarmData } from 'src/app/interfaces/chart.interfaces';
 import { Chart } from '../charts';
 
@@ -16,12 +15,45 @@ import { Chart } from '../charts';
 })
 export class Chart9Component extends Chart<ISwarmData, any> {
 
+    protected _defaultConfig: any = {
+        margins: {
+            top: 30,
+            left: 50,
+            right: 50,
+            bottom: 20,
+        },
+    };
+
     constructor(
         element: ElementRef,
         dimensions: DimensionService,
     ) {
         super(element, dimensions);
         console.log(this);
+    }
+
+    public setElements = (): void => {
+    }
+
+    public positionElements = (): void => {
+    }
+
+    public setParams = (): void => {
+    }
+
+    public setLabels = (): void => {
+    }
+
+    public setLegend = (): void => {
+    }
+
+    public draw = (): void => {
+    }
+
+    public onSetData = (): void => {
+    }
+
+    public onSetConfig = (): void => {
     }
 
 }
