@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-play-slider',
@@ -7,11 +7,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaySliderComponent implements OnInit {
 
+    @Input() public min = 0;
+    @Input() public max = 100;
+    @Input() public step = 100;
+    @Input() public speed = 100;
+    @Input() public set value(value: number) {
+        this._value = value;
+    }
+
+    @Output() public changeValue = new EventEmitter<number>;
+
+    public interval: any;
+    public paused = true;
+
+    private _value: number = 0;
+
+    get value() {
+        return this._value;
+    }
+
     constructor() {
         
     }
 
     public ngOnInit(): void {
+
+    }
+
+    public play(): void {
+
+    }
+
+    public pause(): void {
+
+    }
+
+    public toggle(): void {
 
     }
 
