@@ -24,13 +24,18 @@ import { DimensionService } from 'src/app/services/dimension.service';
 
             .timeline-tooltip .label {
                 font-size: {{ config.labels.fontSize }}px;
+                text-anchor: end;
+                dominant-baseline: central;
             }
 
-            .timeline-tooltip .axis {
+            .timeline-tooltip .axis,
+            .timeline-tooltip .axis--max,
+            .timeline-tooltip .active {
                 stroke: {{ config.axis.colour }};
             }
 
-            .timeline-tooltip .axis--max {
+            .timeline-tooltip .axis--max,
+            .timeline-tooltip .active {
                 stroke-dasharray: 1 1;
             }
 
@@ -43,6 +48,11 @@ import { DimensionService } from 'src/app/services/dimension.service';
             .timeline-tooltip .line {
                 fill: none;
                 stroke: {{ config.line.stroke }};
+            }
+
+            .timeline-tooltip circle {
+                stroke: {{ config.circle.stroke }};
+                fill: {{ config.circle.fill }};
             }
 
         </style>
@@ -106,6 +116,16 @@ export class TimelineTooltipComponent implements OnInit {
         },
         axis: {
             colour: '#444',
+        },
+        circle: {
+            stroke: 'rgb(127, 39, 4)',
+            fill: 'rgb(253, 141, 60)',
+            radius: 3,
+        },
+        values: {
+            decimalPlaces: 1,
+            xPadding: 5,
+            yPadding: 12,
         },
     };
     public maxValue: number;
@@ -227,7 +247,10 @@ export class TimelineTooltipComponent implements OnInit {
 
     private setLabels(): void {
         this.svg.select('text.title').text(this.data.title);
-        this.svg.select('text.max-value').text(this.maxValue);
+        this.svg.select('text.max-value')
+            .text(this.rounding(this.maxValue))
+            .attr('x', -this.config.values.xPadding)
+            .attr('y', 0);
     }
 
     private setLines(): void {
@@ -244,10 +267,6 @@ export class TimelineTooltipComponent implements OnInit {
             .attr('y2', 0);
     }
 
-    private setActiveData(): void {
-
-    }
-
     private drawArea(): void {
         const data = this.data.data;
         this.svg.select('path.area')
@@ -258,5 +277,58 @@ export class TimelineTooltipComponent implements OnInit {
         const data = this.data.data;
         this.svg.select('path.line')
             .attr('d', this.line(data));
+    }
+
+    private setActiveData(): void {
+
+        this.svg
+            .select('g.active-container')
+            .style('visibility', this.activeValue === null ? 'hidden' : '');
+
+        if (this.activeValue === null) {
+            return;
+        }
+
+
+        const x = this.scales.x(this.data.activeTime);
+        const y = this.scales.y(this.activeValue);
+
+        // Set horizontal line
+        this.svg.select('line.active-horizontal')
+            .attr('x1', 0)
+            .attr('x2', x)
+            .attr('y1', y)
+            .attr('y2', y);
+
+        // Set vertical line
+        this.svg.select('line.active-vertical')
+            .attr('x1', x)
+            .attr('x2', x)
+            .attr('y1', this.dimensions.innerHeight)
+            .attr('y2', y);
+
+        // Set the circle
+        this.svg.select('circle.active-circle')
+            .attr('cx', x)
+            .attr('cy', y)
+            .attr('r', this.config.circle.radius);
+
+        // Set the value label
+        this.svg.select('text.active-value')
+            .text(this.rounding(this.activeValue))
+            .attr('x', -this.config.values.xPadding)
+            .attr('y', y);
+
+        // Set the date label
+        this.svg.select('text.active-date')
+            .text(d3.timeFormat(this.data.timeFormat)(this.data.activeTime))
+            .attr('x', x)
+            .attr('y', this.dimensions.innerHeight + this.config.values.yPadding);
+
+    }
+
+    private rounding(value: number): number {
+        const factor = Math.pow(10, this.config.values.decimalPlaces);
+        return Math.round(factor * value) / factor;
     }
 }
