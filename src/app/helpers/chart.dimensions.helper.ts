@@ -1,4 +1,4 @@
-import { IChartMargins } from "../interfaces/chart.interfaces";
+import { IChartMargins } from '../interfaces/chart.interfaces';
 
 export class ChartDimensions {
     private dimensions: DOMRect;
