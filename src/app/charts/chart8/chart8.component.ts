@@ -70,7 +70,7 @@ export class Chart8Component implements OnInit, OnDestroy {
 
     // Main elements
     public host: d3.Selection<any, any, any, any>;
-    public svg: d3.Selection<any, any, any, any>;
+    public svg: d3.Selection<any, any, any, any> = d3.selection();
 
     public containers: any = {};
     public title: any;
@@ -78,11 +78,15 @@ export class Chart8Component implements OnInit, OnDestroy {
     public path: any;
     public features: any;
     public dataFeatures: any;
-    public colours: d3.ScaleThreshold;
+    public colours: d3.ScaleThreshold<any, any, any> = d3.scaleThreshold();
 
     private _geodata: any;
-    private _data: IMapData;
-    private _config: IMapConfig;
+    private _data: IMapData = {
+        title: '',
+        data: [],
+        thresholds: [],
+    };
+    private _config: IMapConfig = {} as any;
     private _defaultConfig: IMapConfig = {
         margins: {
             top: 40,
@@ -119,7 +123,7 @@ export class Chart8Component implements OnInit, OnDestroy {
             fontSize: 10,
             noDataSeparator: 20,
         },
-        colours: d3.schemeOranges[9],
+        colours: d3.schemeOranges[9].slice(),
     };
     private subscriptions: Array<Subscription> = [];
 
@@ -201,7 +205,7 @@ export class Chart8Component implements OnInit, OnDestroy {
     }
 
     private setProjection(): void {
-        const coords: Array<number> = [
+        const coords: [number, number] = [
             this.dimensions.innerWidth,
             this.dimensions.innerHeight,
         ];
@@ -231,28 +235,28 @@ export class Chart8Component implements OnInit, OnDestroy {
         const data = this.data.thresholds;
 
         // Enter function
-        const generateLegendItem = (selection) => {
+        const generateLegendItem = (selection: any) => {
             selection
                 .append('rect')
                 .attr('class', 'legend-icon')
                 .attr('width', width)
                 .attr('height', height)
-                .style('fill', (d) => this.colour(d));
+                .style('fill', (d: any) => this.colour(d));
 
             selection
                 .append('text')
                 .attr('class', 'legend-label')
-                .attr('x', d => d === null ? 0.5 * width : 0)
+                .attr('x', (d: any) => d === null ? 0.5 * width : 0)
                 .attr('y', height + fontSize + 1)
                 .style('font-size', fontSize + 'px')
                 .style('text-anchor', 'middle')
-                .text(d => d === null ? noDataLabel : d);
+                .text((d: any) => d === null ? noDataLabel : d);
         };
 
         // Update function
-        const updateLegendItem = (selection) => {
-            selection.selectAll('rect.lengend-icon').style('fill', (d) => d.colour);
-            selection.select('text.legend-label').text((d) => d);
+        const updateLegendItem = (selection: any) => {
+            selection.selectAll('rect.lengend-icon').style('fill', (d: any) => d.colour);
+            selection.select('text.legend-label').text((d: any) => d);
         }
 
         // Set legend items
@@ -261,8 +265,8 @@ export class Chart8Component implements OnInit, OnDestroy {
             .selectAll('g.legend-item')
             .data(data)
             .join(
-                (enter: d3.Enter) => enter.append('g').call(generateLegendItem),
-                (update: d3.Update) => update.call(updateLegendItem),
+                (enter: any) => enter.append('g').call(generateLegendItem),
+                (update: any) => update.call(updateLegendItem),
             )
             .attr('class', 'legend-item')
             .attr('transform', (d: any, i: any) => this.getTranslations('legend-items', { i, width, noDataSeparator }))
@@ -344,7 +348,7 @@ export class Chart8Component implements OnInit, OnDestroy {
             .join('path')
             .attr('class', 'data')
             .attr('d', this.path)
-            .style('fill', (d) => this.colour(this.getValueByFeature(d)))
+            .style('fill', (d: any) => this.colour(this.getValueByFeature(d)))
             .on('mouseenter', (event: MouseEvent, d: IMapFeature) => {
                 // Highlight current feature
                 this.highlightFeature(d);
@@ -367,15 +371,15 @@ export class Chart8Component implements OnInit, OnDestroy {
     private setColours(): void {
         this.colours = d3.scaleThreshold()
             .domain(this.data.thresholds.slice(2, this.data.thresholds.length))
-            .range(this.config.colours);
+            .range(this.config.colours as any);
     }
 
     private setDataFeatures(): void {
         const ids = new Set(this.data.data.map((d) => d.id));
-        this.dataFeatures = this.features.features?.filter((feature) => ids.has(this.getFeatureId(feature))) || [];
+        this.dataFeatures = this.features.features?.filter((feature: any) => ids.has(this.getFeatureId(feature))) || [];
     }
 
-    private getValueByFeature(feature: IMapFeature): number {
+    private getValueByFeature(feature: IMapFeature): number | null {
         const id = this.getFeatureId(feature);
         return this.data.data.find((d) => d.id === id)?.value || null;
     }
@@ -424,31 +428,32 @@ export class Chart8Component implements OnInit, OnDestroy {
                     ${this.dimensions.midMarginBottom - 0.5 * legendBox.height}
                 )`;
         }
+        return '';
     }
 
     private highlightLegendItems = (value: number | null): void => {
-        const colour = d3.color(this.colour(value)).toString();
+        const colour = d3.color(this.colour(value))?.toString();
         this.containers.legend
             .selectAll('g.legend-item')
-            .classed('highlighted', (d: number | null, i, nodes) => {
+            .classed('highlighted', (d: number | null, i: any, nodes: any) => {
                 return d3.select(nodes[i]).select('rect').style('fill') === colour;
             });
     }
 
     private highlightFeatures = (value: number | null): void => {
-        const colour = d3.color(this.colour(value)).toString();
+        const colour = d3.color(this.colour(value))?.toString();
         this.containers.countries
             .selectAll('path')
             .classed('faded', true);
 
         this.containers.data
             .selectAll('path.data')
-            .classed('highlighted', function (d) {
-                const featureColour = d3.select(this).style('fill');
+            .classed('highlighted', function (d: any, i: number, groups: any) {
+                const featureColour = d3.select(groups[i]).style('fill');
                 return featureColour === colour
             })
-            .classed('faded', function (d) {
-                const featureColour = d3.select(this).style('fill');
+            .classed('faded', function (d: any, i: number, groups: any) {
+                const featureColour = d3.select(groups[i]).style('fill');
                 return featureColour !== colour
             });
     }
@@ -473,7 +478,7 @@ export class Chart8Component implements OnInit, OnDestroy {
         const id = this.getFeatureId(feature);
         this.containers.data
             .selectAll('path.data')
-            .classed('highlighted', (d) => this.getFeatureId(d) === id);
+            .classed('highlighted', (d: any) => this.getFeatureId(d) === id);
     }
 
     private getFeatureId(feature: IMapFeature): string {

@@ -99,10 +99,10 @@ export class Chart7Component implements OnInit, OnChanges {
     public hiddenIds = new Set();
 
     // Dimensions
-    public dimensions: ChartDimensions;
+    public dimensions: ChartDimensions = new ChartDimensions(new DOMRect(), {});
 
     // Config
-    private _config: IGroupStackConfig;
+    private _config: IGroupStackConfig = {} as any;
     private _defaultConfig: IGroupStackConfig = {
         hiddenOpacity: 0.3,
         fontSize: 12,
@@ -153,7 +153,13 @@ export class Chart7Component implements OnInit, OnChanges {
         stackOrder: [],
     };
 
-    private _data: IGroupStackData;
+    private _data: IGroupStackData = {
+        title: '',
+        yLabel: '',
+        unit: '',
+        data: [],
+        stackOrder: [],
+    };
 
     private stackedData: any;
 
@@ -271,7 +277,6 @@ export class Chart7Component implements OnInit, OnChanges {
         },
     ];
 
-
     get config(): IGroupStackConfig {
         if (!this._config) {
             this.config = this._defaultConfig;
@@ -327,7 +332,7 @@ export class Chart7Component implements OnInit, OnChanges {
             yLabel: this.getTranslations('y-label'),
         };
         this.svg
-            .on('mousemove', event => this.moveTooltip(event))
+            .on('mousemove', (event: any) => this.moveTooltip(event))
             .on('mouseleave', this.hideTooltip);
 
         this.xAxisContainer = this.svg
@@ -390,16 +395,16 @@ export class Chart7Component implements OnInit, OnChanges {
         const width = 35;
         const height = 15;
         const fontSize = 10;
-        const colour = (elem) => this.scales.colour(data.indexOf(elem));
+        const colour = (elem: any) => this.scales.colour(data.indexOf(elem));
 
         // Enter function
-        const generateLegendItem = (selection) => {
+        const generateLegendItem = (selection: any) => {
             selection
                 .append('rect')
                 .attr('class', 'legend-icon')
                 .attr('width', width)
                 .attr('height', height)
-                .style('fill', (d) => colour(d));
+                .style('fill', (d: any) => colour(d));
 
             selection
                 .append('text')
@@ -408,25 +413,25 @@ export class Chart7Component implements OnInit, OnChanges {
                 .attr('y', height + fontSize + 1)
                 .style('font-size', fontSize + 'px')
                 .style('text-anchor', 'middle')
-                .text(d => d);
+                .text((d: any) => d);
         };
 
         // Update function
-        const updateLegendItem = (selection) => {
-            selection.selectAll('rect.lengend-icon').style('fill', (d) => d.colour);
-            selection.append('text').text((d) => d);
+        const updateLegendItem = (selection: any) => {
+            selection.selectAll('rect.lengend-icon').style('fill', (d: any) => d.colour);
+            selection.append('text').text((d: any) => d);
         }
 
         // Set item containers
         this.legendContainer
             .selectAll('g.legend-item')
-            .data(data, d => d)
+            .data(data, (d: any) => d)
             .join(
-                enter => enter.append('g').call(generateLegendItem),
-                update => update.each().call(updateLegendItem),
+                (enter: any) => enter.append('g').call(generateLegendItem),
+                (update: any) => update.each().call(updateLegendItem),
             )
             .attr('class', 'legend-item')
-            .on('mouseenter', (event, key) => {
+            .on('mouseenter', (event: any, key: any) => {
                 this.highlightSeries(key);
                 this.highlightLegendItems(key);
             })
@@ -440,8 +445,8 @@ export class Chart7Component implements OnInit, OnChanges {
 
         this.legendContainer
             .selectAll('g.legend-item')
-            .each(function () {
-                const g = d3.select(this);
+            .each((data: any, index: number, groups: any) => {
+                const g = d3.select(groups[index]);
                 g.attr('transform', `translate(${padding}, 0)`);
                 padding += g.node().getBBox().width;
             });
@@ -456,7 +461,7 @@ export class Chart7Component implements OnInit, OnChanges {
         this.drawRectangles();
     }
 
-    private getTranslations(container: string, event?): any {
+    private getTranslations(container: string, event?: any): any {
         switch (container) {
             case 'x-axis-container': return {
                 x: this.dimensions.marginLeft,
@@ -531,11 +536,11 @@ export class Chart7Component implements OnInit, OnChanges {
     }
 
     private setYScale(): void {
-        const minVal = Math.min(0, d3.min(this.data.data, d => d.value));
+        const minVal = Math.min(0, d3.min(this.data.data, d => d.value) as any);
         const maxVal = d3.max(d3.flatRollup(this.data.data, v => d3.sum(v, d => d.value), d => d.domain, d => d.group), d => d[2]);
         const domain = [minVal, maxVal];
         const range = [this.dimensions.innerHeight, 0];
-        this.scales.y = d3.scaleLinear().domain(domain).range(range);
+        this.scales.y = d3.scaleLinear().domain(domain as any).range(range);
     }
 
     private setGroupScale(): void {
@@ -576,10 +581,10 @@ export class Chart7Component implements OnInit, OnChanges {
         const stack = d3
             .stack()
             .keys(keys)
-            .value((element, key) => element[1].find(d => d.stack === key).value);
-        this.stackedData = stack(groupedData).flatMap((v) => v.map((elem) => {
+            .value((element: any, key: any) => element[1].find((d: any) => d.stack === key).value);
+        this.stackedData = stack(groupedData as any).flatMap((v: any) => v.map((elem: any) => {
             const [domain, group] = elem.data[0].split('__');
-            const data = elem.data[1].find((d) => d.stack === v.key) || {
+            const data = elem.data[1].find((d: any) => d.stack === v.key) || {
                 domain,
                 group,
                 key: v.key,
@@ -597,18 +602,18 @@ export class Chart7Component implements OnInit, OnChanges {
         const data = this.stackedData;
         this.dataContainer
             .selectAll('rect.data')
-            .data(data, d => d.key)
+            .data(data, (d: any) => d.key)
             .join('rect')
             .attr('class', 'data')
-            .attr('x', d => {
+            .attr('x', (d: any) => {
                 return this.scales.x(d.domain) + this.scales.group(d.group);
             })
             .attr('width', this.scales.group.bandwidth())
-            .attr('y', d => this.scales.y(d.max))
-            .attr('height', d => Math.abs(this.scales.y(d.min) - this.scales.y(d.max)))
+            .attr('y', (d: any) => this.scales.y(d.max))
+            .attr('height', (d: any) => Math.abs(this.scales.y(d.min) - this.scales.y(d.max)))
             .attr('stroke', 'white')
-            .style('fill', d => this.scales.colour(d.index))
-            .on('mouseenter', (event, data) => {
+            .style('fill', (d: any) => this.scales.colour(d.index))
+            .on('mouseenter', (event: any, data: any) => {
                 this.tooltip(event, data);
                 this.highlightRectangle(data);
             });

@@ -25,13 +25,13 @@ export class Chart4Component implements OnInit, OnChanges {
     public yLabel: any;
 
     // User options
-    public xValue: string;
-    public yValue: string;
+    public xValue: string = '';
+    public yValue: string = '';
 
     // Dimensions
-    public dimensions: DOMRect;
-    public innerWidth: number;
-    public innerHeight: number;
+    public dimensions: DOMRect = new DOMRect();
+    public innerWidth: number = 300;
+    public innerHeight: number = 150;
 
     public margins = {
         left: 40,
@@ -54,7 +54,7 @@ export class Chart4Component implements OnInit, OnChanges {
         if (!(this.xValue && this.yValue)) {
             return [];
         }
-        return this.data.map((elem) => ({
+        return this.data.map((elem: any) => ({
             x: +elem[this.xValue],
             y: +elem[this.yValue],
             species: elem.Species,
@@ -78,7 +78,7 @@ export class Chart4Component implements OnInit, OnChanges {
         }
     }
 
-    public setOption(option: string, event): void {
+    public setOption(option: string, event: any): void {
         const value = event && event.target && event.target.value;
         switch (option) {
             case 'x': this.xValue = value; break;
@@ -137,9 +137,9 @@ export class Chart4Component implements OnInit, OnChanges {
     }
 
     private setParams(): void {
-        const maxXValue = this.xValue ? d3.max(this.data, (d) => +d[this.xValue]) : 1;
-        const maxYValue = this.yValue ? d3.max(this.data, (d) => +d[this.yValue]) : 1;
-        const uniqueSpecies = new Set((this.data || []).map((d) => d.Species));
+        const maxXValue: number = this.xValue ? d3.max(this.data, (d: any) => +d[this.xValue]) as number : 1;
+        const maxYValue: number = this.yValue ? d3.max(this.data, (d: any) => +d[this.yValue]) as number : 1;
+        const uniqueSpecies: any = new Set((this.data || []).map((d: any) => d.Species));
 
         this.x = d3.scaleLinear()
             .domain([0, maxXValue])
@@ -193,11 +193,11 @@ export class Chart4Component implements OnInit, OnChanges {
             .append('circle')
             .attr('class', 'data')
             .attr('r', 4)
-            .style('fill', (d) => this.colours(d.species))
+            .style('fill', (d: any) => this.colours(d.species))
             .style('opacity', 0.4)
             .merge(scatter)
-            .attr('cx', (d) => this.x(d.x))
-            .attr('cy', (d) => this.y(d.y))
+            .attr('cx', (d: any) => this.x(d.x))
+            .attr('cy', (d: any) => this.y(d.y))
 
         // Exit
         scatter.exit().remove();

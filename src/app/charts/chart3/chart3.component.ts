@@ -18,11 +18,11 @@ export class Chart3Component implements OnInit, OnChanges {
     public xAxis: any;
     public yAxisContainer: any;
     public yAxis: any;
-    public dimensions: DOMRect;
+    public dimensions: DOMRect = new DOMRect();
     public rectWidth = 30;
     public padding = 5;
-    public innerWidth: number;
-    public innerHeight: number;
+    public innerWidth: number = 300;
+    public innerHeight: number = 150;
     public margin = {
         left: 60,
         right: 20,
@@ -37,8 +37,8 @@ export class Chart3Component implements OnInit, OnChanges {
 
     get barsData() {
         return this.sortedBySalary
-        ? this.data.sort((a, b) => b.employee_salary - a.employee_salary)
-        : this.data.sort((a, b) => (a.employee_name < b.employee_name) ? -1 : 1)
+        ? this.data.sort((a: any, b: any) => b.employee_salary - a.employee_salary)
+        : this.data.sort((a: any, b: any) => (a.employee_name < b.employee_name) ? -1 : 1)
     }
 
     constructor(elementRef: ElementRef) {
@@ -65,7 +65,7 @@ export class Chart3Component implements OnInit, OnChanges {
 
     private setAxis(): void {
 
-        const updateXAxis = (xAxisContainer) => {
+        const updateXAxis = (xAxisContainer: any) => {
             xAxisContainer.call(this.xAxis);
             xAxisContainer
                 .selectAll('.tick text')
@@ -119,17 +119,17 @@ export class Chart3Component implements OnInit, OnChanges {
     private draw(): void {
         const bars = this.dataContainer
             .selectAll('rect')
-            .data(this.barsData, (d) => d.id);
+            .data(this.barsData, (d: any) => d.id);
 
         bars.enter()
             .append('rect')
             .merge(bars)
             .transition()
             .duration(2000)
-            .attr('x', (d) => this.x(d.id))
+            .attr('x', (d: any) => this.x(d.id))
             .attr('width', this.x.bandwidth())
-            .attr('height', (d) => this.innerHeight - this.y(d.employee_salary))
-            .attr('y', (d) => this.y(d.employee_salary));
+            .attr('height', (d: any) => this.innerHeight - this.y(d.employee_salary))
+            .attr('y', (d: any) => this.y(d.employee_salary));
 
         bars.exit().remove();
     }

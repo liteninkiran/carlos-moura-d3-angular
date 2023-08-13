@@ -7,12 +7,12 @@ import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '
 })
 export class Chart2Component implements OnInit, OnChanges {
 
-    @Input() public data: Array<number>;
+    @Input() public data: Array<number> = [];
 
     public xLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
     public rectWidth: number = 80;
     public max: number = 250;
-    public dimensions: DOMRect;
+    public dimensions: DOMRect = new DOMRect();
     public outerPadding: number = 20;
     public padding: number = 0;
     public bandwidth: number = 0;
@@ -21,8 +21,8 @@ export class Chart2Component implements OnInit, OnChanges {
     public right = 20;
     public bottom = 16;
     public top = 15;
-    public innerWidth: number;
-    public innerHeight: number;
+    public innerWidth: number = 300;
+    public innerHeight: number = 150;
 
     constructor(private elementRef: ElementRef) {
 

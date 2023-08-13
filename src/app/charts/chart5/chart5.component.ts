@@ -16,9 +16,9 @@ export class Chart5Component implements OnInit, OnChanges {
     public svg: any;
 
     // Dimensions
-    public dimensions: DOMRect;
-    public innerWidth: number;
-    public innerHeight: number;
+    public dimensions: DOMRect = new DOMRect();
+    public innerWidth: number = 300;
+    public innerHeight: number = 150;
 
     public margins = {
         left: 50,
@@ -60,10 +60,10 @@ export class Chart5Component implements OnInit, OnChanges {
             .filter((d, i) => this.active[i])
             .map((item) => ({
                 name: item,
-                data: this.data.map((d) => ({
+                data: this.data.map((d: any) => ({
                     x: this.timeParse(d.date),
                     y: d[item],
-                })).sort((a, b) => a.x < b.x ? -1 : 1),
+                })).sort((a: any, b: any) => a.x < b.x ? -1 : 1),
             }));
     }
 
@@ -138,8 +138,8 @@ export class Chart5Component implements OnInit, OnChanges {
         const parsedDates = this.data.map((d: any) => this.timeParse(d.date));
 
         // Set Domains
-        const xDomain = d3.extent(parsedDates);
-        const maxValues = this.lineData.map((series) => d3.max(series.data, (d) => d.y));
+        const xDomain: any = d3.extent(parsedDates);
+        const maxValues = this.lineData.map((series) => series.data && d3.max(series.data, (d: any) => d.y)) || [0, 0];
         const yDomain = [0, d3.max(maxValues)];
         const colourDomain = this.selected;
 
@@ -163,8 +163,8 @@ export class Chart5Component implements OnInit, OnChanges {
             .range(colourRange);
 
         this.line = d3.line()
-            .x((d) => this.x(d.x))
-            .y((d) => this.y(d.y))
+            .x((d: any) => this.x(d.x))
+            .y((d: any) => this.y(d.y))
     }
 
     private setLabels(): void {
@@ -175,7 +175,7 @@ export class Chart5Component implements OnInit, OnChanges {
         this.xAxis = d3
             .axisBottom(this.x)
             .ticks(d3.timeMonth.every(3))
-            .tickFormat(d3.timeFormat('%b %Y'))
+            .tickFormat(d3.timeFormat('%b %Y') as any)
             .tickSizeOuter(0);
 
         this.xAxisContainer
@@ -187,7 +187,7 @@ export class Chart5Component implements OnInit, OnChanges {
             .ticks(5)
             .tickSizeOuter(0)
             .tickSizeInner(-this.innerWidth)
-            .tickFormat(d3.format('~s'));
+            .tickFormat(d3.format('~s') as any);
 
         this.yAxisContainer
             .transition()
@@ -221,10 +221,10 @@ export class Chart5Component implements OnInit, OnChanges {
         const updateLegendItems = (selection: any) => {
             selection
                 .selectAll('circle.legend-icon')
-                .style('fill', (d) => this.colours(d));
+                .style('fill', (d: any) => this.colours(d));
                 selection
                 .selectAll('text.legend-label')
-                .text((d) => d);
+                .text((d: any) => d);
         };
 
         // 1 - Select item containers and bind data
@@ -251,7 +251,7 @@ export class Chart5Component implements OnInit, OnChanges {
             })
             .transition()
             .duration(500)
-            .style('opacity', (d, i) => this.active[i] ? 1 : 0.3);
+            .style('opacity', (d: any, i: number) => this.active[i] ? 1 : 0.3);
 
         // 3 - Remove unneeded groups
         itemContainers.exit().remove();
@@ -260,8 +260,8 @@ export class Chart5Component implements OnInit, OnChanges {
         let totalPadding = 0;
         this.legendContainer
             .selectAll('g.legend-item')
-            .each(function() {
-                const g = d3.select(this); // Arrow function will change scope of "this"
+            .each((data: any, index: number, groups: any) => {
+                const g = d3.select(groups[index]);
                 g.attr('transform', `translate(${totalPadding}, 0)`);
                 totalPadding += g.node().getBBox().width + 10;
             });
@@ -277,7 +277,7 @@ export class Chart5Component implements OnInit, OnChanges {
         // Bind data
         const lines = this.dataContainer
             .selectAll('path.data')
-            .data(this.lineData, (d) => d.name);
+            .data(this.lineData, (d: any) => d.name);
 
         // Enter and merge
         lines.enter()
@@ -288,8 +288,8 @@ export class Chart5Component implements OnInit, OnChanges {
             .merge(lines)
             .transition()
             .duration(500)
-            .attr('d', (d) => this.line(d.data))
-            .style('stroke', (d) => this.colours(d.name));
+            .attr('d', (d: any) => this.line(d.data))
+            .style('stroke', (d: any) => this.colours(d.name));
 
         // Exit
         lines.exit().remove();
@@ -301,12 +301,12 @@ export class Chart5Component implements OnInit, OnChanges {
     }
 
     private hoverLine(selected?: string): void {
-        const index = this.selected.indexOf(selected);
+        const index = selected ? this.selected.indexOf(selected) : -1;
         if (selected && this.active[index]) {
             this.dataContainer
                 .selectAll('path.data')
-                .attr('opacity', (d) => d.name === selected ? 1 : 0.3)
-                .style('stroke-width', (d) => d.name === selected ? '3px' : '2px');
+                .attr('opacity', (d: any) => d.name === selected ? 1 : 0.3)
+                .style('stroke-width', (d: any) => d.name === selected ? '3px' : '2px');
         } else {
             this.dataContainer
                 .selectAll('path.data')
