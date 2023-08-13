@@ -138,7 +138,6 @@ export class AppComponent implements OnInit, OnDestroy {
                 'median age (years)',
                 1
             );
-            console.log(this.swarmHelper);
         });
         this.subscriptions.push(sub);
     }
