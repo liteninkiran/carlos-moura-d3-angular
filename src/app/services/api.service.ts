@@ -52,6 +52,11 @@ export class ApiService {
         return this.getJson(url);
     }
 
+    public getDemographics(): Observable<any> {
+        const url = 'assets/demographicsByYearAndCountry.csv';
+        return this.getParsedData(url);
+    }
+
     private getParsedData(url: string): Observable<any> {
         return this.http.get(url, { responseType: 'text' }).pipe(
             retry(3),
