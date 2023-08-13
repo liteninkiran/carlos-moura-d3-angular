@@ -9,7 +9,7 @@ export class MapHelper {
     public dataByCountry = new Map<string, IMapDataElement[]>();
     public countriesById = new Map<string, string>();
     public currentDate = 0;
-    public dateRange: [number, number];
+    public dateRange: [number, number] = [0, 1];
     public data: IMapData = {
         title: 'Covid-19 New Death Cases',
         data: [],
@@ -22,7 +22,7 @@ export class MapHelper {
     };
     public tooltipData: ITimelineData = {
         title: '',
-        activeTime: null,
+        activeTime: 0,
         data: [],
         timeFormat: '',
     };
@@ -34,19 +34,19 @@ export class MapHelper {
     };
 
     private timeFormatString = '%d %B %Y';
-    private timeFormat: d3.timeFormat = d3.timeFormat(this.timeFormatString);
+    private timeFormat = d3.timeFormat(this.timeFormatString);
 
     public setData(data: ICovidData, countryCodes: Array<ICountryCode>, dataAttr: string = 'new_deaths_smoothed_per_million'): void {
         const ids: Map<string, string> = new Map(countryCodes.map((code: ICountryCode) => [code.location, code.iso3]));
         this.countriesById = new Map(countryCodes.map((code: ICountryCode) => [code.iso3, code.location]));
         this.fullDataSet = data.location.map((location: string, i: number) => ({
-            id: ids.get(location),
-            value: data[dataAttr][i],
+            id: ids.get(location) || '',
+            value: (data as any)[dataAttr][i],
             date: this.parseDate(data.date[i]),
         }));
-        this.dataByDate = d3.group(this.fullDataSet, (d: ICovidData) => d.date);
+        this.dataByDate = d3.group(this.fullDataSet as any, (d: ICovidData) => d.date) as any;
         this.dataByCountry = d3.group(this.fullDataSet, (d: any) => d.id);
-        this.dateRange = d3.extent(this.fullDataSet, (d: ICovidData) => d.date);
+        this.dateRange = d3.extent(this.fullDataSet, (d: any) => d.date) as [number, number];
         this.setMapData(this.dateRange[1]);
         this.setSlider();
     }
@@ -86,9 +86,9 @@ export class MapHelper {
 
     public setTooltipData(id: string) {
         this.tooltipData = {
-            title: this.countriesById.get(id),
+            title: this.countriesById.get(id) || '',
             activeTime: this.currentDate,
-            data: this.dataByCountry.get(id),
+            data: this.dataByCountry.get(id) || [],
             timeFormat: this.timeFormatString,
         };
     }
@@ -96,9 +96,9 @@ export class MapHelper {
     public setMapData(date: number): void {
         this.currentDate = date;
         this.data = {
-            title: `Covid-19 New Death Cases - ${this.timeFormat(date)}`,
-            data: this.dataByDate.get(date),
-            thresholds: [null, 0, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20],
+            title: `Covid-19 New Death Cases - ${this.timeFormat(date as any)}`,
+            data: this.dataByDate.get(date) as any,
+            thresholds: [null as any, 0, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20],
         };
     }
 
