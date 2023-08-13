@@ -14,12 +14,12 @@ import { MapHelper } from './helpers/map.helper';
 export class AppComponent implements OnInit, OnDestroy {
     public title = 'Dashboard';
     public data1 = [125, 100, 50, 75, 200, 60, 70];
-    public data2$: Observable<any[]>;
-    public iris$: Observable<any>;
-    public covid$: Observable<any>;
-    public population$: Observable<any>;
+    public data2$: Observable<any[]> = new Observable();
+    public iris$: Observable<any> = new Observable();
+    public covid$: Observable<any> = new Observable();
+    public population$: Observable<any> = new Observable();
     public population: any;
-    public browsers$: Observable<any>;
+    public browsers$: Observable<any> = new Observable();
     public browser: any;
     public pieData: IPieData = {
         title: '',
@@ -41,11 +41,11 @@ export class AppComponent implements OnInit, OnDestroy {
             radius: 0,
         },
     };
-    public stackedData: IGroupStackData;
+    public stackedData: IGroupStackData = {} as any;
 
-    public geoCountries$: Observable<any>;
-    public covidByCountry$: Observable<any>;
-    public countryCodes$: Observable<any>;
+    public geoCountries$: Observable<any> = new Observable();
+    public covidByCountry$: Observable<any> = new Observable();
+    public countryCodes$: Observable<any> = new Observable();
     public subscriptions: Subscription[] = [];
     public covidMap = new MapHelper();
 
