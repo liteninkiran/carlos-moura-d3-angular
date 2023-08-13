@@ -34,6 +34,17 @@ import { DimensionService } from 'src/app/services/dimension.service';
                 stroke-dasharray: 1 1;
             }
 
+            .timeline-tooltip .area {
+                fill: rgb(253, 141, 60);
+                stroke: none;
+                opacity: 0.5;
+            }
+
+            .timeline-tooltip .line {
+                fill: none;
+                stroke: rgb(253, 141, 60);
+            }
+
         </style>
         <g class="title">
             <text class="title"></text>
@@ -132,6 +143,8 @@ export class TimelineTooltipComponent implements OnInit {
             this.setParams();
             this.setLabels();
             this.setLines();
+            this.drawArea();
+            this.drawLine();
             this.setActiveData();
         }
     }
@@ -223,5 +236,17 @@ export class TimelineTooltipComponent implements OnInit {
 
     private setActiveData(): void {
 
+    }
+
+    private drawArea(): void {
+        const data = this.data.data;
+        this.svg.select('path.area')
+            .attr('d', this.area(data));
+    }
+
+    private drawLine(): void {
+        const data = this.data.data;
+        this.svg.select('path.line')
+            .attr('d', this.line(data));
     }
 }
