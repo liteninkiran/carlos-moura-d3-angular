@@ -10,15 +10,17 @@ import * as d3 from 'd3';
     <svg class="swarm-chart">
         <style>
             .swarm-chart .label {
-
+                text-anchor: middle;
+                dominant-baseline: central;
             }
 
             .swarm-chart .title {
-
+                font-weight: bold;
+                font-size: 12px;
             }
 
             .swarm-chart .yLabel {
-
+                font-size: 12px;
             }
         </style>
     </svg>
@@ -77,6 +79,8 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     public setLabels = (): void => {
+        this.svg.select('text.title').text(this.data.title);
+        this.svg.select('text.yLabel').text(this.data.unit);
     }
 
     public setLegend = (): void => {

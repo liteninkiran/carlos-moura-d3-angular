@@ -135,7 +135,7 @@ export class AppComponent implements OnInit, OnDestroy {
                 'name',
                 'median_age',
                 'continent',
-                'median age (years)',
+                'Median Age (Years)',
                 1
             );
         });
