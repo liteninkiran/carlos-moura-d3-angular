@@ -320,11 +320,13 @@ export class TimelineTooltipComponent implements OnInit {
             .attr('y', y);
 
         // Set the date label
+        const isLeftSide = x < 0.5 * this.dimensions.innerWidth;
+        const padding = this.config.values.yPadding *  (isLeftSide ? -1 : 1);
         this.svg.select('text.active-date')
             .text(d3.timeFormat(this.data.timeFormat)(this.data.activeTime))
-            .attr('x', x)
-            .attr('y', this.dimensions.innerHeight + this.config.values.yPadding);
-
+            .attr('x', x + padding)
+            .attr('y', this.dimensions.innerHeight + this.config.values.yPadding)
+            .style('text-anchor', isLeftSide ? 'start' : 'end');
     }
 
     private rounding(value: number): number {
