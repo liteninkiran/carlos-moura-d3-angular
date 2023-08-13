@@ -119,6 +119,11 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private setYScale = (): void => {
+        let [min, max] = d3.extent(this.data.data, (d: ISwarmDataElement) => d.value);
+        min = Math.min(min || 0, 0);
+        const domain = [min === undefined ? 0 : min, max === undefined ? 1 : max];
+        const range = [this.dimensions.innerHeight, 0];
+        this.scales['y'] = d3.scaleLinear().domain(domain).range(range);
     }
 
     private setColourScale = (): void => {
