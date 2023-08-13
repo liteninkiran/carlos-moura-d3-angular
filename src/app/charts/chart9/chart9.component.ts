@@ -127,6 +127,11 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private setColourScale = (): void => {
+        const domain = this.groups;
+        const range = d3.schemeTableau10;
+        this.scales.colours = d3.scaleOrdinal<string | number, string>()
+            .domain(domain)
+            .range(range);
     }
 
     private setScaledData = (): void => {
