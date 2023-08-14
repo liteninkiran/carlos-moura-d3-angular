@@ -152,9 +152,24 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     private setSimulatedData = (): void => {
         const data = this.scaledData;
         const simulation = d3.forceSimulation<any>(data)
-            .force('x', d3.forceX((d: any) => d.cx).strength(1));
+            .force('x', d3.forceX((d: any) => d.cx).strength(0.8))
+            .force('y', d3.forceY((d: any) => d.cy).strength(1))
+            .force('collide', d3.forceCollide().radius(2))
+            .stop();
+        simulation.tick(50);
 
-        simulation.tick(5);
+/*
+        // Simulate data
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i > 50) {
+                clearInterval(interval)
+            }
+            i++;
+            simulation.tick();
+            this.runSimulation();
+        }, 500);
+*/
     }
 
     private setAxis = (): void => {
@@ -196,5 +211,18 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private drawVoronoi = (): void => {
+    }
+
+    private runSimulation = () => {
+        const data = this.scaledData;
+        this.svg.select('g.data').selectAll('circle.data')
+            .data(data)
+            .join('circle')
+            .attr('class', 'data')
+            .attr('r', 2)
+            .style('fill', (d: any) => this.scales.colours(d.group))
+            .transition()
+            .attr('cx', (d: any) => d.x)
+            .attr('cy', (d: any) => d.y);
     }
 }
