@@ -69,9 +69,40 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
     }
 
     public onMouseClick = (event: MouseEvent, data: any): void => {
-        this.toggleItem(data.id);
+        this.naturalClick(data.id);
         this.updateItemStyles();
         const action = new LegendItemClicked({ item: data.id });
         this.onLegendAction.emit(action);
+    }
+
+    private hideAllOthers = (id: any): void => {
+        const ids = this.data.items.filter((item: any) => item.id !== id)
+            .map((item: any) => item.id);
+
+        this.hiddenIds = new Set(ids);
+    }
+
+    private reverseHidden = (): void => {
+        this.data.items.map((item: any) => this.toggleItem(item.id));
+    }
+
+    private hiddenIsEmpty = (): boolean => {
+        return this.hiddenIds.size === 0;
+    }
+
+    private allOthersHidden = (id: any): boolean => {
+        return !this.hiddenIds.has(id) && this.hiddenIds.size === this.data.items.length - 1;
+    }
+
+    private naturalClick = (id: any): void => {
+        if (this.hiddenIsEmpty()) {
+            this.hideAllOthers(id);
+        } else {
+            if (this.allOthersHidden(id)) {
+                this.reverseHidden();
+            } else {
+                this.toggleItem(id);
+            }
+        }
     }
 }
