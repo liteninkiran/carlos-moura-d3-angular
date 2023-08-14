@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LegendItemClicked, LegendItemReset, LegendService } from './legend.service';
+import { LegendItemClicked, LegendItemHighlighted, LegendItemReset, LegendService } from './legend.service';
 import { ListLegendData, ListLegendItem } from '../interfaces/legend.interfaces';
 
 @Injectable()
@@ -56,14 +56,16 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
         this.host
             .selectAll<SVGSVGElement, ListLegendItem>('g.legend-item')
             .style('font-weight', (d: ListLegendItem) => d.id === data.id ? 'bold' : '');
+        const action = new LegendItemHighlighted({ item: data.id });
+        this.onLegendAction.emit(action)
     }
 
     public onMouseLeave = (event: MouseEvent, data: any): void => {
         this.host
             .selectAll<SVGSVGElement, ListLegendItem>('g.legend-item')
             .style('font-weight', '');
-            const action = new LegendItemReset({ item: data.id });
-            this.onLegendAction.emit(action);
+        const action = new LegendItemReset({ item: data.id });
+        this.onLegendAction.emit(action);
     }
 
     public onMouseClick = (event: MouseEvent, data: any): void => {

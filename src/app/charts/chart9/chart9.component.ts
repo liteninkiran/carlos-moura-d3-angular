@@ -234,7 +234,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .attr('class', 'data')
             .attr('cx', (d: any) => d.x)
             .attr('cy', (d: any) => d.y)
-            .attr('r', 3)
+            .attr('r', 2)
             .style('fill', (d: any) => this.scales.colours(d.group));
     }
 
@@ -267,6 +267,24 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private onLegendAction = (action: LegendActions) => {
+        switch (action.type) {
+            case LegendActionTypes.LegendItemHighlighted: this.highlightGroup(action.payload.item); break;
+            case LegendActionTypes.LegendItemClicked: break;
+            default: this.drawVoronoi(); this.resetHighlights(); break;
+        }
+    }
 
+    private highlightGroup = (id: string | number) => {
+        this.svg
+            .select('g.data')
+            .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
+            .style('opacity', (d: ISimulatedSwarmDataElement) => d.group === id ? null : 0.3);
+    }
+
+    private resetHighlights = () => {
+        this.svg
+            .select('g.data')
+            .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
+            .style('opacity', null);
     }
 }
