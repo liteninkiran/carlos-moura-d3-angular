@@ -32,12 +32,12 @@ export abstract class LegendService<D, C> {
 
     abstract onUpdateData: () => void;
     abstract onUpdateConfig: () => void;
-
     abstract generateItem: (selection: any) => void;
     abstract updateItem: (selection: any) => void;
+    abstract getItems: () => any;
 
     public setLegendItems = () => {
-        const data: any = [];
+        const data: any = this.getItems();
         this.host
             .selectAll('g.legend-item')
             .data(data)

@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { LegendService } from './legend.service';
+import { ListLegendData } from '../interfaces/legend.interfaces';
 
 @Injectable()
-export class ListLegendService extends LegendService<any, any> {
+export class ListLegendService extends LegendService<ListLegendData, any> {
 
-    protected override defaultData: any = { };
+    protected override defaultData: ListLegendData = {
+        items: [],
+    };
     protected override defaultConfig: any = { };
 
     public onUpdateData = (): void => {
@@ -20,6 +23,10 @@ export class ListLegendService extends LegendService<any, any> {
     }
 
     public updateItem = (selection: any): void => {
+
+    }
+
+    public getItems = (): void => {
 
     }
 
