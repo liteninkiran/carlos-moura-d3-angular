@@ -276,10 +276,12 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private highlightGroup = (id: string | number) => {
-        this.svg
+        if (!this.legend.hiddenIds.has(id)) {
+            this.svg
             .select('g.data')
             .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
             .style('opacity', (d: ISimulatedSwarmDataElement) => !this.legend.hiddenIds.has(d.group) && (d.group === id) ? null : 0.1);
+        }
     }
 
     private resetHighlights = () => {
