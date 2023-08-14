@@ -144,6 +144,8 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private setSimulatedData = (): void => {
+        const data = this.data.data;
+        const simulation = d3.forceSimulation<any>(data);
     }
 
     private setAxis = (): void => {
