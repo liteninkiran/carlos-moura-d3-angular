@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Selection } from 'd3-selection';
 import ObjectHelper from '../helpers/object.helper';
+import * as d3 from 'd3';
 
 @Injectable()
 export abstract class LegendService<D, C> {
@@ -36,7 +37,7 @@ export abstract class LegendService<D, C> {
     abstract updateItem: (selection: any) => void;
     abstract getItems: () => any;
 
-    public setLegendItems = () => {
+    public setItems = () => {
         const data: any = this.getItems();
         this.host
             .selectAll('g.legend-item')
@@ -59,5 +60,24 @@ export abstract class LegendService<D, C> {
                 // // Reset features
                 // this.resetFeatures();
             });
+    }
+
+    public repositionItems = () => {
+        let padding = 0;
+        const separator = 10;
+
+        this.host
+            .selectAll('g.legend-item')
+            .each((d: any, i: number, items: any) => {
+                const g = d3.select(items[i]);
+                g.attr('transform', `translate(${padding}, 0)`);
+                const dims = g.node()?.getBoundingClientRect() || new DOMRect();
+                padding += dims.width + separator;
+            });
+    }
+
+    public generate = () => {
+        this.setItems();
+        this.repositionItems();
     }
 }

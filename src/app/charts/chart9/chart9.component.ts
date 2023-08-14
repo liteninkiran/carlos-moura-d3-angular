@@ -1,9 +1,9 @@
-import { Component, ElementRef } from '@angular/core';
-import { DimensionService } from 'src/app/services/dimension.service';
 import { ISimulatedSwarmDataElement, ISwarmData, ISwarmDataElement } from 'src/app/interfaces/chart.interfaces';
+import { Component, ElementRef } from '@angular/core';
+import { ListLegendService } from 'src/app/services/list-legend.service';
+import { DimensionService } from 'src/app/services/dimension.service';
 import { Chart } from '../charts';
 import * as d3 from 'd3';
-import { ListLegendService } from 'src/app/services/list-legend.service';
 
 @Component({
     selector: 'app-chart9',

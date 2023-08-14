@@ -11,7 +11,7 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
     protected override defaultConfig: any = { };
 
     public onUpdateData = (): void => {
-        this.setLegendItems();
+        this.generate();
     }
 
     public onUpdateConfig = (): void => {
@@ -24,7 +24,7 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
             .attr('class', 'legend-icon')
             .attr('cx', 3)
             .attr('cy', 3)
-            .attr('radius', 3)
+            .attr('r', 3)
             .style('fill', (d: any) => d.colour);
 
         selection
@@ -33,12 +33,13 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
             .attr('x', 3 + 5)
             .attr('y', 3)
             .style('font-size', 12 + 'px')
-            .style('text-anchor', 'middle')
+            .style('dominant-baseline', 'middle')
             .text((d: any) => d.label);
     }
 
     public updateItem = (selection: any): void => {
-
+        selection.selectAll('circle.lengend-icon').style('fill', (d: any) => d.colour);
+        selection.select('text.legend-label').text((d: any) => d.label);
     }
 
     public getItems = (): Array<ListLegendItem> => {
