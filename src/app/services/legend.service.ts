@@ -60,12 +60,13 @@ export abstract class LegendService<D, C> {
     public abstract onUpdateConfig: () => void;
     public abstract generateItem: (selection: any) => void;
     public abstract updateItem: (selection: any) => void;
+    public abstract updateItemStyles: () => void;
     public abstract getItems: () => any;
     public abstract onMouseEnter: (event: MouseEvent, data: any) => void;
     public abstract onMouseLeave: (event: MouseEvent, data: any) => void;
     public abstract onMouseClick: (event: MouseEvent, data: any) => void;
 
-    public setItems = () => {
+    public setItems = (): void => {
         const data: any = this.getItems();
         this.host
             .selectAll('g.legend-item')
@@ -81,7 +82,7 @@ export abstract class LegendService<D, C> {
             .on('click'     , (event: MouseEvent, data: any) => this.onMouseClick(event, data));
     }
 
-    public repositionItems = () => {
+    public repositionItems = (): void => {
         let padding = 0;
         const separator = 10;
 
@@ -95,8 +96,12 @@ export abstract class LegendService<D, C> {
             });
     }
 
-    public generate = () => {
+    public generate = (): void => {
         this.setItems();
         this.repositionItems();
+    }
+
+    public toggleItem = (id: any): void => {
+        this.hiddenIds.has(id) ? this.hiddenIds.delete(id) : this.hiddenIds.add(id);
     }
 }

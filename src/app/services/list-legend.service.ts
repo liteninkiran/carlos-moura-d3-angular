@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LegendItemReset, LegendService } from './legend.service';
+import { LegendItemClicked, LegendItemReset, LegendService } from './legend.service';
 import { ListLegendData, ListLegendItem } from '../interfaces/legend.interfaces';
 
 @Injectable()
@@ -42,19 +42,23 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
         selection.select('text.legend-label').text((d: any) => d.label);
     }
 
+    public updateItemStyles = (): void => {
+        this.host
+            .selectAll<SVGSVGElement, ListLegendItem>('g.legend-item')
+            .style('opacity', (d: ListLegendItem) => this.hiddenIds.has(d.id) ? 0.3 : null);
+    }
+
     public getItems = (): Array<ListLegendItem> => {
         return this.data.items;
     }
 
     public onMouseEnter = (event: MouseEvent, data: any): void => {
-        console.log('Enter');
         this.host
             .selectAll<SVGSVGElement, ListLegendItem>('g.legend-item')
             .style('font-weight', (d: ListLegendItem) => d.id === data.id ? 'bold' : '');
     }
 
     public onMouseLeave = (event: MouseEvent, data: any): void => {
-        console.log('Leave');
         this.host
             .selectAll<SVGSVGElement, ListLegendItem>('g.legend-item')
             .style('font-weight', '');
@@ -63,7 +67,9 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
     }
 
     public onMouseClick = (event: MouseEvent, data: any): void => {
-        console.log('Click');
-        
+        this.toggleItem(data.id);
+        this.updateItemStyles();
+        const action = new LegendItemClicked({ item: data.id });
+        this.onLegendAction.emit(action);
     }
 }
