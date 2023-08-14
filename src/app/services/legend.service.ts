@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Selection } from 'd3-selection';
+import { LegendConfig } from '../interfaces/legend.interfaces';
 import ObjectHelper from '../helpers/object.helper';
 import * as d3 from 'd3';
 
@@ -27,7 +28,7 @@ export class LegendItemReset {
 export type LegendActions = LegendItemHighlighted | LegendItemClicked | LegendItemReset;
 
 @Injectable()
-export abstract class LegendService<D, C> {
+export abstract class LegendService<D, C extends LegendConfig> {
     public host: Selection<SVGGElement, any, any, any> = {} as any;
     public onLegendAction = new EventEmitter<any>();
     public hiddenIds = new Set();
@@ -76,15 +77,15 @@ export abstract class LegendService<D, C> {
                 (update: any) => update.call(this.updateItem),
             )
             .attr('class', 'legend-item')
-//            .attr('transform', (d: any, i: any) => this.getTranslations('legend-items', { i, width, noDataSeparator }))
+            .style('cursor', this.config.item.cursor)
             .on('mouseenter', (event: MouseEvent, data: any) => this.onMouseEnter(event, data))
             .on('mouseleave', (event: MouseEvent, data: any) => this.onMouseLeave(event, data))
             .on('click'     , (event: MouseEvent, data: any) => this.onMouseClick(event, data));
     }
 
     public repositionItems = (): void => {
-        let padding = 0;
-        const separator = 10;
+        let padding: number = 0;
+        const separator: number = this.config.item.separator;
 
         this.host
             .selectAll('g.legend-item')

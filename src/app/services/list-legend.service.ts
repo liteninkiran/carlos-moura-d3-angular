@@ -1,14 +1,32 @@
 import { Injectable } from '@angular/core';
 import { LegendItemClicked, LegendItemHighlighted, LegendItemReset, LegendService } from './legend.service';
-import { ListLegendData, ListLegendItem } from '../interfaces/legend.interfaces';
+import { ListLegendConfig, ListLegendData, ListLegendItem } from '../interfaces/legend.interfaces';
 
 @Injectable()
-export class ListLegendService extends LegendService<ListLegendData, any> {
+export class ListLegendService extends LegendService<ListLegendData, ListLegendConfig> {
 
     protected override defaultData: ListLegendData = {
-        items: [],
+        items: [
+
+        ],
     };
-    protected override defaultConfig: any = { };
+    protected override defaultConfig: ListLegendConfig = {
+        item: {
+            separator: 10,
+            cursor: 'pointer',
+            opacity: 0.1,
+        },
+        circle: {
+            radius: 5,
+        },
+        text: {
+            separator: 5,
+            font_size: 12,
+        },
+        highlighted: {
+            font_weight: 'bold',
+        },
+    };
 
     public onUpdateData = (): void => {
         this.generate();
@@ -22,17 +40,17 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
         selection
             .append('circle')
             .attr('class', 'legend-icon')
-            .attr('cx', 3)
-            .attr('cy', 3)
-            .attr('r', 3)
+            .attr('cx', this.config.circle.radius)
+            .attr('cy', this.config.circle.radius)
+            .attr('r', this.config.circle.radius)
             .style('fill', (d: any) => d.colour);
 
         selection
             .append('text')
             .attr('class', 'legend-label')
-            .attr('x', 3 + 5)
-            .attr('y', 3)
-            .style('font-size', 12 + 'px')
+            .attr('x', 2 * this.config.circle.radius + this.config.text.separator)
+            .attr('y', this.config.circle.radius)
+            .style('font-size', this.config.text.font_size + 'px')
             .style('dominant-baseline', 'middle')
             .text((d: any) => d.label);
     }
@@ -45,7 +63,7 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
     public updateItemStyles = (): void => {
         this.host
             .selectAll<SVGSVGElement, ListLegendItem>('g.legend-item')
-            .style('opacity', (d: ListLegendItem) => this.hiddenIds.has(d.id) ? 0.3 : null);
+            .style('opacity', (d: ListLegendItem) => this.hiddenIds.has(d.id) ? this.config.item.opacity : null);
     }
 
     public getItems = (): Array<ListLegendItem> => {
@@ -55,7 +73,7 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
     public onMouseEnter = (event: MouseEvent, data: any): void => {
         this.host
             .selectAll<SVGSVGElement, ListLegendItem>('g.legend-item')
-            .style('font-weight', (d: ListLegendItem) => d.id === data.id ? 'bold' : '');
+            .style('font-weight', (d: ListLegendItem) => d.id === data.id ? this.config.highlighted.font_weight : '');
         const action = new LegendItemHighlighted({ item: data.id });
         this.onLegendAction.emit(action)
     }

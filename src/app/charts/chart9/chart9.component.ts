@@ -280,7 +280,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             this.svg
             .select('g.data')
             .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
-            .style('opacity', (d: ISimulatedSwarmDataElement) => !this.legend.hiddenIds.has(d.group) && (d.group === id) ? null : 0.1);
+            .style('opacity', (d: ISimulatedSwarmDataElement) => !this.legend.hiddenIds.has(d.group) && (d.group === id) ? null : this.legend.config.item.opacity);
         }
     }
 
@@ -288,7 +288,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         this.svg
             .select('g.data')
             .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
-            .style('opacity', (d: ISimulatedSwarmDataElement) => this.legend.hiddenIds.has(d.group) ? 0.1 : null)
+            .style('opacity', (d: ISimulatedSwarmDataElement) => this.legend.hiddenIds.has(d.group) ? this.legend.config.item.opacity : null)
             .style('stroke', null)
             .attr('r', 2);
     }
