@@ -62,6 +62,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .attr('class', 'yLabel label')
             .attr('transform', 'rotate(-90)');
         this.svg.append('g').attr('class', 'data');
+        this.legend.host = this.svg.append('g').attr('class', 'legend');
     }
 
     public positionElements = (): void => {
@@ -87,6 +88,14 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     public setLegend = (): void => {
+        const items = this.groups.map((d: string | number) => ({
+            colour: this.scales.colours(d),
+            id: d,
+            label: d + '',
+        }));
+        this.legend.data = {
+            items
+        };
     }
 
     public draw = (): void => {

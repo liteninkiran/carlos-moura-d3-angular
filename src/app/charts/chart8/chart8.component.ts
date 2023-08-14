@@ -259,7 +259,6 @@ export class Chart8Component implements OnInit, OnDestroy {
         }
 
         // Set legend items
-        let coords: any;
         this.containers.legend
             .selectAll('g.legend-item')
             .data(data)
