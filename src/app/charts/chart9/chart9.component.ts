@@ -38,7 +38,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             top: 30,
             left: 50,
             right: 50,
-            bottom: 20,
+            bottom: 50,
         },
     };
 
@@ -94,8 +94,13 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             label: d + '',
         }));
         this.legend.data = {
-            items
+            items,
         };
+
+        const transform: string = this.getTranslations('legend');
+        this.svg
+            .select('g.legend')
+            .attr('transform', transform);
     }
 
     public draw = (): void => {
@@ -240,5 +245,17 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .transition()
             .attr('cx', (d: any) => d.x)
             .attr('cy', (d: any) => d.y);
+    }
+
+    private getTranslations(container: string): string {
+        switch (container) {
+            case 'legend':
+                const dims = this.legend.host.node()?.getBoundingClientRect() || new DOMRect();
+                return `translate(
+                    ${this.dimensions.midWidth - 0.5 * dims.width},
+                    ${this.dimensions.bottom - dims.height - 5}
+                )`;
+        }
+        return '';
     }
 }
