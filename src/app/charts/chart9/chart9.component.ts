@@ -4,6 +4,7 @@ import { ListLegendService } from 'src/app/services/list-legend.service';
 import { DimensionService } from 'src/app/services/dimension.service';
 import { Chart } from '../charts';
 import * as d3 from 'd3';
+import { LegendActionTypes, LegendActions } from 'src/app/services/legend.service';
 
 @Component({
     selector: 'app-chart9',
@@ -114,6 +115,12 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     public onSetConfig = (): void => {
+    }
+
+    public override setSubscriptions(): void {
+        super.setSubscriptions();
+        const sub = this.legend.onLegendAction.subscribe(this.onLegendAction);
+        this.subscribe(sub);
     }
 
     private setGroups = (): void => {
@@ -257,5 +264,9 @@ export class Chart9Component extends Chart<ISwarmData, any> {
                 )`;
         }
         return '';
+    }
+
+    private onLegendAction = (action: LegendActions) => {
+
     }
 }

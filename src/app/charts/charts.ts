@@ -75,6 +75,14 @@ export abstract class Chart<D, C extends IBaseConfig> implements OnInit, OnDestr
         this.draw();
     }
 
+    public setSubscriptions(): void {
+        this.setResize();
+    }
+
+    public subscribe(sub: Subscription): void {
+        this.subscriptions.push(sub);
+    }
+
     public abstract setElements: () => void;
     public abstract positionElements: () => void;
     public abstract setParams: () => void;
@@ -100,17 +108,8 @@ export abstract class Chart<D, C extends IBaseConfig> implements OnInit, OnDestr
         this.svg.attr('viewbox', [0, 0, this.dimensions.width, this.dimensions.height]);
     }
 
-    // Subscriptions
-    private subscribe(sub: Subscription): void {
-        this.subscriptions.push(sub);
-    }
-
     private unsubscribeAll(): void {
         this.subscriptions.map((sub: Subscription) => sub.unsubscribe());
-    }
-
-    private setSubscriptions(): void {
-        this.setResize();
     }
 
     private setResize(): void {
