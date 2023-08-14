@@ -30,7 +30,7 @@ import * as d3 from 'd3';
 export class Chart9Component extends Chart<ISwarmData, any> {
 
     public groups: Array<string | number> = [];
-    public scaledData: ISimulatedSwarmDataElement[] = [];
+    public scaledData: any = [];
 
     protected _defaultConfig: any = {
         margins: {
@@ -146,17 +146,15 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             ...d,
             cx: this.scales.x(d.category),
             cy: this.scales.y(d.value),
-            index: 0,
-            x: 0,
-            y: 0,
-            vx: 0,
-            vy: 0,
         }));
     }
 
     private setSimulatedData = (): void => {
-        const data = this.data.data;
-        const simulation = d3.forceSimulation<any>(data);
+        const data = this.scaledData;
+        const simulation = d3.forceSimulation<any>(data)
+            .force('x', d3.forceX((d: any) => d.cx).strength(1));
+
+        simulation.tick(5);
     }
 
     private setAxis = (): void => {
@@ -185,14 +183,14 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private drawCircles = (): void => {
-        const data = this.data.data;
+        const data = this.scaledData;
 
         this.svg.select('g.data').selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
             .data(data)
             .join('circle')
             .attr('class', 'data')
-            .attr('cx', (d: any) => this.scales.x(d.category))
-            .attr('cy', (d: any) => this.scales.y(d.value))
+            .attr('cx', (d: any) => d.x)
+            .attr('cy', (d: any) => d.y)
             .attr('r', 3)
             .style('fill', (d: any) => this.scales.colours(d.group));
     }
