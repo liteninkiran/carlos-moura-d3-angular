@@ -63,7 +63,7 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
     public onMouseLeave = (event: MouseEvent, data: any): void => {
         this.host
             .selectAll<SVGSVGElement, ListLegendItem>('g.legend-item')
-            .style('font-weight', '');
+            .style('font-weight', null);
         const action = new LegendItemReset({ item: data.id });
         this.onLegendAction.emit(action);
     }
