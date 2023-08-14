@@ -279,13 +279,15 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         this.svg
             .select('g.data')
             .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
-            .style('opacity', (d: ISimulatedSwarmDataElement) => d.group === id ? null : 0.3);
+            .style('opacity', (d: ISimulatedSwarmDataElement) => !this.legend.hiddenIds.has(d.group) && (d.group === id) ? null : 0.1);
     }
 
     private resetHighlights = () => {
         this.svg
             .select('g.data')
             .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
-            .style('opacity', null);
+            .style('opacity', (d: ISimulatedSwarmDataElement) => this.legend.hiddenIds.has(d.group) ? 0.1 : null)
+            .style('stroke', null)
+            .attr('r', 2);
     }
 }
