@@ -45,4 +45,16 @@ export class ListLegendService extends LegendService<ListLegendData, any> {
     public getItems = (): Array<ListLegendItem> => {
         return this.data.items;
     }
+
+    public onMouseEnter = (event: MouseEvent, d: any): void => {
+        
+    }
+
+    public onMouseLeave = (event: MouseEvent, d: any): void => {
+        
+    }
+
+    public onMouseClick = (event: MouseEvent, d: any): void => {
+        
+    }
 }

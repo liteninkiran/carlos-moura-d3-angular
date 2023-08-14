@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Selection } from 'd3-selection';
 import ObjectHelper from '../helpers/object.helper';
 import * as d3 from 'd3';
@@ -6,6 +6,8 @@ import * as d3 from 'd3';
 @Injectable()
 export abstract class LegendService<D, C> {
     public host: Selection<SVGGElement, any, any, any> = {} as any;
+    public onLegendAction = new EventEmitter<any>();
+    public hiddenIds = new Set();
 
     private _data: D = undefined as any;
     private _config: C = undefined as any;
@@ -31,11 +33,14 @@ export abstract class LegendService<D, C> {
         return this._config || this.defaultConfig;
     }
 
-    abstract onUpdateData: () => void;
-    abstract onUpdateConfig: () => void;
-    abstract generateItem: (selection: any) => void;
-    abstract updateItem: (selection: any) => void;
-    abstract getItems: () => any;
+    public abstract onUpdateData: () => void;
+    public abstract onUpdateConfig: () => void;
+    public abstract generateItem: (selection: any) => void;
+    public abstract updateItem: (selection: any) => void;
+    public abstract getItems: () => any;
+    public abstract onMouseEnter: (event: MouseEvent, d: any) => void;
+    public abstract onMouseLeave: (event: MouseEvent, d: any) => void;
+    public abstract onMouseClick: (event: MouseEvent, d: any) => void;
 
     public setItems = () => {
         const data: any = this.getItems();
@@ -48,18 +53,9 @@ export abstract class LegendService<D, C> {
             )
             .attr('class', 'legend-item')
 //            .attr('transform', (d: any, i: any) => this.getTranslations('legend-items', { i, width, noDataSeparator }))
-            .on('mouseenter', (event: MouseEvent, data: any) => {
-                // // Highlight legend items
-                // this.highlightLegendItems(data);
-                // // Highlight features
-                // this.highlightFeatures(data);
-            })
-            .on('mouseleave', () => {
-                // // Reset legend items
-                // this.resetLegendItems();
-                // // Reset features
-                // this.resetFeatures();
-            });
+            .on('mouseenter', (event: MouseEvent, data: any) => this.onMouseEnter(event, data))
+            .on('mouseleave', (event: MouseEvent, data: any) => this.onMouseLeave(event, data))
+            .on('click'     , (event: MouseEvent, data: any) => this.onMouseClick(event, data));
     }
 
     public repositionItems = () => {
