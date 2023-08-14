@@ -30,6 +30,7 @@ import * as d3 from 'd3';
 export class Chart9Component extends Chart<ISwarmData, any> {
 
     public groups: Array<string | number> = [];
+    public scaledData: ISimulatedSwarmDataElement[] = [];
 
     protected _defaultConfig: any = {
         margins: {
@@ -141,6 +142,16 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private setScaledData = (): void => {
+        this.scaledData = this.data.data.map((d: ISwarmDataElement) => ({
+            ...d,
+            cx: this.scales.x(d.category),
+            cy: this.scales.y(d.value),
+            index: 0,
+            x: 0,
+            y: 0,
+            vx: 0,
+            vy: 0,
+        }));
     }
 
     private setSimulatedData = (): void => {
