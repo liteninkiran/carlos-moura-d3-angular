@@ -59,21 +59,52 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     public setElements = (): void => {
-        this.svg.append('g').attr('class', 'title')
+        //  Title
+        this.svg
+            .append('g')
+            .attr('class', 'title')
             .append('text')
             .attr('class', 'title label');
-        this.svg.append('g').attr('class', 'yAxis');
-        this.svg.append('g').attr('class', 'xAxis');
-        this.svg.append('g').attr('class', 'yLabel')
+
+        // Y Axis
+        this.svg
+            .append('g')
+            .attr('class', 'yAxis');
+
+        // X Axis
+        this.svg
+            .append('g')
+            .attr('class', 'xAxis');
+
+        // Y Label
+        this.svg
+            .append('g')
+            .attr('class', 'yLabel')
             .append('text')
             .attr('class', 'yLabel label')
             .attr('transform', 'rotate(-90)');
-        this.svg.append('g').attr('class', 'data');
-        this.legend.host = this.svg.append('g').attr('class', 'legend');
+
+        // Data
+        this.svg
+            .append('g')
+            .attr('class', 'data');
+
+        // Legend
+        this.legend.host = this.svg
+            .append('g')
+            .attr('class', 'legend');
+
+        // Time Series
         this.svg
             .select('g.data')
             .append('path')
             .attr('class', 'timeseries')
+            .style('visibility', 'hidden');
+
+        // Tooltip
+        this.tooltip.host = this.svg
+            .append('g')
+            .attr('class', 'tooltip-service')
             .style('visibility', 'hidden');
     }
 
