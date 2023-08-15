@@ -369,6 +369,9 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         this.svg
             .select('path.timeseries')
             .style('visibility', 'hidden');
+
+        // Remove the tooltip
+        this.tooltip.hide();
     }
 
     private setLine = (item: ISimulatedSwarmDataElement): void => {
@@ -403,8 +406,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         this.moveTooltip(event);
 
         // Show the tooltip
-        this.svg.select('g.tooltip-service')
-            .style('visibility', 'visible');
+        this.tooltip.show();
     }
 
     private moveTooltip = (event: MouseEvent): void => {

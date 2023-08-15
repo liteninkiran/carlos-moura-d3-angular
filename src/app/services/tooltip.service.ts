@@ -151,6 +151,20 @@ export class TooltipService {
     public onUpdateConfig = () => {
     };
 
+    public hide = () => {
+        this.host
+            .transition()
+            .delay(600)
+            .style('visibility', 'hidden');
+    };
+
+    public show = () => {
+        this.host
+            .transition()
+            .duration(1)
+            .style('visibility', 'visible');
+    };
+
     protected moveTooltip = () => {
         const x = this.position.x + this.config.background.xPadding + this.xPadding();
         const y = this.position.y + this.config.background.yPadding + this.yPadding();;
@@ -175,7 +189,7 @@ export class TooltipService {
         }
 
         return padding;
-    }
+    };
 
     protected yPadding = (): number => {
         const dims = this.host.node()?.getBoundingClientRect() || new DOMRect();
@@ -195,5 +209,5 @@ export class TooltipService {
         }
 
         return padding;
-    }
+    };
 }
