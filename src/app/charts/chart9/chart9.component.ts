@@ -320,7 +320,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     private onLegendAction = (action: LegendActions): void => {
         switch (action.type) {
             case LegendActionTypes.LegendItemHighlighted: this.highlightGroup(action.payload.item); break;
-            case LegendActionTypes.LegendItemClicked: break;
+            case LegendActionTypes.LegendItemClicked:
             case LegendActionTypes.LegendItemReset:
             default: this.drawVoronoi(); this.resetHighlights(); break;
         }
