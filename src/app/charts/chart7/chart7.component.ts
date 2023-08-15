@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { IGroupStackConfig, IGroupStackData, IGroupStackRectData } from 'src/app/interfaces/chart.interfaces';
 import { ChartDimensions } from 'src/app/helpers/chart.dimensions.helper';
-import { IGroupStackConfig, IGroupStackData, IGroupStackRectData, ITooltipData } from 'src/app/interfaces/chart.interfaces';
+import { ITooltipData } from 'src/app/interfaces/tooltip.interfaces';
 import ObjectHelper from 'src/app/helpers/object.helper';
 import * as d3 from 'd3';
 
