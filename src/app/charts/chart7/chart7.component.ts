@@ -129,7 +129,7 @@ export class Chart7Component implements OnInit, OnChanges {
                 symbolSize: 6,
                 fontSize: 30,
                 height: 30,
-                textSeparator: 10
+                textSeparator: 10,
             },
             symbol: {
                 width: 6,
@@ -143,7 +143,7 @@ export class Chart7Component implements OnInit, OnChanges {
         transitions: {
             normal: 300,
             slow: 600,
-        }
+        },
     };
 
     private _defaultData: IGroupStackData = {
