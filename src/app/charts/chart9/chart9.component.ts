@@ -107,6 +107,12 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .append('g')
             .attr('class', 'tooltip-service')
             .style('visibility', 'hidden');
+
+        // Voronoi
+        this.svg
+            .append('g')
+            .attr('class', 'voronoi')
+            .style('pointer-events', 'all');
     }
 
     public positionElements = (): void => {
