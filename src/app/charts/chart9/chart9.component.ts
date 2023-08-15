@@ -306,10 +306,18 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         this.svg
             .select('g.data')
             .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
-            .style('opacity', (d: ISimulatedSwarmDataElement) => d.id === item.id ? null : 0.3);
+            .style('opacity', (d: ISimulatedSwarmDataElement) => d.id === item.id ? null : 0.3)
+            .style('stroke', (d: ISimulatedSwarmDataElement) => d.id === item.id ? '#000' : null)
+            .attr('r', (d: ISimulatedSwarmDataElement) => d.id === item.id ? 3 : 2);
 
         // Add a line with the timeseries
         this.setLine(item);
+
+        // Raise the highlighted circles to the top position
+        this.svg.select('g.data')
+            .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
+            .filter((d: ISimulatedSwarmDataElement) => d.id === item.id)
+            .raise();
     }
 
     private onMouseLeave = (event: MouseEvent, item: ISimulatedSwarmDataElement): void => {
