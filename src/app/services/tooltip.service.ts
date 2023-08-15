@@ -152,8 +152,48 @@ export class TooltipService {
     };
 
     protected moveTooltip = () => {
-        const x = this.position.x + this.config.background.xPadding + this.config.offset.x;
-        const y = this.position.y + this.config.background.yPadding + this.config.offset.y;
+        const x = this.position.x + this.config.background.xPadding + this.xPadding();
+        const y = this.position.y + this.config.background.yPadding + this.yPadding();;
         this.host.attr('transform', `translate(${x}, ${y})`);
     };
+
+    protected xPadding = (): number => {
+        const dims = this.host.node()?.getBoundingClientRect() || new DOMRect();
+        let padding: number;
+
+        switch (this.position.xPosition) {
+            case XTooltipPosition.left:
+                padding = -(dims.width + this.config.offset.x);
+                break;
+            case XTooltipPosition.middle:
+                padding = -0.5 * dims.width;
+                break;
+            case XTooltipPosition.right:
+            default:
+                padding = this.config.offset.x;
+                break;
+        }
+
+        return padding;
+    }
+
+    protected yPadding = (): number => {
+        const dims = this.host.node()?.getBoundingClientRect() || new DOMRect();
+        let padding: number;
+
+        switch (this.position.yPosition) {
+            case YTooltipPosition.top:
+                padding = -dims.height - this.config.offset.y;
+                break;
+            case YTooltipPosition.middle:
+                padding = -0.5 * dims.height;
+                break;
+            case YTooltipPosition.bottom:
+            default:
+                padding = this.config.offset.y;
+                break;
+        }
+
+        return padding;
+    }
 }

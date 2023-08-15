@@ -6,6 +6,7 @@ import { DimensionService } from 'src/app/services/dimension.service';
 import { TooltipService } from 'src/app/services/tooltip.service';
 import { Chart } from '../charts';
 import * as d3 from 'd3';
+import { ITooltipPosition, XTooltipPosition, YTooltipPosition } from 'src/app/interfaces/tooltip.interfaces';
 
 @Component({
     selector: 'app-chart9',
@@ -408,9 +409,11 @@ export class Chart9Component extends Chart<ISwarmData, any> {
 
     private moveTooltip = (event: MouseEvent): void => {
         const coords = d3.pointer(event, this.svg.node());
-        const position = {
+        const position: ITooltipPosition = {
             x: coords[0],
             y: coords[1],
+            xPosition: XTooltipPosition.middle,
+            yPosition: YTooltipPosition.bottom,
         };
         this.tooltip.position = position;
     }
