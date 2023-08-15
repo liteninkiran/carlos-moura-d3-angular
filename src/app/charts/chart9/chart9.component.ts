@@ -355,6 +355,9 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
             .filter((d: ISimulatedSwarmDataElement) => d.id === item.id)
             .raise();
+
+        // Set the tooltip
+        this.setTooltip(event, item);
     }
 
     private onMouseLeave = (event: MouseEvent, item: ISimulatedSwarmDataElement): void => {
@@ -390,7 +393,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         // Set the data
         this.tooltip.data = {
             title: item.category + '',
-            colour: this.scales.colors(item.group),
+            colour: this.scales.colours(item.group),
             key: item.label,
             value: item.value,
         };
@@ -399,6 +402,8 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         this.moveTooltip(event);
 
         // Show the tooltip
+        this.svg.select('g.tooltip-service')
+            .style('visibility', 'visible');
     }
 
     private moveTooltip = (event: MouseEvent): void => {

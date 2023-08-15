@@ -16,11 +16,18 @@ export interface ITooltipConfig {
         rx: number;
         ry: number;
     };
+    title: {
+        fontSize: number;
+        fontWeight: 'bold'
+    };
     labels: {
         symbolSize: number;
         fontSize: number;
         height: number;
         textSeparator: number;
+    };
+    value: {
+        fontWeight: string;
     };
     symbol: {
         width: number;
@@ -30,5 +37,4 @@ export interface ITooltipConfig {
         x: number;
         y: number;
     };
-};
-
+}

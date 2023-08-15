@@ -38,11 +38,18 @@ export class TooltipService {
             rx: 3,
             ry: 3,
         },
+        title: {
+            fontSize: 12,
+            fontWeight: 'bold',
+        },
         labels: {
             symbolSize: 6,
             fontSize: 30,
             height: 30,
             textSeparator: 10,
+        },
+        value: {
+            fontWeight: 'bold',
         },
         symbol: {
             width: 6,
@@ -52,7 +59,7 @@ export class TooltipService {
             x: 20,
             y: 20,
         },
-    }
+    };
 
     public set data(data: ITooltipData) {
         this._data = data;
@@ -81,6 +88,49 @@ export class TooltipService {
         return this._host;
     }
 
-    public onUpdateData = () => {}
+    public onUpdateData = () => {
+        // Title
+        this.host.select('text.tooltip__title')
+            .attr('y', this.config.title.fontSize + 'px')
+            .style('font-weight', this.config.title.fontWeight)
+            .text(this.data.title);
+
+        // Set value
+        this.host.select('text.tooltip__value')
+            .attr('x', this.config.symbol.width + this.config.labels.textSeparator)
+            .attr('y', this.config.labels.height + this.config.title.fontSize);
+
+        this.host.select('tspan.tooltip__value--key')
+            .text(this.data.key);
+
+        this.host.select('tspan.tooltip__value--value')
+            .style('font-size', this.config.labels.fontSize + 'px')
+            .style('font-weight', this.config.value.fontWeight)
+            .text(this.data.value);
+
+        // Symbol
+        this.host.select('rect.tooltip__symbol')
+            .attr('y', this.config.labels.height + this.config.title.fontSize - this.config.symbol.height)
+            .attr('width', this.config.symbol.width)
+            .attr('height', this.config.symbol.height)
+            .style('fill', this.data.colour);
+
+        // Set background
+        const tooltipDimensions: DOMRect = this.host.select<SVGGElement>('g.tooltip__box')
+            .node()?.getBoundingClientRect() || new DOMRect(100, 60);
+
+        this.host.select('rect.tooltip__background')
+            .attr('width', tooltipDimensions.width + 2 * this.config.background.xPadding)
+            .attr('height', tooltipDimensions.height + 2 * this.config.background.yPadding)
+            .attr('x', -this.config.background.xPadding)
+            .attr('y', -this.config.background.yPadding)
+            .style('fill', this.config.background.colour)
+            .style('fill-opacity', this.config.background.opacity)
+            .style('stroke', this.config.background.stroke)
+            .style('stroke-width', this.config.background.strokeWidth + 'px')
+            .style('rx', this.config.background.rx + 'px')
+            .style('ry', this.config.background.ry + 'px');
+    }
+
     public onUpdateConfig = () => {}
 }

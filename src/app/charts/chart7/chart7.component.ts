@@ -139,6 +139,13 @@ export class Chart7Component implements OnInit, OnChanges {
                 x: 20,
                 y: 20,
             },
+            title: {
+                fontSize: 0,
+                fontWeight: 'bold',
+            },
+            value: {
+                fontWeight: '',
+            },
         },
         transitions: {
             normal: 300,
