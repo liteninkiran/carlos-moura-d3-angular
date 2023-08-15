@@ -149,8 +149,8 @@ export class TooltipService {
     public onUpdateConfig = () => {}
 
     protected moveTooltip = () => {
-        const x = this.position.x + this.config.background.xPadding;
-        const y = this.position.y + this.config.background.yPadding;
+        const x = this.position.x + this.config.background.xPadding + this.config.offset.x;
+        const y = this.position.y + this.config.background.yPadding + this.config.offset.y;
         this.host.attr('transform', `translate(${x}, ${y})`);
     }
 }
