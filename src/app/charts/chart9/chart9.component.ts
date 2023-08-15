@@ -412,9 +412,15 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         const position: ITooltipPosition = {
             x: coords[0],
             y: coords[1],
-            xPosition: XTooltipPosition.middle,
-            yPosition: YTooltipPosition.bottom,
+            xPosition: this.xTooltipAlignment(coords[0]),
+            yPosition: YTooltipPosition.middle,
         };
         this.tooltip.position = position;
+    }
+
+    private xTooltipAlignment = (x: number): XTooltipPosition => {
+        return x > this.dimensions.midWidth
+            ? XTooltipPosition.left
+            : XTooltipPosition.right;
     }
 }
