@@ -296,7 +296,12 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private onMouseEnter = (event: MouseEvent, item: ISimulatedSwarmDataElement) => {
-
+        if (this.legend.hiddenIds.has(item.group)) { return; }
+        // Highglight corresponding circles
+        this.svg
+            .select('g.data')
+            .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
+            .style('opacity', (d: ISimulatedSwarmDataElement) => d.id === item.id ? null : 0.3);
     }
 
     private onMouseLeave = (event: MouseEvent, item: ISimulatedSwarmDataElement) => {
