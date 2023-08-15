@@ -284,12 +284,34 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .attr('cx', (d) => d.x)
             .attr('cy', (d) => d.y)
             .attr('r', 2)
-            .style('fill', (d) => this.scales.colours(d.group))
-            .on('mouseenter', this.onMouseEnter)
-            .on('mouseleave', this.onMouseLeave);
+            .style('fill', (d) => this.scales.colours(d.group));
     }
 
     private drawVoronoi = (): void => {
+        const bounds: [
+            number,
+            number,
+            number,
+            number,
+        ] = [
+            0,
+            0,
+            this.dimensions.innerWidth,
+            this.dimensions.innerHeight,
+        ];
+        const data = this.scaledData.filter(d => !this.legend.hiddenIds.has(d.group));
+        const delaunay = d3.Delaunay.from<ISimulatedSwarmDataElement>(data, d => d.x, d => d.y);
+        const voronoi = delaunay.voronoi(bounds);
+        this.svg.select('g.voronoi')
+            .selectAll('path.voronoi-cell')
+            .data(data)
+            .join('path')
+            .attr('class', 'voronoi-cell')
+            .attr('d', (d, i) => voronoi.renderCell(i))
+            .style('fill', 'none')
+            .on('mouseenter', this.onMouseEnter)
+            .on('mouseleave', this.onMouseLeave);
+
     }
 
     private runSimulation = (): void => {
