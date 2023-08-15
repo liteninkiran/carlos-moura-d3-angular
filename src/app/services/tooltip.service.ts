@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Selection } from 'd3-selection';
-import { ITooltipConfig, ITooltipData, ITooltipPosition } from '../interfaces/tooltip.interfaces';
+import { ITooltipConfig, ITooltipData, ITooltipPosition, XTooltipPosition, YTooltipPosition } from '../interfaces/tooltip.interfaces';
 import ObjectHelper from '../helpers/object.helper';
 
 @Injectable()
@@ -64,43 +64,45 @@ export class TooltipService {
     public set data(data: ITooltipData) {
         this._data = data;
         this.onUpdateData();
-    }
+    };
 
     public get data() {
         return this._data || this.defaultData;
-    }
+    };
 
     public set config(config: ITooltipConfig) {
         this._config = ObjectHelper.UpdateObjectWithPartialValues(this.defaultConfig, config);
         this.onUpdateConfig();
-    }
+    };
 
     public get config() {
         return this._config || this.defaultConfig;
-    }
+    };
 
     public set host(host: Selection<SVGGElement, any, any, any>) {
         this._host = host.style('pointer-events', 'none');
         this._host.html(this.template);
-    }
+    };
 
     public get host() {
         return this._host;
-    }
+    };
 
     private _position: ITooltipPosition = {
         x: 0,
         y: 0,
+        xPosition: XTooltipPosition.right,
+        yPosition: YTooltipPosition.middle,
     };
 
     set position(position: Partial<ITooltipPosition>) {
         this._position = ObjectHelper.UpdateObjectWithPartialValues(this._position, position);
         this.moveTooltip();
-    }
+    };
 
     get position(): ITooltipPosition {
         return this._position;
-    }
+    };
 
     public onUpdateData = () => {
         // Title
@@ -144,13 +146,14 @@ export class TooltipService {
             .style('stroke-width', this.config.background.strokeWidth + 'px')
             .style('rx', this.config.background.rx + 'px')
             .style('ry', this.config.background.ry + 'px');
-    }
+    };
 
-    public onUpdateConfig = () => {}
+    public onUpdateConfig = () => {
+    };
 
     protected moveTooltip = () => {
         const x = this.position.x + this.config.background.xPadding + this.config.offset.x;
         const y = this.position.y + this.config.background.yPadding + this.config.offset.y;
         this.host.attr('transform', `translate(${x}, ${y})`);
-    }
+    };
 }

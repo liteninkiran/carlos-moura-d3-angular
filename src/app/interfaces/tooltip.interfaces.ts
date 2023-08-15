@@ -42,4 +42,18 @@ export interface ITooltipConfig {
 export interface ITooltipPosition {
     x: number;
     y: number;
+    xPosition: XTooltipPosition;
+    yPosition: YTooltipPosition;
+}
+
+export enum XTooltipPosition {
+    left = 'left',
+    middle = 'middle',
+    right = 'right',
+}
+
+export enum YTooltipPosition {
+    top = 'top',
+    middle = 'middle',
+    bottom = 'bottom',
 }
