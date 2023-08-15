@@ -64,6 +64,11 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .attr('transform', 'rotate(-90)');
         this.svg.append('g').attr('class', 'data');
         this.legend.host = this.svg.append('g').attr('class', 'legend');
+        this.svg
+            .select('g.data')
+            .append('path')
+            .attr('class', 'timeseries')
+            .style('visibility', 'hidden');
     }
 
     public positionElements = (): void => {
@@ -243,7 +248,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     private drawVoronoi = (): void => {
     }
 
-    private runSimulation = () => {
+    private runSimulation = (): void => {
         const data = this.scaledData;
         this.svg.select('g.data').selectAll('circle.data')
             .data(data)
@@ -268,7 +273,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         return '';
     }
 
-    private onLegendAction = (action: LegendActions) => {
+    private onLegendAction = (action: LegendActions): void => {
         switch (action.type) {
             case LegendActionTypes.LegendItemHighlighted: this.highlightGroup(action.payload.item); break;
             case LegendActionTypes.LegendItemClicked: break;
@@ -277,7 +282,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         }
     }
 
-    private highlightGroup = (id: string | number) => {
+    private highlightGroup = (id: string | number): void => {
         if (!this.legend.hiddenIds.has(id)) {
             this.svg
             .select('g.data')
@@ -286,7 +291,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         }
     }
 
-    private resetHighlights = () => {
+    private resetHighlights = (): void => {
         this.svg
             .select('g.data')
             .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
@@ -295,17 +300,44 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .attr('r', 2);
     }
 
-    private onMouseEnter = (event: MouseEvent, item: ISimulatedSwarmDataElement) => {
+    private onMouseEnter = (event: MouseEvent, item: ISimulatedSwarmDataElement): void => {
         if (this.legend.hiddenIds.has(item.group)) { return; }
         // Highglight corresponding circles
         this.svg
             .select('g.data')
             .selectAll<SVGCircleElement, ISimulatedSwarmDataElement>('circle.data')
             .style('opacity', (d: ISimulatedSwarmDataElement) => d.id === item.id ? null : 0.3);
+
+        // Add a line with the timeseries
+        this.setLine(item);
     }
 
-    private onMouseLeave = (event: MouseEvent, item: ISimulatedSwarmDataElement) => {
+    private onMouseLeave = (event: MouseEvent, item: ISimulatedSwarmDataElement): void => {
+        // Reset all circles
+        this.resetHighlights();
 
+        // Remove the timeseries line
+        this.svg
+            .select('path.timeseries')
+            .style('visibility', 'hidden');
     }
 
+    private setLine = (item: ISimulatedSwarmDataElement): void => {
+        const line = d3.line<ISimulatedSwarmDataElement>()
+            .x(d => d.x)
+            .y(d => d.y);
+
+        const data = this.scaledData
+            .filter(d => d.id === item.id)
+            .sort((a, b) => a.x - b.x);
+
+        this.svg
+            .select<SVGPathElement>('path.timeseries')
+            .datum(data)
+            .attr('d', line)
+            .style('fill', 'none')
+            .style('stroke', '#000')
+            .style('visibility', 'visible')
+            .raise();
+    }
 }
