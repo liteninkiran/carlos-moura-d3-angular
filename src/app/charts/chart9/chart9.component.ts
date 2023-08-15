@@ -311,7 +311,6 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .style('fill', 'none')
             .on('mouseenter', this.onMouseEnter)
             .on('mouseleave', this.onMouseLeave);
-
     }
 
     private runSimulation = (): void => {
