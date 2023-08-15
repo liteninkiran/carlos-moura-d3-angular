@@ -407,6 +407,11 @@ export class Chart9Component extends Chart<ISwarmData, any> {
     }
 
     private moveTooltip = (event: MouseEvent): void => {
-
+        const coords = d3.pointer(event, this.svg.node());
+        const position = {
+            x: coords[0],
+            y: coords[1],
+        };
+        this.tooltip.position = position;
     }
 }

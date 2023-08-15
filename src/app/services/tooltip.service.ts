@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Selection } from 'd3-selection';
-import { ITooltipConfig, ITooltipData } from '../interfaces/tooltip.interfaces';
+import { ITooltipConfig, ITooltipData, ITooltipPosition } from '../interfaces/tooltip.interfaces';
 import ObjectHelper from '../helpers/object.helper';
 
 @Injectable()
@@ -88,6 +88,20 @@ export class TooltipService {
         return this._host;
     }
 
+    private _position: ITooltipPosition = {
+        x: 0,
+        y: 0,
+    };
+
+    set position(position: Partial<ITooltipPosition>) {
+        this._position = ObjectHelper.UpdateObjectWithPartialValues(this._position, position);
+        this.moveTooltip();
+    }
+
+    get position(): ITooltipPosition {
+        return this._position;
+    }
+
     public onUpdateData = () => {
         // Title
         this.host.select('text.tooltip__title')
@@ -133,4 +147,10 @@ export class TooltipService {
     }
 
     public onUpdateConfig = () => {}
+
+    protected moveTooltip = () => {
+        const x = this.position.x + this.config.background.xPadding;
+        const y = this.position.y + this.config.background.yPadding;
+        this.host.attr('transform', `translate(${x}, ${y})`);
+    }
 }

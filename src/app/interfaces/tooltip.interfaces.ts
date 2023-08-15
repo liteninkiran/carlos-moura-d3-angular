@@ -38,3 +38,8 @@ export interface ITooltipConfig {
         y: number;
     };
 }
+
+export interface ITooltipPosition {
+    x: number;
+    y: number;
+}
