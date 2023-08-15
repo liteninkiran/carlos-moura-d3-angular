@@ -4,29 +4,6 @@ import { LegendConfig } from '../interfaces/legend.interfaces';
 import ObjectHelper from '../helpers/object.helper';
 import * as d3 from 'd3';
 
-export enum LegendActionTypes {
-    LegendItemHighlighted = '[Legend service] item highlighted',
-    LegendItemClicked = '[Legend service] item clicked',
-    LegendItemReset = '[Legend service] item reset',
-}
-
-export class LegendItemHighlighted {
-    readonly type = LegendActionTypes.LegendItemHighlighted;
-    constructor(public payload: { item: any }) { }
-}
-
-export class LegendItemClicked {
-    readonly type = LegendActionTypes.LegendItemClicked;
-    constructor(public payload: { item: any }) { }
-}
-
-export class LegendItemReset {
-    readonly type = LegendActionTypes.LegendItemReset;
-    constructor(public payload: { item: any }) { }
-}
-
-export type LegendActions = LegendItemHighlighted | LegendItemClicked | LegendItemReset;
-
 @Injectable()
 export abstract class LegendService<D, C extends LegendConfig> {
     public host: Selection<SVGGElement, any, any, any> = {} as any;
@@ -106,3 +83,26 @@ export abstract class LegendService<D, C extends LegendConfig> {
         this.hiddenIds.has(id) ? this.hiddenIds.delete(id) : this.hiddenIds.add(id);
     }
 }
+
+export enum LegendActionTypes {
+    LegendItemHighlighted = '[Legend service] item highlighted',
+    LegendItemClicked = '[Legend service] item clicked',
+    LegendItemReset = '[Legend service] item reset',
+}
+
+export class LegendItemHighlighted {
+    readonly type = LegendActionTypes.LegendItemHighlighted;
+    constructor(public payload: { item: any }) { }
+}
+
+export class LegendItemClicked {
+    readonly type = LegendActionTypes.LegendItemClicked;
+    constructor(public payload: { item: any }) { }
+}
+
+export class LegendItemReset {
+    readonly type = LegendActionTypes.LegendItemReset;
+    constructor(public payload: { item: any }) { }
+}
+
+export type LegendActions = LegendItemHighlighted | LegendItemClicked | LegendItemReset;

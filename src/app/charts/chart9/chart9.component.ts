@@ -185,9 +185,10 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .force('collide', d3.forceCollide().radius(2))
             .stop();
         simulation.tick(50);
+        //this.simulateData(simulation);
+    }
 
-/*
-        // Simulate data
+    private simulateData(simulation: any) {
         let i = 0;
         const interval = setInterval(() => {
             if (i > 50) {
@@ -197,7 +198,6 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             simulation.tick();
             this.runSimulation();
         }, 500);
-*/
     }
 
     private setAxis = (): void => {
@@ -232,10 +232,12 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .data(data)
             .join('circle')
             .attr('class', 'data')
-            .attr('cx', (d: any) => d.x)
-            .attr('cy', (d: any) => d.y)
+            .attr('cx', (d) => d.x)
+            .attr('cy', (d) => d.y)
             .attr('r', 2)
-            .style('fill', (d: any) => this.scales.colours(d.group));
+            .style('fill', (d) => this.scales.colours(d.group))
+            .on('mouseenter', this.onMouseEnter)
+            .on('mouseleave', this.onMouseLeave);
     }
 
     private drawVoronoi = (): void => {
@@ -292,4 +294,13 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .style('stroke', null)
             .attr('r', 2);
     }
+
+    private onMouseEnter = (event: MouseEvent, item: ISimulatedSwarmDataElement) => {
+
+    }
+
+    private onMouseLeave = (event: MouseEvent, item: ISimulatedSwarmDataElement) => {
+
+    }
+
 }
