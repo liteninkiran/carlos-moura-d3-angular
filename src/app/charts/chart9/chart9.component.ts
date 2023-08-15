@@ -385,4 +385,23 @@ export class Chart9Component extends Chart<ISwarmData, any> {
             .style('visibility', 'visible')
             .raise();
     }
+
+    private setTooltip = (event: MouseEvent, item: ISimulatedSwarmDataElement) => {
+        // Set the data
+        this.tooltip.data = {
+            title: item.category + '',
+            colour: this.scales.colors(item.group),
+            key: item.label,
+            value: item.value,
+        };
+
+        // Position the tooltip
+        this.moveTooltip(event);
+
+        // Show the tooltip
+    }
+
+    private moveTooltip = (event: MouseEvent): void => {
+
+    }
 }
