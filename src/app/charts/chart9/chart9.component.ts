@@ -1,10 +1,11 @@
 import { ISimulatedSwarmDataElement, ISwarmData, ISwarmDataElement } from 'src/app/interfaces/chart.interfaces';
+import { LegendActionTypes, LegendActions } from 'src/app/services/legend.service';
 import { Component, ElementRef } from '@angular/core';
 import { ListLegendService } from 'src/app/services/list-legend.service';
 import { DimensionService } from 'src/app/services/dimension.service';
+import { TooltipService } from 'src/app/services/tooltip.service';
 import { Chart } from '../charts';
 import * as d3 from 'd3';
-import { LegendActionTypes, LegendActions } from 'src/app/services/legend.service';
 
 @Component({
     selector: 'app-chart9',
@@ -27,7 +28,11 @@ import { LegendActionTypes, LegendActions } from 'src/app/services/legend.servic
         </style>
     </svg>
     `,
-    providers: [DimensionService, ListLegendService],
+    providers: [
+        DimensionService,
+        ListLegendService,
+        TooltipService,
+    ],
 })
 export class Chart9Component extends Chart<ISwarmData, any> {
 
@@ -47,6 +52,7 @@ export class Chart9Component extends Chart<ISwarmData, any> {
         element: ElementRef,
         dimensions: DimensionService,
         protected legend: ListLegendService,
+        protected tooltip: TooltipService,
     ) {
         super(element, dimensions);
         console.log(this);
