@@ -1,14 +1,19 @@
 <div class="chart-4">
 
     <div class="controller">
-        <select name="x-option" (change)="setOption('x', $event)">
-            <option value="" selected disabled hidden>X Variable</option>
-            <option *ngFor="let item of data?.columns" [value]="item">{{ item.replace('_', ' ') }}</option>
-        </select>
-        <select name="y-option" (change)="setOption('y', $event)">
-            <option value="" selected disabled hidden>Y Variable</option>
-            <option *ngFor="let item of data?.columns" [value]="item">{{ item.replace('_', ' ') }}</option>
-        </select>
+        <app-dropdown
+            [options]="data?.columns"
+            placeholder="X Variable"
+            [selected]="xValue"
+            (selectionChange)="setOption('x', $event)">
+        </app-dropdown>
+
+        <app-dropdown
+            [options]="data?.columns"
+            placeholder="Y Variable"
+            [selected]="yValue"
+            (selectionChange)="setOption('y', $event)">
+        </app-dropdown>
     </div>
 
     <div class="body">

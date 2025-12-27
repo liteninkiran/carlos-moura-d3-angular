@@ -78,8 +78,8 @@ export class Chart4Component implements OnInit, OnChanges {
         }
     }
 
-    public setOption(option: string, event: any): void {
-        const value = event && event.target && event.target.value;
+    public setOption(option: string, event: Event): void {
+        const value = (event.target as HTMLSelectElement).value;
         switch (option) {
             case 'x': this.xValue = value; break;
             case 'y': this.yValue = value; break;

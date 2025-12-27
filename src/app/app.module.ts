@@ -11,6 +11,7 @@ import { Chart5Component } from './charts/chart5/chart5.component';
 import { Chart6Component } from './charts/chart6/chart6.component';
 import { Chart7Component } from './charts/chart7/chart7.component';
 import { Chart8Component } from './charts/chart8/chart8.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { TimelineTooltipComponent } from './components/timeline-tooltip/timeline-tooltip.component';
 import { PlaySliderComponent } from './components/play-slider/play-slider.component';
 import { Chart9Component } from './charts/chart9/chart9.component';
@@ -22,6 +23,7 @@ import { Chart9Component } from './charts/chart9/chart9.component';
         Chart2Component,
         Chart3Component,
         Chart4Component,
+        DropdownComponent,
         Chart5Component,
         Chart6Component,
         Chart7Component,

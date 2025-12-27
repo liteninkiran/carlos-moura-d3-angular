@@ -1,0 +1,4 @@
+<select (change)="onChange($event)">
+    <option value="" disabled [selected]="!selected" hidden>{{ placeholder }}</option>
+    <option *ngFor="let opt of options" [value]="opt" [selected]="opt === selected">{{ opt.replace('_', ' ') }}</option>
+</select>
